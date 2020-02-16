@@ -21,15 +21,6 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'MainPage',
-      components: {
-        header: AppHeader,
-        default: MainPage
-        // footer: AppFooter,
-      }
-    },
-    {
       path: '/menu',
       name: 'AppMenu',
       component: AppMenu
@@ -211,6 +202,15 @@ export default new Router({
 
             next(false)
           })
+      }
+    },
+    {
+      path: '/',
+      name: 'MainPage',
+      components: {
+        header: AppHeader,
+        default: MainPage
+        // footer: AppFooter,
       }
     }
   ]
