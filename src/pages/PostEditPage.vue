@@ -42,7 +42,7 @@ export default {
       console.log('[PostEditPage.vue] methods() → onSubmit → this.post[0]: ', this.post[0]) // prettier-ignore
 
       api
-        .post(`/board/${category}/modify/${number}`, {
+        .post(`/api/board/${category}/modify/${number}`, {
           number,
           category,
           subject,

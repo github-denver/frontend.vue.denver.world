@@ -176,7 +176,7 @@ export default {
       const number = this.post[0].number
 
       api
-        .get(`/board/${category}/delete/${number}`)
+        .get(`/api/board/${category}/delete/${number}`)
         .then((response) => {
           alert('게시물이 성공적으로 삭제되었습니다.')
 

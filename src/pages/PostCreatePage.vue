@@ -30,7 +30,7 @@ export default {
       console.log('[PostCreatePage.vue] methods() → onSubmit → payload: ', payload) // prettier-ignore
 
       api
-        .post(`/board/${category}/write`, {
+        .post(`/api/board/${category}/write`, {
           subject,
           content,
           download,

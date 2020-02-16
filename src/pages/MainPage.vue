@@ -223,7 +223,7 @@ export default {
   },
   created() {
     api
-      .get(`/`)
+      .get(`/api/`)
       .then((response) => {
         console.log('[MainPage.vue] created() → response.data: ', response.data)
 

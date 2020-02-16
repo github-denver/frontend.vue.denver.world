@@ -33,9 +33,9 @@ export default {
     console.log(' ')
 
     if (typeof keyword !== 'undefined' && keyword.length > 0) {
-      url = `/board/${category}/list/${number}?select=${select}&keyword=${keyword}`
+      url = `/api/board/${category}/list/${number}?select=${select}&keyword=${keyword}`
     } else {
-      url = `/board/${category}/list/${number}`
+      url = `/api/board/${category}/list/${number}`
     }
     console.log('[actions.js] fetchPostList () → url: ', url)
 
@@ -87,7 +87,7 @@ export default {
     console.log(' ')
 
     return api
-      .post('/profile', payload)
+      .post('/api/profile', payload)
       .then((response) => {
         console.log('[actions.js] updateProfile () → response.data: ', response.data) // prettier-ignore
         console.log('[actions.js] updateProfile () → response.data.user: ', response.data.user) // prettier-ignore
@@ -101,7 +101,7 @@ export default {
 
         commit(SET_ACCESS_TOKEN, accessToken)
 
-        return api.get('/me', {
+        return api.get('/api/me', {
           params: {
             accessToken: accessToken
           }
@@ -126,7 +126,7 @@ export default {
 
     console.log(' ')
 
-    return api.get(`/board/${category}/view/${number}`).then((response) => {
+    return api.get(`/api/board/${category}/view/${number}`).then((response) => {
       console.log('[actions.js] fetchPost () → response.data: ', response.data) // prettier-ignore
       console.log('[actions.js] fetchPost () → typeof response.data: ', typeof response.data) // prettier-ignore
       console.log('[actions.js] fetchPost () → response.data.result: ', response.data.result) // prettier-ignore
@@ -147,7 +147,7 @@ export default {
     console.log(' ')
 
     return api
-      .post('/login', { id, password })
+      .post('/api/login', { id, password })
       .then((response) => {
         console.log('[actions.js] signin () → response: ', response)
 
@@ -160,7 +160,7 @@ export default {
 
         commit(SET_ACCESS_TOKEN, accessToken)
 
-        return api.get('/me', {
+        return api.get('/api/me', {
           params: {
             accessToken: accessToken
           }
@@ -182,7 +182,7 @@ export default {
     commit(SET_ACCESS_TOKEN, token)
 
     return api
-      .get('/me', { params: { accessToken: token } })
+      .get('/api/me', { params: { accessToken: token } })
       .then((response) => {
         console.log('[actions.js] signinByToken () → response.data: ', response.data) // prettier-ignore
         console.log('[actions.js] signinByToken () → response.data.user: ', response.data.user) // prettier-ignore
@@ -193,7 +193,7 @@ export default {
       })
   },
   signout({ commit }) {
-    return api.get('/logout').then((response) => {
+    return api.get('/api/logout').then((response) => {
       console.log('[actions.js] signout () → response.data: ', response.data) // prettier-ignore
 
       console.log(' ')

@@ -237,7 +237,7 @@ export default {
       formData.append('picture', file)
 
       api
-        .post(`/board/${this.category}/upload`, formData)
+        .post(`/api/board/${this.category}/upload`, formData)
         .then((result) => {
           console.log('[PostCreateForm.vue] methods() → handleImageAdded → result: ', result) // prettier-ignore
           console.log('[PostCreateForm.vue] methods() → handleImageAdded → result.data: ', result.data) // prettier-ignore

@@ -307,7 +307,7 @@ export default {
       console.log('[PostEditForm.vue] methods() → handleImageAdded → this.category: ', this.category) // prettier-ignore
 
       api
-        .post(`/board/${this.category}/upload`, formData)
+        .post(`/api/board/${this.category}/upload`, formData)
         .then((result) => {
           console.log('[PostEditForm.vue] methods() → handleImageAdded → result: ', result) // prettier-ignore
           console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data: ', result.data) // prettier-ignore

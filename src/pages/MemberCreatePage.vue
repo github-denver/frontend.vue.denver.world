@@ -29,7 +29,7 @@ export default {
       console.log('[MemberCreatePage.vue] methods() → onSubmit → payload: ', payload) // prettier-ignore
 
       api
-        .post('/register', payload)
+        .post('/api/register', payload)
         .then((response) => {
           console.log('[MemberCreatePage.vue] 회원가입에 성공했어요! response: ', response) // prettier-ignore
 
