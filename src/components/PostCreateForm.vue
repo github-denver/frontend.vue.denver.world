@@ -195,7 +195,26 @@ export default {
       console.log('[PostCreateForm.vue] submit() → content: ', content)
       console.log('[PostCreateForm.vue] submit() → download: ', download)
 
-      const thumbnail = document.querySelector('.input_thumbnail:checked').value
+      const inputThumbnail = document.getElementsByClassName('input_thumbnail')
+      console.log('inputThumbnail: ', inputThumbnail)
+
+      const getValues = (() => {
+        console.log('inputThumbnail.length: ', inputThumbnail.length)
+
+        for (let i = 0; i < inputThumbnail.length; i++) {
+          console.log('inputThumbnail[i].checked: ', inputThumbnail[i].checked)
+
+          if (inputThumbnail[i].checked) {
+            console.log('inputThumbnail[i].value: ', inputThumbnail[i].value)
+
+            return inputThumbnail[i].value
+          }
+        }
+      })()
+
+      console.log(getValues)
+
+      const thumbnail = getValues && getValues
       console.log('[PostCreateForm.vue] submit() → thumbnail: ', thumbnail)
 
       let upload2 = ''
