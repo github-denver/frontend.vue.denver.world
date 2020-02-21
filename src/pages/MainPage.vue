@@ -221,31 +221,29 @@ export default {
       }
     }
   },
+  // prettier-ignore
   created() {
-    api
-      .get(`/api/`)
-      .then((response) => {
-        console.log('[MainPage.vue] created() → response.data: ', response.data)
+    api.get(`/api/`).then((response) => {
+      console.log('[MainPage.vue] created() → response.data: ', response.data)
 
-        this.notice.list = response.data.notice
-        this.notice.loading = true
-        console.log('[MainPage.vue] created() → this.notice.list: ', this.notice.list) // prettier-ignore
+      this.notice.list = response.data.notice
+      this.notice.loading = true
+      console.log('[MainPage.vue] created() → this.notice.list: ', this.notice.list)
 
-        this.update.list = response.data.update
-        this.update.loading = true
-        console.log('[MainPage.vue] created() → this.update.list: ', this.update.list) // prettier-ignore
+      this.update.list = response.data.update
+      this.update.loading = true
+      console.log('[MainPage.vue] created() → this.update.list: ', this.update.list)
 
-        this.talk.list = response.data.talk
-        this.talk.loading = true
-        console.log('[MainPage.vue] created() → this.talk.list: ', this.talk.list) // prettier-ignore
+      this.talk.list = response.data.talk
+      this.talk.loading = true
+      console.log('[MainPage.vue] created() → this.talk.list: ', this.talk.list)
 
-        this.gallery.list = response.data.gallery
-        this.gallery.loading = true
-        console.log('[MainPage.vue] created() → this.gallery.list: ', this.gallery.list) // prettier-ignore
-      })
-      .catch((error) => {
-        console.log('[MainPage.vue] created() → error: ', error)
-      })
+      this.gallery.list = response.data.gallery
+      this.gallery.loading = true
+      console.log('[MainPage.vue] created() → this.gallery.list: ', this.gallery.list)
+    }).catch((error) => {
+      console.log('[MainPage.vue] created() → error: ', error)
+    })
   }
 }
 </script>

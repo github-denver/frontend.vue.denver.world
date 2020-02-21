@@ -47,22 +47,23 @@ export default {
       }
     }
   },
+  // prettier-ignore
   created() {
     this.category.value = this.select.category
-    console.log('[CategorySelect.vue] created() → this.category.value: ', this.category.value) // prettier-ignore
+    console.log('[CategorySelect.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
   },
+  // prettier-ignore
   methods: {
     onChange() {
-      console.log('[CategorySelect.vue] methods() → onChange() → this.category.value: ', this.category.value) // prettier-ignore
-      console.log('[CategorySelect.vue] methods() → onChange() → this.category.text: ', this.category.text) // prettier-ignore
+      console.log('[CategorySelect.vue] methods() → onChange() → this.category.value: ', this.category.value)
+      console.log('[CategorySelect.vue] methods() → onChange() → this.category.text: ', this.category.text)
 
       loop: for (let i in this.select.data) {
         for (let j in this.select.data[i].optgroup.option) {
-          // prettier-ignore
           if (this.category.value === this.select.data[i].optgroup.option[j].value) {
-            console.log(`${i}. [CategorySelect.vue] methods() → onChange() → this.select.data[${i}].optgroup.option[${j}].text: `, this.select.data[i].optgroup.option[j].text)
+            console.log(`[CategorySelect.vue] ${i}. methods() → onChange() → this.select.data[${i}].optgroup.option[${j}].text: `, this.select.data[i].optgroup.option[j].text)
 
             this.category.text = this.select.data[i].optgroup.option[j].text
             console.log('[CategorySelect.vue] methods() → onChange() → this.category.text: ', this.category.text)
@@ -75,7 +76,7 @@ export default {
         }
       }
 
-      console.log('[CategorySelect.vue] methods() → onChange() → this.category: ', this.category) // prettier-ignore
+      console.log('[CategorySelect.vue] methods() → onChange() → this.category: ', this.category)
 
       this.$emit('parentChange', this.category)
     }

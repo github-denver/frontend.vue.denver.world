@@ -17,6 +17,7 @@ import store from '@/store'
 
 Vue.use(Router)
 
+// prettier-ignore
 export default new Router({
   mode: 'history',
   routes: [
@@ -160,7 +161,7 @@ export default new Router({
       },
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
-        console.log('[router/index.js] PostEditPage → store.getters: ', store.getters) // prettier-ignore
+        console.log('[router/index.js] PostEditPage → store.getters: ', store.getters)
 
         if (!isAuthorized) {
           alert('로그인이 필요해요!')
@@ -176,8 +177,8 @@ export default new Router({
             number: to.params.number
           })
           .then(() => {
-            console.log('[router/index.js] PostEditPage → store.state.post: ', store.state.post) // prettier-ignore
-            console.log('[router/index.js] PostEditPage → store.state.user.id: ', store.state.user.id) // prettier-ignore
+            console.log('[router/index.js] PostEditPage → store.state.post: ', store.state.post)
+            console.log('[router/index.js] PostEditPage → store.state.user.id: ', store.state.user.id)
 
             const post = store.state.post[0]
             console.log('[router/index.js] PostEditPage → post: ', post)
@@ -185,8 +186,8 @@ export default new Router({
             const isAuthor = post.id === store.state.user.id
 
             if (isAuthor) {
-              console.log('[router/index.js] PostEditPage → 사용자가 일치합니다') // prettier-ignore
-              console.log('[router/index.js] PostEditPage → isAuthor: ', isAuthor) // prettier-ignore
+              console.log('[router/index.js] PostEditPage → 사용자가 일치합니다')
+              console.log('[router/index.js] PostEditPage → isAuthor: ', isAuthor)
 
               next()
             } else {

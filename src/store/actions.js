@@ -9,6 +9,7 @@ import {
 } from './mutation-types'
 import api from '@/api'
 
+// prettier-ignore
 export default {
   fetchPostList({ commit }, payload) {
     const { category, number, select, keyword } = payload
@@ -17,18 +18,18 @@ export default {
     console.log(' ')
 
     console.log('[actions.js] fetchPostList () → select: ', select)
-    console.log('[actions.js] fetchPostList () → typeof select: ', typeof select) // prettier-ignore
+    console.log('[actions.js] fetchPostList () → typeof select: ', typeof select)
 
     console.log(' ')
 
     console.log('[actions.js] fetchPostList () → keyword: ', keyword)
-    console.log('[actions.js] fetchPostList () → typeof keyword: ', typeof keyword) // prettier-ignore
+    console.log('[actions.js] fetchPostList () → typeof keyword: ', typeof keyword)
 
     console.log(' ')
 
     let url = ''
 
-    console.log("[actions.js] fetchPostList () → typeof keyword !== 'undefined' && keyword.length > 0: ", typeof keyword !== 'undefined' && keyword.length > 0) // prettier-ignore
+    console.log("[actions.js] fetchPostList () → typeof keyword !== 'undefined' && keyword.length > 0: ", typeof keyword !== 'undefined' && keyword.length > 0)
 
     console.log(' ')
 
@@ -42,18 +43,18 @@ export default {
     console.log(' ')
 
     return api.get(url).then((response) => {
-      console.log('[actions.js] fetchPostList () → response.data: ', response.data) // prettier-ignore
+      console.log('[actions.js] fetchPostList () → response.data: ', response.data)
 
       console.log(' ')
 
-      console.log('[actions.js] fetchPostList () → typeof response.data: ', typeof response.data) // prettier-ignore
-      console.log('[actions.js] fetchPostList () → typeof response.data.list: ', typeof response.data.list) // prettier-ignore
+      console.log('[actions.js] fetchPostList () → typeof response.data: ', typeof response.data)
+      console.log('[actions.js] fetchPostList () → typeof response.data.list: ', typeof response.data.list)
 
       console.log(' ')
 
       const { list, pagination, select, keyword } = response.data
       console.log('[actions.js] fetchPostList () → list: ', list)
-      console.log('[actions.js] fetchPostList () → pagination: ', pagination) // prettier-ignore
+      console.log('[actions.js] fetchPostList () → pagination: ', pagination)
       console.log('[actions.js] fetchPostList () → select: ', select)
       console.log('[actions.js] fetchPostList () → keyword: ', keyword)
 
@@ -70,12 +71,12 @@ export default {
     console.log(' ')
 
     console.log('[actions.js] searchInfo () → select: ', select)
-    console.log('[actions.js] searchInfo () → typeof select: ', typeof select) // prettier-ignore
+    console.log('[actions.js] searchInfo () → typeof select: ', typeof select)
 
     console.log(' ')
 
     console.log('[actions.js] searchInfo () → keyword: ', keyword)
-    console.log('[actions.js] searchInfo () → typeof keyword: ', typeof keyword) // prettier-ignore
+    console.log('[actions.js] searchInfo () → typeof keyword: ', typeof keyword)
 
     console.log(' ')
 
@@ -86,51 +87,49 @@ export default {
 
     console.log(' ')
 
-    return api
-      .post('/api/profile', payload)
-      .then((response) => {
-        console.log('[actions.js] updateProfile () → response.data: ', response.data) // prettier-ignore
-        console.log('[actions.js] updateProfile () → response.data.user: ', response.data.user) // prettier-ignore
+    return api.post('/api/profile', payload).then((response) => {
+      console.log('[actions.js] updateProfile () → response.data: ', response.data)
+      console.log('[actions.js] updateProfile () → response.data.user: ', response.data.user)
 
-        console.log(' ')
+      console.log(' ')
 
-        const { accessToken } = response.data
-        console.log('[actions.js] updateProfile () → accessToken: ', accessToken) // prettier-ignore
+      const { accessToken } = response.data
+      console.log('[actions.js] updateProfile () → accessToken: ', accessToken)
 
-        console.log(' ')
+      console.log(' ')
 
-        commit(SET_ACCESS_TOKEN, accessToken)
+      commit(SET_ACCESS_TOKEN, accessToken)
 
-        return api.get('/api/me', {
-          params: {
-            accessToken: accessToken
-          }
-        })
+      return api.get('/api/me', {
+        params: {
+          accessToken: accessToken
+        }
       })
-      .then((response) => {
-        console.log('[actions.js] signin () → [SET_MY_INFO] > response: ', response) // prettier-ignore
+    })
+    .then((response) => {
+      console.log('[actions.js] signin () → [SET_MY_INFO] > response: ', response)
 
-        console.log(' ')
+      console.log(' ')
 
-        commit(SET_MY_INFO, response.data.user2)
-      })
+      commit(SET_MY_INFO, response.data.user2)
+    })
   },
   fetchPost({ commit }, payload) {
     const { category, number, select, keyword } = payload
     console.log('[actions.js] fetchPost () → payload: ', payload)
-    console.log('[actions.js] fetchPost () → typeof number: ', typeof number) // prettier-ignore
+    console.log('[actions.js] fetchPost () → typeof number: ', typeof number)
 
     console.log(' ')
 
-    console.log('[actions.js] fetchPost () → `/board/${category}/view/${number}`: ', `/board/${category}/view/${number}`) // prettier-ignore
+    console.log('[actions.js] fetchPost () → `/board/${category}/view/${number}`: ', `/board/${category}/view/${number}`)
 
     console.log(' ')
 
     return api.get(`/api/board/${category}/view/${number}`).then((response) => {
-      console.log('[actions.js] fetchPost () → response.data: ', response.data) // prettier-ignore
-      console.log('[actions.js] fetchPost () → typeof response.data: ', typeof response.data) // prettier-ignore
-      console.log('[actions.js] fetchPost () → response.data.result: ', response.data.result) // prettier-ignore
-      console.log('[actions.js] fetchPost () → typeof response.data.result: ', typeof response.data.result) // prettier-ignore
+      console.log('[actions.js] fetchPost () → response.data: ', response.data)
+      console.log('[actions.js] fetchPost () → typeof response.data: ', typeof response.data)
+      console.log('[actions.js] fetchPost () → response.data.result: ', response.data.result)
+      console.log('[actions.js] fetchPost () → typeof response.data.result: ', typeof response.data.result)
 
       console.log(' ')
 
@@ -146,33 +145,31 @@ export default {
 
     console.log(' ')
 
-    return api
-      .post('/api/login', { id, password })
-      .then((response) => {
-        console.log('[actions.js] signin () → response: ', response)
+    return api.post('/api/login', { id, password }).then((response) => {
+      console.log('[actions.js] signin () → response: ', response)
 
-        console.log(' ')
+      console.log(' ')
 
-        const { accessToken } = response.data
-        console.log('[actions.js] signin () → accessToken: ', accessToken)
+      const { accessToken } = response.data
+      console.log('[actions.js] signin () → accessToken: ', accessToken)
 
-        console.log(' ')
+      console.log(' ')
 
-        commit(SET_ACCESS_TOKEN, accessToken)
+      commit(SET_ACCESS_TOKEN, accessToken)
 
-        return api.get('/api/me', {
-          params: {
-            accessToken: accessToken
-          }
-        })
+      return api.get('/api/me', {
+        params: {
+          accessToken: accessToken
+        }
       })
-      .then((response) => {
-        console.log('[actions.js] signin () → [SET_MY_INFO] > response: ', response) // prettier-ignore
+    })
+    .then((response) => {
+      console.log('[actions.js] signin () → [SET_MY_INFO] > response: ', response)
 
-        console.log(' ')
+      console.log(' ')
 
-        commit(SET_MY_INFO, response.data.user2)
-      })
+      commit(SET_MY_INFO, response.data.user2)
+    })
   },
   signinByToken({ commit }, token) {
     console.log('[actions.js] signinByToken () → token: ', token)
@@ -181,20 +178,18 @@ export default {
 
     commit(SET_ACCESS_TOKEN, token)
 
-    return api
-      .get('/api/me', { params: { accessToken: token } })
-      .then((response) => {
-        console.log('[actions.js] signinByToken () → response.data: ', response.data) // prettier-ignore
-        console.log('[actions.js] signinByToken () → response.data.user: ', response.data.user) // prettier-ignore
+    return api.get('/api/me', { params: { accessToken: token } }).then((response) => {
+      console.log('[actions.js] signinByToken () → response.data: ', response.data)
+      console.log('[actions.js] signinByToken () → response.data.user: ', response.data.user)
 
-        console.log(' ')
+      console.log(' ')
 
-        commit(SET_MY_INFO, response.data.user2)
-      })
+      commit(SET_MY_INFO, response.data.user2)
+    })
   },
   signout({ commit }) {
     return api.get('/api/logout').then((response) => {
-      console.log('[actions.js] signout () → response.data: ', response.data) // prettier-ignore
+      console.log('[actions.js] signout () → response.data: ', response.data)
 
       console.log(' ')
 

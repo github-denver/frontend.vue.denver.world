@@ -86,16 +86,17 @@ export default {
     this.keyword = this.search.keyword
     console.log('[PostSearch.vue] created() → this.keyword: ', this.keyword)
   },
+  // prettier-ignore
   methods: {
     onChange(event) {
       this.select.text = event.target.options[event.target.selectedIndex].text
-      console.log('[PostSearch.vue] methods() → onChange → this.select.text: ', this.select.text) // prettier-ignore
+      console.log('[PostSearch.vue] methods() → onChange → this.select.text: ', this.select.text)
 
       this.select.value = event.target.value
-      console.log('[PostSearch.vue] methods() → onChange → this.select.text: ', this.select.value) // prettier-ignore
+      console.log('[PostSearch.vue] methods() → onChange → this.select.text: ', this.select.value)
     },
     submit() {
-      console.log('[PostSearch.vue] methods() → onChange → this.keyword: ', this.keyword) // prettier-ignore
+      console.log('[PostSearch.vue] methods() → onChange → this.keyword: ', this.keyword)
 
       this.fetchPostList({
         category: this.category.value,

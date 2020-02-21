@@ -112,34 +112,35 @@ export default {
       }
     }
   },
+  // prettier-ignore
   created() {
-    console.log('[ProfileEditForm.vue] created() → this.profile: ', this.profile) // prettier-ignore
+    console.log('[ProfileEditForm.vue] created() → this.profile: ', this.profile)
 
     this.user.name = this.profile.name
     this.user.email = this.profile.email
     this.user.picture = this.profile.picture
   },
+  // prettier-ignore
   mounted() {
-    // prettier-ignore
     $('.box_photo .field_local').on('change', function () {
       var $parent = $(this).closest('.box_photo').siblings('.box_picture')
-      console.log('$parent: ', $parent)
+      console.log('[ProfileEditForm.vue] $parent: ', $parent)
 
       console.log(' ')
 
-      console.log('window.FileReader: ', window.FileReader)
+      console.log('[ProfileEditForm.vue] window.FileReader: ', window.FileReader)
       if (window.FileReader) {
-        console.log('if (window.FileReader) { .. }: true')
+        console.log('[ProfileEditForm.vue] if (window.FileReader) { .. }: true')
 
         console.log(' ')
 
-        console.log('$(this)[0].files[0]: ', $(this)[0].files[0])
-        console.log('$(this)[0].files[0].type: ', $(this)[0].files[0].type)
+        console.log('[ProfileEditForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
+        console.log('[ProfileEditForm.vue] $(this)[0].files[0].type: ', $(this)[0].files[0].type)
 
         console.log(' ')
 
-        console.log('$(this)[0].files[0].type.match(/image/): ', $(this)[0].files[0].type.match(/image\//))
-        console.log('!$(this)[0].files[0].type.match(/image/): ', !$(this)[0].files[0].type.match(/image\//))
+        console.log('[ProfileEditForm.vue] $(this)[0].files[0].type.match(/image/): ', $(this)[0].files[0].type.match(/image\//))
+        console.log('[ProfileEditForm.vue] !$(this)[0].files[0].type.match(/image/): ', !$(this)[0].files[0].type.match(/image\//))
 
         console.log(' ')
 
@@ -151,14 +152,14 @@ export default {
         // 읽기..
         var reader = new FileReader()
         reader.readAsDataURL($(this)[0].files[0])
-        console.log('$(this)[0].files[0]: ', $(this)[0].files[0])
+        console.log('[ProfileEditForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
 
         console.log(' ')
 
         // 로드 한 후
         reader.onload = function(event) {
           var result = event.target.result
-          // console.log('result: ', result)
+          // console.log('[ProfileEditForm.vue] result: ', result)
 
           console.log(' ')
 
@@ -168,15 +169,15 @@ export default {
           clearTimeout(timeout)
 
           timeout = setTimeout(function () {
-            console.log("$('form')[0]: ", $('form')[0])
-            console.log("$('form')[0].email: ", $('form')[0].email)
-            console.log("$('form')[0].picture: ", $('form')[0].picture)
+            console.log("[ProfileEditForm.vue] $('form')[0]: ", $('form')[0])
+            console.log("[ProfileEditForm.vue] $('form')[0].email: ", $('form')[0].email)
+            console.log("[ProfileEditForm.vue] $('form')[0].picture: ", $('form')[0].picture)
 
             console.log(' ')
 
             var formData = new FormData($('form')[0])
             // formData.append('', .value)
-            console.log('formData: ', formData)
+            console.log('[ProfileEditForm.vue] formData: ', formData)
 
             $.ajax({
               type: 'post',
@@ -185,13 +186,13 @@ export default {
               processData: false,
               contentType: false,
               success: function (response) {
-                console.log('성공하였습니다.')
-                console.log('response: ', response)
+                console.log('[ProfileEditForm.vue] 성공하였습니다.')
+                console.log('[ProfileEditForm.vue] response: ', response)
 
                 console.log(' ')
               },
               error: function () {
-                console.log('실패하였습니다.')
+                console.log('[ProfileEditForm.vue] 실패하였습니다.')
 
                 console.log(' ')
               },
@@ -200,14 +201,14 @@ export default {
           */
         }
       } else {
-        console.log('if (window.FileReader) { .. }: false')
+        console.log('[ProfileEditForm.vue] if (window.FileReader) { .. }: false')
 
         console.log(' ')
 
         var $picture = $(this).closest('.box_photo').siblings('.box_picture').children('.img_picture')
         var text = document.selection.createRange().text
-        console.log('$picture: ', $picture)
-        console.log('text: ', text)
+        console.log('[ProfileEditForm.vue] $picture: ', $picture)
+        console.log('[ProfileEditForm.vue] text: ', text)
 
         console.log(' ')
 
@@ -215,6 +216,7 @@ export default {
       }
     })
   },
+  // prettier-ignore
   methods: {
     submit() {
       const { name, email } = this.user
@@ -222,7 +224,7 @@ export default {
       console.log('[ProfileEditForm.vue] methods() → submit → email: ', email)
 
       const picture = this.$refs.picture.files[0]
-      console.log('[ProfileEditForm.vue] methods() → submit → picture: ', picture) // prettier-ignore
+      console.log('[ProfileEditForm.vue] methods() → submit → picture: ', picture)
 
       const formData = new FormData()
       formData.append('picture', picture)

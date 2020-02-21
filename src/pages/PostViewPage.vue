@@ -169,40 +169,36 @@ export default {
       page: 1
     }
   },
+  // prettier-ignore
   methods: {
     ...mapActions(['fetchPost', 'searchInfo']),
     onDelete() {
       const category = this.category.value
       const number = this.post[0].number
 
-      api
-        .get(`/api/board/${category}/delete/${number}`)
-        .then((response) => {
-          alert('게시물이 성공적으로 삭제되었습니다.')
+      api.get(`/api/board/${category}/delete/${number}`).then((response) => {
+        alert('게시물이 성공적으로 삭제되었습니다.')
 
-          this.$router.push({
-            name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage', // prettier-ignore
-            params: {
-              service: response.data.service,
-              number: '1'
-            }
-          })
-        })
-        .catch((error) => {
-          console.error(error.response)
-
-          // prettier-ignore
-          if (error.response.status === 401) { // UnAuthorized
-            alert('로그인이 필요합니다.')
-          } else {
-            alert(error.response.data.message)
+        this.$router.push({
+          name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage',
+          params: {
+            service: response.data.service,
+            number: '1'
           }
         })
+      }).catch((error) => {
+        console.error(error.response)
+
+        if (error.response.status === 401) { // UnAuthorized
+          alert('로그인이 필요합니다.')
+        } else {
+          alert(error.response.data.message)
+        }
+      })
     },
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          // prettier-ignore
           if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
             this.category.value = this.navigation.data[i].optgroup.option[j].value
@@ -213,38 +209,39 @@ export default {
       }
     }
   },
+  // prettier-ignore
   created() {
-    console.log('[PostViewPage.vue] created() → this.$route.params: ', this.$route.params) // prettier-ignore
-    console.log('[PostViewPage.vue] created() → this.$route.query: ', this.$route.query) // prettier-ignore
+    console.log('[PostViewPage.vue] created() → this.$route.params: ', this.$route.params)
+    console.log('[PostViewPage.vue] created() → this.$route.query: ', this.$route.query)
 
     this.page = this.$route.query.page
 
-    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : '' // prettier-ignore
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
     console.log('[PostViewPage.vue] created() → keyword: ', keyword)
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log('[PostViewPage.vue] kcreated() → eyword.length === 0: ', keyword.length === 0) // prettier-ignore
+      console.log('[PostViewPage.vue] kcreated() → eyword.length === 0: ', keyword.length === 0)
 
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log('[PostViewPage.vue] created() → keyword.length === 0: ', keyword.length === 0) // prettier-ignore
+      console.log('[PostViewPage.vue] created() → keyword.length === 0: ', keyword.length === 0)
 
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
     }
 
-    console.log('[PostViewPage.vue] created() → this.search.keyword: ', this.search.keyword) // prettier-ignore
+    console.log('[PostViewPage.vue] created() → this.search.keyword: ', this.search.keyword)
 
     this.category.value = this.service
-    console.log('[PostViewPage.vue] created() → this.category.value: ', this.category.value) // prettier-ignore
+    console.log('[PostViewPage.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
 
-    console.log('[PostViewPage.vue] created() → typeof this.number: ',typeof this.number) // prettier-ignore
-    console.log('[PostViewPage.vue] created() → typeof parseInt(this.number): ', typeof parseInt(this.number)) // prettier-ignore
+    console.log('[PostViewPage.vue] created() → typeof this.number: ',typeof this.number)
+    console.log('[PostViewPage.vue] created() → typeof parseInt(this.number): ', typeof parseInt(this.number))
 
     this.fetchPost({
       category: this.category.value,
@@ -253,7 +250,7 @@ export default {
       keyword: keyword2
     }).catch((error) => {
       console.error(error)
-      console.log('[PostViewPage.vue] created() → error.response: ', error.response) // prettier-ignore
+      console.log('[PostViewPage.vue] created() → error.response: ', error.response)
 
       alert(error)
 

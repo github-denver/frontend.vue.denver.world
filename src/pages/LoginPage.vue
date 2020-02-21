@@ -28,6 +28,7 @@ import LoginForm from '@/components/LoginForm'
 export default {
   name: 'LoginPage',
   components: { LoginForm },
+  // prettier-ignore
   methods: {
     ...mapActions(['signin']),
     onSubmit(payload) {
@@ -35,12 +36,12 @@ export default {
 
       this.signin(payload)
         .then((response) => {
-          console.log('[LoginPage.vue] methods() → onSubmit → 로그인에 성공했어요!') // prettier-ignore
-          console.log('[LoginPage.vue] methods() → onSubmit → response: ', response) // prettier-ignore
+          console.log('[LoginPage.vue] methods() → onSubmit → 로그인에 성공했어요!')
+          console.log('[LoginPage.vue] methods() → onSubmit → response: ', response)
 
           alert('로그인에 성공했어요!')
 
-          console.log('[LoginPage.vue] methods() → onSubmit → 메인으로 이동해요!') // prettier-ignore
+          console.log('[LoginPage.vue] methods() → onSubmit → 메인으로 이동해요!')
 
           this.$router.push({
             name: 'MainPage'
@@ -52,10 +53,10 @@ export default {
           } else {
             alert(error.response.data.message)
           }
-          console.log('[LoginPage.vue] 로그인에 실패했어요.. ㅠㅜ error: ', error) // prettier-ignore
-          console.log('[LoginPage.vue] 로그인에 실패했어요.. ㅠㅜ error.message: ', error.message) // prettier-ignore
-          console.log('[LoginPage.vue] 로그인에 실패했어요.. ㅠㅜ error.response: ', error.response) // prettier-ignore
-          console.log('[LoginPage.vue] 로그인에 실패했어요.. ㅠㅜ error.response.data: ', error.response.data) // prettier-ignore
+          console.log('[LoginPage.vue] 로그인에 실패했어요.. ㅠㅜ error: ', error)
+          console.log('[LoginPage.vue] 로그인에 실패했어요.. ㅠㅜ error.message: ', error.message)
+          console.log('[LoginPage.vue] 로그인에 실패했어요.. ㅠㅜ error.response: ', error.response)
+          console.log('[LoginPage.vue] 로그인에 실패했어요.. ㅠㅜ error.response.data: ', error.response.data)
 
           alert('로그인에 실패했어요.. ㅠㅜ')
         })

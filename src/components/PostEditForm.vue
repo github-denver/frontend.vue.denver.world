@@ -195,15 +195,16 @@ export default {
       page: 1
     }
   },
+  // prettier-ignore
   created() {
-    console.log('[PostEditForm.vue] created() → this.$route.params: ', this.$route.params) // prettier-ignore
-    console.log('[PostEditForm.vue] created() → this.$route.query: ', this.$route.query) // prettier-ignore
+    console.log('[PostEditForm.vue] created() → this.$route.params: ', this.$route.params)
+    console.log('[PostEditForm.vue] created() → this.$route.query: ', this.$route.query)
 
     console.log(' ')
 
     console.log('[PostEditForm.vue] created() → this.post: ', this.post)
-    console.log('[PostEditForm.vue] created() → this.post === null: ', this.post === null) // prettier-ignore
-    console.log('[PostEditForm.vue] created() → typeof this.post: ', typeof this.post) // prettier-ignore
+    console.log('[PostEditForm.vue] created() → this.post === null: ', this.post === null)
+    console.log('[PostEditForm.vue] created() → typeof this.post: ', typeof this.post)
 
     const data = () => {
       this.category = this.post[0].category
@@ -226,7 +227,7 @@ export default {
       }).catch((error) => {
         console.error('[PostViewPage.vue] created() → error: ', error)
 
-        console.log('[PostViewPage.vue] created() → error.response: ', error.response) // prettier-ignore
+        console.log('[PostViewPage.vue] created() → error.response: ', error.response)
 
         alert(error)
 
@@ -237,11 +238,11 @@ export default {
     }
 
     if (this.post === null) {
-      console.log('[PostEditForm.vue] created() → 수정할 정보를 읽어들이는 중입니다!') // prettier-ignore
+      console.log('[PostEditForm.vue] created() → 수정할 정보를 읽어들이는 중입니다!')
 
       post()
     } else {
-      console.log('[PostEditForm.vue] created() → 전달받은 정보를 읽어들이는 중입니다!') // prettier-ignore
+      console.log('[PostEditForm.vue] created() → 전달받은 정보를 읽어들이는 중입니다!')
 
       data()
     }
@@ -249,11 +250,12 @@ export default {
     this.select.category = this.service
     console.log('[PostEditForm.vue] created() → this.category: ', this.category)
 
-    console.log('[PostEditForm.vue] created() → this.$route.params: ', this.$route.params) // prettier-ignore
+    console.log('[PostEditForm.vue] created() → this.$route.params: ', this.$route.params)
 
     this.page = this.$route.query.page
-    console.log('[PostEditForm.vue] created() → this.$route.query.page: ', this.$route.query.page) // prettier-ignore
+    console.log('[PostEditForm.vue] created() → this.$route.query.page: ', this.$route.query.page)
   },
+  // prettier-ignore
   methods: {
     ...mapActions(['fetchPost']),
     submit() {
@@ -268,12 +270,12 @@ export default {
       console.log('[PostEditForm.vue] submit() → thumbnail: ', thumbnail)
 
       let upload2 = ''
-      console.log("[PostEditForm.vue] submit() → $('.list_preview li').length: ", $('.list_preview li').length) // prettier-ignore
+      console.log("[PostEditForm.vue] submit() → $('.list_preview li').length: ", $('.list_preview li').length)
 
       let i
       let limit = $('.list_preview li').length
       for (i = 0; i < limit; i++) {
-        upload2 += $('.list_preview').find('li').eq(i).find('.input_thumbnail').val() // prettier-ignore
+        upload2 += $('.list_preview').find('li').eq(i).find('.input_thumbnail').val()
 
         if (i < limit - 1) {
           upload2 += ','
@@ -291,68 +293,61 @@ export default {
     },
     onChange(payload) {
       const { text, value } = payload
-      console.log('[PostEditForm.vue] methods() → onChange → payload: ', payload) // prettier-ignore
+      console.log('[PostEditForm.vue] methods() → onChange → payload: ', payload)
 
       this.category = value
     },
     handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
-      console.log('[PostEditForm.vue] methods() → handleImageAdded → file: ', file) // prettier-ignore
-      console.log('[PostEditForm.vue] methods() → handleImageAdded → Editor: ', Editor) // prettier-ignore
-      console.log('[PostEditForm.vue] methods() → handleImageAdded → cursorLocation: ', cursorLocation) // prettier-ignore
-      console.log('[PostEditForm.vue] methods() → handleImageAdded → resetUploader: ', resetUploader) // prettier-ignore
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → file: ', file)
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → Editor: ', Editor)
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → cursorLocation: ', cursorLocation)
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → resetUploader: ', resetUploader)
 
       const formData = new FormData()
       formData.append('picture', file)
 
-      console.log('[PostEditForm.vue] methods() → handleImageAdded → this.category: ', this.category) // prettier-ignore
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → this.category: ', this.category)
 
-      api
-        .post(`/api/board/${this.category}/upload`, formData)
-        .then((result) => {
-          console.log('[PostEditForm.vue] methods() → handleImageAdded → result: ', result) // prettier-ignore
-          console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data: ', result.data) // prettier-ignore
-          console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data.image[0]: ', result.data.image[0]) // prettier-ignore
-          console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data.image[0].imageurl: ', result.data.image[0].imageurl) // prettier-ignore
+      api.post(`/api/board/${this.category}/upload`, formData).then((result) => {
+        console.log('[PostEditForm.vue] methods() → handleImageAdded → result: ', result)
+        console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data: ', result.data)
+        console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data.image[0]: ', result.data.image[0])
+        console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data.image[0].imageurl: ', result.data.image[0].imageurl)
 
-          const folder = 'uploads'
-          const url = result.data.image[0].imageurl
-          console.log('[PostEditForm.vue] methods() → handleImageAdded → url: ', url) // prettier-ignore
+        const folder = 'uploads'
+        const url = result.data.image[0].imageurl
+        console.log('[PostEditForm.vue] methods() → handleImageAdded → url: ', url)
 
-          const name = result.data.image[0].filename
-          console.log('[PostEditForm.vue] methods() → handleImageAdded → name: ', name) // prettier-ignore
+        const name = result.data.image[0].filename
+        console.log('[PostEditForm.vue] methods() → handleImageAdded → name: ', name)
 
-          Editor.insertEmbed(
-            cursorLocation,
-            'image',
-            `http://localhost:3000${url}`
-          )
+        Editor.insertEmbed(cursorLocation, 'image', `http://localhost:3000${url}`)
 
-          resetUploader()
+        resetUploader()
 
-          console.log("[PostEditForm.vue] methods() → handleImageAdded → document.querySelector('.list_preview').childNodes: ", document.querySelector('.list_preview').childNodes) // prettier-ignore
-          console.log("[PostEditForm.vue] methods() → handleImageAdded → document.querySelector('.list_preview').childNodes.length: ", document.querySelector('.list_preview').childNodes.length) // prettier-ignore
+        console.log("[PostEditForm.vue] methods() → handleImageAdded → document.querySelector('.list_preview').childNodes: ", document.querySelector('.list_preview').childNodes)
+        console.log("[PostEditForm.vue] methods() → handleImageAdded → document.querySelector('.list_preview').childNodes.length: ", document.querySelector('.list_preview').childNodes.length)
 
-          let thumbnail = {
-            html: '',
-            length: document.querySelector('.list_preview').childNodes.length
-          }
-          console.log("[PostEditForm.vue] methods() → handleImageAdded → thumbnail.length: ", thumbnail.length) // prettier-ignore
+        let thumbnail = {
+          html: '',
+          length: document.querySelector('.list_preview').childNodes.length
+        }
+        console.log("[PostEditForm.vue] methods() → handleImageAdded → thumbnail.length: ", thumbnail.length)
 
-          thumbnail.html += '<li>'
-          thumbnail.html += '<span class="box_preview">'
-          thumbnail.html += '<input type="radio" name="thumbnail" id="thumbnail' + thumbnail.length + '" class="input_thumbnail" value="' + name + '" checked>' // prettier-ignore
-          thumbnail.html += '<label for="thumbnail' + thumbnail.length + '" class="label_thumbnail" style="background-image:url(\'http://localhost:3000' + url + '\')">' + name + '</label>' // prettier-ignore
-          thumbnail.html += '</span>'
-          thumbnail.html += '</li>'
+        thumbnail.html += '<li>'
+        thumbnail.html += '<span class="box_preview">'
+        thumbnail.html += '<input type="radio" name="thumbnail" id="thumbnail' + thumbnail.length + '" class="input_thumbnail" value="' + name + '" checked>'
+        thumbnail.html += '<label for="thumbnail' + thumbnail.length + '" class="label_thumbnail" style="background-image:url(\'http://localhost:3000' + url + '\')">' + name + '</label>'
+        thumbnail.html += '</span>'
+        thumbnail.html += '</li>'
 
-          console.log('[PostEditForm.vue] methods() → handleImageAdded → thumbnail.html: ', thumbnail.html) // prettier-ignore
+        console.log('[PostEditForm.vue] methods() → handleImageAdded → thumbnail.html: ', thumbnail.html)
 
-          $('.board_footer').removeClass('screen_out') // prettier-ignore
-          $('.list_preview').append(thumbnail.html)
-        })
-        .catch((error) => {
-          console.error('[PostEditForm.vue] methods() → handleImageAdded → error: ', error) // prettier-ignore
-        })
+        $('.board_footer').removeClass('screen_out')
+        $('.list_preview').append(thumbnail.html)
+      }).catch((error) => {
+        console.error('[PostEditForm.vue] methods() → handleImageAdded → error: ', error)
+      })
     }
   }
 }

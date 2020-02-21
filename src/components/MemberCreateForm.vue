@@ -123,23 +123,23 @@ export default {
     // prettier-ignore
     $('.box_photo .field_local').on('change', function () {
       var $parent = $(this).closest('.box_photo').siblings('.box_picture')
-      console.log('$parent: ', $parent)
+      console.log('[MemberCreateForm.vue] $parent: ', $parent)
 
       console.log(' ')
 
-      console.log('window.FileReader: ', window.FileReader)
+      console.log('[MemberCreateForm.vue] window.FileReader: ', window.FileReader)
       if (window.FileReader) {
-        console.log('if (window.FileReader) { .. }: true')
+        console.log('[MemberCreateForm.vue] if (window.FileReader) { .. }: true')
 
         console.log(' ')
 
-        console.log('$(this)[0].files[0]: ', $(this)[0].files[0])
-        console.log('$(this)[0].files[0].type: ', $(this)[0].files[0].type)
+        console.log('[MemberCreateForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
+        console.log('[MemberCreateForm.vue] $(this)[0].files[0].type: ', $(this)[0].files[0].type)
 
         console.log(' ')
 
-        console.log('$(this)[0].files[0].type.match(/image/): ', $(this)[0].files[0].type.match(/image\//))
-        console.log('!$(this)[0].files[0].type.match(/image/): ', !$(this)[0].files[0].type.match(/image\//))
+        console.log('[MemberCreateForm.vue] $(this)[0].files[0].type.match(/image/): ', $(this)[0].files[0].type.match(/image\//))
+        console.log('[MemberCreateForm.vue] !$(this)[0].files[0].type.match(/image/): ', !$(this)[0].files[0].type.match(/image\//))
 
         console.log(' ')
 
@@ -151,14 +151,14 @@ export default {
         // 읽기..
         var reader = new FileReader()
         reader.readAsDataURL($(this)[0].files[0])
-        console.log('$(this)[0].files[0]: ', $(this)[0].files[0])
+        console.log('[MemberCreateForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
 
         console.log(' ')
 
         // 로드 한 후
         reader.onload = function(event) {
           var result = event.target.result
-          // console.log('result: ', result)
+          // console.log('[MemberCreateForm.vue] result: ', result)
 
           console.log(' ')
 
@@ -168,15 +168,15 @@ export default {
           clearTimeout(timeout)
 
           timeout = setTimeout(function () {
-            console.log("$('form')[0]: ", $('form')[0])
-            console.log("$('form')[0].email: ", $('form')[0].email)
-            console.log("$('form')[0].picture: ", $('form')[0].picture)
+            console.log("[MemberCreateForm.vue] $('form')[0]: ", $('form')[0])
+            console.log("[MemberCreateForm.vue] $('form')[0].email: ", $('form')[0].email)
+            console.log("[MemberCreateForm.vue] $('form')[0].picture: ", $('form')[0].picture)
 
             console.log(' ')
 
             var formData = new FormData($('form')[0])
             // formData.append('', .value)
-            console.log('formData: ', formData)
+            console.log('[MemberCreateForm.vue] formData: ', formData)
 
             $.ajax({
               type: 'post',
@@ -185,13 +185,13 @@ export default {
               processData: false,
               contentType: false,
               success: function (response) {
-                console.log('성공하였습니다.')
-                console.log('response: ', response)
+                console.log('[MemberCreateForm.vue] 성공하였습니다.')
+                console.log('[MemberCreateForm.vue] response: ', response)
 
                 console.log(' ')
               },
               error: function () {
-                console.log('실패하였습니다.')
+                console.log('[MemberCreateForm.vue] 실패하였습니다.')
 
                 console.log(' ')
               },
@@ -200,14 +200,14 @@ export default {
           */
         }
       } else {
-        console.log('if (window.FileReader) { .. }: false')
+        console.log('[MemberCreateForm.vue] if (window.FileReader) { .. }: false')
 
         console.log(' ')
 
         var $picture = $(this).closest('.box_photo').siblings('.box_picture').children('.img_picture')
         var text = document.selection.createRange().text
-        console.log('$picture: ', $picture)
-        console.log('text: ', text)
+        console.log('[MemberCreateForm.vue] $picture: ', $picture)
+        console.log('[MemberCreateForm.vue] text: ', text)
 
         console.log(' ')
 

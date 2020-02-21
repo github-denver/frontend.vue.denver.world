@@ -128,18 +128,19 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'PostPagination',
+  // prettier-ignore
   computed: {
     ...mapState(['pagination', 'search']),
     pagination2() {
       let pagination2 = []
-      console.log('[PostPagination.vue] computed → pagination2 → this.pagination.start: ', this.pagination.start) // prettier-ignore
-      console.log('[PostPagination.vue] computed → pagination2 → this.pagination.end: ', this.pagination.end) // prettier-ignore
+      console.log('[PostPagination.vue] computed → pagination2 → this.pagination.start: ', this.pagination.start)
+      console.log('[PostPagination.vue] computed → pagination2 → this.pagination.end: ', this.pagination.end)
 
       for (let i = this.pagination.start; i <= this.pagination.end; i++) {
         pagination2.push(i)
       }
 
-      console.log('[PostPagination.vue] computed → pagination2 → pagination2: ', pagination2) // prettier-ignore
+      console.log('[PostPagination.vue] computed → pagination2 → pagination2: ', pagination2)
       return pagination2
     }
   }

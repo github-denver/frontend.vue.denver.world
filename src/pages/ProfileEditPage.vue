@@ -29,10 +29,11 @@ export default {
   computed: {
     ...mapState(['user'])
   },
+  // prettier-ignore
   methods: {
     ...mapActions(['updateProfile']),
     onSubmit(payload) {
-      console.log('[ProfileEditPage.vue] methods() → onSubmit → payload: ', payload) // prettier-ignore
+      console.log('[ProfileEditPage.vue] methods() → onSubmit → payload: ', payload)
 
       this.updateProfile(payload).catch((error) => {
         alert(error)

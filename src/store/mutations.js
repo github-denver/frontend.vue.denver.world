@@ -10,28 +10,29 @@ import {
 import Cookies from 'js-cookie'
 import api from '@/api'
 
+// prettier-ignore
 export default {
   [FETCH_POST_LIST](state, payload) {
     console.log('[mutations.js] [FETCH_POST_LIST] → payload: ', payload)
 
     state.posts = payload.posts
-    console.log('[mutations.js] [FETCH_POST_LIST] → state.posts: ', state.posts) // prettier-ignore
+    console.log('[mutations.js] [FETCH_POST_LIST] → state.posts: ', state.posts)
 
     state.pagination = payload.pagination
-    console.log('[mutations.js] [FETCH_POST_LIST] → state.pagination: ', state.pagination) // prettier-ignore
+    console.log('[mutations.js] [FETCH_POST_LIST] → state.pagination: ', state.pagination)
   },
   [SEARCH_INFO](state, payload) {
     console.log('[mutations.js] [SEARCH_INFO] → payload: ', payload)
 
     state.search.select = payload.select
-    console.log('[mutations.js] [SEARCH_INFO] → state.select: ', state.select) // prettier-ignore
+    console.log('[mutations.js] [SEARCH_INFO] → state.select: ', state.select)
 
     state.search.keyword = payload.keyword
-    console.log('[mutations.js] [SEARCH_INFO] → state.keyword: ', state.keyword) // prettier-ignore
+    console.log('[mutations.js] [SEARCH_INFO] → state.keyword: ', state.keyword)
   },
   [FETCH_POST](state, post) {
     console.log('[mutations.js] [FETCH_POST] → state.post: ', state.post)
-    console.log('[mutations.js] [FETCH_POST] → typeof state.post: ', typeof state.post) // prettier-ignore
+    console.log('[mutations.js] [FETCH_POST] → typeof state.post: ', typeof state.post)
 
     console.log(' ')
 
@@ -41,7 +42,7 @@ export default {
     state.post = post
   },
   [SET_ACCESS_TOKEN](state, accessToken) {
-    console.log('[mutations.js] [SET_ACCESS_TOKEN] → accessToken: ', accessToken) // prettier-ignore
+    console.log('[mutations.js] [SET_ACCESS_TOKEN] → accessToken: ', accessToken)
 
     if (accessToken) {
       state.accessToken = accessToken

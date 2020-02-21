@@ -76,6 +76,7 @@ export default {
     ...mapState(['user']),
     ...mapGetters(['isAuthorized'])
   },
+  // prettier-ignore
   methods: {
     onClickSignout() {
       this.signout()
@@ -84,7 +85,7 @@ export default {
     },
     onClickClose() {
       this.isActive = !this.isActive
-      console.log('[AppHeader.vue] methods() → onClickClose → this.isActive: ', this.isActive) // prettier-ignore
+      console.log('[AppHeader.vue] methods() → onClickClose → this.isActive: ', this.isActive)
     },
     ...mapActions(['signout'])
   }

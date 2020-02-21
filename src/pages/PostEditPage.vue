@@ -33,61 +33,59 @@ export default {
   computed: {
     ...mapState(['post'])
   },
+  // prettier-ignore
   methods: {
     onSubmit(payload) {
-      const { category, subject, content, download, thumbnail, upload2 } = payload // prettier-ignore
-      console.log('[PostEditPage.vue] methods() → onSubmit → payload: ', payload) // prettier-ignore
+      const { category, subject, content, download, thumbnail, upload2 } = payload
+      console.log('[PostEditPage.vue] methods() → onSubmit → payload: ', payload)
 
       const { number } = this.post[0]
-      console.log('[PostEditPage.vue] methods() → onSubmit → this.post[0]: ', this.post[0]) // prettier-ignore
+      console.log('[PostEditPage.vue] methods() → onSubmit → this.post[0]: ', this.post[0])
 
-      api
-        .post(`/api/board/${category}/modify/${number}`, {
-          number,
-          category,
-          subject,
-          content,
-          download,
-          thumbnail,
-          upload2
-        })
-        .then((response) => {
-          console.log('[PostEditPage.vue] 글 수정에 성공했어요! response: ', response) // prettier-ignore
+      api.post(`/api/board/${category}/modify/${number}`, {
+        number,
+        category,
+        subject,
+        content,
+        download,
+        thumbnail,
+        upload2
+      }).then((response) => {
+        console.log('[PostEditPage.vue] 글 수정에 성공했어요! response: ', response)
 
-          alert('글 수정에 성공했어요!')
+        alert('글 수정에 성공했어요!')
 
-          console.log('[PostEditPage.vue] 글 수정에 성공했어요! response.data.number.toString(): ', response.data.number.toString()) // prettier-ignore
-          console.log('[PostEditPage.vue] 글 수정에 성공했어요! typeof response.data.number.toString() || 1: ', response.data.number.toString() || 1) // prettier-ignore
-          console.log('[PostEditPage.vue] 글 수정에 성공했어요! typeof response.data.number.toString(): ', typeof response.data.number.toString()) // prettier-ignore
+        console.log('[PostEditPage.vue] 글 수정에 성공했어요! response.data.number.toString(): ', response.data.number.toString())
+        console.log('[PostEditPage.vue] 글 수정에 성공했어요! typeof response.data.number.toString() || 1: ', response.data.number.toString() || 1)
+        console.log('[PostEditPage.vue] 글 수정에 성공했어요! typeof response.data.number.toString(): ', typeof response.data.number.toString())
 
-          this.$router.push({
-            name: 'PostViewPage',
-            params: {
-              service: response.data.service,
-              number: response.data.number.toString()
-            },
-            query: {
-              page: this.$route.query.page.toString() || 1
-            }
-          })
-        })
-        .catch((error) => {
-          console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error: ', error) // prettier-ignore
-          console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error.message: ', error.message) // prettier-ignore
-          console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error.response: ', error.response) // prettier-ignore
-          console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error.response.data: ', error.response.data) // prettier-ignore
-          console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error.response.status: ', error.response.status) // prettier-ignore
-
-          if (error.response.status === 401) {
-            alert('로그인해주세요!')
-          } else {
-            alert('오류.. ㅠㅜ')
-
-            console.log('[PostEditPage.vue] error.response.status: ', error.response.status) // prettier-ignore
+        this.$router.push({
+          name: 'PostViewPage',
+          params: {
+            service: response.data.service,
+            number: response.data.number.toString()
+          },
+          query: {
+            page: this.$route.query.page.toString() || 1
           }
-
-          alert('글 수정에 실패했어요.. ㅠㅜ')
         })
+      }).catch((error) => {
+        console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error: ', error)
+        console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error.message: ', error.message)
+        console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error.response: ', error.response)
+        console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error.response.data: ', error.response.data)
+        console.log('[PostEditPage.vue] 글 수정에 실패했어요.. ㅠㅜ error.response.status: ', error.response.status)
+
+        if (error.response.status === 401) {
+          alert('로그인해주세요!')
+        } else {
+          alert('오류.. ㅠㅜ')
+
+          console.log('[PostEditPage.vue] error.response.status: ', error.response.status)
+        }
+
+        alert('글 수정에 실패했어요.. ㅠㅜ')
+      })
     }
   }
 }

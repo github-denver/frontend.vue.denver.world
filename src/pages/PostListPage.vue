@@ -141,11 +141,11 @@ export default {
       }
     }
   },
+  // prettier-ignore
   methods: {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          // prettier-ignore
           if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
             this.category.value = this.navigation.data[i].optgroup.option[j].value
@@ -157,23 +157,24 @@ export default {
     },
     ...mapActions(['fetchPostList', 'searchInfo'])
   },
+  // prettier-ignore
   created() {
-    console.log('[PostListPage.vue] created() → this.loading: ', this.loading) // prettier-ignore
-    console.log('[PostListPage.vue] created() → this.$route.query.select: ', this.$route.query.select) // prettier-ignore
-    console.log('[PostListPage.vue] created() → this.$route.query.keyword: ', this.$route.query.keyword) // prettier-ignore
+    console.log('[PostListPage.vue] created() → this.loading: ', this.loading)
+    console.log('[PostListPage.vue] created() → this.$route.query.select: ', this.$route.query.select)
+    console.log('[PostListPage.vue] created() → this.$route.query.keyword: ', this.$route.query.keyword)
 
-    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : '' // prettier-ignore
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
     console.log('[PostListPage.vue] created() → keyword: ', keyword)
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log('[PostListPage.vue] created() → keyword.length === 0: ', keyword.length === 0) // prettier-ignore
+      console.log('[PostListPage.vue] created() → keyword.length === 0: ', keyword.length === 0)
 
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log('[PostListPage.vue] created() → keyword.length === 0: ', keyword.length === 0) // prettier-ignore
+      console.log('[PostListPage.vue] created() → keyword.length === 0: ', keyword.length === 0)
 
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
@@ -182,15 +183,15 @@ export default {
     console.log('[PostListPage.vue] created() → this.number: ', this.number)
 
     this.category.value = this.service
-    console.log('[PostListPage.vue] created() → this.category.value: ', this.category.value) // prettier-ignore
+    console.log('[PostListPage.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
 
-    console.log('[PostListPage.vue] created() → this.search.select: ', this.search.select) // prettier-ignore
-    console.log('[PostListPage.vue] created() → typeof this.search.select: ', typeof this.search.select) // prettier-ignore
+    console.log('[PostListPage.vue] created() → this.search.select: ', this.search.select)
+    console.log('[PostListPage.vue] created() → typeof this.search.select: ', typeof this.search.select)
 
-    console.log('[PostListPage.vue] created() → this.search.keyword: ', this.search.keyword) // prettier-ignore
-    console.log('[PostListPage.vue] created() → typeof this.search.keyword: ', typeof this.search.keyword) // prettier-ignore
+    console.log('[PostListPage.vue] created() → this.search.keyword: ', this.search.keyword)
+    console.log('[PostListPage.vue] created() → typeof this.search.keyword: ', typeof this.search.keyword)
 
     this.fetchPostList({
       category: this.category.value,
@@ -201,7 +202,7 @@ export default {
       console.log('[PostListPage.vue] created() → response: ', response)
 
       this.loading = true
-      console.log('[PostListPage.vue] created() → this.loading: ', this.loading) // prettier-ignore
+      console.log('[PostListPage.vue] created() → this.loading: ', this.loading)
     })
   },
   computed: {
