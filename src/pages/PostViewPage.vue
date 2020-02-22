@@ -69,10 +69,14 @@
                 page: page.toString()
               }
             }"
-            class="button_global"
+            class="button_global type_action"
             >수정하기</router-link
           >
-          <button type="button" class="button_global" v-on:click="onDelete">
+          <button
+            type="button"
+            class="button_global type_delete"
+            v-on:click="onDelete"
+          >
             삭제하기
           </button>
         </div>

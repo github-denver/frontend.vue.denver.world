@@ -25,7 +25,7 @@
         <div class="inner_local">
           <router-link
             v-bind:to="{ name: 'MemberCreatePage' }"
-            class="button_global"
+            class="button_global type_action"
             >좋아요</router-link
           >
         </div>

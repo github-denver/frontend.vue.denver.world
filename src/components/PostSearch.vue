@@ -45,8 +45,8 @@
           }
         }"
         v-on:click.native="submit"
-        class="button_global"
-        >검색</router-link
+        class="button_global type_delete"
+        >검색하기</router-link
       >
     </div>
     <!-- // group_search -->

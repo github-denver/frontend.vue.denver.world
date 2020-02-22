@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import AppHeader from '@/components/AppHeader'
-// import AppFooter from '@/components/AppFooter'
+import AppHeaderBack from '@/components/AppHeaderBack'
 import MainPage from '@/pages/MainPage'
 import AppMenu from '@/components/AppMenu'
 import WelcomePage from '@/pages/WelcomePage'
@@ -13,6 +13,7 @@ import PostCreatePage from '@/pages/PostCreatePage'
 import PostViewPage from '@/pages/PostViewPage'
 import PostEditPage from '@/pages/PostEditPage'
 import GalleryListPage from '@/pages/GalleryListPage'
+import ArticleViewPage from '@/pages/ArticleViewPage'
 import store from '@/store'
 
 Vue.use(Router)
@@ -92,12 +93,23 @@ export default new Router({
       }
     },
     {
+      path: '/article/:service/:number',
+      name: 'ArticleViewPage',
+      components: {
+        header: AppHeaderBack,
+        default: ArticleViewPage,
+        // footer: AppFooter,
+      },
+      props: {
+        default: true
+      }
+    },
+    {
       path: '/gallery/:service/list/:number',
       name: 'GalleryListPage',
       components: {
         header: AppHeader,
         default: GalleryListPage
-        // footer: AppFooter,
       },
       props: {
         default: true
@@ -109,7 +121,6 @@ export default new Router({
       components: {
         header: AppHeader,
         default: PostListPage
-        // footer: AppFooter,
       },
       props: {
         default: true
@@ -143,7 +154,6 @@ export default new Router({
       components: {
         header: AppHeader,
         default: PostViewPage
-        // footer: AppFooter,
       },
       props: {
         default: true
@@ -210,7 +220,7 @@ export default new Router({
       name: 'MainPage',
       components: {
         header: AppHeader,
-        default: MainPage
+        default: MainPage,
         // footer: AppFooter,
       }
     }

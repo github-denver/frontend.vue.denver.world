@@ -36,8 +36,8 @@
                 service: category.value
               }
             }"
-            class="button_global"
-            >등록하기</router-link
+            class="button_global type_action"
+            >글쓰기</router-link
           >
         </div>
         <!-- // inner_local -->

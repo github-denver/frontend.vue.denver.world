@@ -1,6 +1,367 @@
 <template>
   <div id="container">
+    <div class="test1">
+      <carousel :items="1" :margin="10" :nav="false" :dots="false" :loop="true">
+        <router-link
+          v-bind:to="{
+            name: 'ArticleViewPage',
+            params: {
+              service: 'travel',
+              number: 1
+            },
+            query: {
+              page: '1'
+            }
+          }"
+          class="group_carousel"
+        >
+          <div class="box_carousel">
+            <span class="text_local">일본</span>
+            <h2 class="title_local">핑크빛 파라다이스,<br />요시노야마</h2>
+          </div>
+          <img
+            src="http://localhost:3000/uploads/eriuKJwcdjI.png"
+            class="thumbnail_local"
+          />
+        </router-link>
+
+        <router-link
+          v-bind:to="{
+            name: 'ArticleViewPage',
+            params: {
+              service: 'travel',
+              number: 1
+            },
+            query: {
+              page: '1'
+            }
+          }"
+          class="group_carousel"
+        >
+          <div class="box_carousel">
+            <span class="text_local">일본</span>
+            <h2 class="title_local">핑크빛 파라다이스,<br />요시노야마</h2>
+          </div>
+          <img
+            src="http://localhost:3000/uploads/vAfCO8xrz0I.png"
+            class="thumbnail_local"
+          />
+        </router-link>
+
+        <router-link
+          v-bind:to="{
+            name: 'ArticleViewPage',
+            params: {
+              service: 'travel',
+              number: 1
+            },
+            query: {
+              page: '1'
+            }
+          }"
+          class="group_carousel"
+        >
+          <div class="box_carousel">
+            <span class="text_local">일본</span>
+            <h2 class="title_local">핑크빛 파라다이스,<br />요시노야마</h2>
+          </div>
+          <img
+            src="http://localhost:3000/uploads/0wTnTOnLIos.png"
+            class="thumbnail_local"
+          />
+        </router-link>
+
+        <router-link
+          v-bind:to="{
+            name: 'ArticleViewPage',
+            params: {
+              service: 'travel',
+              number: 1
+            },
+            query: {
+              page: '1'
+            }
+          }"
+          class="group_carousel"
+        >
+          <div class="box_carousel">
+            <span class="text_local">일본</span>
+            <h2 class="title_local">핑크빛 파라다이스,<br />요시노야마</h2>
+          </div>
+          <img
+            src="http://localhost:3000/uploads/F1jx184.png"
+            class="thumbnail_local"
+          />
+        </router-link>
+      </carousel>
+    </div>
+
     <div class="contents">
+      <div class="view_local">
+        <div class="hgroup">
+          <h3 class="title_local">
+            <router-link
+              v-bind:to="{
+                name: 'GalleryListPage',
+                params: { service: 'gallery', number: '1' }
+              }"
+              class="link_title"
+              >카테고리</router-link
+            >
+          </h3>
+        </div>
+
+        <div class="error_global" v-if="!gallery.loading">
+          <p class="text_error">읽어들이는 중..</p>
+        </div>
+
+        <div
+          class="slick-library"
+          v-if="gallery.list.length && gallery.list.length"
+        >
+          <carousel
+            :items="3"
+            :margin="10"
+            :nav="false"
+            :dots="false"
+            :stagePadding="20"
+            :autoWidth="true"
+            class="group_category"
+          >
+            <a href="#" class="link_category">대한민국</a>
+            <a href="#" class="link_category">미국</a>
+            <a href="#" class="link_category">일본</a>
+            <a href="#" class="link_category">중국</a>
+
+            <a href="#" class="link_category">영국</a>
+            <a href="#" class="link_category">그리스</a>
+            <a href="#" class="link_category">아르헨티나</a>
+            <a href="#" class="link_category">멕시코</a>
+          </carousel>
+        </div>
+        <!-- // slick-library -->
+
+        <div
+          class="error_global"
+          v-if="gallery.loading && !gallery.list.length"
+        >
+          <p class="text_error">글이 존재하지 않습니다.</p>
+        </div>
+      </div>
+
+      <div class="view_local">
+        <div class="hgroup">
+          <h3 class="title_local">
+            <router-link
+              v-bind:to="{
+                name: 'GalleryListPage',
+                params: { service: 'gallery', number: '1' }
+              }"
+              class="link_title"
+              >이미지 게시판</router-link
+            >
+          </h3>
+        </div>
+
+        <div class="error_global" v-if="!gallery.loading">
+          <p class="text_error">읽어들이는 중..</p>
+        </div>
+
+        <div
+          class="slick-library"
+          v-if="gallery.list.length && gallery.list.length"
+        >
+          <carousel
+            :items="1"
+            :margin="10"
+            :nav="false"
+            :dots="false"
+            :stagePadding="20"
+            class="group_category"
+          >
+            <router-link
+              v-for="(list, index) in gallery.list"
+              v-bind:key="index"
+              v-bind:to="{
+                name: 'PostViewPage',
+                params: {
+                  service: list.category,
+                  number: list.number.toString()
+                },
+                query: {
+                  page: '1'
+                }
+              }"
+            >
+              <div
+                v-bind:key="index"
+                v-bind:style="{
+                  'background-image':
+                    'url(\'http://localhost:3000/uploads/' +
+                    list.thumbnail +
+                    '\')'
+                }"
+                class="image_library"
+              >
+                <div class="dimmed_subject">
+                  <span class="text_subject">{{ list.subject }}</span>
+                </div>
+              </div>
+            </router-link>
+          </carousel>
+        </div>
+        <!-- // slick-library -->
+
+        <div
+          class="error_global"
+          v-if="gallery.loading && !gallery.list.length"
+        >
+          <p class="text_error">글이 존재하지 않습니다.</p>
+        </div>
+      </div>
+
+      <div class="view_local">
+        <div class="hgroup">
+          <h3 class="title_local">
+            <router-link
+              v-bind:to="{
+                name: 'GalleryListPage',
+                params: { service: 'gallery', number: '1' }
+              }"
+              class="link_title"
+              >이미지 게시판</router-link
+            >
+          </h3>
+        </div>
+
+        <div class="error_global" v-if="!gallery.loading">
+          <p class="text_error">읽어들이는 중..</p>
+        </div>
+
+        <div
+          class="slick-library"
+          v-if="gallery.list.length && gallery.list.length"
+        >
+          <carousel
+            :items="1"
+            :margin="10"
+            :nav="false"
+            :dots="false"
+            :stagePadding="20"
+            class="group_category"
+          >
+            <router-link
+              v-for="(list, index) in gallery.list"
+              v-bind:key="index"
+              v-bind:to="{
+                name: 'PostViewPage',
+                params: {
+                  service: list.category,
+                  number: list.number.toString()
+                },
+                query: {
+                  page: '1'
+                }
+              }"
+            >
+              <div
+                v-bind:key="index"
+                v-bind:style="{
+                  'background-image':
+                    'url(\'http://localhost:3000/uploads/' +
+                    list.thumbnail +
+                    '\')'
+                }"
+                class="image_library"
+              >
+                <div class="dimmed_subject">
+                  <span class="text_subject">{{ list.subject }}</span>
+                </div>
+              </div>
+            </router-link>
+          </carousel>
+        </div>
+        <!-- // slick-library -->
+
+        <div
+          class="error_global"
+          v-if="gallery.loading && !gallery.list.length"
+        >
+          <p class="text_error">글이 존재하지 않습니다.</p>
+        </div>
+      </div>
+
+      <div class="view_local">
+        <div class="hgroup">
+          <h3 class="title_local">
+            <router-link
+              v-bind:to="{
+                name: 'GalleryListPage',
+                params: { service: 'gallery', number: '1' }
+              }"
+              class="link_title"
+              >이미지 게시판</router-link
+            >
+          </h3>
+        </div>
+
+        <div class="error_global" v-if="!gallery.loading">
+          <p class="text_error">읽어들이는 중..</p>
+        </div>
+
+        <div
+          class="slick-library"
+          v-if="gallery.list.length && gallery.list.length"
+        >
+          <carousel
+            :items="1"
+            :margin="10"
+            :nav="false"
+            :dots="false"
+            :stagePadding="20"
+            class="group_category"
+          >
+            <router-link
+              v-for="(list, index) in gallery.list"
+              v-bind:key="index"
+              v-bind:to="{
+                name: 'PostViewPage',
+                params: {
+                  service: list.category,
+                  number: list.number.toString()
+                },
+                query: {
+                  page: '1'
+                }
+              }"
+            >
+              <div
+                v-bind:key="index"
+                v-bind:style="{
+                  'background-image':
+                    'url(\'http://localhost:3000/uploads/' +
+                    list.thumbnail +
+                    '\')'
+                }"
+                class="image_library"
+              >
+                <div class="dimmed_subject">
+                  <span class="text_subject">{{ list.subject }}</span>
+                </div>
+              </div>
+            </router-link>
+          </carousel>
+        </div>
+        <!-- // slick-library -->
+
+        <div
+          class="error_global"
+          v-if="gallery.loading && !gallery.list.length"
+        >
+          <p class="text_error">글이 존재하지 않습니다.</p>
+        </div>
+      </div>
+
       <div class="view_local">
         <div class="hgroup">
           <h3 class="title_local">
@@ -123,70 +484,6 @@
           </li>
         </ul>
         <div class="error_global" v-if="talk.loading && !talk.list.length">
-          <p class="text_error">글이 존재하지 않습니다.</p>
-        </div>
-      </div>
-
-      <div class="view_local">
-        <div class="hgroup">
-          <h3 class="title_local">
-            <router-link
-              v-bind:to="{
-                name: 'GalleryListPage',
-                params: { service: 'gallery', number: '1' }
-              }"
-              class="link_title"
-              >이미지 게시판</router-link
-            >
-          </h3>
-        </div>
-
-        <div class="error_global" v-if="!gallery.loading">
-          <p class="text_error">읽어들이는 중..</p>
-        </div>
-
-        <div
-          class="slick-library"
-          v-if="gallery.list.length && gallery.list.length"
-        >
-          <carousel :items="1" :margin="20" :nav="false" :dots="false">
-            <router-link
-              v-for="(list, index) in gallery.list"
-              v-bind:key="index"
-              v-bind:to="{
-                name: 'PostViewPage',
-                params: {
-                  service: list.category,
-                  number: list.number.toString()
-                },
-                query: {
-                  page: '1'
-                }
-              }"
-            >
-              <div
-                v-bind:key="index"
-                v-bind:style="{
-                  'background-image':
-                    'url(\'http://localhost:3000/uploads/' +
-                    list.thumbnail +
-                    '\')'
-                }"
-                class="image_library"
-              >
-                <div class="dimmed_subject">
-                  <span class="text_subject">{{ list.subject }}</span>
-                </div>
-              </div>
-            </router-link>
-          </carousel>
-        </div>
-        <!-- // slick-library -->
-
-        <div
-          class="error_global"
-          v-if="gallery.loading && !gallery.list.length"
-        >
           <p class="text_error">글이 존재하지 않습니다.</p>
         </div>
       </div>

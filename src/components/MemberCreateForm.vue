@@ -99,7 +99,9 @@
       <!-- // inner_local -->
 
       <div class="inner_local">
-        <button type="submit" class="button_global">등록하기</button>
+        <button type="submit" class="button_global type_action">
+          등록하기
+        </button>
       </div>
       <!-- // inner_local -->
     </div>

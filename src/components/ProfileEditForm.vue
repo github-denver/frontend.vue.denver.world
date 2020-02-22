@@ -87,7 +87,9 @@
       <!-- // inner_local -->
 
       <div class="inner_local">
-        <button type="submit" class="button_global">수정하기</button>
+        <button type="submit" class="button_global type_action">
+          수정하기
+        </button>
       </div>
       <!-- // inner_local -->
     </div>
