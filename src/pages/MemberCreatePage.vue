@@ -1,9 +1,8 @@
+<!-- prettier-ignore -->
 <template>
   <div class="wrap_welcome">
     <h1 class="title_logo">
-      <router-link v-bind:to="{ name: 'MainPage' }" class="link_logo"
-        >덴버월드</router-link
-      >
+      <router-link v-bind:to="{ name: 'MainPage' }" class="link_logo">덴버월드</router-link>
     </h1>
 
     <div class="inner_welcome">
@@ -11,20 +10,18 @@
       <p class="description_welcome">나머지 정보를 입력해주세요!</p>
 
       <member-create-form v-on:parentSubmit="onSubmit" />
-    </div>
-    <!-- // inner_welcome -->
-  </div>
-  <!-- // wrap_welcome -->
+    </div><!-- // inner_welcome -->
+  </div><!-- // wrap_welcome -->
 </template>
 
 <script>
 import MemberCreateForm from '@/components/MemberCreateForm'
 import api from '@/api'
 
+// prettier-ignore
 export default {
   name: 'MemberCreatePage',
   components: { MemberCreateForm },
-  // prettier-ignore
   methods: {
     onSubmit(payload) {
       console.log('[MemberCreatePage.vue] methods() → onSubmit → payload: ', payload)

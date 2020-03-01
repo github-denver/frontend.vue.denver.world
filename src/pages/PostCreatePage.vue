@@ -1,20 +1,17 @@
+<!-- prettier-ignore -->
 <template>
   <div id="container">
     <div class="contents type_write">
-      <post-create-form
-        v-bind:category2="service"
-        v-on:parentSubmit="onSubmit"
-      />
-    </div>
-    <!-- // contents -->
-  </div>
-  <!-- // container -->
+      <post-create-form v-bind:category2="service" v-on:parentSubmit="onSubmit" />
+    </div><!-- // contents -->
+  </div><!-- // container -->
 </template>
 
 <script>
 import PostCreateForm from '@/components/PostCreateForm'
 import api from '@/api'
 
+// prettier-ignore
 export default {
   name: 'PostCreatePage',
   props: {
@@ -24,7 +21,6 @@ export default {
     }
   },
   components: { PostCreateForm },
-  // prettier-ignore
   methods: {
     onSubmit(payload) {
       const { category, subject, content, download, thumbnail, upload2 } = payload

@@ -1,11 +1,6 @@
+<!-- prettier-ignore -->
 <template>
-  <form
-    action="/board/notice/modify"
-    method="post"
-    enctype="multipart/form-data"
-    v-on:submit.prevent="submit"
-    novalidate
-  >
+  <form method="post" enctype="multipart/form-data" v-on:submit.prevent="submit" novalidate>
     <category-select v-bind:select="select" v-on:parentChange="onChange" />
 
     <div class="group_board">
@@ -13,43 +8,24 @@
         <span class="group_field">
           <label for="subject" class="label_local">제목</label>
           <span class="field_global">
-            <input
-              type="text"
-              name="subject"
-              id="subject"
-              class="field_local"
-              v-model="subject"
-            /> </span
-          ><!-- // field_global --> </span
-        ><!-- // group_field -->
-      </div>
-      <!-- // board_header -->
+            <input type="text" name="subject" id="subject" class="field_local" v-model="subject" />
+          </span><!-- // field_global -->
+        </span><!-- // group_field -->
+      </div><!-- // board_header -->
 
       <div class="board_container">
-        <vue-editor
-          useCustomImageHandler
-          @image-added="handleImageAdded"
-          v-model="content"
-        ></vue-editor>
-      </div>
-      <!-- // board_container -->
+        <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="content"></vue-editor>
+      </div><!-- // board_container -->
 
       <div v-if="upload2 !== 0" class="board_footer">
-        <!--
         <div class="group_download">
           <span class="group_field">
             <span class="title_local">첨부파일</span>
             <span class="field_global">
-              <input
-                type="file"
-                name="download"
-                class="field_local"
-                v-bind:value="download"
-              /></span>
-          </span>
-        </div>
-        -->
-        <!-- // group_download -->
+              <input type="file" name="download" class="field_local" v-bind:value="download" />
+            </span><!-- // field_global -->
+          </span><!-- // group_field -->
+        </div><!-- // group_download -->
 
         <div class="group_preview">
           <span class="title_local">대표 이미지</span>
@@ -57,56 +33,24 @@
           <ul class="list_preview">
             <li v-for="(item, index) in upload2" v-bind:key="index">
               <span class="box_preview">
-                <input
-                  type="radio"
-                  name="thumbnail"
-                  v-bind:id="`thumbnail${index}`"
-                  class="input_thumbnail"
-                  v-bind:value="item"
-                />
-                <label
-                  v-bind:for="`thumbnail${index}`"
-                  class="label_thumbnail"
-                  v-bind:style="{
-                    'background-image':
-                      'url(\'http://localhost:3000/uploads/' + item + '\')'
-                  }"
-                  >{{ item }}</label
-                >
-              </span>
+                <input type="radio" name="thumbnail" v-bind:id="`thumbnail${index}`" class="input_thumbnail" v-bind:value="item" />
+                <label v-bind:for="`thumbnail${index}`" class="label_thumbnail" v-bind:style="{ 'background-image': 'url(\'http://localhost:3000/uploads/' + item + '\')' }">{{ item }}</label>
+              </span><!-- // box_preview -->
             </li>
           </ul>
-        </div>
-        <!-- // group_preview -->
-      </div>
-      <!-- // board_footer -->
-    </div>
-    <!-- // group_board -->
+        </div><!-- // group_preview -->
+      </div><!-- // board_footer -->
+    </div><!-- // group_board -->
 
     <div class="group_button type_half">
       <div class="inner_local">
-        <router-link
-          v-bind:to="{
-            name: 'PostListPage',
-            params: {
-              service: service,
-              number: page.toString()
-            }
-          }"
-          class="button_global"
-          >취소하기</router-link
-        >
-      </div>
-      <!-- // inner_local -->
+        <router-link v-bind:to="{ name: 'PostListPage', params: { service: service, number: page.toString() } }" class="button_global">취소하기</router-link>
+      </div><!-- // inner_local -->
 
       <div class="inner_local">
-        <button type="submit" class="button_global type_action">
-          완료하기
-        </button>
-      </div>
-      <!-- // inner_local -->
-    </div>
-    <!-- // group_button -->
+        <button type="submit" class="button_global type_action">완료하기</button>
+      </div><!-- // inner_local -->
+    </div><!-- // group_button -->
   </form>
 </template>
 
@@ -116,6 +60,7 @@ import { VueEditor } from 'vue2-editor'
 import CategorySelect from '@/components/CategorySelect'
 import api from '@/api'
 
+// prettier-ignore
 export default {
   name: 'PostEditForm',
   components: { CategorySelect, VueEditor },
@@ -197,7 +142,6 @@ export default {
       page: 1
     }
   },
-  // prettier-ignore
   created() {
     console.log('[PostEditForm.vue] created() → this.$route.params: ', this.$route.params)
     console.log('[PostEditForm.vue] created() → this.$route.query: ', this.$route.query)
@@ -257,7 +201,6 @@ export default {
     this.page = this.$route.query.page
     console.log('[PostEditForm.vue] created() → this.$route.query.page: ', this.$route.query.page)
   },
-  // prettier-ignore
   methods: {
     ...mapActions(['fetchPost']),
     submit() {

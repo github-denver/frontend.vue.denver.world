@@ -1,10 +1,6 @@
+<!-- prettier-ignore -->
 <template>
-  <form
-    method="post"
-    enctype="multipart/form-data"
-    v-on:submit.prevent="submit"
-    novalidate
-  >
+  <form method="post" enctype="multipart/form-data" v-on:submit.prevent="submit" novalidate>
     <category-select v-bind:select="select" v-on:parentChange="onChange" />
 
     <div class="group_board">
@@ -12,94 +8,48 @@
         <span class="group_field">
           <label for="subject" class="label_local">제목</label>
           <span class="field_global">
-            <input
-              type="text"
-              name="subject"
-              id="subject"
-              class="field_local"
-              v-model="subject"
-            /> </span
-          ><!-- // field_global --> </span
-        ><!-- // group_field -->
-      </div>
-      <!-- // board_header -->
+            <input type="text" name="subject" id="subject" class="field_local" v-model="subject" />
+            </span><!-- // field_global -->
+          </span><!-- // group_field -->
+      </div><!-- // board_header -->
 
       <div class="board_container">
-        <vue-editor
-          useCustomImageHandler
-          @image-added="handleImageAdded"
-          v-model="content"
-        ></vue-editor>
-      </div>
-      <!-- // board_container -->
+        <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="content"></vue-editor>
+      </div><!-- // board_container -->
 
       <div class="board_footer screen_out">
-        <!--
         <div class="group_download">
           <span class="group_field">
             <span class="title_local">첨부파일</span>
             <span class="field_global">
-              <input
-                type="file"
-                name="download"
-                class="field_local"
-                v-bind:value="download"
-              /></span>
+              <input type="file" name="download" class="field_local" v-bind:value="download" /></span>
           </span>
-        </div>
-        -->
-        <!-- // group_download -->
+        </div><!-- // group_download -->
 
         <div class="group_preview">
           <span class="title_local">대표 이미지</span>
 
           <ul class="list_preview">
-            <!--
             <li>
               <span class="box_preview">
-                <input
-                  type="radio"
-                  name="thumbnail"
-                  id="thumbnail"
-                  class="input_thumbnail"
-                  v-model="thumbnail"
-                />
+                <input type="radio" name="thumbnail" id="thumbnail" class="input_thumbnail" v-model="thumbnail" />
                 <label for="thumbnail" class="label_thumbnail"></label>
               </span>
             </li>
-            -->
           </ul>
-        </div>
-        <!-- // group_preview -->
-      </div>
-      <!-- // board_footer -->
-    </div>
-    <!-- // group_board -->
+        </div><!-- // group_preview -->
+      </div><!-- // board_footer -->
+    </div><!-- // group_board -->
 
     <div class="group_button type_half">
       <div class="inner_local">
-        <router-link
-          v-bind:to="{
-            name: 'PostListPage',
-            params: {
-              service: category2,
-              number: '1'
-            }
-          }"
-          class="button_global"
-          >목록으로</router-link
-        >
-      </div>
-      <!-- // inner_local -->
+        <router-link v-bind:to="{ name: 'PostListPage', params: { service: category2, number: '1' } }" class="button_global">목록으로</router-link>
+      </div><!-- // inner_local -->
 
       <div class="inner_local">
-        <button type="submit" class="button_global type_action">
-          등록하기
-        </button>
-      </div>
-      <!-- // inner_local -->
-    </div>
-    <!-- // group_button -->
+        <button type="submit" class="button_global type_action">등록하기</button>
+      </div><!-- // inner_local -->
+    </div><!-- // group_button -->
   </form>
 </template>
 
@@ -108,15 +58,16 @@ import { VueEditor } from 'vue2-editor'
 import CategorySelect from '@/components/CategorySelect'
 import api from '@/api'
 
+// prettier-ignore
 export default {
   name: 'PostCreateForm',
+  components: { CategorySelect, VueEditor },
   props: {
     category2: {
       type: String,
       required: true
     }
   },
-  components: { CategorySelect, VueEditor },
   data() {
     return {
       select: {
@@ -183,14 +134,12 @@ export default {
       thumbnail: ''
     }
   },
-  // prettier-ignore
   created() {
     console.log('[PostCreateForm.vue] created() → this.category2: ', this.category2)
 
     this.select.category = this.category2
     console.log('[PostCreateForm.vue] created() → this.category: ', this.category)
   },
-  // prettier-ignore
   methods: {
     submit() {
       const { category, subject, content, download } = this

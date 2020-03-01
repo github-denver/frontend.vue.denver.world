@@ -1,3 +1,4 @@
+<!-- prettier-ignore -->
 <template>
   <section>
     <div class="select_global">
@@ -6,31 +7,17 @@
         <span class="ico_global ico_arrow"></span>
       </label>
 
-      <select
-        name="category"
-        class="select_local"
-        v-on:change="onChange"
-        v-model="category.value"
-      >
-        <optgroup
-          v-for="(item, index) in select.data"
-          v-bind:label="`${item.optgroup.text}`"
-          v-bind:key="index"
-        >
-          <option
-            v-for="(item, index) in select.data[index].optgroup.option"
-            v-bind:value="item.value"
-            v-bind:key="index"
-            >{{ item.text }}</option
-          >
+      <select name="category" class="select_local" v-on:change="onChange" v-model="category.value">
+        <optgroup v-for="(item, index) in select.data" v-bind:label="`${item.optgroup.text}`" v-bind:key="index">
+          <option v-for="(item, index) in select.data[index].optgroup.option" v-bind:value="item.value" v-bind:key="index">{{ item.text }}</option>
         </optgroup>
       </select>
-    </div>
-    <!-- // select_global -->
+    </div><!-- // select_global -->
   </section>
 </template>
 
 <script>
+// prettier-ignore
 export default {
   name: 'CategorySelect',
   props: {
@@ -47,14 +34,12 @@ export default {
       }
     }
   },
-  // prettier-ignore
   created() {
     this.category.value = this.select.category
     console.log('[CategorySelect.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
   },
-  // prettier-ignore
   methods: {
     onChange() {
       console.log('[CategorySelect.vue] methods() → onChange() → this.category.value: ', this.category.value)

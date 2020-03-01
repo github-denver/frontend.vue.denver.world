@@ -1,15 +1,10 @@
+<!-- prettier-ignore -->
 <template>
   <div id="container">
     <div class="contents type_write">
-      <post-edit-form
-        v-bind:service="service"
-        v-bind:post="post"
-        v-on:parentSubmit="onSubmit"
-      />
-    </div>
-    <!-- // contents -->
-  </div>
-  <!-- // container -->
+      <post-edit-form v-bind:service="service" v-bind:post="post" v-on:parentSubmit="onSubmit" />
+    </div><!-- // contents -->
+  </div><!-- // container -->
 </template>
 
 <script>
@@ -17,6 +12,7 @@ import { mapState } from 'vuex'
 import PostEditForm from '@/components/PostEditForm'
 import api from '@/api'
 
+// prettier-ignore
 export default {
   name: 'PostEditPage',
   components: { PostEditForm },
@@ -33,7 +29,6 @@ export default {
   computed: {
     ...mapState(['post'])
   },
-  // prettier-ignore
   methods: {
     onSubmit(payload) {
       const { category, subject, content, download, thumbnail, upload2 } = payload

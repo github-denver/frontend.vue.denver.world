@@ -1,265 +1,201 @@
+<!-- prettier-ignore -->
 <template>
   <div id="container">
-    <div class="group_carousel">
-      <div class="box_carousel">
-        <span class="text_local">일본</span>
-        <h2 class="title_local">핑크빛 파라다이스,<br />요시노야마</h2>
-      </div>
-      <img
-        src="http://localhost:3000/uploads/eriuKJwcdjI.png"
-        class="thumbnail_local"
-      />
-    </div>
-    <!-- // group_carousel -->
+    <div class="visual_carousel">
+      <div class="inner_carousel">
+        <img src="http://localhost:3000/uploads/201904.png" class="thumbnail_carousel" />
+      </div><!-- // inner_carousel -->
+    </div><!-- // visual_carousel -->
 
     <div class="contents">
-      <article class="group_magazine">
-        <p>
-          괌, 이제는 이름마저 익숙하다. 올해에만 30만 명의 한국인들이 휴양지로
-          선택한 섬이라 그런지 한 번도 가보지 않았는데도 괜히 이미 잘 아는
-          사이인 것만 같다. 그렇게 말로만 실컷 듣던 괌에 드디어 첫 발을
-          내디뎠다. 하지만 괌의 이미지처럼 편안하게만 맞이한 첫 만남 이후, 나는
-          괌에 대한 공부를 시작했다. 물론 노는 일 또한 게을리할 수 없었다. 이
-          작은 섬을 둘러싸는 큰 바다가 주는 즐거움에 이리저리 이끌리다 보니 사흘
-          닷새가 훌쩍 흘러버리더라. 괌의 바다는 정확히 상상 속 모습 그대로
-          바다에 맺힌 모든 한을 풀어주었다. 덕분에 고슬고슬 그을린 몸에 남은
-          하얀 수영복 흔적으로, 바라던 바다에서의 시간들을 여전히 파랗게
-          기억한다. 글과 사진 이소윤 기자 취재협조 괌 정부관광청
-          <a href="www.welcometoguam.com" target="_blank"
-            >www.welcometoguam.com</a
-          >, 괌 PIC 리조트
-          <a href="www.pichotel.co.kr" target="_blank">www.pichotel.co.kr</a>
-        </p>
+      <article-view v-if="post" v-bind:post="post" />
 
-        <img src="http://localhost:3000/uploads/o1_1.jpg" alt="" />
+      <div class="error_global" v-else>
+        <p class="text_error">읽어들이는 중..</p>
+      </div><!-- // error_global -->
 
-        <p>
-          ‘헬로 Hello’ 대신 ‘하파 데이 Hafa adai!’ 괌으로 향하는 비행기 안,
-          이곳저곳의 아이들이 마치 천 미터 릴레이 경주를 하듯 울음소리를
-          배턴터치한다. 이토록 많은 아이들과 비행기에 동승을 하기는 처음이다.
-          이를 증명이라도 하듯 괌에 도착하자마자 비행기 출구에는 맡겼던 유모차를
-          돌려받기 위한 줄이 주르르 이어졌다. 괌은 가장 중요한 산업 중 하나가
-          관광업이기에 휴양객들을 위한 시설이 완벽히 갖춰져 있다. 그런 편리함
-          덕분에 여전히 최고의 가족여행지로 손꼽히곤 한다. 하지만 그로 인해
-          사소한 오해 또한 발생한다. 많은 한국인이 거주하고 있고, 가보지 않은
-          이들조차 익숙하게 느껴질 만큼 인기 있는 여행지라고 해서 그 땅이 지니는
-          문화적 색채가 가벼운 것은 아니다. 괌의 바다와 자연이 선사하는 다양한
-          즐거움과 놀이거리가 워낙에 다양하다 보니 상대적으로 덜 거론될 뿐, 괌은
-          여전히 우리나라에서 4시간이면 도착하는 가장 가까운 미국이자 차모로
-          Chamorro인들의 섬이다. 차모로 원주민의 혈통을 물려받은 괌 거주민 중
-          3분의 1의 인구는 지금도 이 땅을 ‘Tano I’ ManChamorro’, 즉 ‘차모로
-          민족의 땅’이라 부른다. 600개도 훌쩍 넘는 섬들을 모두 포함하는
-          미크로네시아에서도 가장 오랜 역사를 지니고 있다. 최소 3,500년도 전에
-          처음 섬에 정착한 이들은 대부분 동남아시아로부터 배를 타고 지도도
-          나침반도 없이 이 땅에 도달했다. 육지로 향하는 새들의 움직임에
-          집중하고, 바다 연도의 변화를 직접 맛보면서. 그들이 고유의 문화를
-          유지하며 살아가던 ‘라테 시대’는 1521년 스페인의 탐험가 마젤란
-          Ferdinand Magellan이 괌을 발견하며 막을 내린다. 그 이후 300년간 이어진
-          신앙과 함께 서구 문명이 자리 잡게 된 것이다. 하지만 미크로네시아의
-          보석과도 같은 이 섬은 당연히 끊임없는 침략을 받아 왔다. 1898년에 있던
-          미국과 스페인의 전쟁 끝에 괌은 미국 영토가 되었고, 그 이후에도 일본에
-          잠시 점령되었다가 다시 완전한 미국령이 된 것이 1944년의 일이다. 이토록
-          다양한 나라들이 섬을 스쳐가면서 괌에 거주하는 차모로인들의 생활방식은
-          매번 큰 변화를 겪었지만, 단 하나 그들의 전통과 정신만큼은 지금까지도
-          보존하고 있다. 괌을 여행하며 차모로인을 직접 마주하고 싶다면 괌의
-          햇살을 닮은 건강한 피부색에 밝은 표정과 빛나는 눈빛을 지닌 이들을
-          찾아보라. 단 하나 명심할 것, 이들에게 첫 인사를 건넬 땐 ‘헬로 Hello!’
-          대신 ‘하파 데이 Hafa adai !’라고 외치자. 눈 깜짝할 새에 친구가 되길
-          바란다면 말이다. 그들의 전설에 의하면 수도인 하갓냐 Hagatna 근처
-          바다에 살던 거대한 물고기가 길쭉한 섬의 허리를 한입 두 입씩 먹어
-          치우며 지금의 기울어진 호리병 같은 모양을 만들었다고 한다. 깊은 바다에
-          숨어 있던 이 거대 물고기는 괌 여인들이 머리카락으로 짠 그물에 걸려
-          생선구이 신세가 되었다지만, 물고기의 식욕 덕분에 괌의 새파란 해안선은
-          더욱 길고 아름다운 곡선들을 갖추게 되었다. 예쁜 데다 성품까지 고운
-          완벽 년처럼 괌의 바다는 풍경은 물론이고 해수면 아래까지도 아름다움이
-          넘실댄다. 거기에 풍덩 빠져 오로지 바다만을 즐긴 이야기들을 자랑하려
-          한다. 그대가 수영을 잘하든 못하든 이 바다들은 가지각색의 방법들로
-          그대를 웃음 짓게 할 것이다. 일단 온몸의 긴장을 훌렁 벗고 투명한 물살에
-          몸을 맡기는 것으로 시작이다.
-        </p>
+      <div class="group_button">
+        <router-link v-if="search.keyword" v-bind:to="{ name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage', params: { service: category.value, number: page.toString() }, query: { select: search.select, keyword: search.keyword } }" class="button_global">목록으로</router-link>
 
-        <img src="http://localhost:3000/uploads/o1_2.jpg" alt="" />
-
-        <p>
-          1 괌의 국화 부겐빌레아는 분홍 꽃잎 속에 진짜 꽃을 감싸고 있다. 2
-          코코팜 가든 비치와 코코넛, 잘 어울리는 한 쌍이다. 3 괌의 국기에는 섬을
-          상징하는 바다와 그 위의 요트, 야자수, 거대한 암벽이 예쁘게 담겨 있다.
-          4 괌에선 길 주변에 그려진 벽화를 쉽게 찾을 수 있다. 그중 모든 버스
-          정거장을 장식한 각종 낙서와 벽화들에는 괌에 대한 애정이 가득하다. 5 더
-          비치 바에서 아름다운 노을과 함께 살랑이던 댄서의 춤사위에 사르르
-          녹아내렸다. 6 과거 조상들이 그랬듯 최소한의 옷감만 걸치고도 당당하게
-          야자수에 오르던 차모로인. 마무리로 새하얀 미소까지 잊지 않는다. 7 눈,
-          코, 입, 주근깨 온 얼굴이 예쁜 차모로족 안 씨 아노에게 첫눈에 반해
-          버렸다. 8 피티 베이에서 가장 흔히 볼 수 있는 풍경. 9 괌 사람들이 즐겨
-          먹는 레드 라이스는 ‘아쵸떼’라는 식물에서 추출한 붉은 색소로 물들인다.
-        </p>
-
-        <p>
-          괌 북부의 오아시스에서 스노클링에 빠지다 의외로 괌은 우리나라 거제도
-          정도 크기의 아담한 섬이다. 현지인보다도 관광객을 더 찾기 쉬울 정도로
-          인기 있는 휴양지이니 이 사실을 알고 내심 놀랐다. 괌이 여태까지 이토록
-          사랑받아 온 가장 큰 이유는 아마 바다일 것이다. 섬의 서쪽으로는
-          필리핀해를 만나고 동쪽으로는 북태평양이 펼쳐진다. 남쪽과 북쪽으로는
-          오염되지 않은 높고 낮은 산들이 바다와 함께 원초적인 그림을 만들어
-          낸다. 섬의 서쪽 허리 지점에 자리하는 수도 하갓냐에는 일명 호텔
-          거리라고 불릴 정도로 세계적인 호텔과 리조트들이 밀집해 있다. 괌 초행
-          자라면 대부분 이 부근에 머물며 가장 먼저 투몬 비치를 만나게 된다.
-          하지만 여기에만 만족한다면 괌의 숨은 아름다움을 모두 봤다고 말하기
-          어렵다. 괌의 바다는 유독 그 속이 아름답다. 세계의 스쿠버 다이버들에게
-          한결같이 뜨거운 사랑을 받고 있을 정도로 말이다. 왜 진작 스쿠버 다이버
-          자격증을 따놓지 않았을까 싶은 아쉬움을 괌에서 제일 아름다운 해변이라는
-          ‘코코팜 가든 비치 Coco Palm Garden Beach’에서의 스노클링으로 대신했다.
-          코코팜 가든 비치는 괌의 거의 최북단에 위치하지만 하갓냐에 있는
-          대부분의 호텔에서 매일 세 번의 셔틀버스를 운행하기에 하루만 시간을
-          내면 충분하다. 괌의 중심부에서 30분쯤 달려 도착한 코코팜 가든 비치는
-          마치 차를 타고 건너온 무인도 같았다. 걸어서 모래사장의 처음과 끝을
-          걸어 봄직할 정도로 아늑한 규모의 해변인데 나 혼자만을 위한 프라이빗
-          비치인 듯 한적하다. 이곳은 괌 북부의 유명한 리티디안 비치 Ritidian
-          Beach와 함께 정부에서 ‘야생동물 보호구역’으로 지정한 지역과 인접해
-          있다. 코코팜 가든 비치와 가까워질수록 점점 더 울창해지던 도로변의 숲을
-          보면서도 이를 체감했다. 밀림의 끝에 열리는 우아한 기적처럼 정확히 내가
-          꿈꿔왔던 해변의 모습을 한 채 잔잔히 마주하는 바다를 보고 탄성밖에 무슨
-          소리를 낼 수 있을까. 코코팜 가든 비치의 눈부심에 현혹되어 무작정
-          뛰어들고 싶었지만 사유지 해변이기 때문에 잠시 숨을 가다듬고 입구에서
-          점심값을 포함한 약 80달러를 지불하고 입장했다. 해변만 사용하는
-          요금이라면 결코 적은 액수가 아니지만 이 비용에는 훌륭한 점심 식사와
-          스노클링 장비부터 낚시 용품, 구명조끼, 아쿠아슈즈 등의 해양레저
-          용품들을 무한 대여할 수 있는 권한이 포함되어 있다. 더불어 4륜 바이크를
-          타고 주변의 숲을 둘러볼 수도, 잔잔한 바다 위에서 카야킹을 즐기는 일도
-          가능하다. 그러나 무엇보다 코코팜 비치의 매력을 직접적으로 느낄 수 있는
-          건 스노클링이다. 괌 중부의 투몬 비치보다도 다양한 해양 생물들이 아주
-          얕은 해변에서부터 드글드글하다. 사실 바닷물에 몸을 직접 담그기 전,
-          얕은 수심 때문에 꽤 멀리까지 나가야만 뭐든 볼 수 있으리라 생각했다.
-          하지만 코코팜 비치는 말 그대로 모래사장이 끝나는 지점, 바닷물이 차
-          있는 모든 땅이 산호초이다. 무릎도 채 안 되는 수심에서부터 고개만
-          숙이면 물 아래에 보이는 알록달록한 열대어와 울퉁불퉁 산호, 해삼,
-          조개들이 소리 없는 아우성을 치게 한다. 그 생동감 넘치는 장면들을 직접
-          보고 나면 아무리 얕은 곳이라도 도저히 두 발로 땅을 디딜 수 없게 된다.
-          혹시나 내가 무심결에 내디딘 발걸음으로 수면 아래 귀여운 생명들이
-          다칠까 겁이 나더라. 사정이 이러하니 격정적인 수영을 즐기기 위해서는
-          조금 더 멀리 나가는 수밖에 없다. 안정성의 문제로 가까운 해변에 부표가
-          설치되어 있지만 5달러를 추가 지불하면 라이프가드와 함께 부표를 넘어 더
-          넓고 시원한 바다로 전진할 수 있다. 고개는 여전히 수면 아래로 푹 숙이고
-          발장구를 쳐대니 코에 닿을 것처럼 가깝던 모래 바닥이 점점 멀어지고,
-          수온이 서서히 낮아진다. 그러더니 돌연 펼쳐진 새파란 바다 속 세상.
-          해변에서만 해도 내 몸에 비해 훨씬 작고 귀여운 생물들에 익숙했지만 진짜
-          바다 위에 떠있자니 상황은 바로 역전이다. 거대한 바위 사이로 벌어진
-          깊고 은밀한 공간과 큰 조각품처럼 늠름하게 자태를 뽐내는 산호들, 또
-          그에 맞게 훨씬 큰 물고기들이 주위를 맴도는데 괜히 스스로가 얼마나
-          미미한 존재인지 체감했다. 과감히 구명조끼를 벗어던지고 장비를 대여하며
-          함께 받은 물고기 모이를 조금씩 물속에 풀자 다시 내가 주인공이
-          돼버렸다. 순식간에 물고기들이 눈 바로 앞에 잔뜩 모여드는데 어찌나
-          설레던지. 수족관 넘어가 아니라 함께 헤엄치면서 그토록 가까이서
-          물고기들을 관찰하는 일은 직접 잠수하지 않는다면 불가능한 경험이다.
-          코코팜 비치에서 하루 종일 한 해변을 전세 낸 기분으로 쉬고, 놀고, 먹고,
-          헤엄치기를 반복했다. 덕분에 깨달은 스노클링의 매력으로 맑은 바다만
-          보이면 무작정 뛰어들려는 위험한 버릇이 생겨버렸지만, 괜찮다. 괌이니까!
-        </p>
-
-        <img src="http://localhost:3000/uploads/o1_3.jpg" alt="" />
-
-        <p>
-          1 코코팜 가든 비치를 알리는 표지판. 2 아름다운 휴가를 즐기고 있던
-          유키와 수미 상처럼 많은 일본 여행객들이 이 바다를 찾는다. 3 몇 십
-          미터를 걸어 들어가도 따끈한 바닷물이 배까지 올라오지 않을 정도로
-          완만한 수심을 지녔다. 4 코코넛 나무들이 어서 뛰어들라고 손짓이라도
-          하는 것 같다. 5 해변에서 갓 잡은 해삼. 잡았다기보단 그냥 집어 들었다는
-          표현이 더 맞겠다. 6 한참 스노클링을 하던 꼬마들은 옆에서 아무리 불러도
-          듣지 못할 정도로 바닷속 세상에 푹 빠져 있다. 지금은 돌덩이를 탐구 중.
-          7 러시아에서 괌으로 두 모자가 휴양을 왔다. 엄마는 아이 콧등이 빨갛게
-          익을까 봐 노심초사다.
-        </p>
-        <p>
-          풍덩 뛰어들거나 걸어 내려가거나 오직 바다와 자연에만 집중할 수 있던 괌
-          북부에서의 스노클링 이후 괌의 바다와 더 깊은 사랑에 빠져버린 건 너무나
-          당연한 이야기다. 그러나 대부분의 괌 여행자들의 숙소가 중부에 몰려
-          있는데 해수욕을 위해 매번 북부로 이동을 하는 일은 차를 렌트한다 해도
-          무리일 수 있는 법. 북부의 해변들과 분위기는 조금 다를지라도, 그래서
-          더욱 활기 넘치는 스노클링 스폿이 한 곳 더 있다. 투몬 비치에서 남쪽을
-          따라 조금만 내려오면 만나는 피티 Piti 베이이다. 절경을 자아내는 절벽과
-          드넓은 해변에 움푹 둘러싸여 있는 피티 베이는 말 그대로 쪽빛 바닷물이
-          일품이다. 이토록 아름다운 바다 역시 세계 2차 대전의 현장 중 하나였다는
-          사실이 믿기지 않았다. 항상 여러 나라들의 다툼이 벌어진 장소였던 괌에는
-          여전히 많은 전쟁의 잔재들이 남아있는데, 그중 한 곳이 바로 피시 아이
-          Fish Eye 해양공원이다. 피시 아이는 해변에서 바다를 향해 뻗어 있는 약
-          300미터 길이의 보드워크, 그 끝의 물속 전망대가 포인트다. 마치 지하
-          벙커처럼 바닷속 깊숙이 지어진 이 전망대는 2차 대전 당시 산호초
-          가운데에 떨어진 폭탄으로 생긴 구덩이를 활용한 결과물이다. 역시나
-          해양보호구역인 이 주변에서는 산호는 물론 200여 종도 넘는 열대어들을
-          직접 볼 수 있기도 하다. 과연 직접 잠수해서 보는 것과 편안히 전망대로
-          걸어 내려가 보는 바닷속이 어떻게 다른지 궁금했다. 10달러의 이용료를
-          내고 다리 위를 걸으며 경치 구경보다도 사람 구경을 더 많이 했다.
-          산소통까지 제대로 준비해 온 스쿠버 다이버들이 있는가 하면, 오리발과
-          스노클링 고글만 착용하고 우르르 물고기 떼를 따라 헤엄치는 사람들도
-          있고, 오직 수영복만 걸친 채로 갈 수 있는 데까지 고독한 여정에 나서는
-          이도 있다. 보드워크를 따라 점점 더 많이 걸어 나갈수록 발밑 바다의
-          수심이 점점 깊어져 간다는 건 오직 점점 짙어지는 쪽빛만으로 추측해야
-          한다. 물이 워낙 맑은 탓에 물속 모든 사람들의 모습이 투명하게
-          들여다보이니 보는 것만으로는 그 깊이를 가늠하기 쉽지 않다. 그렇게 다리
-          위에서 가장 핫한 스노클링 현장을 내려다만 보는 건 생각보다 훨씬
-          괴로웠다. 왜 수영복을 챙겨 입지 않았을까 스스로가 원망스럽더라. 피시
-          아이를 가장 알차고 재밌게 즐기기 위해선 먼저 물속 전망대를 관람한 후,
-          주저 없이 입수하길 권한다. 다양한 산호들이 해변에서부터 주르륵
-          펼쳐지는 아기자기함은 덜하지만 모래사장이 없는 대신 더 넓고 탁 트인
-          수면 아래의 세상에 매료된 다이버들이 매일 이곳에 바글바글 모여드는덴
-          다 이유가 있지 않을까. 빙글빙글 좁은 회오리 계단을 내려간다. 온몸에 물
-          한 방울 묻히지 않고 들어간 물속의 전망대는 진짜 깊은 바다에 잠수라도
-          한 것처럼 정적이 흘렀다. 그 어떤 조명 장치도 없다. 바닷물을 통과한
-          파란 햇빛이 24개의 창을 통해 들어오는 것이 전부다. 덕분에 새파랗고
-          동그란 내부에서 함께한 일행들은 모두 넋을 놓고 창밖만을 바라봤다.
-          다리를 걸어오는 동안에도 내 발밑에서 열심히 떼 지어 다니는 물고기들을
-          여러 번 목격했지만 위에서 잠깐씩 보던 놀라움과는 비교도 되지 않는다.
-          깊어진 수심 속에는 더욱 크고 건강한 물고기들이 여유롭게 움직이고
-          있었다. 더 놀라운 건 오직 자연 그대로의 모습 속에 우리가 들어온
-          것인데도 인공적으로 만든 수족관만큼이나 볼거리가 풍부했다는 점이다.
-          어른 손바닥 두 개를 합쳐놓은 크기의 노란 롱 노즈 패럿 피시는 몇
-          무리들이 계속 전망대의 주변을 맴돌았고, 창 바로 앞에 터전을 잡은
-          산호들 사이에서는 앙증맞은 더 스키 아네모네 피시가 살랑살랑 애교를
-          피운다. 기분이 울적하거나 생각의 정리가 필요할 때 수족관을 찾는다는
-          사람들을 본 적이 있다. 온갖 종류의 물고기들을 한 데 모아 놓은 수족관만
-          보다 이렇게 진짜 바다의 소소한 일상을 훔쳐보니 기분이 묘하다. 더
-          가까이 다가갈수록 더욱 감탄하게 되는 그들의 부드러운 움직임들을 빤히
-          쳐다보며 한 시간 두 시간 바다만을 응시했다.
-        </p>
-
-        <img src="http://localhost:3000/uploads/o1_4.jpg" alt="" />
-
-        <p>
-          1 물속에서 올려다보는 수면이 아름답다. 2 피시 아이는 스노클링의 천국!
-          다이버들 주변을 감싼 물고기 떼의 모습이 수면 위로도 훤히 보인다. 3
-          호주에서 온 이 커플은 저렴한 물가와 예쁜 바다 때문에 종종 괌을 찾는다.
-          4 물속 전망대의 창밖으로 노란 롱 노즈 패럿 피시 무리가 일렁인다. 5 더
-          스키 아네모네 피시는 움직임 하나하나가 깜찍하다. 6 피티 베이는 수심이
-          깊은 편이니 멀리 나가고 싶다면 꼭 오리발을 준비하자. 7 산소통과
-          잠수복, 각종 장비들까지 완벽하게 갖춘 전문 다이버들에게도 이곳은 단골
-          코스다. 8 피시 아이의 긴 보드워크가 시작되는 입구.
-        </p>
-      </article>
-
-      <div class="group_button type_half">
-        <div class="inner_local">
-          <a href="/board/talk/list/1" class="button_global">목록으로</a>
-        </div>
-        <div class="inner_local">
-          <a href="/board/talk/1/edit?page=1" class="button_global type_action"
-            >수정하기</a
-          >
-          <button type="button" class="button_global type_delete">
-            삭제하기
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- // contents -->
-  </div>
-  <!-- // container -->
+        <router-link v-else v-bind:to="{ name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage', params: { service: category.value, number: page.toString() } }" class="button_global">목록으로</router-link>
+      </div><!-- // group_button -->
+    </div><!-- // contents -->
+  </div><!-- // container -->
 </template>
 
 <script>
-import carousel from 'vue-owl-carousel'
+import { mapActions, mapState } from 'vuex'
+import ArticleView from '@/components/ArticleView'
+import api from '@/api'
 
+// prettier-ignore
 export default {
-  name: 'PostViewPage',
-  components: { carousel }
+  name: 'ArticleViewPage',
+  components: { ArticleView },
+  props: {
+    service: {
+      type: String,
+      required: true
+    },
+    number: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      navigation: {
+        category: '',
+        data: [
+          {
+            optgroup: {
+              text: '새소식',
+              value: 'news',
+              option: [
+                {
+                  text: '공지사항',
+                  value: 'notice'
+                },
+                {
+                  text: '업데이트',
+                  value: 'update'
+                },
+                {
+                  text: '이벤트',
+                  value: 'event'
+                }
+              ]
+            }
+          },
+          {
+            optgroup: {
+              text: '커뮤니티',
+              value: 'community',
+              option: [
+                {
+                  text: '톡톡 한마디',
+                  value: 'talk'
+                },
+                {
+                  text: '이미지 게시판',
+                  value: 'gallery'
+                }
+              ]
+            }
+          },
+          {
+            optgroup: {
+              text: '자료실',
+              value: 'library',
+              option: [
+                {
+                  text: '음악',
+                  value: 'music'
+                },
+                {
+                  text: '동영상',
+                  value: 'video'
+                }
+              ]
+            }
+          }
+        ]
+      },
+      category: {
+        text: '',
+        value: ''
+      },
+      page: 1
+    }
+  },
+  created() {
+    console.log('[PostViewPage.vue] created() → this.$route.params: ', this.$route.params)
+    console.log('[PostViewPage.vue] created() → this.$route.query: ', this.$route.query)
+
+    this.page = this.$route.query.page
+
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
+    console.log('[PostViewPage.vue] created() → keyword: ', keyword)
+
+    let select2 = ''
+    let keyword2 = ''
+
+    if (keyword.length === 0) {
+      console.log('[PostViewPage.vue] kcreated() → eyword.length === 0: ', keyword.length === 0)
+
+      this.searchInfo({ select: '', keyword: '' })
+    } else {
+      console.log('[PostViewPage.vue] created() → keyword.length === 0: ', keyword.length === 0)
+
+      select2 = this.$route.query.select
+      keyword2 = this.$route.query.keyword
+    }
+
+    console.log('[PostViewPage.vue] created() → this.search.keyword: ', this.search.keyword)
+
+    this.category.value = this.service
+    console.log('[PostViewPage.vue] created() → this.category.value: ', this.category.value)
+
+    this.onChange()
+
+    console.log('[PostViewPage.vue] created() → typeof this.number: ',typeof this.number)
+    console.log('[PostViewPage.vue] created() → typeof parseInt(this.number): ', typeof parseInt(this.number))
+
+    this.fetchPost({
+      category: this.category.value,
+      number: parseInt(this.number),
+      select: select2,
+      keyword: keyword2
+    }).catch((error) => {
+      console.error(error)
+      console.log('[PostViewPage.vue] created() → error.response: ', error.response)
+
+      alert(error)
+
+      this.$router.back()
+    })
+  },
+  computed: {
+    ...mapState(['post', 'search'])
+  },
+  methods: {
+    ...mapActions(['fetchPost', 'searchInfo']),
+    onDelete() {
+      const category = this.category.value
+      const number = this.post[0].number
+
+      api.get(`/api/board/${category}/delete/${number}`).then((response) => {
+        alert('게시물이 성공적으로 삭제되었습니다.')
+
+        this.$router.push({
+          name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage',
+          params: {
+            service: response.data.service,
+            number: '1'
+          }
+        })
+      }).catch((error) => {
+        console.error(error.response)
+
+        if (error.response.status === 401) { // UnAuthorized
+          alert('로그인이 필요합니다.')
+        } else {
+          alert(error.response.data.message)
+        }
+      })
+    },
+    onChange() {
+      loop: for (let i in this.navigation.data) {
+        for (let j in this.navigation.data[i].optgroup.option) {
+          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
+            this.category.text = this.navigation.data[i].optgroup.option[j].text
+            this.category.value = this.navigation.data[i].optgroup.option[j].value
+
+            break loop
+          }
+        }
+      }
+    }
+  }
 }
 </script>

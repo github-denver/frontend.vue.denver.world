@@ -1,500 +1,162 @@
+<!-- prettier-ignore -->
 <template>
   <div id="container">
-    <div class="test1">
-      <carousel :items="1" :margin="10" :nav="false" :dots="false" :loop="true">
-        <router-link
-          v-bind:to="{
-            name: 'ArticleViewPage',
-            params: {
-              service: 'travel',
-              number: 1
-            },
-            query: {
-              page: '1'
-            }
-          }"
-          class="group_carousel"
-        >
-          <div class="box_carousel">
-            <span class="text_local">일본</span>
-            <h2 class="title_local">핑크빛 파라다이스,<br />요시노야마</h2>
-          </div>
-          <img
-            src="http://localhost:3000/uploads/eriuKJwcdjI.png"
-            class="thumbnail_local"
-          />
-        </router-link>
+    <div class="view_local">
+      <div class="error_global" v-if="true || !article.loading">
+        <p class="text_error">읽어들이는 중..</p>
+      </div><!-- // error_global -->
 
-        <router-link
-          v-bind:to="{
-            name: 'ArticleViewPage',
-            params: {
-              service: 'travel',
-              number: 1
-            },
-            query: {
-              page: '1'
-            }
-          }"
-          class="group_carousel"
-        >
-          <div class="box_carousel">
-            <span class="text_local">일본</span>
-            <h2 class="title_local">핑크빛 파라다이스,<br />요시노야마</h2>
-          </div>
-          <img
-            src="http://localhost:3000/uploads/vAfCO8xrz0I.png"
-            class="thumbnail_local"
-          />
-        </router-link>
+      <div class="error_global" v-if="true || article.loading && !article.list.length">
+        <p class="text_error">글이 존재하지 않습니다.</p>
+      </div><!-- // error_global -->
 
-        <router-link
-          v-bind:to="{
-            name: 'ArticleViewPage',
-            params: {
-              service: 'travel',
-              number: 1
-            },
-            query: {
-              page: '1'
-            }
-          }"
-          class="group_carousel"
-        >
-          <div class="box_carousel">
-            <span class="text_local">일본</span>
-            <h2 class="title_local">핑크빛 파라다이스,<br />요시노야마</h2>
-          </div>
-          <img
-            src="http://localhost:3000/uploads/0wTnTOnLIos.png"
-            class="thumbnail_local"
-          />
-        </router-link>
+      <div v-if="article.list.length && article.list.length">
+        <carousel :items="1" :margin="10" :nav="false" :dots="false" :stagePadding="10" class="group_carousel">
+          <router-link v-for="(list, index) in article.list" v-bind:key="index" v-bind:to="{ name: 'ArticleViewPage', params: { service: list.category, number: list.number.toString() }, query: { page: '1' } }" class="link_carousel">
+            <div class="hgroup_carousel">
+              <h2 class="title_carousel">{{ list.subject }}</h2>
+            </div><!-- // hgroup_carousel -->
 
-        <router-link
-          v-bind:to="{
-            name: 'ArticleViewPage',
-            params: {
-              service: 'travel',
-              number: 1
-            },
-            query: {
-              page: '1'
-            }
-          }"
-          class="group_carousel"
-        >
-          <div class="box_carousel">
-            <span class="text_local">일본</span>
-            <h2 class="title_local">핑크빛 파라다이스,<br />요시노야마</h2>
-          </div>
-          <img
-            src="http://localhost:3000/uploads/F1jx184.png"
-            class="thumbnail_local"
-          />
-        </router-link>
-      </carousel>
-    </div>
+            <img v-bind:src="`${localhost}/${uploads}/${list.thumbnail}`" class="thumbnail_carousel" />
+          </router-link>
+        </carousel>
+      </div><!-- // library -->
+    </div><!-- // view_local -->
 
     <div class="contents">
       <div class="view_local">
         <div class="hgroup">
           <h3 class="title_local">
-            <router-link
-              v-bind:to="{
-                name: 'GalleryListPage',
-                params: { service: 'gallery', number: '1' }
-              }"
-              class="link_title"
-              >카테고리</router-link
-            >
+            <router-link v-bind:to="{ name: 'GalleryListPage', params: { service: 'gallery', number: '1' } }" class="link_local">카테고리</router-link>
           </h3>
-        </div>
+        </div><!-- // hgroup -->
 
-        <div class="error_global" v-if="!gallery.loading">
+        <div class="error_global" v-if="true || !category.loading">
           <p class="text_error">읽어들이는 중..</p>
-        </div>
+        </div><!-- // error_global -->
 
-        <div
-          class="slick-library"
-          v-if="gallery.list.length && gallery.list.length"
-        >
-          <carousel
-            :items="3"
-            :margin="10"
-            :nav="false"
-            :dots="false"
-            :stagePadding="20"
-            :autoWidth="true"
-            class="group_category"
-          >
-            <a href="#" class="link_category">대한민국</a>
-            <a href="#" class="link_category">미국</a>
-            <a href="#" class="link_category">일본</a>
-            <a href="#" class="link_category">중국</a>
-
-            <a href="#" class="link_category">영국</a>
-            <a href="#" class="link_category">그리스</a>
-            <a href="#" class="link_category">아르헨티나</a>
-            <a href="#" class="link_category">멕시코</a>
-          </carousel>
-        </div>
-        <!-- // slick-library -->
-
-        <div
-          class="error_global"
-          v-if="gallery.loading && !gallery.list.length"
-        >
+        <div class="error_global" v-if="true || category.loading && !category.list.length">
           <p class="text_error">글이 존재하지 않습니다.</p>
-        </div>
-      </div>
+        </div><!-- // error_global -->
+
+        <div class="visual_slider" v-if="category.list.length && category.list.length">
+          <ul class="list_category">
+            <li v-for="(list, index) in category.list" v-bind:key="index">
+              <router-link v-bind:key="index" v-bind:to="{ name: 'ArticleViewPage', params: { service: list.category, number: list.number.toString() }, query: { page: '1' } }" class="link_category">{{ list.country }}</router-link>
+            </li>
+          </ul>
+        </div><!-- // slick-library -->
+      </div><!-- // view_local -->
 
       <div class="view_local">
         <div class="hgroup">
           <h3 class="title_local">
-            <router-link
-              v-bind:to="{
-                name: 'GalleryListPage',
-                params: { service: 'gallery', number: '1' }
-              }"
-              class="link_title"
-              >이미지 게시판</router-link
-            >
+            <router-link v-bind:to="{ name: 'GalleryListPage', params: { service: 'gallery', number: '1' } }" class="link_local">이미지 게시판</router-link>
           </h3>
-        </div>
+        </div><!-- // hgroup -->
 
-        <div class="error_global" v-if="!gallery.loading">
+        <div class="error_global" v-if="true || !gallery.loading">
           <p class="text_error">읽어들이는 중..</p>
-        </div>
+        </div><!-- // error_global -->
 
-        <div
-          class="slick-library"
-          v-if="gallery.list.length && gallery.list.length"
-        >
-          <carousel
-            :items="1"
-            :margin="10"
-            :nav="false"
-            :dots="false"
-            :stagePadding="20"
-            class="group_category"
-          >
-            <router-link
-              v-for="(list, index) in gallery.list"
-              v-bind:key="index"
-              v-bind:to="{
-                name: 'PostViewPage',
-                params: {
-                  service: list.category,
-                  number: list.number.toString()
-                },
-                query: {
-                  page: '1'
-                }
-              }"
-            >
-              <div
-                v-bind:key="index"
-                v-bind:style="{
-                  'background-image':
-                    'url(\'http://localhost:3000/uploads/' +
-                    list.thumbnail +
-                    '\')'
-                }"
-                class="image_library"
-              >
+        <div class="error_global" v-if="true || gallery.loading && !gallery.list.length">
+          <p class="text_error">글이 존재하지 않습니다.</p>
+        </div><!-- // error_global -->
+
+        <div class="visual_slider" v-if="gallery.list.length && gallery.list.length">
+          <carousel :items="2" :margin="10" :nav="false" :dots="false" :stagePadding="20" class="group_slider">
+            <router-link v-for="(list, index) in gallery.list" v-bind:key="index" v-bind:to="{ name: 'PostViewPage', params: { service: list.category, number: list.number.toString() }, query: { page: '1' } }">
+              <div v-bind:key="index" v-bind:style="{ 'background-image': `url('${localhost}/${uploads}/${list.thumbnail}')`}" class="thumbnail_slider">
                 <div class="dimmed_subject">
                   <span class="text_subject">{{ list.subject }}</span>
-                </div>
-              </div>
+                </div><!-- // dimmed_subject -->
+              </div><!-- // image_library -->
             </router-link>
           </carousel>
-        </div>
-        <!-- // slick-library -->
-
-        <div
-          class="error_global"
-          v-if="gallery.loading && !gallery.list.length"
-        >
-          <p class="text_error">글이 존재하지 않습니다.</p>
-        </div>
-      </div>
+        </div><!-- // slick-library -->
+      </div><!-- // view_local -->
 
       <div class="view_local">
         <div class="hgroup">
           <h3 class="title_local">
-            <router-link
-              v-bind:to="{
-                name: 'GalleryListPage',
-                params: { service: 'gallery', number: '1' }
-              }"
-              class="link_title"
-              >이미지 게시판</router-link
-            >
+            <router-link v-bind:to="{ name: 'PostListPage', params: { service: 'talk', number: '1' } }" class="link_local">톡톡 한마디</router-link>
           </h3>
-        </div>
+        </div><!-- // hgroup -->
 
-        <div class="error_global" v-if="!gallery.loading">
+        <div class="error_global" v-if="true || !talk.loading">
           <p class="text_error">읽어들이는 중..</p>
-        </div>
+        </div><!-- // error_global -->
 
-        <div
-          class="slick-library"
-          v-if="gallery.list.length && gallery.list.length"
-        >
-          <carousel
-            :items="1"
-            :margin="10"
-            :nav="false"
-            :dots="false"
-            :stagePadding="20"
-            class="group_category"
-          >
-            <router-link
-              v-for="(list, index) in gallery.list"
-              v-bind:key="index"
-              v-bind:to="{
-                name: 'PostViewPage',
-                params: {
-                  service: list.category,
-                  number: list.number.toString()
-                },
-                query: {
-                  page: '1'
-                }
-              }"
-            >
-              <div
-                v-bind:key="index"
-                v-bind:style="{
-                  'background-image':
-                    'url(\'http://localhost:3000/uploads/' +
-                    list.thumbnail +
-                    '\')'
-                }"
-                class="image_library"
-              >
-                <div class="dimmed_subject">
-                  <span class="text_subject">{{ list.subject }}</span>
-                </div>
-              </div>
-            </router-link>
-          </carousel>
-        </div>
-        <!-- // slick-library -->
-
-        <div
-          class="error_global"
-          v-if="gallery.loading && !gallery.list.length"
-        >
+        <div class="error_global" v-if="true || talk.loading && !talk.list.length">
           <p class="text_error">글이 존재하지 않습니다.</p>
-        </div>
-      </div>
-
-      <div class="view_local">
-        <div class="hgroup">
-          <h3 class="title_local">
-            <router-link
-              v-bind:to="{
-                name: 'GalleryListPage',
-                params: { service: 'gallery', number: '1' }
-              }"
-              class="link_title"
-              >이미지 게시판</router-link
-            >
-          </h3>
-        </div>
-
-        <div class="error_global" v-if="!gallery.loading">
-          <p class="text_error">읽어들이는 중..</p>
-        </div>
-
-        <div
-          class="slick-library"
-          v-if="gallery.list.length && gallery.list.length"
-        >
-          <carousel
-            :items="1"
-            :margin="10"
-            :nav="false"
-            :dots="false"
-            :stagePadding="20"
-            class="group_category"
-          >
-            <router-link
-              v-for="(list, index) in gallery.list"
-              v-bind:key="index"
-              v-bind:to="{
-                name: 'PostViewPage',
-                params: {
-                  service: list.category,
-                  number: list.number.toString()
-                },
-                query: {
-                  page: '1'
-                }
-              }"
-            >
-              <div
-                v-bind:key="index"
-                v-bind:style="{
-                  'background-image':
-                    'url(\'http://localhost:3000/uploads/' +
-                    list.thumbnail +
-                    '\')'
-                }"
-                class="image_library"
-              >
-                <div class="dimmed_subject">
-                  <span class="text_subject">{{ list.subject }}</span>
-                </div>
-              </div>
-            </router-link>
-          </carousel>
-        </div>
-        <!-- // slick-library -->
-
-        <div
-          class="error_global"
-          v-if="gallery.loading && !gallery.list.length"
-        >
-          <p class="text_error">글이 존재하지 않습니다.</p>
-        </div>
-      </div>
-
-      <div class="view_local">
-        <div class="hgroup">
-          <h3 class="title_local">
-            <router-link
-              v-bind:to="{
-                name: 'PostListPage',
-                params: { service: 'notice', number: '1' }
-              }"
-              class="link_title"
-              >공지사항</router-link
-            >
-          </h3>
-        </div>
-
-        <div class="error_global" v-if="!notice.loading">
-          <p class="text_error">읽어들이는 중..</p>
-        </div>
-
-        <ul class="list_trisection" v-if="notice.loading && notice.list.length">
-          <li v-for="(list, index) in notice.list" v-bind:key="index">
-            <router-link
-              v-bind:to="{
-                name: 'PostViewPage',
-                params: {
-                  service: list.category,
-                  number: list.number.toString()
-                },
-                query: {
-                  page: '1'
-                }
-              }"
-              class="link_trisection"
-            >
-              <span class="text_trisection">{{ list.subject }}</span>
-            </router-link>
-          </li>
-        </ul>
-        <div class="error_global" v-if="notice.loading && !notice.list.length">
-          <p class="text_error">글이 존재하지 않습니다.</p>
-        </div>
-      </div>
-
-      <div class="view_local">
-        <div class="hgroup">
-          <h3 class="title_local">
-            <router-link
-              v-bind:to="{
-                name: 'PostListPage',
-                params: { service: 'update', number: '1' }
-              }"
-              class="link_title"
-              >업데이트</router-link
-            >
-          </h3>
-        </div>
-
-        <div class="error_global" v-if="!notice.loading">
-          <p class="text_error">읽어들이는 중..</p>
-        </div>
-
-        <ul class="list_trisection" v-if="update.loading && update.list.length">
-          <li v-for="(list, index) in update.list" v-bind:key="index">
-            <router-link
-              v-bind:to="{
-                name: 'PostViewPage',
-                params: {
-                  service: list.category,
-                  number: list.number.toString()
-                },
-                query: {
-                  page: '1'
-                }
-              }"
-              class="link_trisection"
-            >
-              <span class="text_trisection">{{ list.subject }}</span>
-            </router-link>
-          </li>
-        </ul>
-        <div class="error_global" v-if="update.loading && !update.list.length">
-          <p class="text_error">글이 존재하지 않습니다.</p>
-        </div>
-      </div>
-
-      <div class="view_local">
-        <div class="hgroup">
-          <h3 class="title_local">
-            <router-link
-              v-bind:to="{
-                name: 'PostListPage',
-                params: { service: 'talk', number: '1' }
-              }"
-              class="link_title"
-              >톡톡 한마디</router-link
-            >
-          </h3>
-        </div>
-
-        <div class="error_global" v-if="!talk.loading">
-          <p class="text_error">읽어들이는 중..</p>
-        </div>
+        </div><!-- // error_global -->
 
         <ul class="list_trisection" v-if="talk.loading && talk.list.length">
           <li v-for="(list, index) in talk.list" v-bind:key="index">
-            <router-link
-              v-bind:to="{
-                name: 'PostViewPage',
-                params: {
-                  service: list.category,
-                  number: list.number.toString()
-                },
-                query: {
-                  page: '1'
-                }
-              }"
-              class="link_trisection"
-            >
+            <router-link v-bind:to="{ name: 'PostViewPage', params: { service: list.category, number: list.number.toString() }, query: { page: '1' } }" class="link_trisection">
               <span class="text_trisection">{{ list.subject }}</span>
             </router-link>
           </li>
         </ul>
-        <div class="error_global" v-if="talk.loading && !talk.list.length">
+      </div><!-- // view_local -->
+
+      <div class="view_local">
+        <div class="hgroup">
+          <h3 class="title_local">
+            <router-link v-bind:to="{ name: 'PostListPage', params: { service: 'update', number: '1' } }" class="link_local">업데이트</router-link>
+          </h3>
+        </div><!-- // hgroup -->
+
+        <div class="error_global" v-if="true || !notice.loading">
+          <p class="text_error">읽어들이는 중..</p>
+        </div><!-- // error_global -->
+
+        <div class="error_global" v-if="true || update.loading && !update.list.length">
           <p class="text_error">글이 존재하지 않습니다.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+        </div><!-- // error_global -->
+
+        <ul class="list_trisection" v-if="update.loading && update.list.length">
+          <li v-for="(list, index) in update.list" v-bind:key="index">
+            <router-link v-bind:to="{ name: 'PostViewPage', params: { service: list.category, number: list.number.toString() }, query: { page: '1' } }" class="link_trisection">
+              <span class="text_trisection">{{ list.subject }}</span>
+            </router-link>
+          </li>
+        </ul>
+      </div><!-- // view_local -->
+
+      <div class="view_local">
+        <div class="hgroup">
+          <h3 class="title_local">
+            <router-link v-bind:to="{ name: 'PostListPage', params: { service: 'notice', number: '1' } }" class="link_local">공지사항</router-link>
+          </h3>
+        </div><!-- // hgroup -->
+
+        <div class="error_global" v-if="true || !notice.loading">
+          <p class="text_error">읽어들이는 중..</p>
+        </div><!-- // error_global -->
+
+        <div class="error_global" v-if="true || notice.loading && !notice.list.length">
+          <p class="text_error">글이 존재하지 않습니다.</p>
+        </div><!-- // error_global -->
+
+        <ul class="list_trisection" v-if="notice.loading && notice.list.length">
+          <li v-for="(list, index) in notice.list" v-bind:key="index">
+            <router-link v-bind:to="{ name: 'PostViewPage', params: {service: list.category, number: list.number.toString() }, query: { page: '1' } }" class="link_trisection">
+              <span class="text_trisection">{{ list.subject }}</span>
+            </router-link>
+          </li>
+        </ul>
+      </div><!-- // view_local -->
+    </div><!-- // contents -->
+  </div><!-- // container -->
 </template>
 
 <script>
+import { localhost, uploads } from '../../config/setting.js'
 import carousel from 'vue-owl-carousel'
 import api from '@/api'
 
+// prettier-ignore
 export default {
   name: 'MainPage',
   components: { carousel },
@@ -515,10 +177,17 @@ export default {
       gallery: {
         loading: false,
         list: []
+      },
+      article: {
+        loading: false,
+        list: []
+      },
+      category: {
+        loading: false,
+        list: []
       }
     }
   },
-  // prettier-ignore
   created() {
     api.get(`/api/`).then((response) => {
       console.log('[MainPage.vue] created() → response.data: ', response.data)
@@ -538,9 +207,25 @@ export default {
       this.gallery.list = response.data.gallery
       this.gallery.loading = true
       console.log('[MainPage.vue] created() → this.gallery.list: ', this.gallery.list)
+
+      this.article.list = response.data.article
+      this.article.loading = true
+      console.log('[MainPage.vue] created() → this.article.list: ', this.article.list)
+
+      this.category.list = response.data.category
+      this.category.loading = true
+      console.log('[MainPage.vue] created() → this.category.list: ', this.category.list)
     }).catch((error) => {
       console.log('[MainPage.vue] created() → error: ', error)
     })
+  },
+  computed: {
+    localhost() {
+      return localhost
+    },
+    uploads() {
+      return uploads
+    }
   }
 }
 </script>

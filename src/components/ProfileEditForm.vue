@@ -1,103 +1,56 @@
+<!-- prettier-ignore -->
 <template>
-  <form
-    action="/profile"
-    method="post"
-    enctype="multipart/form-data"
-    v-on:submit.prevent="submit"
-    novalidate
-  >
+  <form method="post" enctype="multipart/form-data" v-on:submit.prevent="submit" novalidate>
     <div class="group_profile">
       <div class="inner_profile">
-        <div class="box_picture">
-          <img
-            v-if="
-              typeof user.picture !== 'undefined' ||
-                user.picture !== null ||
-                user.picture !== ''
-            "
-            v-bind:src="'http://localhost:3000/uploads/' + user.picture"
-            v-bind:alt="user.name"
-            class="img_picture"
-          />
-          <img
-            v-else
-            src="http://localhost:3000/uploads/default_picture.png"
-            alt="기본 이미지"
-            class="img_picture"
-          />
-        </div>
-        <!-- // box_picture -->
+        <div class="group_picture">
+          <img v-if="typeof user.picture !== 'undefined' || user.picture !== null || user.picture !== ''" v-bind:src="'http://localhost:3000/uploads/' + user.picture" v-bind:alt="user.name" class="thumbnail_picture" />
+
+          <img v-else src="http://localhost:3000/uploads/default_picture.png" alt="기본 이미지" class="thumbnail_picture" />
+        </div><!-- // group_picture -->
 
         <div class="box_photo">
-          <label for="picture" class="label_local"
-            ><span class="ico_global ico_picture">프로필 사진</span></label
-          >
-          <input
-            type="file"
-            name="picture"
-            id="picture"
-            class="field_local"
-            ref="picture"
-          />
-        </div>
-        <!-- // box_photo -->
-      </div>
-      <!-- // inner_profile -->
-    </div>
-    <!-- // group_profile -->
+          <label for="picture" class="label_local">
+            <span class="ico_global ico_picture">프로필 사진</span>
+          </label>
+
+          <input type="file" name="picture" id="picture" class="field_local" ref="picture" />
+        </div><!-- // box_photo -->
+      </div><!-- // inner_profile -->
+    </div><!-- // group_profile -->
 
     <div class="group_field">
       <label for="nickname" class="label_local">닉네임</label>
+
       <span class="field_global">
-        <input
-          type="text"
-          name="name"
-          id="nickname"
-          class="field_local"
-          value="덴버"
-          v-model="user.name"
-        />
+        <input type="text" name="name" id="nickname" class="field_local" value="덴버" v-model="user.name" />
       </span>
 
       <div class="box_result"></div>
-    </div>
-    <!-- // group_field -->
+    </div><!-- // group_field -->
 
     <div class="group_field">
       <label for="email" class="label_local">이메일</label>
+
       <span class="field_global">
-        <input
-          type="text"
-          name="email"
-          id="email"
-          class="field_local"
-          value="denver.html@daum.net"
-          v-model="user.email"
-        /> </span
-      ><!-- // field_global -->
-    </div>
-    <!-- // group_field -->
+        <input type="text" name="email" id="email" class="field_local" value="denver.html@daum.net" v-model="user.email" />
+      </span><!-- // field_global -->
+    </div><!-- // group_field -->
 
     <div class="group_button type_half">
       <div class="inner_local">
-        <router-link v-bind:to="{ name: 'MainPage' }" class="button_global"
-          >홈으로</router-link
-        >
-      </div>
-      <!-- // inner_local -->
+        <router-link v-bind:to="{ name: 'MainPage' }" class="button_global">홈으로</router-link>
+      </div><!-- // inner_local -->
 
       <div class="inner_local">
-        <button type="submit" class="button_global type_action">
-          수정하기
-        </button>
-      </div>
-      <!-- // inner_local -->
-    </div>
-    <!-- // group_button -->
+        <button type="submit" class="button_global type_action">수정하기</button>
+      </div><!-- // inner_local -->
+    </div><!-- // group_button -->
   </form>
 </template>
 
 <script>
+// prettier-ignore
 export default {
   name: 'ProfileEditForm',
   props: {
@@ -114,7 +67,6 @@ export default {
       }
     }
   },
-  // prettier-ignore
   created() {
     console.log('[ProfileEditForm.vue] created() → this.profile: ', this.profile)
 
@@ -122,10 +74,9 @@ export default {
     this.user.email = this.profile.email
     this.user.picture = this.profile.picture
   },
-  // prettier-ignore
   mounted() {
     $('.box_photo .field_local').on('change', function () {
-      var $parent = $(this).closest('.box_photo').siblings('.box_picture')
+      var $parent = $(this).closest('.box_photo').siblings('.group_picture')
       console.log('[ProfileEditForm.vue] $parent: ', $parent)
 
       console.log(' ')
@@ -165,7 +116,7 @@ export default {
 
           console.log(' ')
 
-          $parent.children('.img_picture').attr('src', result)
+          $parent.children('.thumbnail_picture').attr('src', result)
 
           /*
           clearTimeout(timeout)
@@ -207,7 +158,7 @@ export default {
 
         console.log(' ')
 
-        var $picture = $(this).closest('.box_photo').siblings('.box_picture').children('.img_picture')
+        var $picture = $(this).closest('.box_photo').siblings('.group_picture').children('.thumbnail_picture')
         var text = document.selection.createRange().text
         console.log('[ProfileEditForm.vue] $picture: ', $picture)
         console.log('[ProfileEditForm.vue] text: ', text)
@@ -218,7 +169,6 @@ export default {
       }
     })
   },
-  // prettier-ignore
   methods: {
     submit() {
       const { name, email } = this.user

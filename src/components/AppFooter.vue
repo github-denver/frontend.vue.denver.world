@@ -1,6 +1,6 @@
+<!-- prettier-ignore -->
 <template>
-  <div class="footer"></div>
-  <!-- // footer -->
+  <div class="footer">Copyright</div><!-- // footer -->
 </template>
 
 <script>

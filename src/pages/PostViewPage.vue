@@ -1,92 +1,33 @@
+<!-- prettier-ignore -->
 <template>
   <div id="container">
     <div class="contents">
       <div class="hgroup">
         <h2 class="title_local">
-          <router-link
-            v-bind:to="{
-              name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage', // prettier-ignore
-              params: {
-                service: category.value,
-                number: '1'
-              }
-            }"
-            class="link_title"
-            >{{ category.text }}</router-link
-          >
+          <router-link v-bind:to="{ name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage', params: { service: category.value, number: '1' } }" class="link_local">{{ category.text }}</router-link>
         </h2>
-      </div>
-      <!-- // hgroup -->
+      </div><!-- // hgroup -->
 
       <post-view v-if="post" v-bind:post="post" />
+
       <div class="error_global" v-else>
         <p class="text_error">읽어들이는 중..</p>
-      </div>
-      <!-- // error_global -->
+      </div><!-- // error_global -->
 
       <div class="group_button type_half">
         <div class="inner_local">
-          <router-link
-            v-if="search.keyword"
-            v-bind:to="{
-              name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage', // prettier-ignore
-              params: {
-                service: category.value,
-                number: page.toString()
-              },
-              query: {
-                select: search.select,
-                keyword: search.keyword
-              }
-            }"
-            class="button_global"
-            >목록으로</router-link
-          >
-          <router-link
-            v-else
-            v-bind:to="{
-              name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage', // prettier-ignore
-              params: {
-                service: category.value,
-                number: page.toString()
-              }
-            }"
-            class="button_global"
-            >목록으로</router-link
-          >
-        </div>
-        <!-- //inner_local -->
+          <router-link v-if="search.keyword" v-bind:to="{ name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage', params: { service: category.value, number: page.toString() },query: { select: search.select, keyword: search.keyword } }" class="button_global">목록으로</router-link>
+
+          <router-link v-else v-bind:to="{ name: this.$route.params.service !== 'gallery' ? 'PostListPage' : 'GalleryListPage', params: { service: category.value, number: page.toString() } }" class="button_global">목록으로</router-link>
+        </div><!-- // inner_local -->
 
         <div class="inner_local">
-          <router-link
-            v-bind:to="{
-              name: 'PostEditPage',
-              params: {
-                service: category.value,
-                number: number.toString()
-              },
-              query: {
-                page: page.toString()
-              }
-            }"
-            class="button_global type_action"
-            >수정하기</router-link
-          >
-          <button
-            type="button"
-            class="button_global type_delete"
-            v-on:click="onDelete"
-          >
-            삭제하기
-          </button>
-        </div>
-        <!-- //inner_local -->
-      </div>
-      <!-- // group_button -->
-    </div>
-    <!-- // contents -->
-  </div>
-  <!-- // container -->
+          <router-link v-bind:to="{ name: 'PostEditPage', params: { service: category.value, number: number.toString() }, query: { page: page.toString() } }" class="button_global type_action">수정하기</router-link>
+          <button type="button" class="button_global type_delete" v-on:click="onDelete">삭제하기</button>
+        </div><!-- // inner_local -->
+      </div><!-- // group_button -->
+    </div><!-- // contents -->
+  </div><!-- // container -->
 </template>
 
 <script>
@@ -94,6 +35,7 @@ import { mapActions, mapState } from 'vuex'
 import PostView from '@/components/PostView'
 import api from '@/api'
 
+// prettier-ignore
 export default {
   name: 'PostViewPage',
   components: { PostView },
@@ -173,7 +115,9 @@ export default {
       page: 1
     }
   },
-  // prettier-ignore
+  computed: {
+    ...mapState(['post', 'search'])
+  },
   methods: {
     ...mapActions(['fetchPost', 'searchInfo']),
     onDelete() {
@@ -213,7 +157,6 @@ export default {
       }
     }
   },
-  // prettier-ignore
   created() {
     console.log('[PostViewPage.vue] created() → this.$route.params: ', this.$route.params)
     console.log('[PostViewPage.vue] created() → this.$route.query: ', this.$route.query)
@@ -260,9 +203,6 @@ export default {
 
       this.$router.back()
     })
-  },
-  computed: {
-    ...mapState(['post', 'search'])
   }
 }
 </script>

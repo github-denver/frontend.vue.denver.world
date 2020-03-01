@@ -1,13 +1,8 @@
+<!-- prettier-ignore -->
 <template>
   <div class="wrap_welcome">
     <h1 class="title_logo">
-      <router-link
-        v-bind:to="{
-          name: 'MainPage'
-        }"
-        class="link_logo"
-        >덴버월드</router-link
-      >
+      <router-link v-bind:to="{ name: 'MainPage' }" class="link_logo">덴버월드</router-link>
     </h1>
 
     <div class="inner_welcome">
@@ -15,20 +10,18 @@
       <p class="description_welcome">로그인해주세요!</p>
 
       <login-form v-on:parentSubmit="onSubmit" />
-    </div>
-    <!-- // inner_welcome -->
-  </div>
-  <!-- // wrap_welcome -->
+    </div><!-- // inner_welcome -->
+  </div><!-- // wrap_welcome -->
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 import LoginForm from '@/components/LoginForm'
 
+// prettier-ignore
 export default {
   name: 'LoginPage',
   components: { LoginForm },
-  // prettier-ignore
   methods: {
     ...mapActions(['signin']),
     onSubmit(payload) {

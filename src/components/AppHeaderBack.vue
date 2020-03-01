@@ -1,19 +1,23 @@
+<!-- prettier-ignore -->
 <template>
-  <router-link
-    v-bind:to="{
-      name: 'MainPage'
-    }"
-    class="button_history"
-    ><span class="ico_global ico_history">뒤로가기</span></router-link
-  >
+  <div class="header">
+    <h1 class="title_logo"><router-link v-bind:to="{ name: 'MainPage' }" class="link_logo">덴버월드</router-link></h1>
+
+    <div class="gnb">
+      <router-link v-bind:to="{ name: 'MainPage' }" class="button_history">
+        <span class="ico_global ico_history">뒤로가기</span>
+      </router-link>
+    </div><!-- // gnb -->
+  </div><!-- // header -->
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 import AppMenu from '@/components/AppMenu'
 
+// prettier-ignore
 export default {
-  name: 'AppHeader',
+  name: 'AppHeaderBack',
   components: { AppMenu },
   data() {
     return {
@@ -21,11 +25,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user']),
-    ...mapGetters(['isAuthorized'])
+    ...mapGetters(['isAuthorized']),
+    ...mapState(['user'])
   },
-  // prettier-ignore
   methods: {
+    ...mapActions(['signout']),
     onClickSignout() {
       this.signout()
 
@@ -33,9 +37,9 @@ export default {
     },
     onClickClose() {
       this.isActive = !this.isActive
+
       console.log('[AppHeader.vue] methods() → onClickClose → this.isActive: ', this.isActive)
-    },
-    ...mapActions(['signout'])
+    }
   }
 }
 </script>

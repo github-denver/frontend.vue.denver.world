@@ -1,59 +1,32 @@
+<!-- prettier-ignore -->
 <template>
   <div id="container">
     <div class="contents">
       <div class="hgroup">
         <h2 class="title_local">
-          <router-link
-            v-bind:to="{
-              name: 'PostListPage',
-              params: {
-                service: category.value,
-                number: '1'
-              }
-            }"
-            class="link_title"
-            >{{ category.text }}</router-link
-          >
+          <router-link v-bind:to="{ name: 'PostListPage', params: { service: category.value, number: '1' } }" class="link_local">{{ category.text }}</router-link>
         </h2>
-      </div>
-      <!-- // hgroup -->
+      </div><!-- // hgroup -->
 
-      <post-list
-        v-if="loading"
-        v-bind:number="number"
-        v-bind:posts="posts"
-        v-bind:category="category"
-      />
-      <div class="error_global" v-if="!loading">
+      <post-list v-if="loading" v-bind:number="number" v-bind:posts="posts" v-bind:category="category" />
+
+      <div class="error_global" v-if="true || !loading">
         <p class="text_error">읽어들이는 중..</p>
-      </div>
-      <!-- // error_global -->
+      </div><!-- // error_global -->
 
       <div class="group_button type_half">
         <div class="inner_local"></div>
 
         <div class="inner_local">
-          <router-link
-            v-bind:to="{
-              name: 'PostCreatePage',
-              params: {
-                service: category.value
-              }
-            }"
-            class="button_global type_action"
-            >글쓰기</router-link
-          >
+          <router-link v-bind:to="{ name: 'PostCreatePage', params: { service: category.value } }" class="button_global type_action">글쓰기</router-link>
         </div>
-      </div>
-      <!-- // group_button -->
+      </div><!-- // group_button -->
 
       <post-pagination />
 
       <post-search v-bind:category="category" v-bind:number="number" />
-    </div>
-    <!-- // contents -->
-  </div>
-  <!-- // container -->
+    </div><!-- // contents -->
+  </div><!-- // container -->
 </template>
 
 <script>
@@ -62,6 +35,7 @@ import PostList from '@/components/PostList'
 import PostPagination from '@/components/PostPagination'
 import PostSearch from '@/components/PostSearch'
 
+// prettier-ignore
 export default {
   name: 'PostListPage',
   components: { PostList, PostPagination, PostSearch },
@@ -141,8 +115,11 @@ export default {
       }
     }
   },
-  // prettier-ignore
+  computed: {
+    ...mapState(['posts', 'search'])
+  },
   methods: {
+    ...mapActions(['fetchPostList', 'searchInfo']),
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
@@ -155,9 +132,7 @@ export default {
         }
       }
     },
-    ...mapActions(['fetchPostList', 'searchInfo'])
   },
-  // prettier-ignore
   created() {
     console.log('[PostListPage.vue] created() → this.loading: ', this.loading)
     console.log('[PostListPage.vue] created() → this.$route.query.select: ', this.$route.query.select)
@@ -204,9 +179,6 @@ export default {
       this.loading = true
       console.log('[PostListPage.vue] created() → this.loading: ', this.loading)
     })
-  },
-  computed: {
-    ...mapState(['posts', 'search'])
   }
 }
 </script>
