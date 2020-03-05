@@ -3,7 +3,9 @@
   <section>
     <div class="select_global">
       <label for="select" class="label_local">
-        <span class="text_local">{{ category.text }}</span>
+        <span class="inner_local">
+          <span class="text_local">{{ category.text }}</span>
+        </span>
         <span class="ico_global ico_arrow"></span>
       </label>
 

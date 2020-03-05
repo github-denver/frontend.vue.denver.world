@@ -10,7 +10,7 @@
 
       <post-list v-if="loading" v-bind:number="number" v-bind:posts="posts" v-bind:category="category" />
 
-      <div class="error_global" v-if="true || !loading">
+      <div class="error_global" v-if="!loading">
         <p class="text_error">읽어들이는 중..</p>
       </div><!-- // error_global -->
 

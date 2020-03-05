@@ -2,22 +2,22 @@
 <template>
   <div id="container">
     <div class="view_local">
-      <div class="error_global" v-if="true || !article.loading">
+      <div class="error_global" v-if="!article.loading">
         <p class="text_error">읽어들이는 중..</p>
       </div><!-- // error_global -->
 
-      <div class="error_global" v-if="true || article.loading && !article.list.length">
+      <div class="error_global" v-if="article.loading && !article.list.length">
         <p class="text_error">글이 존재하지 않습니다.</p>
       </div><!-- // error_global -->
 
       <div v-if="article.list.length && article.list.length">
         <carousel :items="1" :margin="10" :nav="false" :dots="false" :stagePadding="10" class="group_carousel">
           <router-link v-for="(list, index) in article.list" v-bind:key="index" v-bind:to="{ name: 'ArticleViewPage', params: { service: list.category, number: list.number.toString() }, query: { page: '1' } }" class="link_carousel">
-            <div class="hgroup_carousel">
-              <h2 class="title_carousel">{{ list.subject }}</h2>
-            </div><!-- // hgroup_carousel -->
-
-            <img v-bind:src="`${localhost}/${uploads}/${list.thumbnail}`" class="thumbnail_carousel" />
+            <div v-bind:style="{ 'background-image': `url('${localhost}/${uploads}/${list.upload2}')`}" class="thumbnail_carousel">
+              <div class="dimmed_subject">
+                <h2 class="text_subject">{{ list.subject }}</h2>
+              </div><!-- // dimmed_subject -->
+            </div>
           </router-link>
         </carousel>
       </div><!-- // library -->
@@ -31,18 +31,24 @@
           </h3>
         </div><!-- // hgroup -->
 
-        <div class="error_global" v-if="true || !category.loading">
+        <div class="error_global" v-if="!category.loading">
           <p class="text_error">읽어들이는 중..</p>
         </div><!-- // error_global -->
 
-        <div class="error_global" v-if="true || category.loading && !category.list.length">
+        <div class="error_global" v-if="category.loading && !category.list.length">
           <p class="text_error">글이 존재하지 않습니다.</p>
         </div><!-- // error_global -->
 
         <div class="visual_slider" v-if="category.list.length && category.list.length">
           <ul class="list_category">
             <li v-for="(list, index) in category.list" v-bind:key="index">
-              <router-link v-bind:key="index" v-bind:to="{ name: 'ArticleViewPage', params: { service: list.category, number: list.number.toString() }, query: { page: '1' } }" class="link_category">{{ list.country }}</router-link>
+              <div class="inner_local">
+                <router-link v-bind:key="index" v-bind:to="{ name: 'ArticleViewPage', params: { service: list.category, number: list.number.toString() }, query: { page: '1' } }" class="link_category">
+                  <span class="outer_cell">
+                    <span class="inner_cell">{{ list.country }}</span>
+                  </span>
+                </router-link>
+              </div><!-- // inner_local -->
             </li>
           </ul>
         </div><!-- // slick-library -->
@@ -55,11 +61,11 @@
           </h3>
         </div><!-- // hgroup -->
 
-        <div class="error_global" v-if="true || !gallery.loading">
+        <div class="error_global" v-if="!gallery.loading">
           <p class="text_error">읽어들이는 중..</p>
         </div><!-- // error_global -->
 
-        <div class="error_global" v-if="true || gallery.loading && !gallery.list.length">
+        <div class="error_global" v-if="gallery.loading && !gallery.list.length">
           <p class="text_error">글이 존재하지 않습니다.</p>
         </div><!-- // error_global -->
 
@@ -83,11 +89,11 @@
           </h3>
         </div><!-- // hgroup -->
 
-        <div class="error_global" v-if="true || !talk.loading">
+        <div class="error_global" v-if="!talk.loading">
           <p class="text_error">읽어들이는 중..</p>
         </div><!-- // error_global -->
 
-        <div class="error_global" v-if="true || talk.loading && !talk.list.length">
+        <div class="error_global" v-if="talk.loading && !talk.list.length">
           <p class="text_error">글이 존재하지 않습니다.</p>
         </div><!-- // error_global -->
 
@@ -107,11 +113,11 @@
           </h3>
         </div><!-- // hgroup -->
 
-        <div class="error_global" v-if="true || !notice.loading">
+        <div class="error_global" v-if="!notice.loading">
           <p class="text_error">읽어들이는 중..</p>
         </div><!-- // error_global -->
 
-        <div class="error_global" v-if="true || update.loading && !update.list.length">
+        <div class="error_global" v-if="update.loading && !update.list.length">
           <p class="text_error">글이 존재하지 않습니다.</p>
         </div><!-- // error_global -->
 
@@ -131,11 +137,11 @@
           </h3>
         </div><!-- // hgroup -->
 
-        <div class="error_global" v-if="true || !notice.loading">
+        <div class="error_global" v-if="!notice.loading">
           <p class="text_error">읽어들이는 중..</p>
         </div><!-- // error_global -->
 
-        <div class="error_global" v-if="true || notice.loading && !notice.list.length">
+        <div class="error_global" v-if="notice.loading && !notice.list.length">
           <p class="text_error">글이 존재하지 않습니다.</p>
         </div><!-- // error_global -->
 

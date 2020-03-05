@@ -3,7 +3,7 @@
   <div id="container">
     <div class="visual_carousel">
       <div class="inner_carousel">
-        <img src="http://localhost:3000/uploads/201904.png" class="thumbnail_carousel" />
+        <img v-bind:src="`${localhost}/${uploads}/${post[0].upload2}`" class="thumbnail_carousel" />
       </div><!-- // inner_carousel -->
     </div><!-- // visual_carousel -->
 
@@ -25,6 +25,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import { localhost, uploads } from '../../config/setting.js'
 import ArticleView from '@/components/ArticleView'
 import api from '@/api'
 
@@ -156,7 +157,13 @@ export default {
     })
   },
   computed: {
-    ...mapState(['post', 'search'])
+    ...mapState(['post', 'search']),
+    localhost() {
+      return localhost
+    },
+    uploads() {
+      return uploads
+    }
   },
   methods: {
     ...mapActions(['fetchPost', 'searchInfo']),
