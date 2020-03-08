@@ -1,23 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import AppHeader from '@/components/AppHeader'
-import AppHeaderBack from '@/components/AppHeaderBack'
-import AppFooter from '@/components/AppFooter'
-import MainPage from '@/pages/MainPage'
-import AppMenu from '@/components/AppMenu'
-import WelcomePage from '@/pages/WelcomePage'
-import MemberCreatePage from '@/pages/MemberCreatePage'
-import LoginPage from '@/pages/LoginPage'
-import ProfileEditPage from '@/pages/ProfileEditPage'
-import PostListPage from '@/pages/PostListPage'
-import PostCreatePage from '@/pages/PostCreatePage'
-import PostViewPage from '@/pages/PostViewPage'
-import PostEditPage from '@/pages/PostEditPage'
-import GalleryListPage from '@/pages/GalleryListPage'
-// import ArticleListPage from '@/pages/ArticleListPage'
-import ArticleCreatePage from '@/pages/ArticleCreatePage'
-import ArticleViewPage from '@/pages/ArticleViewPage'
-import ArticleEditPage from '@/pages/ArticleEditPage'
+
+import Main from '@/components/common/Main'
+
+import AppHeader from '@/components/common/AppHeader'
+import AppHeaderBack from '@/components/common/AppHeaderBack'
+import AppMenu from '@/components/common/AppMenu'
+
+import AppFooter from '@/components/common/AppFooter'
+
+import Welcome from '@/components/member/create/Welcome'
+import MemberCreate from '@/components/member/create/MemberCreate'
+import Login from '@/components/member/read/Login'
+import ProfileUpdate from '@/components/member/update/ProfileUpdate'
+
+import PostList from '@/components/post/list/PostList'
+import PostCreate from '@/components/post/create/PostCreate'
+import PostRead from '@/components/post/read/PostRead'
+import PostUpdate from '@/components/post/update/PostUpdate'
+
+import GalleryList from '@/components/gallery/list/GalleryList'
+
+// import ArticleList from '@/components/article/list/ArticleList'
+import ArticleCreate from '@/components/article/create/ArticleCreate'
+import ArticleRead from '@/components/article/read/ArticleRead'
+import ArticleUpdate from '@/components/article/update/ArticleUpdate'
 
 import store from '@/store'
 
@@ -34,8 +41,8 @@ export default new Router({
     },
     {
       path: '/welcome',
-      name: 'WelcomePage',
-      component: WelcomePage,
+      name: 'Welcome',
+      component: Welcome,
       alias: '/member',
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
@@ -43,7 +50,7 @@ export default new Router({
         if (isAuthorized) {
           alert('로그인한 상태에서는 접근할 수 없어요!')
 
-          next({ name: 'MainPage' })
+          next({ name: 'Main' })
         }
 
         next()
@@ -51,15 +58,15 @@ export default new Router({
     },
     {
       path: '/member/register',
-      name: 'MemberCreatePage',
-      component: MemberCreatePage,
+      name: 'MemberCreate',
+      component: MemberCreate,
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
 
         if (isAuthorized) {
           alert('로그인한 상태에서는 접근할 수 없어요!')
 
-          next({ name: 'MainPage' })
+          next({ name: 'Main' })
         }
 
         next()
@@ -67,15 +74,15 @@ export default new Router({
     },
     {
       path: '/member/login',
-      name: 'LoginPage',
-      component: LoginPage,
+      name: 'Login',
+      component: Login,
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
 
         if (isAuthorized) {
           alert('로그인한 상태에서는 접근할 수 없어요!')
 
-          next({ name: 'MainPage' })
+          next({ name: 'Main' })
         }
 
         next()
@@ -83,37 +90,26 @@ export default new Router({
     },
     {
       path: '/member/profile',
-      name: 'ProfileEditPage',
-      component: ProfileEditPage,
+      name: 'ProfileUpdate',
+      component: ProfileUpdate,
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
 
         if (!isAuthorized) {
           alert('로그인 안 한 상태에서는 접근할 수 없어요!')
 
-          next({ name: 'LoginPage' })
+          next({ name: 'Login' })
         }
 
         next()
       }
     },
     {
-      path: '/article/:service/list/:number',
-      name: 'GalleryListPage',
-      components: {
-        header: AppHeader,
-        default: GalleryListPage
-      },
-      props: {
-        default: true
-      }
-    },
-    {
       path: '/article/:service/:number',
-      name: 'ArticleViewPage',
+      name: 'ArticleRead',
       components: {
         header: AppHeaderBack,
-        default: ArticleViewPage,
+        default: ArticleRead,
         // footer: AppFooter,
       },
       props: {
@@ -122,10 +118,10 @@ export default new Router({
     },
     {
       path: '/article/:service/create',
-      name: 'ArticleCreatePage',
+      name: 'ArticleCreate',
       components: {
         header: AppHeader,
-        default: ArticleCreatePage
+        default: ArticleCreate
       },
       props: {
         default: true
@@ -136,7 +132,7 @@ export default new Router({
         if (!isAuthorized) {
           alert('로그인 안 한 상태에서는 접근할 수 없어요!')
 
-          next({ name: 'LoginPage' })
+          next({ name: 'Login' })
         }
 
         next()
@@ -144,25 +140,25 @@ export default new Router({
     },
     {
       path: '/article/:service/:number/edit',
-      name: 'ArticleEditPage',
+      name: 'ArticleUpdate',
       components: {
         header: AppHeader,
-        default: ArticleEditPage
+        default: ArticleUpdate
       },
       props: {
         default: true
       },
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
-        console.log('[router/index.js] ArticleEditPage → store.getters: ', store.getters)
+        console.log('[router/index.js] ArticleUpdate → store.getters: ', store.getters)
 
         if (!isAuthorized) {
           alert('로그인이 필요해요!')
 
-          next({ name: 'LoginPage' })
+          next({ name: 'Login' })
         }
 
-        console.log('[router/index.js] ArticleEditPage → to.params: ', to.params)
+        console.log('[router/index.js] ArticleUpdate → to.params: ', to.params)
 
         store
           .dispatch('fetchPost', {
@@ -170,17 +166,17 @@ export default new Router({
             number: to.params.number
           })
           .then(() => {
-            console.log('[router/index.js] ArticleEditPage → store.state.post: ', store.state.post)
-            console.log('[router/index.js] ArticleEditPage → store.state.user.id: ', store.state.user.id)
+            console.log('[router/index.js] ArticleUpdate → store.state.post: ', store.state.post)
+            console.log('[router/index.js] ArticleUpdate → store.state.user.id: ', store.state.user.id)
 
             const post = store.state.post[0]
-            console.log('[router/index.js] ArticleEditPage → post: ', post)
+            console.log('[router/index.js] ArticleUpdate → post: ', post)
 
             const isAuthor = post.id === store.state.user.id
 
             if (isAuthor) {
-              console.log('[router/index.js] ArticleEditPage → 사용자가 일치합니다')
-              console.log('[router/index.js] ArticleEditPage → isAuthor: ', isAuthor)
+              console.log('[router/index.js] ArticleUpdate → 사용자가 일치합니다')
+              console.log('[router/index.js] ArticleUpdate → isAuthor: ', isAuthor)
 
               next()
             } else {
@@ -200,21 +196,22 @@ export default new Router({
     },
     {
       path: '/gallery/:service/list/:number',
-      name: 'GalleryListPage',
+      name: 'GalleryList',
       components: {
         header: AppHeader,
-        default: GalleryListPage
+        default: GalleryList
       },
+      alias: '/article/:service/list/:number',
       props: {
         default: true
       }
     },
     {
       path: '/board/:service/list/:number',
-      name: 'PostListPage',
+      name: 'PostList',
       components: {
         header: AppHeader,
-        default: PostListPage
+        default: PostList
       },
       props: {
         default: true
@@ -222,10 +219,10 @@ export default new Router({
     },
     {
       path: '/board/:service/create',
-      name: 'PostCreatePage',
+      name: 'PostCreate',
       components: {
         header: AppHeader,
-        default: PostCreatePage
+        default: PostCreate
       },
       props: {
         default: true
@@ -236,7 +233,7 @@ export default new Router({
         if (!isAuthorized) {
           alert('로그인 안 한 상태에서는 접근할 수 없어요!')
 
-          next({ name: 'LoginPage' })
+          next({ name: 'Login' })
         }
 
         next()
@@ -244,10 +241,10 @@ export default new Router({
     },
     {
       path: '/board/:service/:number',
-      name: 'PostViewPage',
+      name: 'PostRead',
       components: {
         header: AppHeader,
-        default: PostViewPage
+        default: PostRead
       },
       props: {
         default: true
@@ -255,25 +252,25 @@ export default new Router({
     },
     {
       path: '/board/:service/:number/edit',
-      name: 'PostEditPage',
+      name: 'PostUpdate',
       components: {
         header: AppHeader,
-        default: PostEditPage
+        default: PostUpdate
       },
       props: {
         default: true
       },
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
-        console.log('[router/index.js] PostEditPage → store.getters: ', store.getters)
+        console.log('[router/index.js] PostUpdate → store.getters: ', store.getters)
 
         if (!isAuthorized) {
           alert('로그인이 필요해요!')
 
-          next({ name: 'LoginPage' })
+          next({ name: 'Login' })
         }
 
-        console.log('[router/index.js] PostEditPage → to.params: ', to.params)
+        console.log('[router/index.js] PostUpdate → to.params: ', to.params)
 
         store
           .dispatch('fetchPost', {
@@ -281,17 +278,17 @@ export default new Router({
             number: to.params.number
           })
           .then(() => {
-            console.log('[router/index.js] PostEditPage → store.state.post: ', store.state.post)
-            console.log('[router/index.js] PostEditPage → store.state.user.id: ', store.state.user.id)
+            console.log('[router/index.js] PostUpdate → store.state.post: ', store.state.post)
+            console.log('[router/index.js] PostUpdate → store.state.user.id: ', store.state.user.id)
 
             const post = store.state.post[0]
-            console.log('[router/index.js] PostEditPage → post: ', post)
+            console.log('[router/index.js] PostUpdate → post: ', post)
 
             const isAuthor = post.id === store.state.user.id
 
             if (isAuthor) {
-              console.log('[router/index.js] PostEditPage → 사용자가 일치합니다')
-              console.log('[router/index.js] PostEditPage → isAuthor: ', isAuthor)
+              console.log('[router/index.js] PostUpdate → 사용자가 일치합니다')
+              console.log('[router/index.js] PostUpdate → isAuthor: ', isAuthor)
 
               next()
             } else {
@@ -311,10 +308,10 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'MainPage',
+      name: 'Main',
       components: {
         header: AppHeader,
-        default: MainPage,
+        default: Main,
         footer: AppFooter,
       }
     }
