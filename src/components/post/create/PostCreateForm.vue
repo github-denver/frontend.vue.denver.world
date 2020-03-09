@@ -6,7 +6,7 @@
       <div class="board_header">
         <span class="group_field">
           <label for="subject" class="label_local">제목</label>
-          <span class="field_global"> <input type="text" name="subject" id="subject" class="field_local" v-model="subject" /> </span
+          <span class="field_global"><input type="text" name="subject" id="subject" class="field_local" v-model="subject"/></span
         ></span>
       </div>
 
@@ -14,11 +14,20 @@
         <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="content"></vue-editor>
       </div>
 
+      <div class="board_footer screen_out">
+        <div class="group_download">
+          <span class="group_field">
+            <span class="title_local">대표 이미지</span>
+            <span class="field_global"><input type="file" name="thumb" class="field_local" ref="thumb"/></span>
+          </span>
+        </div>
+      </div>
+
       <!-- <div class="board_footer screen_out">
         <div class="group_download">
           <span class="group_field">
             <span class="title_local">첨부파일</span>
-            <span class="field_global"> <input type="file" name="download" class="field_local" v-bind:value="download"/></span>
+            <span class="field_global"><input type="file" name="download" class="field_local" v-bind:value="download"/></span>
           </span>
         </div>
 
@@ -143,7 +152,7 @@ export default {
       category: '',
       subject: '',
       content: ''
-      // download: '',
+      // download: ''
       // thumbnail: ''
     }
   },
@@ -202,14 +211,27 @@ export default {
       } */
       // console.log('[PostCreateForm.vue] submit() → upload2: ', upload2)
 
-      this.$emit('parentSubmit', {
-        category,
-        subject,
-        content
-        // download,
+      // const picture = this.$refs.picture.files[0]
+      const thumb = this.$refs.thumb.files[0]
+      console.log('★[PostCreateForm.vue] methods() → submit → thumb: ', thumb)
+
+      const formData = new FormData()
+      formData.append('category', category)
+      formData.append('subject', subject)
+      formData.append('content', content)
+      formData.append('thumb', thumb)
+
+      this.$emit('parentSubmit', formData)
+
+      /* this.$emit('parentSubmit', {
+        // category,
+        // subject,
+        // content,
+        // thumb
+        // download
         // thumbnail,
         // upload2
-      })
+      }) */
     },
     onChange(payload) {
       const { text, value } = payload

@@ -6,7 +6,7 @@
       <div class="board_header">
         <span class="group_field">
           <label for="subject" class="label_local">제목</label>
-          <span class="field_global"> <input type="text" name="subject" id="subject" class="field_local" v-model="subject" /> </span
+          <span class="field_global"><input type="text" name="subject" id="subject" class="field_local" v-model="subject"/></span
         ></span>
       </div>
 
@@ -18,7 +18,7 @@
         <div class="group_download">
           <span class="group_field">
             <span class="title_local">첨부파일</span>
-            <span class="field_global"> <input type="file" name="download" class="field_local" v-bind:value="download" /> </span
+            <span class="field_global"><input type="file" name="download" class="field_local" v-bind:value="download" /></span
           ></span>
         </div>
 

@@ -108,8 +108,10 @@ export default new Router({
       path: '/article/:service/:number',
       name: 'ArticleRead',
       components: {
+        // header: AppHeaderBack,
         header: AppHeader,
         default: ArticleRead,
+        // footer: AppFooter,
       },
       props: {
         default: true

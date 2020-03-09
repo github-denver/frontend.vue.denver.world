@@ -62,7 +62,7 @@
     <div class="group_field">
       <label for="email" class="label_local">이메일</label>
 
-      <span class="field_global"> <input type="text" name="email" id="email" class="field_local" value="denver.html@daum.net" v-model="user.email" /> </span>
+      <span class="field_global"><input type="text" name="email" id="email" class="field_local" value="denver.html@daum.net" v-model="user.email"/></span>
     </div>
 
     <div class="group_button type_half">

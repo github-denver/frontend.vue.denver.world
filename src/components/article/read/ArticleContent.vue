@@ -14,7 +14,7 @@
 import { VueEditor } from 'vue2-editor'
 
 export default {
-  name: 'ArticleView',
+  name: 'ArticleContent',
   components: { VueEditor },
   props: {
     post: {

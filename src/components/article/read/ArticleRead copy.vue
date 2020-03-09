@@ -17,7 +17,7 @@
         <link-rectangle
           v-if="search.keyword"
           v-bind:data="{
-            component: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
+            component: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
             className: 'button_global',
             text: 'rectangle: 목록으로',
             type: category.value,
@@ -30,11 +30,11 @@
         <link-rectangle
           v-else
           v-bind:data="{
-            component: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
+            component: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
             className: 'button_global',
             text: 'rectangle: 목록으로',
-            type: category.value,
-            number: page.toString()
+            select: search.select,
+            keyword: search.keyword
           }"
         />
 

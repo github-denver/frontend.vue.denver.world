@@ -17,7 +17,7 @@
       <Input v-bind:data="{ type: 'search', className: 'local', text: '검색어', label: 'id', name: 'keyword' }" v-model="keyword" />
 
       <!-- <div class="group_field">
-        <span class="field_global"> <input type="search" name="keyword" class="field_local" v-model="keyword" /> </span>
+        <span class="field_global"><input type="search" name="keyword" class="field_local" v-model="keyword" /></span>
       </div> -->
 
       <link-rectangle
