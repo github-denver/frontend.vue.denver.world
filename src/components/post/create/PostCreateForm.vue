@@ -88,6 +88,7 @@ export default {
   data() {
     return {
       select: {
+        // 카테고리
         category: '',
         data: [
           {

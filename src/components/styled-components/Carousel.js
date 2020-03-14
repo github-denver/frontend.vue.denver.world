@@ -1,7 +1,9 @@
 import styled from 'vue-styled-components'
 
-const carouselProps = { icon: String }
-
-const Carousel = styled('div', carouselProps)``
+const Carousel = styled.div`
+  .owl {
+    margin: 10px -10px 0;
+  }
+`
 
 export default Carousel

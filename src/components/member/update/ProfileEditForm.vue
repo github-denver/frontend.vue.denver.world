@@ -1,17 +1,10 @@
 <template>
-  <form
-    method="post"
-    enctype="multipart/form-data"
-    @submit.prevent="submit"
-    novalidate
-  >
+  <form method="post" enctype="multipart/form-data" @submit.prevent="submit" novalidate>
     <div class="group_profile">
       <div class="inner_profile">
         <Picture :isAuthorized="isAuthorized" :user="user" />
 
-        <Upload
-          :data="{ type: 'file', className: 'picture', text: '프로필 사진' }"
-        />
+        <Upload :data="{ type: 'file', className: 'picture', text: '프로필 사진' }" />
       </div>
     </div>
 
@@ -19,14 +12,7 @@
       <label for="nickname" class="label_local">닉네임</label>
 
       <span class="field_global">
-        <input
-          type="text"
-          name="name"
-          id="nickname"
-          class="field_local"
-          value="덴버"
-          v-model="user.name"
-        />
+        <input type="text" name="name" id="nickname" class="field_local" value="덴버" v-model="user.name" />
       </span>
 
       <div class="box_result"></div>
@@ -35,15 +21,7 @@
     <div class="group_field">
       <label for="email" class="label_local">이메일</label>
 
-      <span class="field_global"
-        ><input
-          type="text"
-          name="email"
-          id="email"
-          class="field_local"
-          value="denver.html@daum.net"
-          v-model="user.email"
-      /></span>
+      <span class="field_global"><input type="text" name="email" id="email" class="field_local" value="denver.html@daum.net" v-model="user.email"/></span>
     </div>
 
     <div class="group_button type_half">
@@ -98,10 +76,7 @@ export default {
     }
   },
   created() {
-    console.log(
-      '[ProfileEditForm.vue] created() → this.profile: ',
-      this.profile
-    )
+    console.log('[ProfileEditForm.vue] created() → this.profile: ', this.profile)
 
     this.user.name = this.profile.name
     this.user.email = this.profile.email
@@ -116,34 +91,19 @@ export default {
 
       console.log(' ')
 
-      console.log(
-        '[ProfileEditForm.vue] window.FileReader: ',
-        window.FileReader
-      )
+      console.log('[ProfileEditForm.vue] window.FileReader: ', window.FileReader)
       if (window.FileReader) {
         console.log('[ProfileEditForm.vue] if (window.FileReader) { .. }: true')
 
         console.log(' ')
 
-        console.log(
-          '[ProfileEditForm.vue] $(this)[0].files[0]: ',
-          $(this)[0].files[0]
-        )
-        console.log(
-          '[ProfileEditForm.vue] $(this)[0].files[0].type: ',
-          $(this)[0].files[0].type
-        )
+        console.log('[ProfileEditForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
+        console.log('[ProfileEditForm.vue] $(this)[0].files[0].type: ', $(this)[0].files[0].type)
 
         console.log(' ')
 
-        console.log(
-          '[ProfileEditForm.vue] $(this)[0].files[0].type.match(/image/): ',
-          $(this)[0].files[0].type.match(/image\//)
-        )
-        console.log(
-          '[ProfileEditForm.vue] !$(this)[0].files[0].type.match(/image/): ',
-          !$(this)[0].files[0].type.match(/image\//)
-        )
+        console.log('[ProfileEditForm.vue] $(this)[0].files[0].type.match(/image/): ', $(this)[0].files[0].type.match(/image\//))
+        console.log('[ProfileEditForm.vue] !$(this)[0].files[0].type.match(/image/): ', !$(this)[0].files[0].type.match(/image\//))
 
         console.log(' ')
 
@@ -155,10 +115,7 @@ export default {
         // 읽기..
         var reader = new FileReader()
         reader.readAsDataURL($(this)[0].files[0])
-        console.log(
-          '[ProfileEditForm.vue] $(this)[0].files[0]: ',
-          $(this)[0].files[0]
-        )
+        console.log('[ProfileEditForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
 
         console.log(' ')
 
@@ -207,9 +164,7 @@ export default {
           */
         }
       } else {
-        console.log(
-          '[ProfileEditForm.vue] if (window.FileReader) { .. }: false'
-        )
+        console.log('[ProfileEditForm.vue] if (window.FileReader) { .. }: false')
 
         console.log(' ')
 
@@ -235,10 +190,7 @@ export default {
 
       // const picture = this.$refs.picture.files[0]
       const picture = ''
-      console.log(
-        '[ProfileEditForm.vue] methods() → submit → picture: ',
-        picture
-      )
+      console.log('[ProfileEditForm.vue] methods() → submit → picture: ', picture)
 
       const formData = new FormData()
       formData.append('picture', picture)

@@ -1,11 +1,12 @@
 import styled from 'vue-styled-components'
 
-const thumbnailProps = { thumbnail: String }
+const ThumbnailProps = { paddingTop: String }
 
-const Thumbnail = styled('div', thumbnailProps)`
-  padding-top: 52.734375%;
+const Thumbnail = styled('div', ThumbnailProps)`
+  padding-top: ${(props) => props.paddingTop};
   border-radius: 16px;
   font-size: 1px;
+  font-size: 0.1rem;
   line-height: 1;
   color: transparent;
   background-color: #f9f9f9;

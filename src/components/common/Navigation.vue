@@ -1,15 +1,14 @@
 <template>
-  <div class="group_menu">
-    <ul class="list_menu">
+  <navigation-component>
+    <ul>
       <li v-for="(item, index) in navigation" :key="index">
-        <span class="text_menu">{{ item.title }}</span>
+        <span>{{ item.title }}</span>
 
-        <ul class="list_lnb">
+        <ul>
           <li v-for="(item, index) in item.children" :key="index">
             <link-rectangle
               :data="{
                 component: item.component,
-                className: 'link_lnb',
                 text: item.title,
                 event: attribute.event,
                 icon: 'ico_profile',
@@ -21,7 +20,7 @@
         </ul>
       </li>
     </ul>
-  </div>
+  </navigation-component>
 </template>
 
 <script>
@@ -39,6 +38,7 @@ export default {
   data() {
     return {
       navigation: [
+        // 카테고리
         {
           category: 'news',
           title: '새소식',
@@ -98,61 +98,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.group_menu {
-  overflow: hidden;
-  margin-top: 10px;
-  border-top: 1px solid #e9e9e9;
-  border-bottom: 1px solid #e9e9e9;
-}
-
-.list_menu {
-  background-color: #fff;
-}
-
-.list_menu > li + li {
-  border-top: 1px solid #e9e9e9;
-}
-
-.list_menu .text_menu {
-  display: block;
-  padding: 18px 10px;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.list_lnb {
-  border-top: 1px solid #e9e9e9;
-  margin: 0 -1px -1px -1px;
-  font-size: 0;
-  background-color: #f9f9f9;
-}
-
-.list_lnb > li {
-  display: inline-block;
-  position: relative;
-  width: 50%;
-  margin-top: -1px;
-  border: 1px solid #e9e9e9;
-  box-sizing: border-box;
-  vertical-align: top;
-}
-
-.list_lnb > li:before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -1px;
-  border-left: 1px solid #f9f9f9;
-  content: '';
-}
-
-.list_lnb .link_lnb {
-  display: block;
-  margin-left: -1px;
-  padding: 13px 10px;
-  font-size: 14px;
-  text-align: center;
-}
-</style>

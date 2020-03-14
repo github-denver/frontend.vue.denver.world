@@ -1,7 +1,7 @@
 <template>
-  <div class="hgroup">
+  <hgroup-component>
     <slot name="title"></slot>
-  </div>
+  </hgroup-component>
 </template>
 
 <script>
@@ -9,10 +9,3 @@ export default {
   name: 'Hgroup'
 }
 </script>
-
-<style scoped>
-a {
-  font-size: 14px;
-  font-weight: 700;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <carousel-component>
     <Hgroup>
       <template v-slot:title>
         <h3>
@@ -11,6 +11,7 @@
                 number: attribute.params.number
               }
             }"
+            class="router-link"
           >
             {{ attribute.title }}</router-link
           >
@@ -24,7 +25,7 @@
       }"
     >
       <template v-slot:loading>
-        <p>읽어들이는 중..</p>
+        <p class="message">읽어들이는 중..</p>
       </template>
     </Loading>
 
@@ -34,18 +35,18 @@
       }"
     >
       <template v-slot:empty>
-        <p>글이 존재하지 않습니다</p>
+        <p class="message">글이 존재하지 않습니다</p>
       </template>
     </Empty>
 
     <vue-owl-carousel
-      class="visual_gallery"
       v-if="article.list.length && article.list.length"
       :items="attribute.slider.items"
       :margin="attribute.slider.margin"
       :stagePadding="attribute.slider.stagePadding"
       :nav="attribute.slider.nav"
       :dots="attribute.slider.dots"
+      class="owl"
     >
       <router-link
         v-for="(list, index) in article.list"
@@ -61,6 +62,9 @@
       >
         <Thumbnail
           :attribute="{
+            style: {
+              paddingTop: '52.734375%'
+            },
             thumbnail: list.upload2,
             subject: list.subject
           }"
@@ -71,12 +75,10 @@
         </Thumbnail>
       </router-link>
     </vue-owl-carousel>
-  </section>
+  </carousel-component>
 </template>
 
 <script>
-import { localhost, uploads } from '../../../config/setting'
-
 import Hgroup from '@/components/common/Hgroup'
 
 import Loading from '@/components/common/Loading'
@@ -108,16 +110,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  computed: {
-    localhost() {
-      return localhost
-    },
-    uploads() {
-      return uploads
-    }
   }
 }
 </script>
-
-<style scoped></style>

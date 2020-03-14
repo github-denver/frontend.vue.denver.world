@@ -1,17 +1,10 @@
 <template>
-  <form
-    method="post"
-    enctype="multipart/form-data"
-    @submit.prevent="submit"
-    novalidate
-  >
+  <form method="post" enctype="multipart/form-data" @submit.prevent="submit" novalidate>
     <div class="group_profile">
       <div class="inner_profile">
         <Picture :isAuthorized="isAuthorized" />
 
-        <Upload
-          :data="{ type: 'file', className: 'picture', text: '프로필 사진' }"
-        />
+        <Upload :data="{ type: 'file', className: 'picture', text: '프로필 사진' }" />
       </div>
     </div>
 
@@ -27,24 +20,14 @@
     <div class="group_field">
       <label for="password" class="label_local">패스워드 *</label>
       <span class="field_global">
-        <input
-          type="password"
-          id="password"
-          class="field_local"
-          v-model="password"
-        />
+        <input type="password" id="password" class="field_local" v-model="password" />
       </span>
     </div>
 
     <div class="group_field">
       <label for="confirm" class="label_local">패스워드 확인 *</label>
       <span class="field_global">
-        <input
-          type="password"
-          id="confirm"
-          class="field_local"
-          v-model="confirm"
-        />
+        <input type="password" id="confirm" class="field_local" v-model="confirm" />
       </span>
     </div>
 
@@ -121,36 +104,19 @@ export default {
 
       console.log(' ')
 
-      console.log(
-        '[MemberCreateForm.vue] window.FileReader: ',
-        window.FileReader
-      )
+      console.log('[MemberCreateForm.vue] window.FileReader: ', window.FileReader)
       if (window.FileReader) {
-        console.log(
-          '[MemberCreateForm.vue] if (window.FileReader) { .. }: true'
-        )
+        console.log('[MemberCreateForm.vue] if (window.FileReader) { .. }: true')
 
         console.log(' ')
 
-        console.log(
-          '[MemberCreateForm.vue] $(this)[0].files[0]: ',
-          $(this)[0].files[0]
-        )
-        console.log(
-          '[MemberCreateForm.vue] $(this)[0].files[0].type: ',
-          $(this)[0].files[0].type
-        )
+        console.log('[MemberCreateForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
+        console.log('[MemberCreateForm.vue] $(this)[0].files[0].type: ', $(this)[0].files[0].type)
 
         console.log(' ')
 
-        console.log(
-          '[MemberCreateForm.vue] $(this)[0].files[0].type.match(/image/): ',
-          $(this)[0].files[0].type.match(/image\//)
-        )
-        console.log(
-          '[MemberCreateForm.vue] !$(this)[0].files[0].type.match(/image/): ',
-          !$(this)[0].files[0].type.match(/image\//)
-        )
+        console.log('[MemberCreateForm.vue] $(this)[0].files[0].type.match(/image/): ', $(this)[0].files[0].type.match(/image\//))
+        console.log('[MemberCreateForm.vue] !$(this)[0].files[0].type.match(/image/): ', !$(this)[0].files[0].type.match(/image\//))
 
         console.log(' ')
 
@@ -162,10 +128,7 @@ export default {
         // 읽기..
         var reader = new FileReader()
         reader.readAsDataURL($(this)[0].files[0])
-        console.log(
-          '[MemberCreateForm.vue] $(this)[0].files[0]: ',
-          $(this)[0].files[0]
-        )
+        console.log('[MemberCreateForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
 
         console.log(' ')
 
@@ -214,9 +177,7 @@ export default {
           */
         }
       } else {
-        console.log(
-          '[MemberCreateForm.vue] if (window.FileReader) { .. }: false'
-        )
+        console.log('[MemberCreateForm.vue] if (window.FileReader) { .. }: false')
 
         console.log(' ')
 
@@ -238,23 +199,14 @@ export default {
     submit() {
       const { id, password, confirm, name, email } = this
       console.log('[MemberCreateForm.vue] methods() → submit → id: ', id)
-      console.log(
-        '[MemberCreateForm.vue] methods() → submit → password: ',
-        password
-      )
-      console.log(
-        '[MemberCreateForm.vue] methods() → submit → confirm: ',
-        confirm
-      )
+      console.log('[MemberCreateForm.vue] methods() → submit → password: ', password)
+      console.log('[MemberCreateForm.vue] methods() → submit → confirm: ', confirm)
       console.log('[MemberCreateForm.vue] methods() → submit → name: ', name)
       console.log('[MemberCreateForm.vue] methods() → submit → email: ', email)
 
       // const picture = this.$refs.picture.files[0]
       const picture = ''
-      console.log(
-        '[MemberCreateForm.vue] methods() → submit → picture: ',
-        picture
-      )
+      console.log('[MemberCreateForm.vue] methods() → submit → picture: ', picture)
 
       if (!id || !password || !confirm || !name) {
         alert('필수 정보를 입력해주세요!')

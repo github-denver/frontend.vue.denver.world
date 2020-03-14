@@ -1,15 +1,20 @@
 <template>
-  <div
+  <thumbnail-component
+    :attribute="{
+      style: {
+        paddingTop: attribute.style.paddingTop
+      }
+    }"
     :style="{
-      'background-image': `url('${localhost}/${uploads}/${attribute.thumbnail}')`
+      'background-image': `url('${path}/${uploads}/${attribute.thumbnail}')`
     }"
   >
     <slot></slot>
-  </div>
+  </thumbnail-component>
 </template>
 
 <script>
-import { localhost, uploads } from '../../../config/setting'
+import { mapGetters } from 'vuex'
 
 import Dimmed from '@/components/common/Dimmed'
 
@@ -23,27 +28,7 @@ export default {
     }
   },
   computed: {
-    localhost() {
-      return localhost
-    },
-    uploads() {
-      return uploads
-    }
+    ...mapGetters(['path', 'uploads'])
   }
 }
 </script>
-
-<style scoped>
-div {
-  padding-top: 52.734375%;
-  border-radius: 16px;
-  font-size: 1px;
-  font-size: 0.1rem;
-  line-height: 1;
-  color: transparent;
-  background-color: #f9f9f9;
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-</style>

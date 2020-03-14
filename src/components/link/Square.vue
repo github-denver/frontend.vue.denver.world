@@ -1,9 +1,5 @@
 <template>
-  <router-link
-    :to="{ name: data.component }"
-    :class="data.className"
-    @click.native="data.event && data.event()"
-  >
+  <router-link :to="{ name: data.component }" :class="data.className" @click.native="data.event && data.event()">
     <icon-square :data="{ className: data.icon, text: data.text }" />
   </router-link>
 </template>

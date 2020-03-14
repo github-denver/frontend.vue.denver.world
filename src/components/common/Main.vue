@@ -1,6 +1,6 @@
 <template>
-  <div id="container">
-    <div class="contents">
+  <container-component>
+    <contents-component>
       <Carousel
         :article="article"
         :attribute="{
@@ -135,12 +135,11 @@
           }
         }"
       />
-    </div>
-  </div>
+    </contents-component>
+  </container-component>
 </template>
 
 <script>
-import { localhost, uploads } from '../../../config/setting'
 import Carousel from '@/components/common/Carousel'
 import Category from '@/components/common/Category'
 import Gallery from '@/components/common/Gallery'
@@ -183,58 +182,27 @@ export default {
     api
       .get(`/api/`)
       .then((response) => {
-        console.log('[Main.vue] created() → response.data: ', response.data)
-
         this.notice.list = response.data.notice
         this.notice.loading = true
-        console.log(
-          '[Main.vue] created() → this.notice.list: ',
-          this.notice.list
-        )
 
         this.update.list = response.data.update
         this.update.loading = true
-        console.log(
-          '[Main.vue] created() → this.update.list: ',
-          this.update.list
-        )
 
         this.talk.list = response.data.talk
         this.talk.loading = true
-        console.log('[Main.vue] created() → this.talk.list: ', this.talk.list)
 
         this.gallery.list = response.data.gallery
         this.gallery.loading = true
-        console.log(
-          '[Main.vue] created() → this.gallery.list: ',
-          this.gallery.list
-        )
 
         this.article.list = response.data.article
         this.article.loading = true
-        console.log(
-          '[Main.vue] created() → this.article.list: ',
-          this.article.list
-        )
 
         this.category.list = response.data.category
         this.category.loading = true
-        console.log(
-          '[Main.vue] created() → this.category.list: ',
-          this.category.list
-        )
       })
       .catch((error) => {
-        console.log('[Main.vue] created() → error: ', error)
+        console.error('[Main.vue] created() → error: ', error)
       })
-  },
-  computed: {
-    localhost() {
-      return localhost
-    },
-    uploads() {
-      return uploads
-    }
   }
 }
 </script>

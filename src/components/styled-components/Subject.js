@@ -1,8 +1,6 @@
 import styled from 'vue-styled-components'
 
-const subjectProps = { icon: String }
-
-const Subject = styled('p', subjectProps)`
+const Subject = styled.div`
   display: block;
   overflow: hidden;
   font-size: 14px;

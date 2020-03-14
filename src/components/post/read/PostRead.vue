@@ -25,7 +25,7 @@
         }"
       >
         <template v-slot:loading>
-          <p>읽어들이는 중..</p>
+          <p class="message">읽어들이는 중..</p>
         </template>
       </Loading>
 
@@ -111,6 +111,7 @@ export default {
   data() {
     return {
       navigation: {
+        // 카테고리
         category: '',
         data: [
           {
@@ -189,10 +190,7 @@ export default {
           alert('게시물이 성공적으로 삭제되었습니다.')
 
           this.$router.push({
-            name:
-              this.$route.params.service !== 'gallery'
-                ? 'PostList'
-                : 'GalleryList',
+            name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
             params: {
               service: response.data.service,
               number: '1'
@@ -213,14 +211,9 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (
-            this.category.value ===
-            this.navigation.data[i].optgroup.option[j].value
-          ) {
+          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[
-              j
-            ].value
+            this.category.value = this.navigation.data[i].optgroup.option[j].value
 
             break loop
           }
@@ -229,64 +222,37 @@ export default {
     }
   },
   created() {
-    console.log(
-      '[PostRead.vue] created() → this.$route.params: ',
-      this.$route.params
-    )
-    console.log(
-      '[PostRead.vue] created() → this.$route.query: ',
-      this.$route.query
-    )
+    console.log('[PostRead.vue] created() → this.$route.params: ', this.$route.params)
+    console.log('[PostRead.vue] created() → this.$route.query: ', this.$route.query)
 
     this.page = this.$route.query.page
 
-    const keyword =
-      typeof this.$route.query.keyword !== 'undefined'
-        ? this.$route.query.keyword
-        : ''
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
     console.log('[PostRead.vue] created() → keyword: ', keyword)
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log(
-        '[PostRead.vue] kcreated() → eyword.length === 0: ',
-        keyword.length === 0
-      )
+      console.log('[PostRead.vue] kcreated() → eyword.length === 0: ', keyword.length === 0)
 
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log(
-        '[PostRead.vue] created() → keyword.length === 0: ',
-        keyword.length === 0
-      )
+      console.log('[PostRead.vue] created() → keyword.length === 0: ', keyword.length === 0)
 
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
     }
 
-    console.log(
-      '[PostRead.vue] created() → this.search.keyword: ',
-      this.search.keyword
-    )
+    console.log('[PostRead.vue] created() → this.search.keyword: ', this.search.keyword)
 
     this.category.value = this.service
-    console.log(
-      '[PostRead.vue] created() → this.category.value: ',
-      this.category.value
-    )
+    console.log('[PostRead.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
 
-    console.log(
-      '[PostRead.vue] created() → typeof this.number: ',
-      typeof this.number
-    )
-    console.log(
-      '[PostRead.vue] created() → typeof parseInt(this.number): ',
-      typeof parseInt(this.number)
-    )
+    console.log('[PostRead.vue] created() → typeof this.number: ', typeof this.number)
+    console.log('[PostRead.vue] created() → typeof parseInt(this.number): ', typeof parseInt(this.number))
 
     this.fetchPost({
       category: this.category.value,

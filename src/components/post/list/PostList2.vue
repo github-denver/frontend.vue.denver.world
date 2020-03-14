@@ -18,22 +18,13 @@
           <div class="outer_cell">
             <div class="group_picture">
               <img
-                v-if="
-                  typeof post.picture !== 'undefined' ||
-                    post.picture !== null ||
-                    post.picture !== ''
-                "
+                v-if="typeof post.picture !== 'undefined' || post.picture !== null || post.picture !== ''"
                 :src="'http://localhost:3000/uploads/' + post.picture"
                 :alt="post.name"
                 class="thumbnail_picture"
               />
 
-              <img
-                v-else
-                src="http://localhost:3000/uploads/default_picture.png"
-                alt="기본 이미지"
-                class="thumbnail_picture"
-              />
+              <img v-else src="http://localhost:3000/uploads/default_picture.png" alt="기본 이미지" class="thumbnail_picture" />
             </div>
 
             <div class="information_board inner_cell">
@@ -42,15 +33,9 @@
               </div>
 
               <div class="group_option">
-                <span class="text_board text_writer"
-                  ><span class="screen_out">작성자</span> {{ post.name }}</span
-                >
-                <span class="text_board text_date"
-                  >등록일 {{ post.regdate | moment('YY.MM.DD') }}</span
-                >
-                <span class="text_board text_count"
-                  >조회수 {{ post.count }}</span
-                >
+                <span class="text_board text_writer"><span class="screen_out">작성자</span> {{ post.name }}</span>
+                <span class="text_board text_date">등록일 {{ post.regdate | moment('YY.MM.DD') }}</span>
+                <span class="text_board text_count">조회수 {{ post.count }}</span>
               </div>
             </div>
           </div>
@@ -68,22 +53,13 @@
           <div class="outer_cell">
             <div class="group_picture">
               <img
-                v-if="
-                  typeof post.picture !== 'undefined' ||
-                    post.picture !== null ||
-                    post.picture !== ''
-                "
+                v-if="typeof post.picture !== 'undefined' || post.picture !== null || post.picture !== ''"
                 :src="'http://localhost:3000/uploads/' + post.picture"
                 :alt="post.name"
                 class="thumbnail_picture"
               />
 
-              <img
-                v-else
-                src="http://localhost:3000/uploads/default_picture.png"
-                alt="기본 이미지"
-                class="thumbnail_picture"
-              />
+              <img v-else src="http://localhost:3000/uploads/default_picture.png" alt="기본 이미지" class="thumbnail_picture" />
             </div>
 
             <div class="information_board inner_cell">
@@ -92,15 +68,9 @@
               </div>
 
               <div class="group_option">
-                <span class="text_board text_writer"
-                  ><span class="screen_out">작성자</span> {{ post.name }}</span
-                >
-                <span class="text_board text_date"
-                  >등록일 {{ post.regdate | moment('YY.MM.DD') }}</span
-                >
-                <span class="text_board text_count"
-                  >조회수 {{ post.count }}</span
-                >
+                <span class="text_board text_writer"><span class="screen_out">작성자</span> {{ post.name }}</span>
+                <span class="text_board text_date">등록일 {{ post.regdate | moment('YY.MM.DD') }}</span>
+                <span class="text_board text_count">조회수 {{ post.count }}</span>
               </div>
             </div>
           </div>

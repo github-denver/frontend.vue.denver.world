@@ -1,6 +1,6 @@
 <template>
-  <div id="container">
-    <div class="contents">
+  <container-component>
+    <contents-component>
       <Hgroup>
         <template v-slot:title>
           <h3>
@@ -12,6 +12,7 @@
                   number: '1'
                 }
               }"
+              class="router-link"
             >
               {{ category.text }}</router-link
             >
@@ -25,7 +26,7 @@
         }"
       >
         <template v-slot:loading>
-          <p>읽어들이는 중..</p>
+          <p class="message">읽어들이는 중..</p>
         </template>
       </Loading>
 
@@ -35,16 +36,11 @@
         }"
       >
         <template v-slot:empty>
-          <p>글이 존재하지 않습니다</p>
+          <p class="message">글이 존재하지 않습니다</p>
         </template>
       </Empty>
 
-      <post-list2
-        v-if="loading"
-        :number="number"
-        :posts="posts"
-        :category="category"
-      />
+      <post-list2 v-if="loading" :number="number" :posts="posts" :category="category" />
 
       <div class="group_button type_half">
         <div class="inner_local"></div>
@@ -64,8 +60,8 @@
       <pagination />
 
       <search :category="category" :number="number" />
-    </div>
-  </div>
+    </contents-component>
+  </container-component>
 </template>
 
 <script>
@@ -105,6 +101,7 @@ export default {
     return {
       loading: false,
       navigation: {
+        // 카테고리
         category: '',
         data: [
           {
@@ -175,14 +172,9 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (
-            this.category.value ===
-            this.navigation.data[i].optgroup.option[j].value
-          ) {
+          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[
-              j
-            ].value
+            this.category.value = this.navigation.data[i].optgroup.option[j].value
 
             break loop
           }
@@ -192,36 +184,21 @@ export default {
   },
   created() {
     console.log('[PostList.vue] created() → this.loading: ', this.loading)
-    console.log(
-      '[PostList.vue] created() → this.$route.query.select: ',
-      this.$route.query.select
-    )
-    console.log(
-      '[PostList.vue] created() → this.$route.query.keyword: ',
-      this.$route.query.keyword
-    )
+    console.log('[PostList.vue] created() → this.$route.query.select: ', this.$route.query.select)
+    console.log('[PostList.vue] created() → this.$route.query.keyword: ', this.$route.query.keyword)
 
-    const keyword =
-      typeof this.$route.query.keyword !== 'undefined'
-        ? this.$route.query.keyword
-        : ''
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
     console.log('[PostList.vue] created() → keyword: ', keyword)
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log(
-        '[PostList.vue] created() → keyword.length === 0: ',
-        keyword.length === 0
-      )
+      console.log('[PostList.vue] created() → keyword.length === 0: ', keyword.length === 0)
 
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log(
-        '[PostList.vue] created() → keyword.length === 0: ',
-        keyword.length === 0
-      )
+      console.log('[PostList.vue] created() → keyword.length === 0: ', keyword.length === 0)
 
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
@@ -230,30 +207,15 @@ export default {
     console.log('[PostList.vue] created() → this.number: ', this.number)
 
     this.category.value = this.service
-    console.log(
-      '[PostList.vue] created() → this.category.value: ',
-      this.category.value
-    )
+    console.log('[PostList.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
 
-    console.log(
-      '[PostList.vue] created() → this.search.select: ',
-      this.search.select
-    )
-    console.log(
-      '[PostList.vue] created() → typeof this.search.select: ',
-      typeof this.search.select
-    )
+    console.log('[PostList.vue] created() → this.search.select: ', this.search.select)
+    console.log('[PostList.vue] created() → typeof this.search.select: ', typeof this.search.select)
 
-    console.log(
-      '[PostList.vue] created() → this.search.keyword: ',
-      this.search.keyword
-    )
-    console.log(
-      '[PostList.vue] created() → typeof this.search.keyword: ',
-      typeof this.search.keyword
-    )
+    console.log('[PostList.vue] created() → this.search.keyword: ', this.search.keyword)
+    console.log('[PostList.vue] created() → typeof this.search.keyword: ', typeof this.search.keyword)
 
     this.fetchPostList({
       category: this.category.value,

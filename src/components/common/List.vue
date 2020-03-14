@@ -1,5 +1,5 @@
 <template>
-  <div class="view_local">
+  <list-component>
     <Hgroup>
       <template v-slot:title>
         <h3>
@@ -11,6 +11,7 @@
                 number: attribute.params.number
               }
             }"
+            class="router-link"
           >
             {{ attribute.title }}</router-link
           >
@@ -24,7 +25,7 @@
       }"
     >
       <template v-slot:loading>
-        <p>읽어들이는 중..</p>
+        <p class="message">읽어들이는 중..</p>
       </template>
     </Loading>
 
@@ -34,7 +35,7 @@
       }"
     >
       <template v-slot:empty>
-        <p>글이 존재하지 않습니다</p>
+        <p class="message">글이 존재하지 않습니다</p>
       </template>
     </Empty>
 
@@ -57,12 +58,10 @@
         </router-link>
       </li>
     </ul>
-  </div>
+  </list-component>
 </template>
 
 <script>
-import { localhost, uploads } from '../../../config/setting'
-
 import Hgroup from '@/components/common/Hgroup'
 
 import Loading from '@/components/common/Loading'

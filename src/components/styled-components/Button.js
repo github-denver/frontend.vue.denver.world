@@ -1,6 +1,16 @@
-import styled from 'vue-styled-components'
+import styled, { css } from 'vue-styled-components'
 
-const buttonProps = { icon: String }
+const buttonProps = { className: String }
+
+const buttonStyles = css`
+  ${(props) =>
+    props.className === 'hamburger' &&
+    css`
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    `}
+`
 
 const Square = styled('button', buttonProps)`
   display: inline-block;
@@ -9,6 +19,8 @@ const Square = styled('button', buttonProps)`
   line-height: 1;
   background-color: transparent;
   text-align: center;
+
+  ${buttonStyles}
 `
 
 export default Square

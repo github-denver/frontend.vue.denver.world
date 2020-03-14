@@ -62,20 +62,11 @@
       >
     </li>
     <li v-for="(i, index) in pagination2" :key="index">
-      <router-link
-        v-if="pagination.current === i"
-        :to="{ name: 'PostList', params: { number: i.toString() } }"
-        :key="i"
-        class="link_paging current"
-        >{{ i }}</router-link
-      >
+      <router-link v-if="pagination.current === i" :to="{ name: 'PostList', params: { number: i.toString() } }" :key="i" class="link_paging current">{{
+        i
+      }}</router-link>
 
-      <router-link
-        v-else
-        :to="{ name: 'PostList', params: { number: i.toString() } }"
-        class="link_paging"
-        >{{ i }}</router-link
-      >
+      <router-link v-else :to="{ name: 'PostList', params: { number: i.toString() } }" class="link_paging">{{ i }}</router-link>
     </li>
     <li>
       <router-link
@@ -100,23 +91,11 @@ export default {
     ...mapState(['pagination', 'search']),
     pagination2() {
       let pagination2 = []
-      console.log(
-        '[Pagination.vue] computed → pagination2 → this.pagination.start: ',
-        this.pagination.start
-      )
-      console.log(
-        '[Pagination.vue] computed → pagination2 → this.pagination.end: ',
-        this.pagination.end
-      )
 
       for (let i = this.pagination.start; i <= this.pagination.end; i++) {
         pagination2.push(i)
       }
 
-      console.log(
-        '[Pagination.vue] computed → pagination2 → pagination2: ',
-        pagination2
-      )
       return pagination2
     }
   }

@@ -7,12 +7,7 @@
           <span class="ico_global ico_arrow"></span>
         </label>
 
-        <select
-          name="search"
-          class="select_local"
-          @change="onChange"
-          v-model="select.value"
-        >
+        <select name="search" class="select_local" @change="onChange" v-model="select.value">
           <option value="subject">제목</option>
           <option value="content">내용</option>
           <option value="writer">작성자</option>
@@ -87,22 +82,13 @@ export default {
     ...mapActions(['fetchPostList']),
     onChange(event) {
       this.select.text = event.target.options[event.target.selectedIndex].text
-      console.log(
-        '[Search.vue] methods() → onChange → this.select.text: ',
-        this.select.text
-      )
+      console.log('[Search.vue] methods() → onChange → this.select.text: ', this.select.text)
 
       this.select.value = event.target.value
-      console.log(
-        '[Search.vue] methods() → onChange → this.select.text: ',
-        this.select.value
-      )
+      console.log('[Search.vue] methods() → onChange → this.select.text: ', this.select.value)
     },
     submit() {
-      console.log(
-        '[Search.vue] methods() → onChange → this.keyword: ',
-        this.keyword
-      )
+      console.log('[Search.vue] methods() → onChange → this.keyword: ', this.keyword)
 
       this.fetchPostList({
         category: this.category.value,

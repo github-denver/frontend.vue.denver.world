@@ -2,10 +2,7 @@
   <div id="container">
     <div class="visual_carousel">
       <div class="inner_carousel">
-        <img
-          :src="`${localhost}/${uploads}/${post[0].upload2}`"
-          class="thumbnail_carousel"
-        />
+        <img :src="`${localhost}/${uploads}/${post[0].upload2}`" class="thumbnail_carousel" />
       </div>
     </div>
 
@@ -20,10 +17,7 @@
         <link-rectangle
           v-if="search.keyword"
           :data="{
-            component:
-              this.$route.params.service !== 'library'
-                ? 'PostList'
-                : 'GalleryList',
+            component: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
             className: 'button_global',
             text: '목록으로',
             type: category.value,
@@ -35,10 +29,7 @@
         <link-rectangle
           v-else
           :data="{
-            component:
-              this.$route.params.service !== 'library'
-                ? 'PostList'
-                : 'GalleryList',
+            component: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
             className: 'button_global',
             text: '목록으로',
             type: category.value,
@@ -52,7 +43,6 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import { localhost, uploads } from '../../../../config/setting'
 
 import LinkRectangle from '@/components/link/Rectangle'
 import ArticleContent from '@/components/article/read/ArticleContent'
@@ -139,64 +129,37 @@ export default {
     }
   },
   created() {
-    console.log(
-      '[PostRead.vue] created() → this.$route.params: ',
-      this.$route.params
-    )
-    console.log(
-      '[PostRead.vue] created() → this.$route.query: ',
-      this.$route.query
-    )
+    console.log('[PostRead.vue] created() → this.$route.params: ', this.$route.params)
+    console.log('[PostRead.vue] created() → this.$route.query: ', this.$route.query)
 
     this.page = this.$route.query.page
 
-    const keyword =
-      typeof this.$route.query.keyword !== 'undefined'
-        ? this.$route.query.keyword
-        : ''
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
     console.log('[PostRead.vue] created() → keyword: ', keyword)
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log(
-        '[PostRead.vue] kcreated() → eyword.length === 0: ',
-        keyword.length === 0
-      )
+      console.log('[PostRead.vue] kcreated() → eyword.length === 0: ', keyword.length === 0)
 
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log(
-        '[PostRead.vue] created() → keyword.length === 0: ',
-        keyword.length === 0
-      )
+      console.log('[PostRead.vue] created() → keyword.length === 0: ', keyword.length === 0)
 
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
     }
 
-    console.log(
-      '[PostRead.vue] created() → this.search.keyword: ',
-      this.search.keyword
-    )
+    console.log('[PostRead.vue] created() → this.search.keyword: ', this.search.keyword)
 
     this.category.value = this.service
-    console.log(
-      '[PostRead.vue] created() → this.category.value: ',
-      this.category.value
-    )
+    console.log('[PostRead.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
 
-    console.log(
-      '[PostRead.vue] created() → typeof this.number: ',
-      typeof this.number
-    )
-    console.log(
-      '[PostRead.vue] created() → typeof parseInt(this.number): ',
-      typeof parseInt(this.number)
-    )
+    console.log('[PostRead.vue] created() → typeof this.number: ', typeof this.number)
+    console.log('[PostRead.vue] created() → typeof parseInt(this.number): ', typeof parseInt(this.number))
 
     this.fetchPost({
       category: this.category.value,
@@ -213,13 +176,7 @@ export default {
     })
   },
   computed: {
-    ...mapState(['post', 'search']),
-    localhost() {
-      return localhost
-    },
-    uploads() {
-      return uploads
-    }
+    ...mapState(['post', 'search'])
   },
   methods: {
     ...mapActions(['fetchPost', 'searchInfo']),
@@ -233,10 +190,7 @@ export default {
           alert('게시물이 성공적으로 삭제되었습니다.')
 
           this.$router.push({
-            name:
-              this.$route.params.service !== 'gallery'
-                ? 'PostList'
-                : 'GalleryList',
+            name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
             params: {
               service: response.data.service,
               number: '1'
@@ -257,14 +211,9 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (
-            this.category.value ===
-            this.navigation.data[i].optgroup.option[j].value
-          ) {
+          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[
-              j
-            ].value
+            this.category.value = this.navigation.data[i].optgroup.option[j].value
 
             break loop
           }

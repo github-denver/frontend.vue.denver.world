@@ -1,7 +1,7 @@
 <template>
-  <div v-if="attribute.result">
+  <loading-component v-if="attribute.result">
     <slot name="loading"></slot>
-  </div>
+  </loading-component>
 </template>
 
 <script>
@@ -15,13 +15,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-div {
-  margin-top: 10px;
-}
-
-p {
-  font-size: 14px;
-}
-</style>

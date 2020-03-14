@@ -1,13 +1,11 @@
 import styled from 'vue-styled-components'
 
-const HeadingProps = { icon: String }
-
-const Heading = styled('h1', HeadingProps)`
+const Heading = styled.h1`
   display: table;
   margin: 0 auto;
   text-align: center;
 
-  & > a {
+  .router-link {
     display: table-cell;
     height: 30px;
     font-size: 16px;

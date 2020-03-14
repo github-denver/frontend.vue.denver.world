@@ -1,85 +1,56 @@
 <template>
-  <div class="menu">
+  <menu-component>
     <Profile
-      :isAuthorized="isAuthorized"
-      :user="user"
       :attribute="{
+        authorized: attribute.authorized,
+        user: attribute.user,
         component: {
           success: 'ProfileUpdate',
           failure: 'Login'
-        },
-        className: 'profile',
-        message: {
-          success: '',
-          failure: '로그인해주세요.'
         }
       }"
-    />
+    >
+      <template v-slot:picture>
+        <Picture
+          :attribute="{
+            authorized: attribute.authorized,
+            user: attribute.user
+          }"
+        />
+      </template>
 
-    <Navigation :attribute="{ event: onClickClose }" />
+      <template v-if="attribute.user" v-slot:text>{{ attribute.user }}</template>
+      <template v-else v-slot:text>로그인해주세요.</template>
+    </Profile>
 
-    <square-button :attribute="{ type: 'button', event: onClickClose }">
-      <icon-image :attribute="{ width: 30, height: 30, icon: 'close' }">
-        주메뉴 닫기
-      </icon-image>
+    <Navigation :attribute="{ event: close }" />
+
+    <square-button :attribute="{ type: 'button', event: close }">
+      <icon-image :attribute="{ width: 30, height: 30, icon: 'close' }">주메뉴 닫기</icon-image>
     </square-button>
-  </div>
+  </menu-component>
 </template>
 
 <script>
-import { localhost, uploads } from '../../../config/setting'
 import Profile from '@/components/common/Profile'
+import Picture from '@/components/common/Picture'
+
 import Navigation from '@/components/common/Navigation'
 import ButtonSquare from '@/components/button/Square'
 
 export default {
   name: 'AppMenu',
-  components: { Profile, Navigation, ButtonSquare },
+  components: { Profile, Picture, Navigation, ButtonSquare },
   props: {
-    isAuthorized: {
-      type: Boolean,
-      required: true
-    },
-    user: {
+    attribute: {
       type: Object,
-      required: false
-    }
-  },
-  computed: {
-    localhost() {
-      return localhost
-    },
-    uploads() {
-      return uploads
+      required: true
     }
   },
   methods: {
-    onClickClose() {
+    close() {
       this.$emit('parentClose')
     }
   }
 }
 </script>
-
-<style scoped>
-.menu {
-  display: block;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  min-width: 320px;
-  margin: 0 auto;
-  padding-bottom: 40px;
-  background-color: #f1f1f1;
-}
-
-button {
-  position: absolute;
-  top: 20px;
-  right: 10px;
-}
-</style>

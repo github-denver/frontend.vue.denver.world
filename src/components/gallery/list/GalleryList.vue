@@ -1,6 +1,6 @@
 <template>
-  <div id="container">
-    <div class="contents">
+  <container-component>
+    <contents-component>
       <Hgroup>
         <template v-slot:title>
           <h3>
@@ -12,6 +12,7 @@
                   number: '1'
                 }
               }"
+              class="router-link"
             >
               {{ category.text }}</router-link
             >
@@ -25,7 +26,7 @@
         }"
       >
         <template v-slot:loading>
-          <p>읽어들이는 중..</p>
+          <p class="message">읽어들이는 중..</p>
         </template>
       </Loading>
 
@@ -35,21 +36,16 @@
         }"
       >
         <template v-slot:empty>
-          <p>글이 존재하지 않습니다</p>
+          <p class="message">글이 존재하지 않습니다</p>
         </template>
       </Empty>
 
-      <gallery-list2
-        v-if="loading"
-        :number="number"
-        :posts="posts"
-        :category="category"
-      />
+      <list v-if="loading" :number="number" :posts="posts" :category="category" />
 
-      <div class="group_button type_half">
-        <div class="inner_local"></div>
+      <group-button-component class="half">
+        <div class="inner"></div>
 
-        <div class="inner_local">
+        <div class="inner">
           <link-rectangle
             :data="{
               component: 'PostCreate',
@@ -59,13 +55,13 @@
             }"
           />
         </div>
-      </div>
+      </group-button-component>
 
       <pagination />
 
       <search :category="category" :number="number" />
-    </div>
-  </div>
+    </contents-component>
+  </container-component>
 </template>
 
 <script>
@@ -76,7 +72,7 @@ import Empty from '@/components/common/Empty'
 
 import LinkRectangle from '@/components/link/Rectangle'
 
-import GalleryList2 from '@/components/gallery/list/GalleryList2'
+import List from '@/components/gallery/list/List'
 import Pagination from '@/components/common/Pagination'
 import Search from '@/components/common/Search'
 
@@ -84,7 +80,7 @@ export default {
   name: 'GalleryList',
   components: {
     Hgroup,
-    GalleryList2,
+    List,
     Pagination,
     Search,
     Loading,
@@ -105,6 +101,7 @@ export default {
     return {
       loading: false,
       navigation: {
+        // 카테고리
         category: '',
         data: [
           {
@@ -181,36 +178,21 @@ export default {
   },
   created() {
     console.log('[GalleryList.vue] created() → this.loading: ', this.loading)
-    console.log(
-      '[GalleryList.vue] created() → this.$route.query.select: ',
-      this.$route.query.select
-    )
-    console.log(
-      '[GalleryList.vue] created() → this.$route.query.keyword: ',
-      this.$route.query.keyword
-    )
+    console.log('[GalleryList.vue] created() → this.$route.query.select: ', this.$route.query.select)
+    console.log('[GalleryList.vue] created() → this.$route.query.keyword: ', this.$route.query.keyword)
 
-    const keyword =
-      typeof this.$route.query.keyword !== 'undefined'
-        ? this.$route.query.keyword
-        : ''
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
     console.log('[GalleryList.vue] created() → keyword: ', keyword)
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log(
-        '[GalleryList.vue] created() → keyword.length === 0: ',
-        keyword.length === 0
-      )
+      console.log('[GalleryList.vue] created() → keyword.length === 0: ', keyword.length === 0)
 
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log(
-        '[GalleryList.vue] created() → keyword.length === 0: ',
-        keyword.length === 0
-      )
+      console.log('[GalleryList.vue] created() → keyword.length === 0: ', keyword.length === 0)
 
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
@@ -219,30 +201,15 @@ export default {
     console.log('[GalleryList.vue] created() → this.number: ', this.number)
 
     this.category.value = this.service
-    console.log(
-      '[GalleryList.vue] created() → this.category.value: ',
-      this.category.value
-    )
+    console.log('[GalleryList.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
 
-    console.log(
-      '[GalleryList.vue] created() → this.search.select: ',
-      this.search.select
-    )
-    console.log(
-      '[GalleryList.vue] created() → typeof this.search.select: ',
-      typeof this.search.select
-    )
+    console.log('[GalleryList.vue] created() → this.search.select: ', this.search.select)
+    console.log('[GalleryList.vue] created() → typeof this.search.select: ', typeof this.search.select)
 
-    console.log(
-      '[GalleryList.vue] created() → this.search.keyword: ',
-      this.search.keyword
-    )
-    console.log(
-      '[GalleryList.vue] created() → typeof this.search.keyword: ',
-      typeof this.search.keyword
-    )
+    console.log('[GalleryList.vue] created() → this.search.keyword: ', this.search.keyword)
+    console.log('[GalleryList.vue] created() → typeof this.search.keyword: ', typeof this.search.keyword)
 
     this.fetchPostList({
       category: this.category.value,
@@ -264,14 +231,9 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (
-            this.category.value ===
-            this.navigation.data[i].optgroup.option[j].value
-          ) {
+          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[
-              j
-            ].value
+            this.category.value = this.navigation.data[i].optgroup.option[j].value
 
             break loop
           }

@@ -6,10 +6,16 @@ import router from './router'
 import store from './store'
 import Cookies from 'js-cookie'
 
+import { Plugin } from 'vue-fragment'
+
 import './components/styled-components'
+import './components/styled-components/header'
+import './components/styled-components/group'
+import './components/styled-components/galleryList'
 
 Vue.config.productionTip = false
 
+Vue.use(Plugin)
 Vue.use(require('vue-moment'))
 
 const init = () => {

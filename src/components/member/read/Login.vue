@@ -1,9 +1,7 @@
 <template>
   <div class="wrap_welcome">
     <h1 class="title_logo">
-      <router-link :to="{ name: 'Main' }" class="link_logo"
-        >덴버월드</router-link
-      >
+      <router-link :to="{ name: 'Main' }" class="link_logo">덴버월드</router-link>
     </h1>
 
     <div class="inner_welcome">
@@ -47,18 +45,9 @@ export default {
             alert(error.response.data.message)
           }
           console.log('[Login.vue] 로그인에 실패했어요.. ㅠㅜ error: ', error)
-          console.log(
-            '[Login.vue] 로그인에 실패했어요.. ㅠㅜ error.message: ',
-            error.message
-          )
-          console.log(
-            '[Login.vue] 로그인에 실패했어요.. ㅠㅜ error.response: ',
-            error.response
-          )
-          console.log(
-            '[Login.vue] 로그인에 실패했어요.. ㅠㅜ error.response.data: ',
-            error.response.data
-          )
+          console.log('[Login.vue] 로그인에 실패했어요.. ㅠㅜ error.message: ', error.message)
+          console.log('[Login.vue] 로그인에 실패했어요.. ㅠㅜ error.response: ', error.response)
+          console.log('[Login.vue] 로그인에 실패했어요.. ㅠㅜ error.response.data: ', error.response.data)
 
           alert('로그인에 실패했어요.. ㅠㅜ')
         })

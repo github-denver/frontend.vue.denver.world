@@ -1,9 +1,6 @@
 <template>
   <form method="post" @submit.prevent="submit" novalidate>
-    <Input
-      :data="{ type: 'text', className: 'local', text: '아이디', label: 'id' }"
-      v-model="id"
-    />
+    <Input :data="{ type: 'text', className: 'local', text: '아이디', label: 'id' }" v-model="id" />
 
     <Input
       :data="{

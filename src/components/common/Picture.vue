@@ -1,42 +1,25 @@
 <template>
-  <div class="group_picture" v-if="isAuthorized">
+  <picture-component>
     <img
-      :src="`${localhost}/${uploads}/${user.picture}`"
-      :alt="user.name"
-      class="thumbnail_picture"
+      :src="`${path}/${uploads}/${attribute.authorized ? user.picture : 'default_picture.png'}`"
+      :alt="attribute.authorized ? attribute.user.name : '기본 이미지'"
     />
-  </div>
-  <div class="group_picture" v-else>
-    <img
-      :src="`${localhost}/${uploads}/default_picture.png`"
-      alt="기본 이미지"
-      class="thumbnail_picture"
-    />
-  </div>
+  </picture-component>
 </template>
 
 <script>
-import { localhost, uploads } from '../../../config/setting'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Picture',
   props: {
-    isAuthorized: {
-      type: Boolean,
-      required: true
-    },
-    user: {
+    attribute: {
       type: Object,
-      required: false
+      required: true
     }
   },
   computed: {
-    localhost() {
-      return localhost
-    },
-    uploads() {
-      return uploads
-    }
+    ...mapGetters(['path', 'uploads'])
   }
 }
 </script>
