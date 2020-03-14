@@ -2,6 +2,6 @@
 
 <script>
 export default {
-  name: 'ArticleEditPage'
+  name: 'ArticleUpdate'
 }
 </script>

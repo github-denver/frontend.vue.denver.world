@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="submit" novalidate>
+  <form @submit.prevent="submit" novalidate>
     <div class="group_search">
       <div class="select_global">
         <label for="search" class="label_local">
@@ -7,28 +7,38 @@
           <span class="ico_global ico_arrow"></span>
         </label>
 
-        <select name="search" class="select_local" v-on:change="onChange" v-model="select.value">
+        <select
+          name="search"
+          class="select_local"
+          @change="onChange"
+          v-model="select.value"
+        >
           <option value="subject">제목</option>
           <option value="content">내용</option>
           <option value="writer">작성자</option>
         </select>
       </div>
 
-      <Input v-bind:data="{ type: 'search', className: 'local', text: '검색어', label: 'id', name: 'keyword' }" v-model="keyword" />
-
-      <!-- <div class="group_field">
-        <span class="field_global"><input type="search" name="keyword" class="field_local" v-model="keyword" /></span>
-      </div> -->
+      <Input
+        :data="{
+          type: 'search',
+          className: 'local',
+          text: '검색어',
+          label: 'id',
+          name: 'keyword'
+        }"
+        v-model="keyword"
+      />
 
       <link-rectangle
-        v-bind:data="{
+        :data="{
           to: 'PostList',
           type: category.value,
           number: '1',
           select: select.value,
           keyword: keyword,
           className: ['button_global', 'type_delete'],
-          text: 'rectangle: 검색하기',
+          text: '검색하기',
           event: submit
         }"
       />
@@ -77,13 +87,22 @@ export default {
     ...mapActions(['fetchPostList']),
     onChange(event) {
       this.select.text = event.target.options[event.target.selectedIndex].text
-      console.log('[Search.vue] methods() → onChange → this.select.text: ', this.select.text)
+      console.log(
+        '[Search.vue] methods() → onChange → this.select.text: ',
+        this.select.text
+      )
 
       this.select.value = event.target.value
-      console.log('[Search.vue] methods() → onChange → this.select.text: ', this.select.value)
+      console.log(
+        '[Search.vue] methods() → onChange → this.select.text: ',
+        this.select.value
+      )
     },
     submit() {
-      console.log('[Search.vue] methods() → onChange → this.keyword: ', this.keyword)
+      console.log(
+        '[Search.vue] methods() → onChange → this.keyword: ',
+        this.keyword
+      )
 
       this.fetchPostList({
         category: this.category.value,

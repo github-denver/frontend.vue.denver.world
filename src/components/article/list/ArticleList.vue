@@ -2,6 +2,6 @@
 
 <script>
 export default {
-  name: 'ArticleListPage'
+  name: 'ArticleList'
 }
 </script>

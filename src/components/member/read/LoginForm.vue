@@ -1,26 +1,37 @@
 <template>
-  <form method="post" v-on:submit.prevent="submit" novalidate>
-    <Input v-bind:data="{ type: 'text', className: 'local', text: '아이디', label: 'id' }" v-model="id" />
+  <form method="post" @submit.prevent="submit" novalidate>
+    <Input
+      :data="{ type: 'text', className: 'local', text: '아이디', label: 'id' }"
+      v-model="id"
+    />
 
-    <Input v-bind:data="{ type: 'password', className: 'local', text: '패스워드', label: 'password' }" v-model="password" />
+    <Input
+      :data="{
+        type: 'password',
+        className: 'local',
+        text: '패스워드',
+        label: 'password'
+      }"
+      v-model="password"
+    />
 
     <div class="group_button type_half">
       <div class="inner_local">
         <link-rectangle
-          v-bind:data="{
+          :data="{
             component: 'Main',
             className: 'button_global',
-            text: 'rectangle: 홈으로'
+            text: '홈으로'
           }"
         />
       </div>
 
       <div class="inner_local">
         <button-rectangle
-          v-bind:data="{
+          :data="{
             type: 'submit',
             className: ['button_global', 'type_action'],
-            text: 'rectangle: 로그인하기'
+            text: '로그인하기'
           }"
         />
       </div>

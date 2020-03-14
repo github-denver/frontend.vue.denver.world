@@ -2,6 +2,6 @@
 
 <script>
 export default {
-  name: 'ArticleCreatePage'
+  name: 'ArticleCreate'
 }
 </script>

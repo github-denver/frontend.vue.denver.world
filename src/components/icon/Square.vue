@@ -1,5 +1,5 @@
 <template>
-  <span v-bind:class="['ico_global', data.className]">{{ data.text }}</span>
+  <span :class="['ico_global', data.className]">{{ data.text }}</span>
 </template>
 
 <script>

@@ -1,12 +1,6 @@
 <template>
-  <button v-bind:type="data.type" v-bind:class="data.className" v-on:click="data.event">
-    <icon-square
-      v-if="data.icon"
-      v-bind:data="{
-        className: data.icon,
-        text: data.text
-      }"
-    />
+  <button :type="data.type" :class="data.className" @click="data.event">
+    <icon-square :data="{ className: data.icon, text: data.text }" />
   </button>
 </template>
 

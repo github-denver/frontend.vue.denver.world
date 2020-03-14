@@ -1,76 +1,65 @@
 <template>
-  <div class="header">
-    <h1 class="title_logo"><router-link v-bind:to="{ name: 'Main' }" class="link_logo">덴버월드</router-link></h1>
+  <application-header>
+    <heading>
+      <router-link :to="{ name: 'Main' }">
+        덴버월드
+      </router-link>
+    </heading>
 
-    <div class="gnb">
-      <button-square
-        v-bind:data="{
-          type: 'button',
-          className: 'button_gnb',
-          text: 'square: 주메뉴 열기',
-          event: onClickClose,
-          icon: 'ico_menu'
-        }"
-      />
+    <square-button :attribute="{ type: 'button', event: onClickClose }">
+      <icon-image :attribute="{ width: 30, height: 30, icon: 'menu' }">
+        주메뉴 열기
+      </icon-image>
+    </square-button>
 
-      <ul class="list_state" v-if="isAuthorized">
-        <li>
-          <link-square
-            v-bind:data="{
-              component: 'ProfileUpdate',
-              className: 'link_state',
-              text: 'square: 내 정보',
-              event: onClickClose,
-              icon: 'ico_profile'
-            }"
-          />
-        </li>
-        <li>
-          <link-square
-            v-bind:data="{
-              type: 'button',
-              text: 'square: 로그아웃',
-              event: onClickSignout,
-              icon: 'ico_logout'
-            }"
-          />
-        </li>
-      </ul>
+    <ul v-if="isAuthorized">
+      <li>
+        <router-link :to="{ name: 'ProfileUpdate' }">
+          <icon-image :attribute="{ width: 30, height: 30, icon: 'profile' }">
+            내 정보
+          </icon-image>
+        </router-link>
+      </li>
+      <li>
+        <square-button :attribute="{ type: 'button', event: onClickSignout }">
+          <icon-image :attribute="{ width: 30, height: 30, icon: 'logout' }">
+            로그아웃
+          </icon-image>
+        </square-button>
+      </li>
+    </ul>
+    <ul v-else>
+      <li>
+        <router-link :to="{ name: 'Login' }">
+          <icon-image :attribute="{ width: 30, height: 30, icon: 'login' }">
+            로그인
+          </icon-image>
+        </router-link>
+      </li>
+      <li>
+        <router-link :to="{ name: 'Welcome' }">
+          <icon-image :attribute="{ width: 30, height: 30, icon: 'join' }">
+            회원가입
+          </icon-image>
+        </router-link>
+      </li>
+    </ul>
 
-      <ul class="list_state" v-else>
-        <li>
-          <link-square
-            v-bind:data="{
-              component: 'Login',
-              className: 'link_state',
-              text: 'square: 로그인',
-              event: onClickClose,
-              icon: 'ico_login'
-            }"
-          />
-        </li>
-        <li>
-          <link-square
-            v-bind:data="{
-              component: 'Welcome',
-              className: 'link_state',
-              text: 'square: 회원가입',
-              event: onClickClose,
-              icon: 'ico_join'
-            }"
-          />
-        </li>
-      </ul>
-
-      <app-menu v-if="isActive" v-bind:isAuthorized="isAuthorized" v-bind:user="user" v-on:parentClose="onClickClose" />
-    </div>
-  </div>
+    <app-menu
+      v-if="isActive"
+      :isAuthorized="isAuthorized"
+      :user="user"
+      @parentClose="onClickClose"
+    />
+  </application-header>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
+
 import ButtonSquare from '@/components/button/Square'
 import LinkSquare from '@/components/link/Square'
+
 import AppMenu from '@/components/common/AppMenu'
 
 export default {
@@ -94,9 +83,25 @@ export default {
     },
     onClickClose() {
       this.isActive = !this.isActive
-
-      console.log('[AppHeader.vue] methods() → onClickClose → this.isActive: ', this.isActive)
     }
   }
 }
 </script>
+
+<style scoped>
+ul {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0;
+}
+
+li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+li + li {
+  margin-left: 10px;
+}
+</style>

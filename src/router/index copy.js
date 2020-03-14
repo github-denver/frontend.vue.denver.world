@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import Main from '@/components/common/Main'
 
 import AppHeader from '@/components/common/AppHeader'
-import AppHeaderBack from '@/components/common/AppHeaderBack'
+// import AppHeaderBack from '@/components/common/AppHeaderBack'
 import AppMenu from '@/components/common/AppMenu'
 
 import AppFooter from '@/components/common/AppFooter'

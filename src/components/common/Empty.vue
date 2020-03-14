@@ -1,6 +1,6 @@
 <template>
-  <div class="error_global" v-if="data.result">
-    <p class="text_error">Empty: {{ data.message }}</p>
+  <div v-if="attribute.result">
+    <slot name="empty"></slot>
   </div>
 </template>
 
@@ -8,10 +8,20 @@
 export default {
   name: 'Empty',
   props: {
-    data: {
+    attribute: {
       type: Object,
       required: true
     }
   }
 }
 </script>
+
+<style scoped>
+div {
+  margin-top: 10px;
+}
+
+p {
+  font-size: 14px;
+}
+</style>

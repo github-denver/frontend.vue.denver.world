@@ -1,59 +1,32 @@
 <template>
-  <form method="post" enctype="multipart/form-data" v-on:submit.prevent="submit" novalidate>
+  <form
+    method="post"
+    enctype="multipart/form-data"
+    @submit.prevent="submit"
+    novalidate
+  >
     <div class="group_profile">
       <div class="inner_profile">
-        <Picture v-bind:isAuthorized="isAuthorized" v-bind:user="user" />
-
-        <!-- <div class="group_picture">
-          <img
-            v-if="typeof user.picture !== 'undefined' || user.picture !== null || user.picture !== ''"
-            v-bind:src="'http://localhost:3000/uploads/' + user.picture"
-            v-bind:alt="user.name"
-            class="thumbnail_picture"
-          />
-
-          <img v-else src="http://localhost:3000/uploads/default_picture.png" alt="기본 이미지" class="thumbnail_picture" />
-        </div> -->
+        <Picture :isAuthorized="isAuthorized" :user="user" />
 
         <Upload
-          v-bind:data="{
-            type: 'file',
-            className: 'picture',
-            text: 'Upload: 프로필 사진'
-          }"
+          :data="{ type: 'file', className: 'picture', text: '프로필 사진' }"
         />
-
-        <!-- <div class="box_photo">
-          <label for="picture" class="label_local">
-            <span class="ico_global ico_picture">프로필 사진</span>
-          </label>
-
-          <input type="file" name="picture" id="picture" class="field_local" ref="picture" />
-        </div> -->
       </div>
     </div>
-
-    <!-- <div class="group_profile">
-      <div class="inner_profile">
-        <div class="group_picture">
-          <img src="http://localhost:3000/uploads/default_picture.png" alt="기본 이미지" class="thumbnail_picture" />
-        </div>
-
-        <div class="box_photo">
-          <label for="picture" class="label_local">
-            <span class="ico_global ico_picture">프로필 사진</span>
-          </label>
-
-          <input type="file" name="picture" id="picture" class="field_local" ref="picture" />
-        </div>
-      </div>
-    </div> -->
 
     <div class="group_field">
       <label for="nickname" class="label_local">닉네임</label>
 
       <span class="field_global">
-        <input type="text" name="name" id="nickname" class="field_local" value="덴버" v-model="user.name" />
+        <input
+          type="text"
+          name="name"
+          id="nickname"
+          class="field_local"
+          value="덴버"
+          v-model="user.name"
+        />
       </span>
 
       <div class="box_result"></div>
@@ -62,20 +35,34 @@
     <div class="group_field">
       <label for="email" class="label_local">이메일</label>
 
-      <span class="field_global"><input type="text" name="email" id="email" class="field_local" value="denver.html@daum.net" v-model="user.email"/></span>
+      <span class="field_global"
+        ><input
+          type="text"
+          name="email"
+          id="email"
+          class="field_local"
+          value="denver.html@daum.net"
+          v-model="user.email"
+      /></span>
     </div>
 
     <div class="group_button type_half">
       <div class="inner_local">
-        <link-rectangle v-bind:data="{ component: 'Main', className: 'button_global', text: 'rectangle: 홈으로' }" />
+        <link-rectangle
+          :data="{
+            component: 'Main',
+            className: 'button_global',
+            text: '홈으로'
+          }"
+        />
       </div>
 
       <div class="inner_local">
         <button-rectangle
-          v-bind:data="{
+          :data="{
             type: 'submit',
             className: ['button_global', 'type_action'],
-            text: 'rectangle: 수정하기'
+            text: '수정하기'
           }"
         />
       </div>
@@ -111,7 +98,10 @@ export default {
     }
   },
   created() {
-    console.log('[ProfileEditForm.vue] created() → this.profile: ', this.profile)
+    console.log(
+      '[ProfileEditForm.vue] created() → this.profile: ',
+      this.profile
+    )
 
     this.user.name = this.profile.name
     this.user.email = this.profile.email
@@ -126,19 +116,34 @@ export default {
 
       console.log(' ')
 
-      console.log('[ProfileEditForm.vue] window.FileReader: ', window.FileReader)
+      console.log(
+        '[ProfileEditForm.vue] window.FileReader: ',
+        window.FileReader
+      )
       if (window.FileReader) {
         console.log('[ProfileEditForm.vue] if (window.FileReader) { .. }: true')
 
         console.log(' ')
 
-        console.log('[ProfileEditForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
-        console.log('[ProfileEditForm.vue] $(this)[0].files[0].type: ', $(this)[0].files[0].type)
+        console.log(
+          '[ProfileEditForm.vue] $(this)[0].files[0]: ',
+          $(this)[0].files[0]
+        )
+        console.log(
+          '[ProfileEditForm.vue] $(this)[0].files[0].type: ',
+          $(this)[0].files[0].type
+        )
 
         console.log(' ')
 
-        console.log('[ProfileEditForm.vue] $(this)[0].files[0].type.match(/image/): ', $(this)[0].files[0].type.match(/image\//))
-        console.log('[ProfileEditForm.vue] !$(this)[0].files[0].type.match(/image/): ', !$(this)[0].files[0].type.match(/image\//))
+        console.log(
+          '[ProfileEditForm.vue] $(this)[0].files[0].type.match(/image/): ',
+          $(this)[0].files[0].type.match(/image\//)
+        )
+        console.log(
+          '[ProfileEditForm.vue] !$(this)[0].files[0].type.match(/image/): ',
+          !$(this)[0].files[0].type.match(/image\//)
+        )
 
         console.log(' ')
 
@@ -150,7 +155,10 @@ export default {
         // 읽기..
         var reader = new FileReader()
         reader.readAsDataURL($(this)[0].files[0])
-        console.log('[ProfileEditForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
+        console.log(
+          '[ProfileEditForm.vue] $(this)[0].files[0]: ',
+          $(this)[0].files[0]
+        )
 
         console.log(' ')
 
@@ -199,7 +207,9 @@ export default {
           */
         }
       } else {
-        console.log('[ProfileEditForm.vue] if (window.FileReader) { .. }: false')
+        console.log(
+          '[ProfileEditForm.vue] if (window.FileReader) { .. }: false'
+        )
 
         console.log(' ')
 
@@ -225,7 +235,10 @@ export default {
 
       // const picture = this.$refs.picture.files[0]
       const picture = ''
-      console.log('[ProfileEditForm.vue] methods() → submit → picture: ', picture)
+      console.log(
+        '[ProfileEditForm.vue] methods() → submit → picture: ',
+        picture
+      )
 
       const formData = new FormData()
       formData.append('picture', picture)

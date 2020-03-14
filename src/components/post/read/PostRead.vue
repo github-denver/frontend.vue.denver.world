@@ -1,31 +1,43 @@
 <template>
   <div id="container">
     <div class="contents">
-      <Hgroup
-        v-bind:data="{
-          title: category.text,
-          component: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
-          type: category.value
-        }"
-      />
-
-      <post-view v-if="post" v-bind:post="post" />
+      <Hgroup>
+        <template v-slot:title>
+          <h3>
+            <router-link
+              :to="{
+                name: 'PostList',
+                params: {
+                  service: category.value,
+                  number: '1'
+                }
+              }"
+            >
+              {{ category.text }}</router-link
+            >
+          </h3>
+        </template>
+      </Hgroup>
 
       <Loading
-        v-else
-        v-bind:data="{
-          result: true,
-          message: 'Loading: 읽어들이는 중..'
+        :attribute="{
+          result: !post
         }"
-      />
+      >
+        <template v-slot:loading>
+          <p>읽어들이는 중..</p>
+        </template>
+      </Loading>
+
+      <post-view v-if="post" :post="post" />
 
       <div class="group_button type_half">
         <div class="inner_local">
           <link-rectangle
             v-if="search.keyword"
-            v-bind:data="{
-              component: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
-              text: 'rectangle: 목록으로',
+            :data="{
+              component: 'PostList',
+              text: '목록으로',
               className: 'button_global',
               type: category.value,
               number: page.toString(),
@@ -33,13 +45,12 @@
               keyword: search.keyword
             }"
           />
-
           <link-rectangle
             v-else
-            v-bind:data="{
-              component: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+            :data="{
+              component: 'PostList',
               className: 'button_global',
-              text: 'rectangle: 목록으로',
+              text: '목록으로',
               type: category.value,
               number: page.toString()
             }"
@@ -48,10 +59,10 @@
 
         <div class="inner_local">
           <link-rectangle
-            v-bind:data="{
+            :data="{
               component: 'PostUpdate',
               className: ['button_global', 'type_action'],
-              text: 'rectangle: 수정하기',
+              text: '수정하기',
               type: category.value,
               number: number.toString(),
               page: page.toString()
@@ -59,10 +70,10 @@
           />
 
           <button-rectangle
-            v-bind:data="{
+            :data="{
               type: 'button',
               className: ['button_global', 'type_delete'],
-              text: 'rectangle: 삭제하기',
+              text: '삭제하기',
               event: onDelete
             }"
           />
@@ -178,7 +189,10 @@ export default {
           alert('게시물이 성공적으로 삭제되었습니다.')
 
           this.$router.push({
-            name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+            name:
+              this.$route.params.service !== 'gallery'
+                ? 'PostList'
+                : 'GalleryList',
             params: {
               service: response.data.service,
               number: '1'
@@ -199,9 +213,14 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
+          if (
+            this.category.value ===
+            this.navigation.data[i].optgroup.option[j].value
+          ) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[j].value
+            this.category.value = this.navigation.data[i].optgroup.option[
+              j
+            ].value
 
             break loop
           }
@@ -210,37 +229,64 @@ export default {
     }
   },
   created() {
-    console.log('[PostRead.vue] created() → this.$route.params: ', this.$route.params)
-    console.log('[PostRead.vue] created() → this.$route.query: ', this.$route.query)
+    console.log(
+      '[PostRead.vue] created() → this.$route.params: ',
+      this.$route.params
+    )
+    console.log(
+      '[PostRead.vue] created() → this.$route.query: ',
+      this.$route.query
+    )
 
     this.page = this.$route.query.page
 
-    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
+    const keyword =
+      typeof this.$route.query.keyword !== 'undefined'
+        ? this.$route.query.keyword
+        : ''
     console.log('[PostRead.vue] created() → keyword: ', keyword)
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log('[PostRead.vue] kcreated() → eyword.length === 0: ', keyword.length === 0)
+      console.log(
+        '[PostRead.vue] kcreated() → eyword.length === 0: ',
+        keyword.length === 0
+      )
 
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log('[PostRead.vue] created() → keyword.length === 0: ', keyword.length === 0)
+      console.log(
+        '[PostRead.vue] created() → keyword.length === 0: ',
+        keyword.length === 0
+      )
 
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
     }
 
-    console.log('[PostRead.vue] created() → this.search.keyword: ', this.search.keyword)
+    console.log(
+      '[PostRead.vue] created() → this.search.keyword: ',
+      this.search.keyword
+    )
 
     this.category.value = this.service
-    console.log('[PostRead.vue] created() → this.category.value: ', this.category.value)
+    console.log(
+      '[PostRead.vue] created() → this.category.value: ',
+      this.category.value
+    )
 
     this.onChange()
 
-    console.log('[PostRead.vue] created() → typeof this.number: ', typeof this.number)
-    console.log('[PostRead.vue] created() → typeof parseInt(this.number): ', typeof parseInt(this.number))
+    console.log(
+      '[PostRead.vue] created() → typeof this.number: ',
+      typeof this.number
+    )
+    console.log(
+      '[PostRead.vue] created() → typeof parseInt(this.number): ',
+      typeof parseInt(this.number)
+    )
 
     this.fetchPost({
       category: this.category.value,

@@ -1,10 +1,10 @@
 <template>
   <div class="group_board type_gallery">
     <ul class="list_thumbnail">
-      <li v-for="post in posts" v-bind:key="post.number">
+      <li v-for="post in posts" :key="post.number">
         <router-link
           v-if="search.keyword"
-          v-bind:to="{
+          :to="{
             name: 'PostRead',
             params: { service: category.value, number: post.number.toString() },
             query: {
@@ -18,7 +18,7 @@
           <div class="group_thumbnail">
             <span
               class="thumbnail_local"
-              v-bind:style="{
+              :style="{
                 'background-image': `url('${localhost}/${uploads}/${post.thumbnail}')`
               }"
             ></span>
@@ -28,10 +28,9 @@
             <span class="text_subject">{{ post.subject }}</span>
           </div>
         </router-link>
-
         <router-link
           v-else
-          v-bind:to="{
+          :to="{
             name: 'PostRead',
             params: { service: category.value, number: post.number.toString() },
             query: { page: number.toString() }
@@ -41,7 +40,7 @@
           <div class="group_thumbnail">
             <span
               class="thumbnail_local"
-              v-bind:style="{
+              :style="{
                 'background-image': `url('${localhost}/${uploads}/${post.thumbnail}')`
               }"
             ></span>

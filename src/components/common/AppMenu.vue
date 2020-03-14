@@ -1,9 +1,9 @@
 <template>
   <div class="menu">
     <Profile
-      v-bind:isAuthorized="isAuthorized"
-      v-bind:user="user"
-      v-bind:data="{
+      :isAuthorized="isAuthorized"
+      :user="user"
+      :attribute="{
         component: {
           success: 'ProfileUpdate',
           failure: 'Login'
@@ -16,17 +16,13 @@
       }"
     />
 
-    <Navigation v-bind:data="{ event: onClickClose }" />
+    <Navigation :attribute="{ event: onClickClose }" />
 
-    <button-square
-      v-bind:data="{
-        type: 'button',
-        className: 'button_close',
-        text: 'square: 주메뉴 닫기',
-        event: onClickClose,
-        icon: 'ico_close'
-      }"
-    />
+    <square-button :attribute="{ type: 'button', event: onClickClose }">
+      <icon-image :attribute="{ width: 30, height: 30, icon: 'close' }">
+        주메뉴 닫기
+      </icon-image>
+    </square-button>
   </div>
 </template>
 
@@ -64,3 +60,26 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.menu {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-width: 320px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  background-color: #f1f1f1;
+}
+
+button {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+</style>

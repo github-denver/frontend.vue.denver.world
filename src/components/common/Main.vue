@@ -1,31 +1,10 @@
 <template>
   <div id="container">
-    <Carousel
-      v-bind:article="article"
-      v-bind:options="{
-        className: 'carousel',
-        slider: {
-          items: 1,
-          margin: 10,
-          stagePadding: 10,
-          nav: false,
-          dots: false
-        },
-        board: {
-          view: 'ArticleRead'
-        },
-        message: {
-          loading: '읽어들이는 중..',
-          empty: '글이 존재하지 않습니다.'
-        }
-      }"
-    />
-
     <div class="contents">
-      <Category
-        v-bind:category="category"
-        v-bind:options="{
-          className: 'category',
+      <Carousel
+        :article="article"
+        :attribute="{
+          title: '도서관',
           slider: {
             items: 1,
             margin: 10,
@@ -33,22 +12,43 @@
             nav: false,
             dots: false
           },
-          board: {
-            title: '카테고리',
-            type: 'gallery',
-            list: 'GalleryList',
-            view: 'ArticleRead'
+          component: {
+            index: 'ArticleList',
+            read: 'ArticleRead'
           },
-          message: {
-            loading: '읽어들이는 중..',
-            empty: '카테고리가 존재하지 않습니다.'
+          params: {
+            service: 'gallery',
+            number: '1'
+          }
+        }"
+      />
+
+      <Category
+        :category="category"
+        :attribute="{
+          title: '카테고리',
+          slider: {
+            items: 1,
+            margin: 10,
+            stagePadding: 10,
+            nav: false,
+            dots: false
+          },
+          component: {
+            index: 'ArticleList',
+            read: 'ArticleRead'
+          },
+          params: {
+            service: 'gallery',
+            number: '1'
           }
         }"
       />
 
       <Gallery
-        v-bind:gallery="gallery"
-        v-bind:options="{
+        :gallery="gallery"
+        :attribute="{
+          title: '이미지 게시판',
           className: 'gallery',
           slider: {
             items: 2,
@@ -57,22 +57,43 @@
             nav: false,
             dots: false
           },
-          board: {
-            title: '이미지 게시판',
-            type: 'gallery',
-            list: 'GalleryList',
-            view: 'PostRead'
+          component: {
+            index: 'GalleryList',
+            read: 'PostRead'
           },
-          message: {
-            loading: '읽어들이는 중..',
-            empty: '이미지가 존재하지 않습니다.'
+          params: {
+            service: 'gallery',
+            number: '1'
           }
         }"
       />
 
       <List
-        v-bind:list="talk"
-        v-bind:options="{
+        :list="talk"
+        :attribute="{
+          title: '톡톡 한마디',
+          slider: {
+            items: 2,
+            margin: 10,
+            stagePadding: 20,
+            nav: false,
+            dots: false
+          },
+          component: {
+            index: 'PostList',
+            read: 'PostRead'
+          },
+          params: {
+            service: 'talk',
+            number: '1'
+          }
+        }"
+      />
+
+      <List
+        :list="update"
+        :attribute="{
+          title: '업데이트',
           className: 'trisection',
           slider: {
             items: 2,
@@ -81,22 +102,21 @@
             nav: false,
             dots: false
           },
-          board: {
-            title: '톡톡 한마디',
-            type: 'talk',
-            list: 'PostList',
-            view: 'PostRead'
+          component: {
+            index: 'PostList',
+            read: 'PostRead'
           },
-          message: {
-            loading: '읽어들이는 중..',
-            empty: '글이 존재하지 않습니다.'
+          params: {
+            service: 'update',
+            number: '1'
           }
         }"
       />
 
       <List
-        v-bind:list="update"
-        v-bind:options="{
+        :list="notice"
+        :attribute="{
+          title: '공지사항',
           className: 'trisection',
           slider: {
             items: 2,
@@ -105,39 +125,13 @@
             nav: false,
             dots: false
           },
-          board: {
-            title: '업데이트',
-            type: 'update',
-            list: 'PostList',
-            view: 'PostRead'
+          component: {
+            index: 'PostList',
+            read: 'PostRead'
           },
-          message: {
-            loading: '읽어들이는 중..',
-            empty: '글이 존재하지 않습니다.'
-          }
-        }"
-      />
-
-      <List
-        v-bind:list="notice"
-        v-bind:options="{
-          className: 'trisection',
-          slider: {
-            items: 2,
-            margin: 10,
-            stagePadding: 20,
-            nav: false,
-            dots: false
-          },
-          board: {
-            title: '공지사항',
-            type: 'notice',
-            list: 'PostList',
-            view: 'PostRead'
-          },
-          message: {
-            loading: '읽어들이는 중..',
-            empty: '글이 존재하지 않습니다.'
+          params: {
+            service: 'notice',
+            number: '1'
           }
         }"
       />
@@ -193,11 +187,17 @@ export default {
 
         this.notice.list = response.data.notice
         this.notice.loading = true
-        console.log('[Main.vue] created() → this.notice.list: ', this.notice.list)
+        console.log(
+          '[Main.vue] created() → this.notice.list: ',
+          this.notice.list
+        )
 
         this.update.list = response.data.update
         this.update.loading = true
-        console.log('[Main.vue] created() → this.update.list: ', this.update.list)
+        console.log(
+          '[Main.vue] created() → this.update.list: ',
+          this.update.list
+        )
 
         this.talk.list = response.data.talk
         this.talk.loading = true
@@ -205,15 +205,24 @@ export default {
 
         this.gallery.list = response.data.gallery
         this.gallery.loading = true
-        console.log('[Main.vue] created() → this.gallery.list: ', this.gallery.list)
+        console.log(
+          '[Main.vue] created() → this.gallery.list: ',
+          this.gallery.list
+        )
 
         this.article.list = response.data.article
         this.article.loading = true
-        console.log('[Main.vue] created() → this.article.list: ', this.article.list)
+        console.log(
+          '[Main.vue] created() → this.article.list: ',
+          this.article.list
+        )
 
         this.category.list = response.data.category
         this.category.loading = true
-        console.log('[Main.vue] created() → this.category.list: ', this.category.list)
+        console.log(
+          '[Main.vue] created() → this.category.list: ',
+          this.category.list
+        )
       })
       .catch((error) => {
         console.log('[Main.vue] created() → error: ', error)

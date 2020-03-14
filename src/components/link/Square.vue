@@ -1,12 +1,10 @@
 <template>
-  <router-link v-bind:to="{ name: data.component }" v-bind:class="data.className" v-on:click.native="data.event && data.event()">
-    <icon-square
-      v-if="data.icon"
-      v-bind:data="{
-        className: data.icon,
-        text: data.text
-      }"
-    />
+  <router-link
+    :to="{ name: data.component }"
+    :class="data.className"
+    @click.native="data.event && data.event()"
+  >
+    <icon-square :data="{ className: data.icon, text: data.text }" />
   </router-link>
 </template>
 

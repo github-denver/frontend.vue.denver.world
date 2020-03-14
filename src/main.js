@@ -6,6 +6,8 @@ import router from './router'
 import store from './store'
 import Cookies from 'js-cookie'
 
+import './components/styled-components'
+
 Vue.config.productionTip = false
 
 Vue.use(require('vue-moment'))
