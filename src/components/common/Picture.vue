@@ -1,5 +1,5 @@
 <template>
-  <picture-component :attribute="{ className: 'register' }">
+  <picture-component :attribute="attribute">
     <img
       :src="`${path}/${uploads}/${attribute.authorized ? attribute.user.picture : 'default_picture.png'}`"
       :alt="attribute.authorized ? attribute.user.name : '기본 이미지'"

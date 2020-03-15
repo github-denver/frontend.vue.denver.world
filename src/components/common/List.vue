@@ -1,5 +1,5 @@
 <template>
-  <list-component>
+  <post-latest-list-component>
     <Hgroup>
       <template v-slot:title>
         <h3>
@@ -39,7 +39,7 @@
       </template>
     </Empty>
 
-    <ul class="list_trisection" v-if="list.loading && list.list.length">
+    <ul v-if="list.loading && list.list.length" class="list">
       <li v-for="(list, index) in list.list" :key="index">
         <router-link
           :to="{
@@ -52,13 +52,13 @@
               page: 1
             }
           }"
-          class="link_trisection"
+          class="router-link"
         >
-          <span class="text_trisection">{{ list.subject }}</span>
+          <span class="subject">{{ list.subject }}</span>
         </router-link>
       </li>
     </ul>
-  </list-component>
+  </post-latest-list-component>
 </template>
 
 <script>

@@ -17,7 +17,7 @@
           <Picture
             :attribute="{
               authorized: isAuthorized,
-              user: post[0]
+              user: post
             }"
           />
 
@@ -45,7 +45,7 @@
           <Picture
             :attribute="{
               authorized: isAuthorized,
-              user: post[0]
+              user: post
             }"
           />
 

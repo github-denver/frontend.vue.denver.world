@@ -1,13 +1,21 @@
 import styled, { css } from 'vue-styled-components'
 
-const selectProps = { className: String }
+const selectProps = { attribute: Object }
 
 const selectStyles = css`
   ${(props) =>
-    props.className === 'search' &&
+    props.attribute.className === 'search' &&
     css`
       width: 30%;
       vertical-align: top;
+    `}
+
+  ${(props) =>
+    props.attribute.className === 'category' &&
+    css`
+      display: block;
+      border-right: 0 none;
+      border-left: 0 none;
     `}
 `
 

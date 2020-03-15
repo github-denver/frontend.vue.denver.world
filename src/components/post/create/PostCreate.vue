@@ -1,13 +1,13 @@
 <template>
-  <div id="container">
-    <div class="contents type_write">
-      <post-create-form :category2="service" @parentSubmit="onSubmit" />
-    </div>
-  </div>
+  <container-component>
+    <contents-component :attribute="{ design: 'write' }">
+      <create :category2="service" @parentSubmit="onSubmit" />
+    </contents-component>
+  </container-component>
 </template>
 
 <script>
-import PostCreateForm from '@/components/post/create/PostCreateForm'
+import Create from '@/components/post/create/Create'
 import api from '@/api'
 
 export default {
@@ -18,7 +18,7 @@ export default {
       required: true
     }
   },
-  components: { PostCreateForm },
+  components: { Create },
   methods: {
     onSubmit(payload) {
       /* const {

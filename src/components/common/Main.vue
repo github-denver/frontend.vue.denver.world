@@ -17,7 +17,7 @@
             read: 'ArticleRead'
           },
           params: {
-            service: 'gallery',
+            service: 'library',
             number: '1'
           }
         }"

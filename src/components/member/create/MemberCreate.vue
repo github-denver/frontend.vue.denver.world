@@ -33,7 +33,7 @@ export default {
 
           alert('회원가입에 성공했어요!')
 
-          this.$router.push({ name: 'Login' })
+          this.$router.push({ name: 'MemberLogin' })
         })
         .catch((error) => {
           console.log('[MemberCreate.vue] 회원가입에 실패했어요.. ㅠㅜ error: ', error)

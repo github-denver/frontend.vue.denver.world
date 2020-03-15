@@ -21,7 +21,7 @@
 
     <utility-component v-else>
       <item-component>
-        <router-link :to="{ name: 'Login' }">
+        <router-link :to="{ name: 'MemberLogin' }">
           <icon-image :attribute="{ width: 30, height: 30, icon: 'login' }">로그인</icon-image>
         </router-link>
       </item-component>

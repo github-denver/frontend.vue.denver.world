@@ -11,7 +11,7 @@ import AppFooter from '@/components/common/AppFooter'
 
 import Welcome from '@/components/member/create/Welcome'
 import MemberCreate from '@/components/member/create/MemberCreate'
-import Login from '@/components/member/read/Login'
+import MemberLogin from '@/components/member/read/MemberLogin'
 import ProfileUpdate from '@/components/member/update/ProfileUpdate'
 
 import PostList from '@/components/post/list/PostList'
@@ -74,8 +74,8 @@ export default new Router({
     },
     {
       path: '/member/login',
-      name: 'Login',
-      component: Login,
+      name: 'MemberLogin',
+      component: MemberLogin,
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
 
@@ -98,7 +98,7 @@ export default new Router({
         if (!isAuthorized) {
           alert('로그인 안 한 상태에서는 접근할 수 없어요!')
 
-          next({ name: 'Login' })
+          next({ name: 'MemberLogin' })
         }
 
         next()
@@ -131,7 +131,7 @@ export default new Router({
         if (!isAuthorized) {
           alert('로그인 안 한 상태에서는 접근할 수 없어요!')
 
-          next({ name: 'Login' })
+          next({ name: 'MemberLogin' })
         }
 
         next()
@@ -154,7 +154,7 @@ export default new Router({
         if (!isAuthorized) {
           alert('로그인이 필요해요!')
 
-          next({ name: 'Login' })
+          next({ name: 'MemberLogin' })
         }
 
         console.log('[router/index.js] ArticleUpdate → to.params: ', to.params)
@@ -232,7 +232,7 @@ export default new Router({
         if (!isAuthorized) {
           alert('로그인 안 한 상태에서는 접근할 수 없어요!')
 
-          next({ name: 'Login' })
+          next({ name: 'MemberLogin' })
         }
 
         next()
@@ -266,7 +266,7 @@ export default new Router({
         if (!isAuthorized) {
           alert('로그인이 필요해요!')
 
-          next({ name: 'Login' })
+          next({ name: 'MemberLogin' })
         }
 
         console.log('[router/index.js] PostUpdate → to.params: ', to.params)

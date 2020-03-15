@@ -1,21 +1,16 @@
 <template>
-  <section>
-    <div class="select_global">
-      <label for="select" class="label_local">
-        <span class="inner_local">
-          <span class="text_local">{{ category.text }}</span>
-        </span>
+  <select-component :attribute="{ className: 'category' }">
+    <label for="category">
+      <span class="text">{{ category.text }}</span>
+      <span class="icon"></span>
+    </label>
 
-        <span class="ico_global ico_arrow"></span>
-      </label>
-
-      <select name="category" class="select_local" @change="onChange" v-model="category.value">
-        <optgroup v-for="(item, index) in select.data" :label="`${item.optgroup.text}`" :key="index">
-          <option v-for="(item, index) in select.data[index].optgroup.option" :value="item.value" :key="index">{{ item.text }}</option>
-        </optgroup>
-      </select>
-    </div>
-  </section>
+    <select name="category" @change="onChange" v-model="category.value">
+      <optgroup v-for="(item, index) in select.data" :label="`${item.optgroup.text}`" :key="index">
+        <option v-for="(item, index) in select.data[index].optgroup.option" :value="item.value" :key="index">{{ item.text }}</option>
+      </optgroup>
+    </select>
+  </select-component>
 </template>
 
 <script>

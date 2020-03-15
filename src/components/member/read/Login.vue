@@ -1,56 +1,52 @@
 <template>
-  <div class="wrap_welcome">
-    <h1 class="title_logo">
-      <router-link :to="{ name: 'Main' }" class="link_logo">덴버월드</router-link>
-    </h1>
+  <form method="post" @submit.prevent="submit" novalidate>
+    <input-component :attribute="{ className: 'full' }">
+      <label for="id">아이디 *</label>
+      <span>
+        <input type="text" id="id" v-model="id" />
+      </span>
+    </input-component>
 
-    <div class="inner_welcome">
-      <strong class="title_welcome">로그인</strong>
-      <p class="description_welcome">로그인해주세요!</p>
+    <input-component :attribute="{ className: 'full' }">
+      <label for="password">패스워드 *</label>
+      <span>
+        <input type="password" id="password" v-model="password" />
+      </span>
+    </input-component>
 
-      <login-form @parentSubmit="onSubmit" />
-    </div>
-  </div>
+    <group-button-component :attribute="{ className: 'half' }">
+      <div class="inner">
+        <rectangle-link :attribute="{ className: '' }">
+          <router-link :to="{ name: 'Main' }">홈으로</router-link>
+        </rectangle-link>
+      </div>
+
+      <div class="inner">
+        <rectangle-button :attribute="{ type: 'submit', className: 'action' }">로그인하기</rectangle-button>
+      </div>
+    </group-button-component>
+  </form>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import LoginForm from '@/components/member/read/LoginForm'
+import Input from '@/components/common/Input'
+import LinkRectangle from '@/components/link/Rectangle'
+import ButtonRectangle from '@/components/button/Rectangle'
 
 export default {
-  name: 'Login',
-  components: { LoginForm },
+  name: 'LoginForm',
+  components: { Input, LinkRectangle, ButtonRectangle },
+  data() {
+    return {
+      id: '',
+      password: ''
+    }
+  },
   methods: {
-    ...mapActions(['signin']),
-    onSubmit(payload) {
-      console.log('[Login.vue] methods() → onSubmit → payload: ', payload)
+    submit() {
+      const { id, password } = this
 
-      this.signin(payload)
-        .then((response) => {
-          console.log('[Login.vue] methods() → onSubmit → 로그인에 성공했어요!')
-          console.log('[Login.vue] methods() → onSubmit → response: ', response)
-
-          alert('로그인에 성공했어요!')
-
-          console.log('[Login.vue] methods() → onSubmit → 메인으로 이동해요!')
-
-          this.$router.push({
-            name: 'Main'
-          })
-        })
-        .catch((error) => {
-          if (error.response.status === 401) {
-            alert('로그인해주세요!')
-          } else {
-            alert(error.response.data.message)
-          }
-          console.log('[Login.vue] 로그인에 실패했어요.. ㅠㅜ error: ', error)
-          console.log('[Login.vue] 로그인에 실패했어요.. ㅠㅜ error.message: ', error.message)
-          console.log('[Login.vue] 로그인에 실패했어요.. ㅠㅜ error.response: ', error.response)
-          console.log('[Login.vue] 로그인에 실패했어요.. ㅠㅜ error.response.data: ', error.response.data)
-
-          alert('로그인에 실패했어요.. ㅠㅜ')
-        })
+      this.$emit('parentSubmit', { id, password })
     }
   }
 }

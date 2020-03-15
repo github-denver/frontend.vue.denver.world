@@ -1,10 +1,11 @@
 import styled, { css } from 'vue-styled-components'
 
-const inputProps = { className: String }
+const inputProps = { attribute: Object }
 
 const inputStyles = css`
   ${(props) =>
-    props.className === 'search' &&
+    props.attribute &&
+    props.attribute.className === 'search' &&
     css`
       display: inline-block;
       width: 70%;
@@ -18,10 +19,35 @@ const inputStyles = css`
     `}
 
   ${(props) =>
-    props.className === 'full' &&
+    props.attribute &&
+    props.attribute.className === 'full' &&
     css`
       display: block;
+      margin-top: 20px;
+
+      span {
+        margin-top: 10px;
+      }
     `}
+
+    ${(props) =>
+      props.attribute &&
+      props.attribute.className === 'write' &&
+      css`
+        display: block;
+
+        label {
+          float: left;
+          padding: 12px 12px 0;
+        }
+
+        span {
+          overflow: hidden;
+          display: block;
+          margin: 0 10px 0 0;
+          border: 0 none;
+        }
+      `}
 `
 
 const Input = styled('div', inputProps)`

@@ -20,8 +20,6 @@
       <span>
         <input type="text" id="id" v-model="id" />
       </span>
-
-      <div class="box_result"></div>
     </input-component>
 
     <input-component :attribute="{ className: 'full' }">
@@ -29,8 +27,6 @@
       <span>
         <input type="password" id="password" v-model="password" />
       </span>
-
-      <div class="box_result"></div>
     </input-component>
 
     <input-component :attribute="{ className: 'full' }">
@@ -38,17 +34,13 @@
       <span>
         <input type="password" id="confirm" v-model="confirm" />
       </span>
-
-      <div class="box_result"></div>
     </input-component>
 
     <input-component :attribute="{ className: 'full' }">
       <label for="name">닉네임 *</label>
       <span>
-        <input type="password" id="name" v-model="name" />
+        <input type="text" id="name" v-model="name" />
       </span>
-
-      <div class="box_result"></div>
     </input-component>
 
     <input-component :attribute="{ className: 'full' }">
@@ -56,8 +48,6 @@
       <span>
         <input type="text" id="email" v-model="email" />
       </span>
-
-      <div class="box_result"></div>
     </input-component>
 
     <group-button-component :attribute="{ className: 'half' }">
@@ -68,33 +58,9 @@
       </div>
 
       <div class="inner">
-        <rectangle-link :attribute="{ className: 'action' }">
-          <router-link :to="{ name: 'MemberCreate' }">등록하기</router-link>
-        </rectangle-link>
+        <rectangle-button :attribute="{ type: 'submit', className: 'action' }">등록하기</rectangle-button>
       </div>
     </group-button-component>
-
-    <!-- <div class="group_button type_half">
-      <div class="inner_local">
-        <link-rectangle
-          :data="{
-            component: 'Main',
-            className: 'button_global',
-            text: '홈으로'
-          }"
-        />
-      </div>
-
-      <div class="inner_local">
-        <button-rectangle
-          :data="{
-            type: 'submit',
-            className: ['button_global', 'type_action'],
-            text: '등록하기'
-          }"
-        />
-      </div>
-    </div> -->
   </form>
 </template>
 

@@ -17,7 +17,8 @@ import Gallery from './Gallery'
 import Loading from './Loading'
 import Empty from './Empty'
 
-import { Square, Rectangle } from './Button'
+import { Square, RectangleButton } from './Button'
+import { Rectangle } from './Link'
 import Icon from './Icon'
 
 import Thumbnail from './Thumbnail'
@@ -80,7 +81,7 @@ export const contents = Vue.component('contents-component', {
   components: { Contents },
   props: ['attribute'],
   template: `
-    <Contents>
+    <Contents :attribute="attribute">
       <slot></slot>
     </Contents>
   `
@@ -140,9 +141,19 @@ export const square = Vue.component('square-button', {
   components: { Square },
   props: ['attribute'],
   template: `
-    <Square :type="attribute.type" :className="attribute.className" @click.native="attribute.event">
+    <Square :type="attribute.type" :className="attribute.className" v-on="attribute.event ? { click: attribute.event } : null">
     <slot></slot>
     </Square>
+  `
+})
+
+export const rectangleButton = Vue.component('rectangle-button', {
+  components: { RectangleButton },
+  props: ['attribute'],
+  template: `
+    <RectangleButton :type="attribute.type" :className="attribute.className" v-on="attribute.event ? { click: attribute.event } : null">
+      <slot></slot>{{attribute.event}}
+    </RectangleButton>
   `
 })
 

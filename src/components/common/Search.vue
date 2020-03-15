@@ -16,18 +16,24 @@
 
       <input-component :attribute="{ className: 'search' }">
         <span>
-          <input type="search" id="keyword" name="keyword" @change="onChange" />
+          <input type="search" id="keyword" name="keyword" v-model="keyword" />
         </span>
       </input-component>
 
       <rectangle-link :attribute="{ className: 'search' }">
         <router-link
           :to="{
-            name: 'PostList',
-            params: { service: category.value, number: '1' },
-            query: { select: select.value, keyword: keyword },
-            event: submit
+            name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+            params: {
+              service: category.value,
+              number: '1'
+            },
+            query: {
+              select: select.value,
+              keyword: keyword
+            }
           }"
+          @click.native="submit"
           >검색하기</router-link
         >
       </rectangle-link>
@@ -67,7 +73,8 @@ export default {
     ...mapState(['search'])
   },
   created() {
-    console.log('[Search.vue] created() → this.category: ', this.category)
+    console.log('☆ [Search.vue] created() → this.category: ', this.category)
+    console.log('☆ [Search.vue] created() → this.search.keyword: ', this.search.keyword)
 
     this.keyword = this.search.keyword
     console.log('[Search.vue] created() → this.keyword: ', this.keyword)
@@ -76,13 +83,13 @@ export default {
     ...mapActions(['fetchPostList']),
     onChange(event) {
       this.select.text = event.target.options[event.target.selectedIndex].text
-      console.log('[Search.vue] methods() → onChange → this.select.text: ', this.select.text)
+      console.log('▼ [Search.vue] methods() → onChange → this.select.text: ', this.select.text)
 
       this.select.value = event.target.value
-      console.log('[Search.vue] methods() → onChange → this.select.text: ', this.select.value)
+      console.log('▼ [Search.vue] methods() → onChange → this.select.text: ', this.select.value)
     },
     submit() {
-      console.log('[Search.vue] methods() → onChange → this.keyword: ', this.keyword)
+      console.log('○ [Search.vue] methods() → onChange → this.keyword: ', this.keyword)
 
       this.fetchPostList({
         category: this.category.value,

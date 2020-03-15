@@ -1,57 +1,62 @@
 <template>
-  <div id="container">
-    <div class="visual_carousel">
-      <div class="inner_carousel">
-        <img :src="`${localhost}/${uploads}/${post[0].upload2}`" class="thumbnail_carousel" />
+  <container-component>
+    <visual-component v-if="post">
+      <div class="inner">
+        <img :src="`${path}/${uploads}/${post[0].upload2}`" alt="" />
       </div>
-    </div>
+    </visual-component>
 
-    <div class="contents">
-      <article-content v-if="post" :post="post" />
+    <contents-component :attribute="{ design: 'library' }">
+      <Loading
+        :attribute="{
+          result: !post
+        }"
+      >
+        <template v-slot:loading>
+          <p class="message">읽어들이는 중..</p>
+        </template>
+      </Loading>
 
-      <div class="error_global" v-else>
-        <p class="text_error">읽어들이는 중..</p>
-      </div>
+      <read v-if="post" :post="post" />
 
-      <div class="group_button">
-        <link-rectangle
-          v-if="search.keyword"
-          :data="{
-            component: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
-            className: 'button_global',
-            text: '목록으로',
-            type: category.value,
-            number: page.toString(),
-            select: search.select,
-            keyword: search.keyword
-          }"
-        />
-        <link-rectangle
-          v-else
-          :data="{
-            component: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
-            className: 'button_global',
-            text: '목록으로',
-            type: category.value,
-            number: page.toString()
-          }"
-        />
-      </div>
-    </div>
-  </div>
+      <group-button-component :attribute="{ className: '' }">
+        <rectangle-link :attribute="{ className: '' }">
+          <router-link
+            v-if="search.keyword"
+            :to="{
+              name: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
+              params: { service: category.value, number: page.toString() },
+              query: { select: search.select, keyword: search.keyword }
+            }"
+            >목록으로</router-link
+          >
+
+          <router-link
+            v-else
+            :to="{
+              name: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
+              params: { service: category.value, number: page.toString() }
+            }"
+            >목록으로</router-link
+          >
+        </rectangle-link>
+      </group-button-component>
+    </contents-component>
+  </container-component>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 
 import LinkRectangle from '@/components/link/Rectangle'
-import ArticleContent from '@/components/article/read/ArticleContent'
+import Read from '@/components/article/read/Read'
+import Loading from '@/components/common/Loading'
 
 import api from '@/api'
 
 export default {
   name: 'ArticleRead',
-  components: { ArticleContent, LinkRectangle },
+  components: { Read, Loading, LinkRectangle },
   props: {
     service: {
       type: String,
@@ -176,6 +181,7 @@ export default {
     })
   },
   computed: {
+    ...mapGetters(['path', 'uploads']),
     ...mapState(['post', 'search'])
   },
   methods: {

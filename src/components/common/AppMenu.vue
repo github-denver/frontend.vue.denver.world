@@ -6,7 +6,7 @@
         user: attribute.user,
         component: {
           success: 'ProfileUpdate',
-          failure: 'Login'
+          failure: 'MemberLogin'
         }
       }"
     >

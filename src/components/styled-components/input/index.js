@@ -6,7 +6,7 @@ export const input = Vue.component('input-component', {
   components: { Input },
   props: ['attribute'],
   template: `
-    <Input :className="attribute.className">
+    <Input :attribute="attribute">
       <slot></slot>
     </Input>
   `

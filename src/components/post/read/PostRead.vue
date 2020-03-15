@@ -42,7 +42,7 @@
                 params: { service: category.value, number: page.toString() },
                 query: { select: search.select, keyword: search.keyword }
               }"
-              >목록으로(if)</router-link
+              >목록으로</router-link
             >
 
             <router-link
@@ -51,62 +51,19 @@
                 name: 'PostList',
                 params: { service: category.value, number: page.toString() }
               }"
-              >목록으로(else)</router-link
+              >목록으로</router-link
             >
           </rectangle-link>
-
-          <!-- <link-rectangle
-            v-if="search.keyword"
-            :data="{
-              component: 'PostList',
-              text: '목록으로',
-              className: 'button_global',
-              type: category.value,
-              number: page.toString(),
-              select: search.select,
-              keyword: search.keyword
-            }"
-          />
-          <link-rectangle
-            v-else
-            :data="{
-              component: 'PostList',
-              className: 'button_global',
-              text: '목록으로',
-              type: category.value,
-              number: page.toString()
-            }"
-          /> -->
         </div>
 
         <div class="inner">
           <rectangle-link :attribute="{ className: 'action' }">
-            <router-link :to="{ name: 'PostUpdate', params: { service: category.value, number: page.toString() } }">수정하기</router-link>
+            <router-link :to="{ name: 'PostUpdate', params: { service: category.value, number: number.toString() }, query: { page: page.toString() } }"
+              >수정하기</router-link
+            >
           </rectangle-link>
 
-          <!-- <link-rectangle
-            :data="{
-              component: 'PostUpdate',
-              className: ['button_global', 'type_action'],
-              text: '수정하기',
-              type: category.value,
-              number: number.toString(),
-              page: page.toString()
-            }"
-          /> -->
-
-          <rectangle-link :attribute="{ className: 'delete' }">
-            <router-link :to="{ name: 'PostUpdate', params: { service: category.value, number: page.toString() } }">삭제하기</router-link>
-          </rectangle-link>
-
-          <!-- <button-rectangle
-            :data="{
-              type: 'button',
-              className: ['button_global', 'type_delete'],
-              text: '삭제하기',
-              event: onDelete
-            }"
-          /> -->
+          <rectangle-button :attribute="{ type: 'button', className: 'delete', event: onDelete }">삭제하기</rectangle-button>
         </div>
       </group-button-component>
     </contents-component>
