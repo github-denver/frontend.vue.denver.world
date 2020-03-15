@@ -6,7 +6,7 @@ export const groupButton = Vue.component('group-button-component', {
   components: { Button },
   props: ['attribute'],
   template: `
-    <Button>
+    <Button :className="attribute.className">
       <slot></slot>
     </Button>
   `

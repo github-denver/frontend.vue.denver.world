@@ -19,7 +19,7 @@
         />
       </template>
 
-      <template v-if="attribute.user" v-slot:text>{{ attribute.user }}</template>
+      <template v-if="attribute.user" v-slot:text>{{ attribute.user.name }}</template>
       <template v-else v-slot:text>로그인해주세요.</template>
     </Profile>
 

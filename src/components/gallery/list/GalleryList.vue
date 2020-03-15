@@ -42,18 +42,13 @@
 
       <list v-if="loading" :number="number" :posts="posts" :category="category" />
 
-      <group-button-component class="half">
+      <group-button-component :attribute="{ className: 'half' }">
         <div class="inner"></div>
 
         <div class="inner">
-          <link-rectangle
-            :data="{
-              component: 'PostCreate',
-              className: ['button_global', 'type_action'],
-              text: '글쓰기',
-              type: category.value
-            }"
-          />
+          <rectangle-link :attribute="{ className: 'action' }">
+            <router-link :to="{ name: 'PostCreate', params: { service: category.value } }">글쓰기</router-link>
+          </rectangle-link>
         </div>
       </group-button-component>
 

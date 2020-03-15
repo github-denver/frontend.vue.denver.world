@@ -1,26 +1,24 @@
 <template>
-  <div class="wrap_welcome">
-    <h1 class="title_logo">
-      <router-link :to="{ name: 'Main' }" class="link_logo">덴버월드</router-link>
-    </h1>
+  <welcome-component>
+    <h1><router-link :to="{ name: 'Main' }">덴버월드</router-link></h1>
 
-    <div class="inner_welcome">
-      <strong class="title_welcome">얼마 안 남았어요!</strong>
-      <p class="description_welcome">나머지 정보를 입력해주세요!</p>
+    <div class="container">
+      <strong class="title">얼마 안 남았어요!</strong>
+      <p class="description">나머지 정보를 입력해주세요!</p>
 
-      <member-create-form :isAuthorized="isAuthorized" @parentSubmit="onSubmit" />
+      <create :isAuthorized="isAuthorized" @parentSubmit="onSubmit" />
     </div>
-  </div>
+  </welcome-component>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import MemberCreateForm from '@/components/member/create/MemberCreateForm'
+import Create from '@/components/member/create/Create'
 import api from '@/api'
 
 export default {
   name: 'MemberCreate',
-  components: { MemberCreateForm },
+  components: { Create },
   computed: {
     ...mapGetters(['isAuthorized'])
   },

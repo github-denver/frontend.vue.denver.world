@@ -1,23 +1,34 @@
-import styled from 'vue-styled-components'
+import styled, { css } from 'vue-styled-components'
 
-const Button = styled.div`
+const buttonProps = { className: String }
+
+const buttonStyles = css`
+  ${(props) =>
+    props.className === 'half' &&
+    css`
+      .inner {
+        display: inline-block;
+        width: 50%;
+        padding-left: 10px;
+        box-sizing: border-box;
+        vertical-align: top;
+      }
+
+      .inner:first-child {
+        padding-left: 0;
+      }
+    `}
+`
+
+const Button = styled('div', buttonProps)`
+  margin-top: 20px;
   font-size: 0;
 
   .button_global ~ .button_global {
     margin-top: 10px;
   }
 
-  .half .inner {
-    display: inline-block;
-    width: 50%;
-    padding-left: 10px;
-    box-sizing: border-box;
-    vertical-align: top;
-  }
-
-  .half .inner:first-child {
-    padding-left: 0;
-  }
+  ${buttonStyles}
 
   .triple {
     margin-left: -10px;

@@ -40,22 +40,17 @@
         </template>
       </Empty>
 
-      <post-list2 v-if="loading" :number="number" :posts="posts" :category="category" />
+      <list v-if="loading" :number="number" :posts="posts" :category="category" />
 
-      <div class="group_button type_half">
-        <div class="inner_local"></div>
+      <group-button-component :attribute="{ className: 'half' }">
+        <div class="inner"></div>
 
-        <div class="inner_local">
-          <link-rectangle
-            :data="{
-              component: 'PostCreate',
-              className: ['button_global', 'type_action'],
-              text: '글쓰기',
-              type: category.value
-            }"
-          />
+        <div class="inner">
+          <rectangle-link :attribute="{ className: 'action' }">
+            <router-link :to="{ name: 'PostCreate', params: { service: category.value } }">글쓰기</router-link>
+          </rectangle-link>
         </div>
-      </div>
+      </group-button-component>
 
       <pagination />
 
@@ -66,7 +61,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import PostList2 from '@/components/post/list/PostList2'
+import List from '@/components/post/list/List'
 import Pagination from '@/components/common/Pagination'
 import Search from '@/components/common/Search'
 
@@ -79,7 +74,7 @@ import LinkRectangle from '@/components/link/Rectangle'
 export default {
   name: 'PostList',
   components: {
-    PostList2,
+    List,
     Pagination,
     Search,
     Hgroup,

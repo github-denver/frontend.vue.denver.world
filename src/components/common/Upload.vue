@@ -1,18 +1,20 @@
 <template>
-  <div :class="`box_${data.className}`">
-    <label :for="data.className" :class="`label_${data.className}`">
-      <span :class="['ico_global', `ico_${data.className}`]">{{ data.text }}</span>
+  <upload-component>
+    <label :for="attribute.className">
+      <span :class="attribute.className">
+        <slot name="text"></slot>
+      </span>
     </label>
 
-    <input :type="data.type" :name="data.className" :id="data.className" :class="`field_${data.className}`" :ref="data.className" />
-  </div>
+    <input type="file" :name="attribute.className" :id="attribute.className" :ref="attribute.className" />
+  </upload-component>
 </template>
 
 <script>
 export default {
   name: 'Upload',
   props: {
-    data: {
+    attribute: {
       type: Object,
       required: true
     }

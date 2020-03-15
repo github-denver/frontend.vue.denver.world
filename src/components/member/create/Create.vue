@@ -1,53 +1,80 @@
 <template>
   <form method="post" enctype="multipart/form-data" @submit.prevent="submit" novalidate>
-    <div class="group_profile">
-      <div class="inner_profile">
-        <Picture :isAuthorized="isAuthorized" />
+    <div class="profile">
+      <div class="inner">
+        <Picture
+          :attribute="{
+            authorized: isAuthorized,
+            className: 'register'
+          }"
+        />
 
-        <Upload :data="{ type: 'file', className: 'picture', text: '프로필 사진' }" />
+        <Upload :attribute="{ className: 'picture' }">
+          <template v-slot:text>프로필 사진</template>
+        </Upload>
       </div>
     </div>
 
-    <div class="group_field">
-      <label for="id" class="label_local">아이디 *</label>
-      <span class="field_global">
-        <input type="text" id="id" class="field_local" v-model="id" />
+    <input-component :attribute="{ className: 'full' }">
+      <label for="id">아이디 *</label>
+      <span>
+        <input type="text" id="id" v-model="id" />
       </span>
 
       <div class="box_result"></div>
-    </div>
+    </input-component>
 
-    <div class="group_field">
-      <label for="password" class="label_local">패스워드 *</label>
-      <span class="field_global">
-        <input type="password" id="password" class="field_local" v-model="password" />
-      </span>
-    </div>
-
-    <div class="group_field">
-      <label for="confirm" class="label_local">패스워드 확인 *</label>
-      <span class="field_global">
-        <input type="password" id="confirm" class="field_local" v-model="confirm" />
-      </span>
-    </div>
-
-    <div class="group_field">
-      <label for="name" class="label_local">닉네임 *</label>
-      <span class="field_global">
-        <input type="text" id="name" class="field_local" v-model="name" />
+    <input-component :attribute="{ className: 'full' }">
+      <label for="password">패스워드 *</label>
+      <span>
+        <input type="password" id="password" v-model="password" />
       </span>
 
       <div class="box_result"></div>
-    </div>
+    </input-component>
 
-    <div class="group_field">
-      <label for="email" class="label_local">이메일</label>
-      <span class="field_global">
-        <input type="text" id="email" class="field_local" v-model="email" />
+    <input-component :attribute="{ className: 'full' }">
+      <label for="confirm">패스워드 확인 *</label>
+      <span>
+        <input type="password" id="confirm" v-model="confirm" />
       </span>
-    </div>
 
-    <div class="group_button type_half">
+      <div class="box_result"></div>
+    </input-component>
+
+    <input-component :attribute="{ className: 'full' }">
+      <label for="name">닉네임 *</label>
+      <span>
+        <input type="password" id="name" v-model="name" />
+      </span>
+
+      <div class="box_result"></div>
+    </input-component>
+
+    <input-component :attribute="{ className: 'full' }">
+      <label for="email">이메일 *</label>
+      <span>
+        <input type="text" id="email" v-model="email" />
+      </span>
+
+      <div class="box_result"></div>
+    </input-component>
+
+    <group-button-component :attribute="{ className: 'half' }">
+      <div class="inner">
+        <rectangle-link :attribute="{ className: '' }">
+          <router-link :to="{ name: 'Main' }">홈으로</router-link>
+        </rectangle-link>
+      </div>
+
+      <div class="inner">
+        <rectangle-link :attribute="{ className: 'action' }">
+          <router-link :to="{ name: 'MemberCreate' }">등록하기</router-link>
+        </rectangle-link>
+      </div>
+    </group-button-component>
+
+    <!-- <div class="group_button type_half">
       <div class="inner_local">
         <link-rectangle
           :data="{
@@ -67,7 +94,7 @@
           }"
         />
       </div>
-    </div>
+    </div> -->
   </form>
 </template>
 

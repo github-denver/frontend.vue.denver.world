@@ -1,14 +1,12 @@
 <template>
-  <ul v-if="search.keyword" class="list_paging">
-    <li>
+  <paging-component v-if="search.keyword">
+    <li v-if="pagination.current > 1">
       <router-link
-        v-if="pagination.current > 1"
         :to="{
           name: 'PostList',
           params: { number: (pagination.current - 1).toString() },
           query: { select: search.select, keyword: search.keyword }
         }"
-        class="link_paging"
         >이전</router-link
       >
     </li>
@@ -21,7 +19,6 @@
           query: { select: search.select, keyword: search.keyword }
         }"
         :key="i"
-        class="link_paging current"
         >{{ i }}</router-link
       >
       <router-link
@@ -31,55 +28,46 @@
           params: { number: i.toString() },
           query: { select: search.select, keyword: search.keyword }
         }"
-        class="link_paging"
         >{{ i }}</router-link
       >
     </li>
-    <li>
+    <li v-if="pagination.current < pagination.total">
       <router-link
-        v-if="pagination.current < pagination.total"
         :to="{
           name: 'PostList',
           params: { number: (pagination.current + 1).toString() },
           query: { select: search.select, keyword: search.keyword }
         }"
-        class="link_paging"
         >다음</router-link
       >
     </li>
-  </ul>
+  </paging-component>
 
-  <ul v-else class="list_paging">
-    <li>
+  <paging-component v-else>
+    <li v-if="pagination.current > 1">
       <router-link
-        v-if="pagination.current > 1"
         :to="{
           name: 'PostList',
           params: { number: (pagination.current - 1).toString() }
         }"
-        class="link_paging"
         >이전</router-link
       >
     </li>
     <li v-for="(i, index) in pagination2" :key="index">
-      <router-link v-if="pagination.current === i" :to="{ name: 'PostList', params: { number: i.toString() } }" :key="i" class="link_paging current">{{
-        i
-      }}</router-link>
+      <router-link v-if="pagination.current === i" :to="{ name: 'PostList', params: { number: i.toString() } }" :key="i" class="current">{{ i }}</router-link>
 
-      <router-link v-else :to="{ name: 'PostList', params: { number: i.toString() } }" class="link_paging">{{ i }}</router-link>
+      <router-link v-else :to="{ name: 'PostList', params: { number: i.toString() } }">{{ i }}</router-link>
     </li>
-    <li>
+    <li v-if="pagination.current < pagination.total">
       <router-link
-        v-if="pagination.current < pagination.total"
         :to="{
           name: 'PostList',
           params: { number: (pagination.current + 1).toString() }
         }"
-        class="link_paging"
         >다음</router-link
       >
     </li>
-  </ul>
+  </paging-component>
 </template>
 
 <script>

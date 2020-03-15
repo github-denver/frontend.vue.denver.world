@@ -12,6 +12,11 @@ import './components/styled-components'
 import './components/styled-components/header'
 import './components/styled-components/group'
 import './components/styled-components/galleryList'
+import './components/styled-components/search'
+import './components/styled-components/select'
+import './components/styled-components/input'
+import './components/styled-components/post'
+import './components/styled-components/member'
 
 Vue.config.productionTip = false
 

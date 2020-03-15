@@ -8,6 +8,7 @@ import List from './List'
 
 import Profile from './Profile'
 import Picture from './Picture'
+import Upload from './Upload'
 
 import Carousel from './Carousel'
 import Category from './Category'
@@ -16,12 +17,14 @@ import Gallery from './Gallery'
 import Loading from './Loading'
 import Empty from './Empty'
 
-import Square from './Button'
+import { Square, Rectangle } from './Button'
 import Icon from './Icon'
 
 import Thumbnail from './Thumbnail'
 import Dimmed from './Dimmed'
 import Subject from './Subject'
+
+import Paging from './Paging'
 
 export const hgroup = Vue.component('hgroup-component', {
   components: { Hgroup },
@@ -97,7 +100,7 @@ export const picture = Vue.component('picture-component', {
   components: { Picture },
   props: ['attribute'],
   template: `
-    <Picture>
+    <Picture :attribute="attribute">
       <slot></slot>
     </Picture>
   `
@@ -143,6 +146,16 @@ export const square = Vue.component('square-button', {
   `
 })
 
+export const rectangle = Vue.component('rectangle-link', {
+  components: { Rectangle },
+  props: ['attribute'],
+  template: `
+    <Rectangle :className="attribute.className">
+      <slot></slot>
+    </Rectangle>
+  `
+})
+
 export const icon = Vue.component('icon-image', {
   components: { Icon },
   props: ['attribute'],
@@ -180,5 +193,25 @@ export const subject = Vue.component('subject-component', {
     <Subject>
       <slot></slot>
     </Subject>
+  `
+})
+
+export const paging = Vue.component('paging-component', {
+  components: { Paging },
+  props: ['attribute'],
+  template: `
+    <Paging>
+      <slot></slot>
+    </Paging>
+  `
+})
+
+export const upload = Vue.component('upload-component', {
+  components: { Upload },
+  props: ['attribute'],
+  template: `
+    <Upload>
+      <slot></slot>
+    </Upload>
   `
 })
