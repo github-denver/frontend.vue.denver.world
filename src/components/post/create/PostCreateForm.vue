@@ -1,41 +1,24 @@
 <template>
-  <form
-    method="post"
-    enctype="multipart/form-data"
-    @submit.prevent="submit"
-    novalidate
-  >
+  <form method="post" enctype="multipart/form-data" @submit.prevent="submit" novalidate>
     <select2 :select="select" @parentChange="onChange" />
 
     <div class="group_board">
       <div class="board_header">
         <span class="group_field">
           <label for="subject" class="label_local">제목</label>
-          <span class="field_global"
-            ><input
-              type="text"
-              name="subject"
-              id="subject"
-              class="field_local"
-              v-model="subject"/></span
+          <span class="field_global"><input type="text" name="subject" id="subject" class="field_local" v-model="subject"/></span
         ></span>
       </div>
 
       <div class="board_container">
-        <vue-editor
-          useCustomImageHandler
-          @image-added="handleImageAdded"
-          v-model="content"
-        ></vue-editor>
+        <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="content"></vue-editor>
       </div>
 
       <div class="board_footer screen_out">
         <div class="group_download">
           <span class="group_field">
             <span class="title_local">대표 이미지</span>
-            <span class="field_global"
-              ><input type="file" name="thumb" class="field_local" ref="thumb"
-            /></span>
+            <span class="field_global"><input type="file" name="thumb" class="field_local" ref="thumb"/></span>
           </span>
         </div>
       </div>
@@ -71,14 +54,11 @@
 import { VueEditor } from 'vue2-editor'
 import Select2 from '@/components/common/Select'
 
-import LinkRectangle from '@/components/link/Rectangle'
-import ButtonRectangle from '@/components/button/Rectangle'
-
 import api from '@/api'
 
 export default {
   name: 'PostCreateForm',
-  components: { Select2, VueEditor, LinkRectangle, ButtonRectangle },
+  components: { Select2, VueEditor },
   props: {
     category2: {
       type: String,
@@ -153,16 +133,10 @@ export default {
     }
   },
   created() {
-    console.log(
-      '[PostCreateForm.vue] created() → this.category2: ',
-      this.category2
-    )
+    console.log('[PostCreateForm.vue] created() → this.category2: ', this.category2)
 
     this.select.category = this.category2
-    console.log(
-      '[PostCreateForm.vue] created() → this.category: ',
-      this.category
-    )
+    console.log('[PostCreateForm.vue] created() → this.category: ', this.category)
   },
   methods: {
     submit() {
@@ -237,30 +211,15 @@ export default {
     },
     onChange(payload) {
       const { text, value } = payload
-      console.log(
-        '[PostCreateForm.vue] methods() → onChange → payload: ',
-        payload
-      )
+      console.log('[PostCreateForm.vue] methods() → onChange → payload: ', payload)
 
       this.category = value
     },
     handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
-      console.log(
-        '[PostCreateForm.vue] methods() → handleImageAdded → file: ',
-        file
-      )
-      console.log(
-        '[PostCreateForm.vue] methods() → handleImageAdded → Editor: ',
-        Editor
-      )
-      console.log(
-        '[PostCreateForm.vue] methods() → handleImageAdded → cursorLocation: ',
-        cursorLocation
-      )
-      console.log(
-        '[PostCreateForm.vue] methods() → handleImageAdded → resetUploader: ',
-        resetUploader
-      )
+      console.log('[PostCreateForm.vue] methods() → handleImageAdded → file: ', file)
+      console.log('[PostCreateForm.vue] methods() → handleImageAdded → Editor: ', Editor)
+      console.log('[PostCreateForm.vue] methods() → handleImageAdded → cursorLocation: ', cursorLocation)
+      console.log('[PostCreateForm.vue] methods() → handleImageAdded → resetUploader: ', resetUploader)
 
       const formData = new FormData()
       formData.append('picture', file)
@@ -268,41 +227,19 @@ export default {
       api
         .post(`/api/board/${this.category}/upload`, formData)
         .then((result) => {
-          console.log(
-            '[PostCreateForm.vue] methods() → handleImageAdded → result: ',
-            result
-          )
-          console.log(
-            '[PostCreateForm.vue] methods() → handleImageAdded → result.data: ',
-            result.data
-          )
-          console.log(
-            '[PostCreateForm.vue] methods() → handleImageAdded → result.data.image[0]: ',
-            result.data.image[0]
-          )
-          console.log(
-            '[PostCreateForm.vue] methods() → handleImageAdded → result.data.image[0].imageurl: ',
-            result.data.image[0].imageurl
-          )
+          console.log('[PostCreateForm.vue] methods() → handleImageAdded → result: ', result)
+          console.log('[PostCreateForm.vue] methods() → handleImageAdded → result.data: ', result.data)
+          console.log('[PostCreateForm.vue] methods() → handleImageAdded → result.data.image[0]: ', result.data.image[0])
+          console.log('[PostCreateForm.vue] methods() → handleImageAdded → result.data.image[0].imageurl: ', result.data.image[0].imageurl)
 
           const folder = 'uploads'
           const url = result.data.image[0].imageurl
-          console.log(
-            '[PostCreateForm.vue] methods() → handleImageAdded → url: ',
-            url
-          )
+          console.log('[PostCreateForm.vue] methods() → handleImageAdded → url: ', url)
 
           const name = result.data.image[0].filename
-          console.log(
-            '[PostCreateForm.vue] methods() → handleImageAdded → name: ',
-            name
-          )
+          console.log('[PostCreateForm.vue] methods() → handleImageAdded → name: ', name)
 
-          Editor.insertEmbed(
-            cursorLocation,
-            'image',
-            `http://localhost:3000${url}`
-          )
+          Editor.insertEmbed(cursorLocation, 'image', `http://localhost:3000${url}`)
 
           resetUploader()
 

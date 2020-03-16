@@ -76,15 +76,12 @@ import { mapActions, mapState } from 'vuex'
 import Hgroup from '@/components/common/Hgroup'
 import Loading from '@/components/common/Loading'
 
-import LinkRectangle from '@/components/link/Rectangle'
-import ButtonRectangle from '@/components/button/Rectangle'
-
 import Read from '@/components/post/read/Read'
 import api from '@/api'
 
 export default {
   name: 'PostRead',
-  components: { Read, Hgroup, Loading, LinkRectangle, ButtonRectangle },
+  components: { Read, Hgroup, Loading },
   props: {
     service: {
       type: String,

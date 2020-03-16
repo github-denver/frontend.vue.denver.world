@@ -36,11 +36,10 @@ import Profile from '@/components/common/Profile'
 import Picture from '@/components/common/Picture'
 
 import Navigation from '@/components/common/Navigation'
-import ButtonSquare from '@/components/button/Square'
 
 export default {
   name: 'AppMenu',
-  components: { Profile, Picture, Navigation, ButtonSquare },
+  components: { Profile, Picture, Navigation },
   props: {
     attribute: {
       type: Object,

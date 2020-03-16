@@ -5,13 +5,16 @@
         <Picture
           :attribute="{
             authorized: isAuthorized,
-            className: 'register'
+            className: 'register',
+            picture: picture
           }"
-        />
-
-        <Upload :attribute="{ className: 'picture' }">
-          <template v-slot:text>프로필 사진</template>
-        </Upload>
+        >
+          <template v-slot:upload>
+            <Upload :attribute="{ className: 'picture' }" @parentChange="onPictureChange">
+              <template v-slot:text>프로필 사진</template>
+            </Upload>
+          </template>
+        </Picture>
       </div>
     </div>
 
@@ -67,12 +70,10 @@
 <script>
 import Picture from '@/components/common/Picture'
 import Upload from '@/components/common/Upload'
-import LinkRectangle from '@/components/link/Rectangle'
-import ButtonRectangle from '@/components/button/Rectangle'
 
 export default {
   name: 'MemberCreateForm',
-  components: { Picture, Upload, LinkRectangle, ButtonRectangle },
+  components: { Picture, Upload },
   props: {
     isAuthorized: {
       type: Boolean,
@@ -85,7 +86,8 @@ export default {
       password: '',
       confirm: '',
       name: '',
-      email: ''
+      email: '',
+      picture: ''
     }
   },
   mounted() {
@@ -189,6 +191,12 @@ export default {
     })
   },
   methods: {
+    onPictureChange(payload) {
+      console.log('payload: ', payload)
+      console.log("payload.get('url'): ", payload.get('url'))
+      this.picture = payload.get('url')
+      console.log('this.picture : ', this.picture)
+    },
     submit() {
       const { id, password, confirm, name, email } = this
       console.log('[MemberCreateForm.vue] methods() → submit → id: ', id)

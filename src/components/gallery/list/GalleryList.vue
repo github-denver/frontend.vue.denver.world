@@ -65,8 +65,6 @@ import Hgroup from '@/components/common/Hgroup'
 import Loading from '@/components/common/Loading'
 import Empty from '@/components/common/Empty'
 
-import LinkRectangle from '@/components/link/Rectangle'
-
 import List from '@/components/gallery/list/List'
 import Pagination from '@/components/common/Pagination'
 import Search from '@/components/common/Search'
@@ -79,8 +77,7 @@ export default {
     Pagination,
     Search,
     Loading,
-    Empty,
-    LinkRectangle
+    Empty
   },
   props: {
     service: {

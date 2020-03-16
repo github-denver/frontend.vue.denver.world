@@ -51,12 +51,10 @@
 <script>
 import Picture from '@/components/common/Picture'
 import Upload from '@/components/common/Upload'
-import LinkRectangle from '@/components/link/Rectangle'
-import ButtonRectangle from '@/components/button/Rectangle'
 
 export default {
   name: 'ProfileEditForm',
-  components: { Picture, Upload, LinkRectangle, ButtonRectangle },
+  components: { Picture, Upload },
   props: {
     profile: {
       type: Object,

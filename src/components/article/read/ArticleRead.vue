@@ -48,7 +48,6 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 
-import LinkRectangle from '@/components/link/Rectangle'
 import Read from '@/components/article/read/Read'
 import Loading from '@/components/common/Loading'
 
@@ -56,7 +55,7 @@ import api from '@/api'
 
 export default {
   name: 'ArticleRead',
-  components: { Read, Loading, LinkRectangle },
+  components: { Read, Loading },
   props: {
     service: {
       type: String,

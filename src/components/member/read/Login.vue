@@ -29,13 +29,9 @@
 </template>
 
 <script>
-import Input from '@/components/common/Input'
-import LinkRectangle from '@/components/link/Rectangle'
-import ButtonRectangle from '@/components/button/Rectangle'
-
 export default {
   name: 'LoginForm',
-  components: { Input, LinkRectangle, ButtonRectangle },
+  components: {},
   data() {
     return {
       id: '',

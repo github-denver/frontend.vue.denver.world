@@ -1,32 +1,17 @@
 <template>
-  <form
-    method="post"
-    enctype="multipart/form-data"
-    @submit.prevent="submit"
-    novalidate
-  >
+  <form method="post" enctype="multipart/form-data" @submit.prevent="submit" novalidate>
     <select2 :select="select" @parentChange="onChange" />
 
     <div class="group_board">
       <div class="board_header">
         <span class="group_field">
           <label for="subject" class="label_local">제목</label>
-          <span class="field_global"
-            ><input
-              type="text"
-              name="subject"
-              id="subject"
-              class="field_local"
-              v-model="subject"/></span
+          <span class="field_global"><input type="text" name="subject" id="subject" class="field_local" v-model="subject"/></span
         ></span>
       </div>
 
       <div class="board_container">
-        <vue-editor
-          useCustomImageHandler
-          @image-added="handleImageAdded"
-          v-model="content"
-        ></vue-editor>
+        <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="content"></vue-editor>
       </div>
 
       <!-- <div v-if="upload2 !== 0" class="board_footer">
@@ -90,14 +75,11 @@ import { mapActions } from 'vuex'
 import { VueEditor } from 'vue2-editor'
 import Select2 from '@/components/common/Select'
 
-import LinkRectangle from '@/components/link/Rectangle'
-import ButtonRectangle from '@/components/button/Rectangle'
-
 import api from '@/api'
 
 export default {
   name: 'PostEditForm',
-  components: { Select2, VueEditor, LinkRectangle, ButtonRectangle },
+  components: { Select2, VueEditor },
   props: {
     service: {
       type: String,
@@ -177,26 +159,14 @@ export default {
     }
   },
   created() {
-    console.log(
-      '[PostEditForm.vue] created() → this.$route.params: ',
-      this.$route.params
-    )
-    console.log(
-      '[PostEditForm.vue] created() → this.$route.query: ',
-      this.$route.query
-    )
+    console.log('[PostEditForm.vue] created() → this.$route.params: ', this.$route.params)
+    console.log('[PostEditForm.vue] created() → this.$route.query: ', this.$route.query)
 
     console.log(' ')
 
     console.log('[PostEditForm.vue] created() → this.post: ', this.post)
-    console.log(
-      '[PostEditForm.vue] created() → this.post === null: ',
-      this.post === null
-    )
-    console.log(
-      '[PostEditForm.vue] created() → typeof this.post: ',
-      typeof this.post
-    )
+    console.log('[PostEditForm.vue] created() → this.post === null: ', this.post === null)
+    console.log('[PostEditForm.vue] created() → typeof this.post: ', typeof this.post)
 
     const data = () => {
       this.category = this.post[0].category
@@ -219,10 +189,7 @@ export default {
       }).catch((error) => {
         console.error('[PostRead.vue] created() → error: ', error)
 
-        console.log(
-          '[PostRead.vue] created() → error.response: ',
-          error.response
-        )
+        console.log('[PostRead.vue] created() → error.response: ', error.response)
 
         alert(error)
 
@@ -233,15 +200,11 @@ export default {
     }
 
     if (this.post === null) {
-      console.log(
-        '[PostEditForm.vue] created() → 수정할 정보를 읽어들이는 중입니다!'
-      )
+      console.log('[PostEditForm.vue] created() → 수정할 정보를 읽어들이는 중입니다!')
 
       post()
     } else {
-      console.log(
-        '[PostEditForm.vue] created() → 전달받은 정보를 읽어들이는 중입니다!'
-      )
+      console.log('[PostEditForm.vue] created() → 전달받은 정보를 읽어들이는 중입니다!')
 
       data()
     }
@@ -249,16 +212,10 @@ export default {
     this.select.category = this.service
     console.log('[PostEditForm.vue] created() → this.category: ', this.category)
 
-    console.log(
-      '[PostEditForm.vue] created() → this.$route.params: ',
-      this.$route.params
-    )
+    console.log('[PostEditForm.vue] created() → this.$route.params: ', this.$route.params)
 
     this.page = this.$route.query.page
-    console.log(
-      '[PostEditForm.vue] created() → this.$route.query.page: ',
-      this.$route.query.page
-    )
+    console.log('[PostEditForm.vue] created() → this.$route.query.page: ', this.$route.query.page)
   },
   methods: {
     ...mapActions(['fetchPost']),
@@ -302,77 +259,37 @@ export default {
     },
     onChange(payload) {
       const { text, value } = payload
-      console.log(
-        '[PostEditForm.vue] methods() → onChange → payload: ',
-        payload
-      )
+      console.log('[PostEditForm.vue] methods() → onChange → payload: ', payload)
 
       this.category = value
     },
     handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
-      console.log(
-        '[PostEditForm.vue] methods() → handleImageAdded → file: ',
-        file
-      )
-      console.log(
-        '[PostEditForm.vue] methods() → handleImageAdded → Editor: ',
-        Editor
-      )
-      console.log(
-        '[PostEditForm.vue] methods() → handleImageAdded → cursorLocation: ',
-        cursorLocation
-      )
-      console.log(
-        '[PostEditForm.vue] methods() → handleImageAdded → resetUploader: ',
-        resetUploader
-      )
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → file: ', file)
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → Editor: ', Editor)
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → cursorLocation: ', cursorLocation)
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → resetUploader: ', resetUploader)
 
       const formData = new FormData()
       formData.append('picture', file)
 
-      console.log(
-        '[PostEditForm.vue] methods() → handleImageAdded → this.category: ',
-        this.category
-      )
+      console.log('[PostEditForm.vue] methods() → handleImageAdded → this.category: ', this.category)
 
       api
         .post(`/api/board/${this.category}/upload`, formData)
         .then((result) => {
-          console.log(
-            '[PostEditForm.vue] methods() → handleImageAdded → result: ',
-            result
-          )
-          console.log(
-            '[PostEditForm.vue] methods() → handleImageAdded → result.data: ',
-            result.data
-          )
-          console.log(
-            '[PostEditForm.vue] methods() → handleImageAdded → result.data.image[0]: ',
-            result.data.image[0]
-          )
-          console.log(
-            '[PostEditForm.vue] methods() → handleImageAdded → result.data.image[0].imageurl: ',
-            result.data.image[0].imageurl
-          )
+          console.log('[PostEditForm.vue] methods() → handleImageAdded → result: ', result)
+          console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data: ', result.data)
+          console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data.image[0]: ', result.data.image[0])
+          console.log('[PostEditForm.vue] methods() → handleImageAdded → result.data.image[0].imageurl: ', result.data.image[0].imageurl)
 
           const folder = 'uploads'
           const url = result.data.image[0].imageurl
-          console.log(
-            '[PostEditForm.vue] methods() → handleImageAdded → url: ',
-            url
-          )
+          console.log('[PostEditForm.vue] methods() → handleImageAdded → url: ', url)
 
           const name = result.data.image[0].filename
-          console.log(
-            '[PostEditForm.vue] methods() → handleImageAdded → name: ',
-            name
-          )
+          console.log('[PostEditForm.vue] methods() → handleImageAdded → name: ', name)
 
-          Editor.insertEmbed(
-            cursorLocation,
-            'image',
-            `http://localhost:3000${url}`
-          )
+          Editor.insertEmbed(cursorLocation, 'image', `http://localhost:3000${url}`)
 
           resetUploader()
 
@@ -411,10 +328,7 @@ export default {
           // $('.list_preview').append(thumbnail.html)
         })
         .catch((error) => {
-          console.error(
-            '[PostEditForm.vue] methods() → handleImageAdded → error: ',
-            error
-          )
+          console.error('[PostEditForm.vue] methods() → handleImageAdded → error: ', error)
         })
     }
   }

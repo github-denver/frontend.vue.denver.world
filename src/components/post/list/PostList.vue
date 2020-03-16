@@ -69,8 +69,6 @@ import Hgroup from '@/components/common/Hgroup'
 import Loading from '@/components/common/Loading'
 import Empty from '@/components/common/Empty'
 
-import LinkRectangle from '@/components/link/Rectangle'
-
 export default {
   name: 'PostList',
   components: {
@@ -79,8 +77,7 @@ export default {
     Search,
     Hgroup,
     Loading,
-    Empty,
-    LinkRectangle
+    Empty
   },
   props: {
     service: {

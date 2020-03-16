@@ -42,14 +42,11 @@
 </template>
 
 <script>
-import Input from '@/components/common/Input'
-import LinkRectangle from '@/components/link/Rectangle'
-
 import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Search',
-  components: { Input, LinkRectangle },
+  components: {},
   props: {
     category: {
       type: Object,

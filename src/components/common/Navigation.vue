@@ -24,11 +24,9 @@
 </template>
 
 <script>
-import LinkRectangle from '@/components/link/Rectangle'
-
 export default {
   name: 'Navigation',
-  components: { LinkRectangle },
+  components: {},
   props: {
     attribute: {
       type: Object,

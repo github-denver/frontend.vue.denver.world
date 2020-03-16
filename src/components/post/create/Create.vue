@@ -51,14 +51,11 @@
 import { VueEditor } from 'vue2-editor'
 import Select2 from '@/components/common/Select'
 
-import LinkRectangle from '@/components/link/Rectangle'
-import ButtonRectangle from '@/components/button/Rectangle'
-
 import api from '@/api'
 
 export default {
   name: 'PostCreateForm',
-  components: { Select2, VueEditor, LinkRectangle, ButtonRectangle },
+  components: { Select2, VueEditor },
   props: {
     category2: {
       type: String,
