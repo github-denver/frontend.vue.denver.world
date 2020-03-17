@@ -21,7 +21,8 @@ export default {
   },
   data() {
     return {
-      url: null
+      files: null,
+      result: null
     }
   },
   methods: {
@@ -47,7 +48,9 @@ export default {
         // 읽기
         const reader = new FileReader()
         reader.readAsDataURL(event.target.files[0])
-        console.log('event.target.files[0]: ', event.target.files[0])
+
+        this.files = event.target.files[0]
+        console.log('this.files: ', this.files)
 
         console.log(' ')
 
@@ -57,11 +60,12 @@ export default {
 
           console.log(' ')
 
-          this.url = event.target.result
+          this.result = event.target.result
           // console.log('this.url: ', this.url)
 
           const formData = new FormData()
-          formData.append('url', this.url)
+          formData.append('files', this.files)
+          formData.append('result', this.result)
 
           this.$emit('parentChange', formData)
         }

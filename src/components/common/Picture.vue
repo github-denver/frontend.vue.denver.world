@@ -1,18 +1,20 @@
 <template>
   <picture-component :attribute="attribute">
-    <!-- <img
-      :src="`${path}/${uploads}/${attribute.authorized ? attribute.user.picture : 'default_picture.png'}`"
-      :alt="attribute.authorized ? attribute.user.name : '기본 이미지'"
-    /> -->
-    typeof attribute.picture: {{ attribute.picture !== '' }}
-    <img v-if="attribute.picture !== ''" :src="attribute.picture" :alt="attribute.authorized ? attribute.user.name : '기본 이미지'" />
+    <img
+      v-if="attribute.authorized"
+      :src="!!attribute.picture ? attribute.picture : `${path}/${uploads}/${user.picture}`"
+      :alt="attribute.authorized ? user.name + '/수정' : '기본 이미지'"
+    />
+    <img v-else :src="!!attribute.picture ? attribute.picture : `${path}/${uploads}/default_picture.png`" alt="가입" />
+
+    <!-- <img v-else :src="!!attribute.picture ? `${path}/${uploads}/${attribute.picture}` : `${path}/${uploads}/default_picture.png`" alt="게시판 목록" /> -->
 
     <slot name="upload"></slot>
   </picture-component>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Upload from '@/components/common/Upload'
 
 export default {
@@ -25,7 +27,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['path', 'uploads'])
+    ...mapGetters(['path', 'uploads']),
+    ...mapState(['user'])
   },
   methods: {}
 }

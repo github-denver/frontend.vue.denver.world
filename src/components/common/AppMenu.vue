@@ -3,7 +3,6 @@
     <Profile
       :attribute="{
         authorized: attribute.authorized,
-        user: attribute.user,
         component: {
           success: 'ProfileUpdate',
           failure: 'MemberLogin'

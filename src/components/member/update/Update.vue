@@ -5,12 +5,12 @@
         <Picture
           :attribute="{
             authorized: isAuthorized,
-            user: user,
-            className: 'register'
+            className: 'register',
+            picture: picture.result
           }"
         />
 
-        <Upload :attribute="{ className: 'picture' }">
+        <Upload :attribute="{ className: 'picture' }" @parentChange="onPictureChange">
           <template v-slot:text>프로필 사진</template>
         </Upload>
       </div>
@@ -45,8 +45,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Picture from '@/components/common/Picture'
 import Upload from '@/components/common/Upload'
+
 export default {
   name: 'ProfileEditForm',
   components: { Picture, Upload },
@@ -62,18 +64,21 @@ export default {
   },
   data() {
     return {
-      user: {
-        name: '',
-        email: ''
+      // user: {
+      //   name: '',
+      //   email: ''
+      // }
+      picture: {
+        files: null,
+        result: null
       }
     }
   },
   created() {
-    console.log('[ProfileEditForm.vue] created() → this.profile: ', this.profile)
-
-    this.user.name = this.profile.name
-    this.user.email = this.profile.email
-    this.user.picture = this.profile.picture
+    // console.log('[ProfileEditForm.vue] created() → this.profile: ', this.profile)
+    // this.user.name = this.profile.name
+    // this.user.email = this.profile.email
+    // this.user.picture = this.profile.picture
   },
   mounted() {
     $('.box_photo .field_local').on('change', function() {
@@ -175,7 +180,17 @@ export default {
       }
     })
   },
+  computed: {
+    ...mapState(['user'])
+  },
   methods: {
+    onPictureChange(payload) {
+      this.picture.files = payload.get('files')
+      console.log('this.picture.files: ', this.picture.files)
+
+      this.picture.result = payload.get('result')
+      // console.log('this.picture.result: ', this.picture.result)
+    },
     submit() {
       const { name, email } = this.user
       console.log('[ProfileEditForm.vue] methods() → submit → name: ', name)

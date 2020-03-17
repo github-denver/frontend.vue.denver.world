@@ -215,7 +215,7 @@ export default {
       select: select2,
       keyword: keyword2
     }).then((response) => {
-      console.log('[PostList.vue] created() → response: ', response)
+      console.log('* [PostList.vue] created() → response: ', response)
 
       this.loading = true
       console.log('[PostList.vue] created() → this.loading: ', this.loading)

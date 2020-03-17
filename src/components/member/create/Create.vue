@@ -6,7 +6,7 @@
           :attribute="{
             authorized: isAuthorized,
             className: 'register',
-            picture: picture
+            picture: picture.result
           }"
         >
           <template v-slot:upload>
@@ -87,7 +87,10 @@ export default {
       confirm: '',
       name: '',
       email: '',
-      picture: ''
+      picture: {
+        files: null,
+        result: null
+      }
     }
   },
   mounted() {
@@ -192,10 +195,11 @@ export default {
   },
   methods: {
     onPictureChange(payload) {
-      console.log('payload: ', payload)
-      console.log("payload.get('url'): ", payload.get('url'))
-      this.picture = payload.get('url')
-      console.log('this.picture : ', this.picture)
+      this.picture.files = payload.get('files')
+      console.log('this.picture.files: ', this.picture.files)
+
+      this.picture.result = payload.get('result')
+      // console.log('this.picture.result: ', this.picture.result)
     },
     submit() {
       const { id, password, confirm, name, email } = this
@@ -206,7 +210,7 @@ export default {
       console.log('[MemberCreateForm.vue] methods() → submit → email: ', email)
 
       // const picture = this.$refs.picture.files[0]
-      const picture = ''
+      const picture = this.picture.files
       console.log('[MemberCreateForm.vue] methods() → submit → picture: ', picture)
 
       if (!id || !password || !confirm || !name) {
