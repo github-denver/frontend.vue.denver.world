@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Picture from '@/components/common/Picture'
+import Picture from '@/components/picture/Picture'
 
 export default {
   name: 'Profile',

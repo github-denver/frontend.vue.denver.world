@@ -16,10 +16,17 @@
 
       <div class="board_footer screen_out">
         <div class="group_download">
-          <span class="group_field">
+          <!-- <span class="group_field">
             <span class="title_local">대표 이미지</span>
-            <span class="field_global"><input type="file" name="thumb" class="field_local" ref="thumb"/></span>
-          </span>
+            <span class="field_global"><input type="file" name="Thumbnail" class="field_local" ref="thumb"/></span>
+          </span> -->
+
+          <input-component :attribute="{ className: 'full' }">
+            <label for="thumbnail">대표 이미지</label>
+            <span>
+              <input type="file" id="thumbnail" />
+            </span>
+          </input-component>
         </div>
       </div>
     </div>

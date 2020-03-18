@@ -34,7 +34,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { VueEditor } from 'vue2-editor'
-import Picture from '@/components/common/Picture'
+import Picture from '@/components/picture/Picture'
 
 export default {
   name: 'PostView',

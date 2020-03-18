@@ -32,7 +32,7 @@
 
 <script>
 import Profile from '@/components/common/Profile'
-import Picture from '@/components/common/Picture'
+import Picture from '@/components/picture/Picture'
 
 import Navigation from '@/components/common/Navigation'
 

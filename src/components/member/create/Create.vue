@@ -4,8 +4,8 @@
       <div class="inner">
         <Picture
           :attribute="{
-            authorized: isAuthorized,
             className: 'register',
+            authorized: isAuthorized,
             picture: picture.result
           }"
         >
@@ -68,8 +68,8 @@
 </template>
 
 <script>
-import Picture from '@/components/common/Picture'
-import Upload from '@/components/common/Upload'
+import Picture from '@/components/picture/Picture'
+import Upload from '@/components/picture/Upload'
 
 export default {
   name: 'MemberCreateForm',
@@ -196,10 +196,7 @@ export default {
   methods: {
     onPictureChange(payload) {
       this.picture.files = payload.get('files')
-      console.log('this.picture.files: ', this.picture.files)
-
       this.picture.result = payload.get('result')
-      // console.log('this.picture.result: ', this.picture.result)
     },
     submit() {
       const { id, password, confirm, name, email } = this
@@ -209,7 +206,6 @@ export default {
       console.log('[MemberCreateForm.vue] methods() → submit → name: ', name)
       console.log('[MemberCreateForm.vue] methods() → submit → email: ', email)
 
-      // const picture = this.$refs.picture.files[0]
       const picture = this.picture.files
       console.log('[MemberCreateForm.vue] methods() → submit → picture: ', picture)
 
@@ -226,11 +222,11 @@ export default {
       }
 
       const formData = new FormData()
-      formData.append('picture', picture)
       formData.append('id', id)
-      formData.append('password', password)
       formData.append('name', name)
+      formData.append('password', password)
       formData.append('email', email)
+      formData.append('picture', picture)
 
       this.$emit('parentSubmit', formData)
     }

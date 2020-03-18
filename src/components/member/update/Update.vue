@@ -4,20 +4,22 @@
       <div class="inner">
         <Picture
           :attribute="{
-            authorized: isAuthorized,
             className: 'register',
+            authorized: isAuthorized,
             picture: picture.result
           }"
-        />
-
-        <Upload :attribute="{ className: 'picture' }" @parentChange="onPictureChange">
-          <template v-slot:text>프로필 사진</template>
-        </Upload>
+        >
+          <template v-slot:upload>
+            <Upload :attribute="{ className: 'picture' }" @parentChange="onPictureChange">
+              <template v-slot:text>프로필 사진</template>
+            </Upload>
+          </template>
+        </Picture>
       </div>
     </div>
 
     <input-component :attribute="{ className: 'full' }">
-      <label for="nickname">닉네임</label>
+      <label for="nickname">닉네임 *</label>
       <span>
         <input type="text" name="name" id="nickname" v-model="user.name" />
       </span>
@@ -45,9 +47,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import Picture from '@/components/common/Picture'
-import Upload from '@/components/common/Upload'
+import { mapGetters, mapState } from 'vuex'
+import Picture from '@/components/picture/Picture'
+import Upload from '@/components/picture/Upload'
 
 export default {
   name: 'ProfileEditForm',
@@ -74,12 +76,7 @@ export default {
       }
     }
   },
-  created() {
-    // console.log('[ProfileEditForm.vue] created() → this.profile: ', this.profile)
-    // this.user.name = this.profile.name
-    // this.user.email = this.profile.email
-    // this.user.picture = this.profile.picture
-  },
+  created() {},
   mounted() {
     $('.box_photo .field_local').on('change', function() {
       var $parent = $(this)
@@ -181,29 +178,32 @@ export default {
     })
   },
   computed: {
+    ...mapGetters(['path', 'uploads']),
     ...mapState(['user'])
   },
   methods: {
     onPictureChange(payload) {
       this.picture.files = payload.get('files')
-      console.log('this.picture.files: ', this.picture.files)
-
       this.picture.result = payload.get('result')
-      // console.log('this.picture.result: ', this.picture.result)
     },
     submit() {
       const { name, email } = this.user
       console.log('[ProfileEditForm.vue] methods() → submit → name: ', name)
       console.log('[ProfileEditForm.vue] methods() → submit → email: ', email)
 
-      // const picture = this.$refs.picture.files[0]
-      const picture = ''
+      const picture = this.picture.files // this.$refs.picture.files[0]
       console.log('[ProfileEditForm.vue] methods() → submit → picture: ', picture)
 
+      if (!name) {
+        alert('필수 정보를 입력해주세요!')
+
+        return false
+      }
+
       const formData = new FormData()
-      formData.append('picture', picture)
       formData.append('name', name)
       formData.append('email', email)
+      formData.append('picture', picture)
 
       this.$emit('parentSubmit', formData)
     }

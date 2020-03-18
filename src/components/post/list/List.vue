@@ -16,8 +16,7 @@
         >
           <Picture
             :attribute="{
-              // authorized: isAuthorized,
-              // user: post
+              state: 'board',
               picture: post.picture
             }"
           />
@@ -45,8 +44,7 @@
         >
           <Picture
             :attribute="{
-              // authorized: isAuthorized,
-              // user: post
+              state: 'board',
               picture: post.picture
             }"
           />
@@ -70,7 +68,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import Picture from '@/components/common/Picture'
+import Picture from '@/components/picture/Picture'
 import moment from 'moment'
 
 export default {
