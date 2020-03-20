@@ -1,5 +1,5 @@
 <template>
-  <paging-component v-if="search.keyword">
+  <ul class="paging" v-if="search.keyword">
     <li v-if="pagination.current > 1">
       <router-link
         :to="{
@@ -41,9 +41,9 @@
         >다음</router-link
       >
     </li>
-  </paging-component>
+  </ul>
 
-  <paging-component v-else>
+  <ul class="paging" v-else>
     <li v-if="pagination.current > 1">
       <router-link
         :to="{
@@ -67,7 +67,7 @@
         >다음</router-link
       >
     </li>
-  </paging-component>
+  </ul>
 </template>
 
 <script>

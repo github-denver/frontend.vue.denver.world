@@ -1,36 +1,40 @@
 <template>
-  <header-component>
-    <heading-component><router-link :to="{ name: 'Main' }" class="router-link">덴버월드</router-link></heading-component>
+  <header class="header">
+    <h1 class="title_local"><router-link :to="{ name: 'Main' }" class="link_local">덴버월드</router-link></h1>
 
-    <square-button :attribute="{ type: 'button', className: 'hamburger', event: close }">
-      <icon-image :attribute="{ width: 30, height: 30, icon: 'menu' }">주메뉴 열기</icon-image>
+    <square-button :attribute="{ type: 'button', className: 'button_hamburger', event: onClose }">
+      <template v-slot:icon>
+        <Icon :attribute="{ className: 'icon_hamburger' }">주메뉴 열기</Icon>
+      </template>
     </square-button>
 
-    <utility-component v-if="isAuthorized">
-      <item-component>
+    <ul class="list_utility" v-if="isAuthorized">
+      <li>
         <router-link :to="{ name: 'ProfileUpdate' }">
-          <icon-image :attribute="{ width: 30, height: 30, icon: 'profile' }">내 정보</icon-image>
+          <icon :attribute="{ className: 'icon_profile' }">내 정보</icon>
         </router-link>
-      </item-component>
-      <item-component>
-        <square-button :attribute="{ type: 'button', event: logout }">
-          <icon-image :attribute="{ width: 30, height: 30, icon: 'logout' }">로그아웃</icon-image>
+      </li>
+      <li>
+        <square-button :attribute="{ type: 'button', event: onSignout }">
+          <template v-slot:icon>
+            <icon :attribute="{ className: 'icon_logout' }">로그아웃</icon>
+          </template>
         </square-button>
-      </item-component>
-    </utility-component>
+      </li>
+    </ul>
 
-    <utility-component v-else>
-      <item-component>
+    <ul class="list_utility" v-else>
+      <li>
         <router-link :to="{ name: 'MemberLogin' }">
-          <icon-image :attribute="{ width: 30, height: 30, icon: 'login' }">로그인</icon-image>
+          <icon :attribute="{ className: 'icon_login' }">로그인</icon>
         </router-link>
-      </item-component>
-      <item-component>
+      </li>
+      <li>
         <router-link :to="{ name: 'Welcome' }">
-          <icon-image :attribute="{ width: 30, height: 30, icon: 'join' }">회원가입</icon-image>
+          <icon :attribute="{ className: 'icon_join' }">회원가입</icon>
         </router-link>
-      </item-component>
-    </utility-component>
+      </li>
+    </ul>
 
     <app-menu
       v-if="active"
@@ -38,18 +42,21 @@
         authorized: isAuthorized,
         user: user
       }"
-      @parentClose="close"
+      @parentOnClose="onClose"
     />
-  </header-component>
+  </header>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
+
+import SquareButton from '@/components/common/SquareButton'
+import Icon from '@/components/common/Icon'
 import AppMenu from '@/components/common/AppMenu'
 
 export default {
   name: 'AppHeader',
-  components: { AppMenu },
+  components: { SquareButton, Icon, AppMenu },
   data() {
     return {
       active: false
@@ -61,14 +68,57 @@ export default {
   },
   methods: {
     ...mapActions(['signout']),
-    logout() {
+    onSignout() {
       this.signout()
 
       alert('로그아웃 됐어요!')
     },
-    close() {
+    onClose() {
       this.active = !this.active
     }
   }
 }
 </script>
+
+<style>
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  padding: 10px;
+  background-color: #ff4646;
+}
+
+.header .title_local {
+  display: table;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.header .link_local {
+  display: table-cell;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.header .list_utility {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0;
+}
+
+.header .list_utility li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.header .list_utility li + li {
+  margin-left: 10px;
+}
+</style>

@@ -1,23 +1,16 @@
 <template>
-  <container-component>
-    <contents-component>
-      <Hgroup>
-        <template v-slot:title>
-          <h3>
-            <router-link
-              :to="{
-                name: 'PostList',
-                params: {
-                  service: category.value,
-                  number: '1'
-                }
-              }"
-              class="router-link"
-            >
-              {{ category.text }}</router-link
-            >
-          </h3>
-        </template>
+  <div class="container">
+    <div class="contents">
+      <Hgroup
+        :attribute="{
+          component: 'PostList',
+          params: {
+            service: category.value,
+            number: '1'
+          }
+        }"
+      >
+        {{ category.text }}
       </Hgroup>
 
       <Loading
@@ -32,7 +25,7 @@
 
       <read v-if="post" :post="post" />
 
-      <group-button-component :attribute="{ className: 'half' }">
+      <div class="group-button" :attribute="{ className: 'half' }">
         <div class="inner">
           <rectangle-link :attribute="{ className: '' }">
             <router-link
@@ -65,9 +58,12 @@
 
           <rectangle-button :attribute="{ type: 'button', className: 'delete', event: onDelete }">삭제하기</rectangle-button>
         </div>
-      </group-button-component>
-    </contents-component>
-  </container-component>
+      </div>
+      <!-- // group-button -->
+    </div>
+    <!-- // contents -->
+  </div>
+  <!-- // container -->
 </template>
 
 <script>
@@ -77,11 +73,15 @@ import Hgroup from '@/components/common/Hgroup'
 import Loading from '@/components/common/Loading'
 
 import Read from '@/components/post/read/Read'
+
+import RectangleButton from '@/components/common/RectangleButton'
+import RectangleLink from '@/components/common/RectangleLink'
+
 import api from '@/api'
 
 export default {
   name: 'PostRead',
-  components: { Read, Hgroup, Loading },
+  components: { Read, Hgroup, Loading, RectangleButton, RectangleLink },
   props: {
     service: {
       type: String,

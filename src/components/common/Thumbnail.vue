@@ -1,16 +1,13 @@
 <template>
-  <thumbnail-component
-    :attribute="{
-      style: {
-        paddingTop: attribute.style.paddingTop
-      }
-    }"
+  <div
+    class="thumbnail_global"
     :style="{
+      'padding-top': attribute.style.paddingTop,
       'background-image': `url('${path}/${uploads}/${attribute.thumbnail}')`
     }"
   >
     <slot></slot>
-  </thumbnail-component>
+  </div>
 </template>
 
 <script>
@@ -32,3 +29,17 @@ export default {
   }
 }
 </script>
+
+<style>
+.thumbnail_global {
+  border-radius: 16px;
+  font-size: 1px;
+  font-size: 0.1rem;
+  line-height: 1;
+  color: transparent;
+  background-color: #f9f9f9;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <post-list-component>
+  <div class="post-list">
     <ul class="list">
       <li v-for="post in posts" :key="post.number">
         <router-link
@@ -63,12 +63,13 @@
         </router-link>
       </li>
     </ul>
-  </post-list-component>
+  </div>
+  <!-- // post-list -->
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import Picture from '@/components/picture/Picture'
+import Picture from '@/components/common/Picture'
 import moment from 'moment'
 
 export default {

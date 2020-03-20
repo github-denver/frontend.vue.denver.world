@@ -1,5 +1,5 @@
 <template>
-  <menu-component>
+  <div class="wrap_menu">
     <Profile
       :attribute="{
         authorized: attribute.authorized,
@@ -22,23 +22,26 @@
       <template v-else v-slot:text>로그인해주세요.</template>
     </Profile>
 
-    <Navigation :attribute="{ event: close }" />
+    <navigation :attribute="{ event: onClose }" />
 
-    <square-button :attribute="{ type: 'button', event: close }">
-      <icon-image :attribute="{ width: 30, height: 30, icon: 'close' }">주메뉴 닫기</icon-image>
+    <square-button :attribute="{ type: 'button', className: 'button_close', event: onClose }">
+      <template v-slot:icon>
+        <icon :attribute="{ className: 'icon_close' }">주메뉴 닫기</icon>
+      </template>
     </square-button>
-  </menu-component>
+  </div>
 </template>
 
 <script>
 import Profile from '@/components/common/Profile'
-import Picture from '@/components/picture/Picture'
-
+import Picture from '@/components/common/Picture'
 import Navigation from '@/components/common/Navigation'
+import SquareButton from '@/components/common/SquareButton'
+import Icon from '@/components/common/Icon'
 
 export default {
   name: 'AppMenu',
-  components: { Profile, Picture, Navigation },
+  components: { Profile, Picture, Navigation, SquareButton, Icon },
   props: {
     attribute: {
       type: Object,
@@ -46,9 +49,26 @@ export default {
     }
   },
   methods: {
-    close() {
-      this.$emit('parentClose')
+    onClose() {
+      this.$emit('parentOnClose')
     }
   }
 }
 </script>
+
+<style>
+.wrap_menu {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-width: 320px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  background-color: #f1f1f1;
+}
+</style>

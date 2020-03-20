@@ -1,7 +1,7 @@
 <template>
-  <container-component>
-    <contents-component>
-      <Carousel
+  <div class="container">
+    <div class="contents">
+      <main-carousel
         :article="article"
         :attribute="{
           title: '도서관',
@@ -23,7 +23,7 @@
         }"
       />
 
-      <Category
+      <main-category
         :category="category"
         :attribute="{
           title: '카테고리',
@@ -45,7 +45,7 @@
         }"
       />
 
-      <Gallery
+      <main-gallery
         :gallery="gallery"
         :attribute="{
           title: '이미지 게시판',
@@ -68,7 +68,7 @@
         }"
       />
 
-      <List
+      <main-post
         :list="talk"
         :attribute="{
           title: '톡톡 한마디',
@@ -90,7 +90,7 @@
         }"
       />
 
-      <List
+      <main-post
         :list="update"
         :attribute="{
           title: '업데이트',
@@ -113,7 +113,7 @@
         }"
       />
 
-      <List
+      <main-post
         :list="notice"
         :attribute="{
           title: '공지사항',
@@ -135,21 +135,23 @@
           }
         }"
       />
-    </contents-component>
-  </container-component>
+    </div>
+    <!-- // contents -->
+  </div>
+  <!-- // container -->
 </template>
 
 <script>
-import Carousel from '@/components/common/Carousel'
-import Category from '@/components/common/Category'
-import Gallery from '@/components/common/Gallery'
-import List from '@/components/common/List'
+import MainCarousel from '@/components/common/MainCarousel'
+import MainCategory from '@/components/common/MainCategory'
+import MainGallery from '@/components/common/MainGallery'
+import MainPost from '@/components/common/MainPost'
 
 import api from '@/api'
 
 export default {
   name: 'Main',
-  components: { Carousel, Category, Gallery, List },
+  components: { MainCarousel, MainCategory, MainGallery, MainPost },
   data() {
     return {
       notice: {

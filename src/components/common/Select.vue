@@ -1,5 +1,5 @@
 <template>
-  <select-component :attribute="{ className: 'category' }">
+  <div class="select" :attribute="{ className: 'category' }">
     <label for="category">
       <span class="text">{{ category.text }}</span>
       <span class="icon"></span>
@@ -10,7 +10,8 @@
         <option v-for="(item, index) in select.data[index].optgroup.option" :value="item.value" :key="index">{{ item.text }}</option>
       </optgroup>
     </select>
-  </select-component>
+  </div>
+  <!-- // select -->
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <welcome-component>
+  <div class="welcome">
     <h1><router-link :to="{ name: 'Main' }">덴버월드</router-link></h1>
 
     <div class="container">
@@ -8,7 +8,8 @@
 
       <login @parentSubmit="onSubmit" />
     </div>
-  </welcome-component>
+  </div>
+  <!-- // welcome -->
 </template>
 
 <script>

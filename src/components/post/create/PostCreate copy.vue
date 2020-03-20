@@ -23,9 +23,27 @@ export default {
   components: { Create },
   methods: {
     onSubmit(payload) {
+      /* const {
+        category,
+        subject,
+        content,
+        // download,
+        // thumbnail,
+        // upload2,
+        thumb
+      } = payload */
+      // console.log('★[PostCreate.vue] methods() → onSubmit → payload: ', payload)
       console.log('★[PostCreate.vue] methods() → onSubmit → payload: ', payload)
 
       api
+        /* .post(`/api/board/${category}/write`, {
+          subject,
+          content,
+          // download,
+          // thumbnail,
+          // upload2
+          formData
+        }) */
         .post(`/api/board/${payload.get('category')}/write`, payload)
         .then((response) => {
           console.log('[PostCreate.vue] 글 등록에 성공했어요! response: ', response)

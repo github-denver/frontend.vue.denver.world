@@ -1,5 +1,6 @@
 import Vue from 'vue'
 
+/*
 import Container from './Container'
 import Contents from './Contents'
 
@@ -16,17 +17,26 @@ import Gallery from './Gallery'
 
 import Loading from './Loading'
 import Empty from './Empty'
+*/
 
+/*
 import { Square, RectangleButton } from './Button'
 import { Rectangle } from './Link'
-import Icon from './Icon'
+*/
 
+/*
+import Icon from './Icon'
+*/
+
+/*
 import Thumbnail from './Thumbnail'
 import Dimmed from './Dimmed'
 import Subject from './Subject'
 
 import Paging from './Paging'
+*/
 
+/*
 export const hgroup = Vue.component('hgroup-component', {
   components: { Hgroup },
   props: ['attribute'],
@@ -36,7 +46,9 @@ export const hgroup = Vue.component('hgroup-component', {
     </Hgroup>
   `
 })
+*/
 
+/*
 export const loading = Vue.component('loading-component', {
   components: { Loading },
   props: ['attribute'],
@@ -46,7 +58,9 @@ export const loading = Vue.component('loading-component', {
     </Loading>
   `
 })
+*/
 
+/*
 export const empty = Vue.component('empty-component', {
   components: { Empty },
   props: ['attribute'],
@@ -56,7 +70,9 @@ export const empty = Vue.component('empty-component', {
     </Empty>
   `
 })
+*/
 
+/**********
 export const list = Vue.component('list-component', {
   components: { List },
   props: ['attribute'],
@@ -66,7 +82,9 @@ export const list = Vue.component('list-component', {
     </List>
   `
 })
+**********/
 
+/*
 export const container = Vue.component('container-component', {
   components: { Container },
   props: ['attribute'],
@@ -76,7 +94,9 @@ export const container = Vue.component('container-component', {
     </Container>
   `
 })
+*/
 
+/*
 export const contents = Vue.component('contents-component', {
   components: { Contents },
   props: ['attribute'],
@@ -86,7 +106,9 @@ export const contents = Vue.component('contents-component', {
     </Contents>
   `
 })
+*/
 
+/*
 export const profile = Vue.component('profile-component', {
   components: { Profile },
   props: ['attribute'],
@@ -96,7 +118,9 @@ export const profile = Vue.component('profile-component', {
     </Profile>
   `
 })
+*/
 
+/*
 export const picture = Vue.component('picture-component', {
   components: { Picture },
   props: ['attribute'],
@@ -106,7 +130,9 @@ export const picture = Vue.component('picture-component', {
     </Picture>
   `
 })
+*/
 
+/*
 export const carousel = Vue.component('carousel-component', {
   components: { Carousel },
   props: ['attribute'],
@@ -116,7 +142,8 @@ export const carousel = Vue.component('carousel-component', {
     </Carousel>
   `
 })
-
+*/
+/*
 export const category = Vue.component('category-component', {
   components: { Category },
   props: ['attribute'],
@@ -126,7 +153,9 @@ export const category = Vue.component('category-component', {
     </Category>
   `
 })
+*/
 
+/*
 export const gallery = Vue.component('gallery-component', {
   components: { Gallery },
   props: ['attribute'],
@@ -136,7 +165,9 @@ export const gallery = Vue.component('gallery-component', {
     </Gallery>
   `
 })
+*/
 
+/*
 export const square = Vue.component('square-button', {
   components: { Square },
   props: ['attribute'],
@@ -146,7 +177,9 @@ export const square = Vue.component('square-button', {
     </Square>
   `
 })
+*/
 
+/*
 export const rectangleButton = Vue.component('rectangle-button', {
   components: { RectangleButton },
   props: ['attribute'],
@@ -156,7 +189,9 @@ export const rectangleButton = Vue.component('rectangle-button', {
     </RectangleButton>
   `
 })
+*/
 
+/*
 export const rectangle = Vue.component('rectangle-link', {
   components: { Rectangle },
   props: ['attribute'],
@@ -166,7 +201,9 @@ export const rectangle = Vue.component('rectangle-link', {
     </Rectangle>
   `
 })
+*/
 
+/*
 export const icon = Vue.component('icon-image', {
   components: { Icon },
   props: ['attribute'],
@@ -176,7 +213,9 @@ export const icon = Vue.component('icon-image', {
     </Icon>
   `
 })
+*/
 
+/*
 export const thumbnail = Vue.component('thumbnail-component', {
   components: { Thumbnail },
   props: ['attribute'],
@@ -186,7 +225,9 @@ export const thumbnail = Vue.component('thumbnail-component', {
     </Thumbnail>
   `
 })
+*/
 
+/*
 export const dimmed = Vue.component('dimmed-component', {
   components: { Dimmed },
   props: ['attribute'],
@@ -196,7 +237,9 @@ export const dimmed = Vue.component('dimmed-component', {
     </Dimmed>
   `
 })
+*/
 
+/*
 export const subject = Vue.component('subject-component', {
   components: { Subject },
   props: ['attribute'],
@@ -206,7 +249,9 @@ export const subject = Vue.component('subject-component', {
     </Subject>
   `
 })
+*/
 
+/*
 export const paging = Vue.component('paging-component', {
   components: { Paging },
   props: ['attribute'],
@@ -216,7 +261,8 @@ export const paging = Vue.component('paging-component', {
     </Paging>
   `
 })
-
+*/
+/*
 export const upload = Vue.component('upload-component', {
   components: { Upload },
   props: ['attribute'],
@@ -226,3 +272,4 @@ export const upload = Vue.component('upload-component', {
     </Upload>
   `
 })
+*/

@@ -18,21 +18,25 @@
       </div>
     </div>
 
-    <input-component :attribute="{ className: 'full' }">
-      <label for="nickname">닉네임 *</label>
-      <span>
-        <input type="text" name="name" id="nickname" v-model="user.name" />
-      </span>
-    </input-component>
+    <Input :attribute="{ type: 'text', id: 'name', title: '닉네임 *' }" v-model="name" />
 
-    <input-component :attribute="{ className: 'full' }">
-      <label for="email">이메일</label>
+    <!-- <input-component :attribute="{ className: 'full' }">
+      <label for="name">닉네임 *</label>
       <span>
-        <input type="text" name="email" id="email" v-model="user.email" />
+        <input type="text" id="name" v-model="name" />
       </span>
-    </input-component>
+    </input-component> -->
 
-    <group-button-component :attribute="{ className: 'half' }">
+    <Input :attribute="{ type: 'text', id: 'email', title: '이메일 *' }" v-model="email" />
+
+    <!-- <input-component :attribute="{ className: 'full' }">
+      <label for="email">이메일 *</label>
+      <span>
+        <input type="text" id="email" v-model="email" />
+      </span>
+    </input-component> -->
+
+    <div class="group-button" :attribute="{ className: 'half' }">
       <div class="inner">
         <rectangle-link :attribute="{ className: '' }">
           <router-link :to="{ name: 'Main' }">홈으로</router-link>
@@ -42,18 +46,23 @@
       <div class="inner">
         <rectangle-button :attribute="{ type: 'submit', className: 'action' }">수정하기</rectangle-button>
       </div>
-    </group-button-component>
+    </div>
+    <!-- // group-button -->
   </form>
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import Picture from '@/components/picture/Picture'
-import Upload from '@/components/picture/Upload'
+
+import Picture from '@/components/common/Picture'
+import Upload from '@/components/common/Upload'
+import Input from '@/components/common/Input'
+import RectangleButton from '@/components/common/RectangleButton'
+import RectangleLink from '@/components/common/RectangleLink'
 
 export default {
   name: 'ProfileEditForm',
-  components: { Picture, Upload },
+  components: { Picture, Upload, Input, RectangleButton, RectangleLink },
   props: {
     profile: {
       type: Object,
@@ -66,116 +75,17 @@ export default {
   },
   data() {
     return {
-      // user: {
-      //   name: '',
-      //   email: ''
-      // }
+      name: '',
+      email: '',
       picture: {
         files: null,
         result: null
       }
     }
   },
-  created() {},
-  mounted() {
-    $('.box_photo .field_local').on('change', function() {
-      var $parent = $(this)
-        .closest('.box_photo')
-        .siblings('.group_picture')
-      console.log('[ProfileEditForm.vue] $parent: ', $parent)
-
-      console.log(' ')
-
-      console.log('[ProfileEditForm.vue] window.FileReader: ', window.FileReader)
-      if (window.FileReader) {
-        console.log('[ProfileEditForm.vue] if (window.FileReader) { .. }: true')
-
-        console.log(' ')
-
-        console.log('[ProfileEditForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
-        console.log('[ProfileEditForm.vue] $(this)[0].files[0].type: ', $(this)[0].files[0].type)
-
-        console.log(' ')
-
-        console.log('[ProfileEditForm.vue] $(this)[0].files[0].type.match(/image/): ', $(this)[0].files[0].type.match(/image\//))
-        console.log('[ProfileEditForm.vue] !$(this)[0].files[0].type.match(/image/): ', !$(this)[0].files[0].type.match(/image\//))
-
-        console.log(' ')
-
-        if (!$(this)[0].files[0].type.match(/image\//)) {
-          // 이미지 파일만..
-          return
-        }
-
-        // 읽기..
-        var reader = new FileReader()
-        reader.readAsDataURL($(this)[0].files[0])
-        console.log('[ProfileEditForm.vue] $(this)[0].files[0]: ', $(this)[0].files[0])
-
-        console.log(' ')
-
-        // 로드 한 후
-        reader.onload = function(event) {
-          var result = event.target.result
-          // console.log('[ProfileEditForm.vue] result: ', result)
-
-          console.log(' ')
-
-          $parent.children('.thumbnail_picture').attr('src', result)
-
-          /*
-          clearTimeout(timeout)
-
-          timeout = setTimeout(function () {
-            console.log("[ProfileEditForm.vue] $('form')[0]: ", $('form')[0])
-            console.log("[ProfileEditForm.vue] $('form')[0].email: ", $('form')[0].email)
-            console.log("[ProfileEditForm.vue] $('form')[0].picture: ", $('form')[0].picture)
-
-            console.log(' ')
-
-            var formData = new FormData($('form')[0])
-            // formData.append('', .value)
-            console.log('[ProfileEditForm.vue] formData: ', formData)
-
-            $.ajax({
-              type: 'post',
-              url: '/member/picture',
-              data: formData,
-              processData: false,
-              contentType: false,
-              success: function (response) {
-                console.log('[ProfileEditForm.vue] 성공하였습니다.')
-                console.log('[ProfileEditForm.vue] response: ', response)
-
-                console.log(' ')
-              },
-              error: function () {
-                console.log('[ProfileEditForm.vue] 실패하였습니다.')
-
-                console.log(' ')
-              },
-            })
-          }, 400)
-          */
-        }
-      } else {
-        console.log('[ProfileEditForm.vue] if (window.FileReader) { .. }: false')
-
-        console.log(' ')
-
-        var $picture = $(this)
-          .closest('.box_photo')
-          .siblings('.group_picture')
-          .children('.thumbnail_picture')
-        var text = document.selection.createRange().text
-        console.log('[ProfileEditForm.vue] $picture: ', $picture)
-        console.log('[ProfileEditForm.vue] text: ', text)
-
-        console.log(' ')
-
-        $picture[0].src = text
-      }
-    })
+  created() {
+    this.name = this.user.name
+    this.email = this.user.email
   },
   computed: {
     ...mapGetters(['path', 'uploads']),
@@ -187,15 +97,32 @@ export default {
       this.picture.result = payload.get('result')
     },
     submit() {
-      const { name, email } = this.user
-      console.log('[ProfileEditForm.vue] methods() → submit → name: ', name)
-      console.log('[ProfileEditForm.vue] methods() → submit → email: ', email)
+      const { name, email } = this
+      const picture = this.picture.files
 
-      const picture = this.picture.files // this.$refs.picture.files[0]
-      console.log('[ProfileEditForm.vue] methods() → submit → picture: ', picture)
+      const idCheck = RegExp(/^[A-Za-z0-9_\.\-]{4,12}$/)
+      const passwordCheck = RegExp(/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/)
+      const nameCheck = RegExp(/^[가-힣a-zA-Z0-9]{2,6}$/)
+      const emailCheck = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/)
 
-      if (!name) {
+      if (!name || !email) {
         alert('필수 정보를 입력해주세요!')
+
+        return false
+      }
+
+      if (!nameCheck.test(name)) {
+        alert('닉네임은 한글과 알파벳 / 숫자만 입력 가능하고 2자리 이상 6자리 이하로 입력해 주세요!')
+
+        this.$refs.name.focus()
+
+        return false
+      }
+
+      if (!emailCheck.test(email)) {
+        alert('이메일을 바르게 입력해 주세요!')
+
+        this.$refs.email.focus()
 
         return false
       }

@@ -1,12 +1,15 @@
 import Vue from 'vue'
 
+/*
 import Header from './Header'
 import Heading from './Heading'
 import Utility from './Utility'
 import Item from './Item'
 import Menu from './Menu'
 import Navigation from './Navigation'
+*/
 
+/*
 export const header = Vue.component('header-component', {
   components: { Header },
   props: ['attribute'],
@@ -16,7 +19,9 @@ export const header = Vue.component('header-component', {
     </Header>
   `
 })
+*/
 
+/*
 export const heading = Vue.component('heading-component', {
   components: { Heading },
   props: ['attribute'],
@@ -26,7 +31,9 @@ export const heading = Vue.component('heading-component', {
     </Heading>
   `
 })
+*/
 
+/*
 export const utility = Vue.component('utility-component', {
   components: { Utility },
   props: ['attribute'],
@@ -36,7 +43,9 @@ export const utility = Vue.component('utility-component', {
     </Utility>
   `
 })
+*/
 
+/*
 export const item = Vue.component('item-component', {
   components: { Item },
   props: ['attribute'],
@@ -46,7 +55,9 @@ export const item = Vue.component('item-component', {
     </Item>
   `
 })
+*/
 
+/*
 export const menu = Vue.component('menu-component', {
   components: { Menu },
   props: ['attribute'],
@@ -56,7 +67,9 @@ export const menu = Vue.component('menu-component', {
     </Menu>
   `
 })
+*/
 
+/*
 export const navigation = Vue.component('navigation-component', {
   components: { Navigation },
   props: ['attribute'],
@@ -66,3 +79,4 @@ export const navigation = Vue.component('navigation-component', {
     </Navigation>
   `
 })
+*/

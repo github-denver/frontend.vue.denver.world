@@ -1,23 +1,16 @@
 <template>
-  <container-component>
-    <contents-component>
-      <Hgroup>
-        <template v-slot:title>
-          <h3>
-            <router-link
-              :to="{
-                name: 'PostList',
-                params: {
-                  service: category.value,
-                  number: '1'
-                }
-              }"
-              class="router-link"
-            >
-              {{ category.text }}</router-link
-            >
-          </h3>
-        </template>
+  <div class="container">
+    <div class="contents">
+      <Hgroup
+        :attribute="{
+          component: 'PostList',
+          params: {
+            service: category.value,
+            number: '1'
+          }
+        }"
+      >
+        {{ category.text }}
       </Hgroup>
 
       <Loading
@@ -42,7 +35,7 @@
 
       <list v-if="loading" :number="number" :posts="posts" :category="category" />
 
-      <group-button-component :attribute="{ className: 'half' }">
+      <div class="group-button" :attribute="{ className: 'half' }">
         <div class="inner"></div>
 
         <div class="inner">
@@ -50,13 +43,16 @@
             <router-link :to="{ name: 'PostCreate', params: { service: category.value } }">글쓰기</router-link>
           </rectangle-link>
         </div>
-      </group-button-component>
+      </div>
+      <!-- // group-button -->
 
       <pagination />
 
       <search :category="category" :number="number" />
-    </contents-component>
-  </container-component>
+    </div>
+    <!-- // contents -->
+  </div>
+  <!-- // container -->
 </template>
 
 <script>
@@ -69,6 +65,8 @@ import Hgroup from '@/components/common/Hgroup'
 import Loading from '@/components/common/Loading'
 import Empty from '@/components/common/Empty'
 
+import RectangleLink from '@/components/common/RectangleLink'
+
 export default {
   name: 'PostList',
   components: {
@@ -77,7 +75,8 @@ export default {
     Search,
     Hgroup,
     Loading,
-    Empty
+    Empty,
+    RectangleLink
   },
   props: {
     service: {

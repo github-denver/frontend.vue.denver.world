@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import Picture from '@/components/picture/Picture'
-import Upload from '@/components/picture/Upload'
+import Picture from '@/components/common/Picture'
+import Upload from '@/components/common/Upload'
 
 export default {
   name: 'ProfileEditForm',

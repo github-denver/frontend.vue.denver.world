@@ -1,71 +1,63 @@
 <template>
-  <gallery-component>
-    <Hgroup>
-      <template v-slot:title>
-        <h3>
-          <router-link
-            :to="{
-              name: attribute.component.index,
-              params: {
-                service: attribute.params.service,
-                number: attribute.params.number
-              }
-            }"
-            class="router-link"
-          >
-            {{ attribute.title }}</router-link
-          >
-        </h3>
-      </template>
+  <div class="main_carousel">
+    <Hgroup
+      :attribute="{
+        component: 'Main',
+        params: {
+          service: attribute.params.service,
+          number: attribute.params.number
+        }
+      }"
+    >
+      {{ attribute.title }}
     </Hgroup>
 
     <Loading
       :attribute="{
-        result: !gallery.loading
+        result: !article.loading
       }"
     >
       <template v-slot:loading>
-        <p class="message">읽어들이는 중..</p>
+        <p class="text_message">읽어들이는 중..</p>
       </template>
     </Loading>
 
     <Empty
       :attribute="{
-        result: gallery.loading && !gallery.list.length
+        result: article.loading && !article.list.length
       }"
     >
       <template v-slot:empty>
-        <p class="message">글이 존재하지 않습니다</p>
+        <p class="text_message">글이 존재하지 않습니다</p>
       </template>
     </Empty>
 
     <vue-owl-carousel
-      v-if="gallery.list.length && gallery.list.length"
+      v-if="article.list.length && article.list.length"
       :items="attribute.slider.items"
       :margin="attribute.slider.margin"
       :stagePadding="attribute.slider.stagePadding"
       :nav="attribute.slider.nav"
       :dots="attribute.slider.dots"
-      class="owl"
+      class="group_owl"
     >
       <router-link
-        v-for="(list, index) in gallery.list"
+        v-for="(list, index) in article.list"
         :key="index"
         :to="{
           name: attribute.component.read,
           params: {
-            service: list.category,
+            service: attribute.params.service,
             number: list.number.toString()
           },
-          query: {
-            page: 1
-          }
+          query: { page: 1 }
         }"
+        class="link_owl"
       >
         <Thumbnail
           :attribute="{
             style: {
-              paddingTop: '133.3333333333333%'
+              paddingTop: '52.734375%'
             },
             thumbnail: list.upload2,
             subject: list.subject
@@ -77,12 +69,10 @@
         </Thumbnail>
       </router-link>
     </vue-owl-carousel>
-  </gallery-component>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 import Hgroup from '@/components/common/Hgroup'
 
 import Loading from '@/components/common/Loading'
@@ -95,7 +85,7 @@ import Dimmed from '@/components/common/Dimmed'
 import Subject from '@/components/common/Subject'
 
 export default {
-  name: 'Gallery',
+  name: 'MainCarousel',
   components: {
     Hgroup,
     Loading,
@@ -106,7 +96,7 @@ export default {
     Subject
   },
   props: {
-    gallery: {
+    article: {
       type: Object,
       required: true
     },
@@ -114,9 +104,15 @@ export default {
       type: Object,
       required: true
     }
-  },
-  computed: {
-    ...mapGetters(['path', 'uploads'])
   }
 }
 </script>
+
+<style>
+.main_carousel .group_owl {
+  margin: 10px -10px 0;
+}
+.main_carousel .link_owl {
+  display: block;
+}
+</style>

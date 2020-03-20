@@ -1,12 +1,13 @@
 <template>
-  <container-component>
-    <visual-component v-if="post">
+  <div class="container">
+    <div class="visual" v-if="post">
       <div class="inner">
         <img :src="`${path}/${uploads}/${post[0].upload2}`" alt="" />
       </div>
-    </visual-component>
+    </div>
+    <!-- // visual -->
 
-    <contents-component :attribute="{ design: 'library' }">
+    <div class="contents" :attribute="{ design: 'library' }">
       <Loading
         :attribute="{
           result: !post
@@ -19,7 +20,7 @@
 
       <read v-if="post" :post="post" />
 
-      <group-button-component :attribute="{ className: '' }">
+      <div class="group-button" :attribute="{ className: '' }">
         <rectangle-link :attribute="{ className: '' }">
           <router-link
             v-if="search.keyword"
@@ -40,9 +41,12 @@
             >목록으로</router-link
           >
         </rectangle-link>
-      </group-button-component>
-    </contents-component>
-  </container-component>
+      </div>
+      <!-- // group-button -->
+    </div>
+    <!-- // contents -->
+  </div>
+  <!-- // container -->
 </template>
 
 <script>
@@ -51,11 +55,13 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import Read from '@/components/article/read/Read'
 import Loading from '@/components/common/Loading'
 
+import RectangleLink from '@/components/common/RectangleLink'
+
 import api from '@/api'
 
 export default {
   name: 'ArticleRead',
-  components: { Read, Loading },
+  components: { Read, Loading, RectangleLink },
   props: {
     service: {
       type: String,

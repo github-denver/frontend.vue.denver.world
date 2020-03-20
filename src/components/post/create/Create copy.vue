@@ -4,21 +4,19 @@
 
     <div class="group_board">
       <div class="board_header">
-        <Input :attribute="{ type: 'text', id: 'subject', title: '제목' }" v-model="subject" />
-
-        <!-- <input-component :attribute="{ className: 'write' }">
+        <input-component :attribute="{ className: 'write' }">
           <label for="subject">제목</label>
           <span>
             <input type="text" id="subject" v-model="subject" />
           </span>
-        </input-component> -->
+        </input-component>
       </div>
 
       <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="content"></vue-editor>
 
       <div class="board_footer screen_out">
         <div class="group_download">
-          <Input :attribute="{ type: 'file', id: 'thumbnail', title: '대표 이미지', for: 'thumbnail' }" v-model="thumbnail" />
+          <Input v-model="thumbnail" :attribute="{ type: 'file', id: 'thumbnail', title: '대표 이미지', for: 'thumbnail' }" />
         </div>
       </div>
     </div>
@@ -49,17 +47,14 @@
 
 <script>
 import { VueEditor } from 'vue2-editor'
-
 import Select2 from '@/components/common/Select'
 import Input from '@/components/common/Input'
-import RectangleButton from '@/components/common/RectangleButton'
-import RectangleLink from '@/components/common/RectangleLink'
 
 import api from '@/api'
 
 export default {
   name: 'PostCreateForm',
-  components: { Select2, Input, RectangleButton, RectangleLink, VueEditor },
+  components: { Select2, Input, VueEditor },
   props: {
     category2: {
       type: String,
@@ -141,21 +136,74 @@ export default {
   },
   methods: {
     submit() {
+      // const { category, subject, content, download } = this
       const { category, subject, content } = this
       console.log('[PostCreateForm.vue] submit() → category: ', category)
       console.log('[PostCreateForm.vue] submit() → subject: ', subject)
       console.log('[PostCreateForm.vue] submit() → content: ', content)
+      // console.log('[PostCreateForm.vue] submit() → download: ', download)
 
-      const thumbnail = this.thumbnail // this.$refs.picture.files[0]
-      console.log('★[PostCreateForm.vue] methods() → submit → thumbnail: ', thumbnail)
+      // const inputThumbnail = document.getElementsByClassName('input_thumbnail')
+      // console.log('[PostCreateForm.vue] inputThumbnail: ', inputThumbnail)
+
+      /* const getValues = (() => {
+        console.log('[PostCreateForm.vue] inputThumbnail.length: ', inputThumbnail.length)
+
+        for (let i = 0; i < inputThumbnail.length; i++) {
+          console.log('[PostCreateForm.vue] inputThumbnail[i].checked: ', inputThumbnail[i].checked)
+
+          if (inputThumbnail[i].checked) {
+            console.log('[PostCreateForm.vue] inputThumbnail[i].value: ', inputThumbnail[i].value)
+
+            return inputThumbnail[i].value
+          }
+        }
+      })() */
+
+      // console.log(`[PostCreateForm.vue] getValues:, ${getValues}`)
+
+      // const thumbnail = getValues && getValues
+      // console.log('[PostCreateForm.vue] submit() → thumbnail: ', thumbnail)
+
+      // let upload2 = ''
+      // console.log("[PostCreateForm.vue] submit() → $('.list_preview li').length: ", $('.list_preview li').length)
+
+      // let i
+      // let limit = $('.list_preview li').length
+      /* for (i = 0; i < limit; i++) {
+        upload2 += $('.list_preview')
+          .find('li')
+          .eq(i)
+          .find('.input_thumbnail')
+          .val()
+
+        if (i < limit - 1) {
+          upload2 += ','
+        }
+      } */
+      // console.log('[PostCreateForm.vue] submit() → upload2: ', upload2)
+
+      // const picture = this.$refs.picture.files[0]
+      const thumb = this.$refs.thumb.files[0]
+      console.log('★[PostCreateForm.vue] methods() → submit → thumb: ', thumb)
 
       const formData = new FormData()
       formData.append('category', category)
       formData.append('subject', subject)
       formData.append('content', content)
-      formData.append('thumbnail', thumbnail)
+      formData.append('thumb', thumb)
 
       this.$emit('parentSubmit', formData)
+
+      /* this.$emit('parentSubmit', {
+        // category,
+        // subject,
+        // content,
+        // thumb
+        // download
+        // thumbnail,
+        // upload2
+      }) */
     },
     onChange(payload) {
       const { text, value } = payload

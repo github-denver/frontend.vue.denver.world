@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 import Welcome from './Welcome'
 
+/*
 export const welcome = Vue.component('welcome-component', {
   components: { Welcome },
   props: ['attribute'],
@@ -11,3 +12,4 @@ export const welcome = Vue.component('welcome-component', {
     </Welcome>
   `
 })
+*/

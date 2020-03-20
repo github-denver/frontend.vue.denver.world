@@ -1,5 +1,5 @@
 <template>
-  <gallery-list-component>
+  <ul class="gallery-list">
     <li v-for="post in posts" :key="post.number">
       <router-link
         v-if="search.keyword"
@@ -53,7 +53,7 @@
         </Thumbnail>
       </router-link>
     </li>
-  </gallery-list-component>
+  </ul>
 </template>
 
 <script>

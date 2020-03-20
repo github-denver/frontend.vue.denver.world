@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 import Select from './Select'
 
+/*
 export const select = Vue.component('select-component', {
   components: { Select },
   props: ['attribute'],
@@ -11,3 +12,4 @@ export const select = Vue.component('select-component', {
     </Select>
   `
 })
+*/

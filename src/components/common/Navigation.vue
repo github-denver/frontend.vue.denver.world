@@ -1,32 +1,36 @@
 <template>
-  <navigation-component>
-    <ul>
-      <li v-for="(item, index) in navigation" :key="index">
-        <span>{{ item.title }}</span>
+  <div class="group_navigation">
+    <ul class="list_navigation">
+      <li v-for="(item, index) in navigation" :key="index" class="item_navigation">
+        <span class="title_navigation">{{ item.title }}</span>
 
-        <ul>
-          <li v-for="(item, index) in item.children" :key="index">
-            <link-rectangle
-              :data="{
-                component: item.component,
-                text: item.title,
-                event: attribute.event,
-                icon: 'ico_profile',
-                type: item.category,
-                number: '1'
+        <ul class="list_children">
+          <li v-for="(child, index) in item.children" :key="index" class="item_child">
+            <router-link
+              :to="{
+                name: child.component,
+                params: {
+                  service: child.category,
+                  number: '1'
+                }
               }"
-            />
+              v-on="attribute.event ? { click: attribute.event } : null"
+              class="link_child"
+              >{{ child.title }}</router-link
+            >
           </li>
         </ul>
       </li>
     </ul>
-  </navigation-component>
+  </div>
 </template>
 
 <script>
+import RectangleLink from '@/components/common/RectangleLink'
+
 export default {
-  name: 'Navigation',
-  components: {},
+  name: 'navigation',
+  components: { RectangleLink },
   props: {
     attribute: {
       type: Object,
@@ -96,3 +100,52 @@ export default {
   }
 }
 </script>
+
+<style>
+.group_navigation {
+  overflow: hidden;
+  margin-top: 10px;
+  border-top: 1px solid #e9e9e9;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.group_navigation .list_navigation {
+  background-color: #fff;
+}
+
+.group_navigation .item_navigation + .item_navigation {
+  border-top: 1px solid #e9e9e9;
+}
+
+.group_navigation .title_navigation {
+  display: block;
+  padding: 18px 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.list_navigation .list_children {
+  border-top: 1px solid #e9e9e9;
+  margin: 0 -1px -1px -1px;
+  font-size: 0;
+  background-color: #f9f9f9;
+}
+
+.list_navigation .item_child {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  margin-top: -1px;
+  border: 1px solid #e9e9e9;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.list_navigation .link_child {
+  display: block;
+  margin-left: -1px;
+  padding: 13px 10px;
+  font-size: 14px;
+  text-align: center;
+}
+</style>

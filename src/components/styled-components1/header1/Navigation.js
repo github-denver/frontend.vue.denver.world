@@ -6,29 +6,30 @@ const Navigation = styled.div`
   border-top: 1px solid #e9e9e9;
   border-bottom: 1px solid #e9e9e9;
 
-  & > ul {
+  .list_outer {
     background-color: #fff;
   }
 
-  & > ul > li > span {
+  .title {
     display: block;
     padding: 18px 10px;
     font-size: 14px;
     font-weight: 700;
   }
 
-  & > ul > li + li {
+  .list_outer .item_outer + .item_outer {
     border-top: 1px solid #e9e9e9;
   }
 
-  & > ul > li > ul {
+  .list_inner {
     border-top: 1px solid #e9e9e9;
     margin: 0 -1px -1px -1px;
     font-size: 0;
     background-color: #f9f9f9;
   }
 
-  & > ul > li > ul > li:before {
+  /*
+  .list_inner .item_inner:before {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -36,8 +37,9 @@ const Navigation = styled.div`
     border-left: 1px solid #f9f9f9;
     content: '';
   }
+  */
 
-  & > ul > li > ul > li {
+  .list_inner .item_inner {
     display: inline-block;
     position: relative;
     width: 50%;
@@ -47,7 +49,7 @@ const Navigation = styled.div`
     vertical-align: top;
   }
 
-  & > ul > li > ul > li > a {
+  .list_inner .item_inner .link {
     display: block;
     margin-left: -1px;
     padding: 13px 10px;

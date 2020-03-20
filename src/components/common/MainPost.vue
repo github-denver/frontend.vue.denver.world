@@ -1,22 +1,16 @@
 <template>
-  <post-latest-list-component>
-    <Hgroup>
-      <template v-slot:title>
-        <h3>
-          <router-link
-            :to="{
-              name: attribute.component.index,
-              params: {
-                service: attribute.params.service,
-                number: attribute.params.number
-              }
-            }"
-            class="router-link"
-          >
-            {{ attribute.title }}</router-link
-          >
-        </h3>
-      </template>
+  <div class="post-latest-list">
+    <Hgroup
+      :attribute="{
+        title: attribute.title,
+        component: attribute.component.index,
+        params: {
+          service: attribute.params.service,
+          number: attribute.params.number
+        }
+      }"
+    >
+      {{ attribute.title }}
     </Hgroup>
 
     <Loading
@@ -25,7 +19,7 @@
       }"
     >
       <template v-slot:loading>
-        <p class="message">읽어들이는 중..</p>
+        <p class="text_message">읽어들이는 중..</p>
       </template>
     </Loading>
 
@@ -35,7 +29,7 @@
       }"
     >
       <template v-slot:empty>
-        <p class="message">글이 존재하지 않습니다</p>
+        <p class="text_message">글이 존재하지 않습니다</p>
       </template>
     </Empty>
 
@@ -58,7 +52,8 @@
         </router-link>
       </li>
     </ul>
-  </post-latest-list-component>
+  </div>
+  <!-- // post-latest-list -->
 </template>
 
 <script>
@@ -68,7 +63,7 @@ import Loading from '@/components/common/Loading'
 import Empty from '@/components/common/Empty'
 
 export default {
-  name: 'List',
+  name: 'MainPost',
   components: { Hgroup, Loading, Empty },
   props: {
     list: {

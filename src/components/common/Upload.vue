@@ -1,5 +1,5 @@
 <template>
-  <upload-component>
+  <div class="upload">
     <label :for="attribute.className">
       <span :class="attribute.className">
         <slot name="text"></slot>
@@ -7,7 +7,7 @@
     </label>
 
     <input type="file" :name="attribute.className" :id="attribute.className" @change="onChange" />
-  </upload-component>
+  </div>
 </template>
 
 <script>

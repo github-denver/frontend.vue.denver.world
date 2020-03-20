@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="submit" novalidate>
-    <search-component>
-      <select-component :attribute="{ className: 'search' }">
+    <div class="search">
+      <div class="select" :attribute="{ className: 'search' }">
         <label for="search">
           <span class="text">{{ select.text }}</span>
           <span class="icon"></span>
@@ -12,13 +12,16 @@
           <option value="content">내용</option>
           <option value="writer">작성자</option>
         </select>
-      </select-component>
+      </div>
+      <!-- // select -->
 
-      <input-component :attribute="{ className: 'search' }">
+      <Input :attribute="{ type: 'search', name: 'keyword', id: 'keyword' }" v-model="keyword" />
+
+      <!-- <input-component :attribute="{ className: 'search' }">
         <span>
           <input type="search" id="keyword" name="keyword" v-model="keyword" />
         </span>
-      </input-component>
+      </input-component> -->
 
       <rectangle-link :attribute="{ className: 'search' }">
         <router-link
@@ -37,16 +40,19 @@
           >검색하기</router-link
         >
       </rectangle-link>
-    </search-component>
+    </div>
+    <!-- // search -->
   </form>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
 
+import RectangleLink from '@/components/common/RectangleLink'
+
 export default {
   name: 'Search',
-  components: {},
+  components: { RectangleLink },
   props: {
     category: {
       type: Object,

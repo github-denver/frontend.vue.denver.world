@@ -1,5 +1,5 @@
 <template>
-  <post-read-component>
+  <div class="post-read">
     <div class="header">
       <Picture
         :attribute="{
@@ -28,13 +28,14 @@
 
       <vue-editor></vue-editor>
     </div>
-  </post-read-component>
+  </div>
+  <!-- // post-read -->
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { VueEditor } from 'vue2-editor'
-import Picture from '@/components/picture/Picture'
+import Picture from '@/components/common/Picture'
 
 export default {
   name: 'PostView',

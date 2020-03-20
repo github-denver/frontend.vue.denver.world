@@ -5,6 +5,7 @@ import List from './List'
 import Read from './Read'
 import Visual from './Visual'
 
+/*
 export const postLatestList = Vue.component('post-latest-list-component', {
   components: { Latest },
   props: ['attribute'],
@@ -14,7 +15,9 @@ export const postLatestList = Vue.component('post-latest-list-component', {
     </Latest>
   `
 })
+*/
 
+/*
 export const postVisual = Vue.component('visual-component', {
   components: { Visual },
   props: ['attribute'],
@@ -24,7 +27,9 @@ export const postVisual = Vue.component('visual-component', {
     </Visual>
   `
 })
+*/
 
+/*
 export const postList = Vue.component('post-list-component', {
   components: { List },
   props: ['attribute'],
@@ -34,7 +39,9 @@ export const postList = Vue.component('post-list-component', {
     </List>
   `
 })
+*/
 
+/*
 export const postRead = Vue.component('post-read-component', {
   components: { Read },
   props: ['attribute'],
@@ -44,3 +51,4 @@ export const postRead = Vue.component('post-read-component', {
     </Read>
   `
 })
+*/
