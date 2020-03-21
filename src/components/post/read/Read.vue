@@ -1,27 +1,29 @@
 <template>
-  <div class="post-read">
-    <div class="header">
+  <div class="post_read">
+    <div class="post_header outer_cell">
       <Picture
         :attribute="{
           authorized: isAuthorized,
-          user: post[0]
+          user: post[0],
+          picture: post[0].picture,
+          state: 'board'
         }"
       />
 
-      <div class="container">
-        <div>
-          <span class="subject">{{ post[0].subject }}</span>
+      <div class="post_container inner_cell">
+        <div class="group_subject">
+          <span class="title_local">{{ post[0].subject }}</span>
         </div>
 
-        <div class="information">
-          <span class="text">작성자 {{ post[0].name }}</span>
-          <span class="text">등록일 {{ post[0].regdate | moment('YY.MM.DD') }}</span>
-          <span class="text">조회수 {{ post[0].count }}</span>
+        <div class="post_information">
+          <span class="text_local"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
+          <span class="text_local"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
+          <span class="text_local"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
         </div>
       </div>
     </div>
 
-    <div class="contents">
+    <div class="post_contents">
       <div class="ql-container ql-snow">
         <div class="ql-editor" v-html="post[0].content"></div>
       </div>
@@ -29,7 +31,7 @@
       <vue-editor></vue-editor>
     </div>
   </div>
-  <!-- // post-read -->
+  <!-- // post_read -->
 </template>
 
 <script>
@@ -51,3 +53,18 @@ export default {
   }
 }
 </script>
+
+<style>
+.post_read {
+  margin-top: 10px;
+}
+.post_read .group_picture {
+  overflow: hidden;
+  float: left;
+  margin-right: 10px;
+}
+
+.post_read .post_header {
+  width: auto;
+}
+</style>

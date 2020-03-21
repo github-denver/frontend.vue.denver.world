@@ -1,13 +1,14 @@
 <template>
-  <article class="group_magazine">
-    <h2 class="title_magazine">{{ post[0].subject }}</h2>
+  <div class="post_read">
+    <div class="post_contents">
+      <div class="ql-container ql-snow">
+        <div class="ql-editor" v-html="post[0].content"></div>
+      </div>
 
-    <div class="ql-container ql-snow">
-      <div class="ql-editor" v-html="post[0].content"></div>
+      <vue-editor></vue-editor>
     </div>
-
-    <vue-editor style="display:none;"></vue-editor>
-  </article>
+  </div>
+  <!-- // post_read -->
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="post-latest-list">
+  <div class="main_post">
     <Hgroup
       :attribute="{
         title: attribute.title,
@@ -33,7 +33,7 @@
       </template>
     </Empty>
 
-    <ul v-if="list.loading && list.list.length" class="list">
+    <ul v-if="list.loading && list.list.length" class="list_post">
       <li v-for="(list, index) in list.list" :key="index">
         <router-link
           :to="{
@@ -46,14 +46,14 @@
               page: 1
             }
           }"
-          class="router-link"
+          class="link_post"
         >
-          <span class="subject">{{ list.subject }}</span>
+          {{ list.subject }}
         </router-link>
       </li>
     </ul>
   </div>
-  <!-- // post-latest-list -->
+  <!-- // main-post -->
 </template>
 
 <script>
@@ -77,3 +77,28 @@ export default {
   }
 }
 </script>
+
+<style>
+.main_post {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e9e9e9;
+}
+
+.main_post .list_post {
+  margin-top: 10px;
+}
+
+.main_post .list_post li + li {
+  margin-top: 10px;
+}
+
+.main_post .link_post {
+  overflow: hidden;
+  display: inline-block;
+  max-width: 100%;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</style>

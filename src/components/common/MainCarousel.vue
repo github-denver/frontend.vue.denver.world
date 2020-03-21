@@ -2,7 +2,7 @@
   <div class="main_carousel">
     <Hgroup
       :attribute="{
-        component: 'Main',
+        component: attribute.component.index,
         params: {
           service: attribute.params.service,
           number: attribute.params.number
@@ -112,6 +112,7 @@ export default {
 .main_carousel .group_owl {
   margin: 10px -10px 0;
 }
+
 .main_carousel .link_owl {
   display: block;
 }

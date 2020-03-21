@@ -13,7 +13,7 @@
             dots: false
           },
           component: {
-            index: 'ArticleList',
+            index: 'GalleryList',
             read: 'ArticleRead'
           },
           params: {
@@ -35,11 +35,11 @@
             dots: false
           },
           component: {
-            index: 'ArticleList',
+            index: 'GalleryList',
             read: 'ArticleRead'
           },
           params: {
-            service: 'gallery',
+            service: 'library',
             number: '1'
           }
         }"

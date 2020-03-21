@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 
 import { Plugin } from 'vue-fragment'
 
-import './components/styled-components'
+/* import './components/styled-components' */
 /*
 import './components/styled-components/header'
 import './components/styled-components/group'

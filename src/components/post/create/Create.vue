@@ -1,46 +1,42 @@
 <template>
   <form method="post" enctype="multipart/form-data" @submit.prevent="submit" novalidate>
-    <select2 :select="select" @parentChange="onChange" />
+    <design-select
+      :attribute="{
+        className: 'full'
+      }"
+      :select="select"
+      @parentChange="onChange"
+    />
 
-    <div class="group_board">
-      <div class="board_header">
-        <Input :attribute="{ type: 'text', id: 'subject', title: '제목' }" v-model="subject" />
-
-        <!-- <input-component :attribute="{ className: 'write' }">
-          <label for="subject">제목</label>
-          <span>
-            <input type="text" id="subject" v-model="subject" />
-          </span>
-        </input-component> -->
+    <div class="post_read">
+      <div class="post_header">
+        <Input :attribute="{ type: 'text', id: 'subject', title: '제목', className: 'underline' }" v-model="subject" />
       </div>
 
       <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="content"></vue-editor>
 
-      <div class="board_footer screen_out">
-        <div class="group_download">
-          <Input :attribute="{ type: 'file', id: 'thumbnail', title: '대표 이미지', for: 'thumbnail' }" v-model="thumbnail" />
-        </div>
+      <div class="post_footer">
+        <Input :attribute="{ type: 'file', id: 'thumbnail', title: '대표 이미지', className: 'full' }" v-model="thumbnail" />
       </div>
     </div>
 
-    <div class="group-button" :attribute="{ className: 'half' }">
-      <div class="inner">
-        <rectangle-link :attribute="{ className: '' }">
-          <router-link
-            :to="{
-              name: 'PostList',
-              params: {
-                service: category2,
-                number: '1'
-              }
-            }"
-            >목록으로</router-link
-          >
-        </rectangle-link>
+    <div class="group_button">
+      <div class="inner_half">
+        <router-link
+          :to="{
+            name: 'PostList',
+            params: {
+              service: category2,
+              number: '1'
+            }
+          }"
+          class="link_global"
+          >목록으로</router-link
+        >
       </div>
 
-      <div class="inner">
-        <rectangle-button :attribute="{ type: 'submit', className: 'action' }">등록하기</rectangle-button>
+      <div class="inner_half">
+        <rectangle-button :attribute="{ type: 'submit', className: 'button_action' }">등록하기</rectangle-button>
       </div>
     </div>
     <!-- // group-button -->
@@ -48,18 +44,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { VueEditor } from 'vue2-editor'
 
-import Select2 from '@/components/common/Select'
+import DesignSelect from '@/components/common/DesignSelect'
 import Input from '@/components/common/Input'
 import RectangleButton from '@/components/common/RectangleButton'
-import RectangleLink from '@/components/common/RectangleLink'
 
 import api from '@/api'
 
 export default {
   name: 'PostCreateForm',
-  components: { Select2, Input, RectangleButton, RectangleLink, VueEditor },
+  components: { DesignSelect, Input, RectangleButton, VueEditor },
   props: {
     category2: {
       type: String,
@@ -139,6 +135,9 @@ export default {
     this.select.category = this.category2
     console.log('[PostCreateForm.vue] created() → this.category: ', this.category)
   },
+  computed: {
+    ...mapGetters(['path', 'uploads'])
+  },
   methods: {
     submit() {
       const { category, subject, content } = this
@@ -187,7 +186,7 @@ export default {
           const name = result.data.image[0].filename
           console.log('[PostCreateForm.vue] methods() → handleImageAdded → name: ', name)
 
-          Editor.insertEmbed(cursorLocation, 'image', `http://localhost:3000${url}`)
+          Editor.insertEmbed(cursorLocation, 'image', `${path}${url}`)
 
           resetUploader()
 
@@ -235,7 +234,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 /*
 .quillWrapper {
   padding-top: 10px;

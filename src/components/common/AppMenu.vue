@@ -22,7 +22,7 @@
       <template v-else v-slot:text>로그인해주세요.</template>
     </Profile>
 
-    <navigation :attribute="{ event: onClose }" />
+    <navigation @parentOnClose="onClose" />
 
     <square-button :attribute="{ type: 'button', className: 'button_close', event: onClose }">
       <template v-slot:icon>

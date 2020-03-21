@@ -1,46 +1,69 @@
 <template>
   <div class="container">
-    <div class="visual" v-if="post">
-      <div class="inner">
-        <img :src="`${path}/${uploads}/${post[0].upload2}`" alt="" />
+    <div class="wrap_visual" v-if="post">
+      <div class="thumbnail_visual" :style="{ 'background-image': `url('${path}/${uploads}/${post[0].upload2}')` }"></div>
+
+      <div class="post_header">
+        <div class="inner_local outer_cell">
+          <Picture
+            :attribute="{
+              authorized: isAuthorized,
+              user: post[0],
+              picture: post[0].picture,
+              state: 'board'
+            }"
+          />
+
+          <div class="post_container inner_cell">
+            <div class="group_subject">
+              <span class="title_local">{{ post[0].subject }}</span>
+            </div>
+
+            <div class="post_information">
+              <span class="text_local"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
+              <span class="text_local"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
+              <span class="text_local"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- // visual -->
+    <!-- // wrap_visual -->
 
-    <div class="contents" :attribute="{ design: 'library' }">
+    <div class="contents article">
       <Loading
         :attribute="{
           result: !post
         }"
       >
         <template v-slot:loading>
-          <p class="message">읽어들이는 중..</p>
+          <p class="text_message">읽어들이는 중..</p>
         </template>
       </Loading>
 
       <read v-if="post" :post="post" />
 
-      <div class="group-button" :attribute="{ className: '' }">
-        <rectangle-link :attribute="{ className: '' }">
-          <router-link
-            v-if="search.keyword"
-            :to="{
-              name: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
-              params: { service: category.value, number: page.toString() },
-              query: { select: search.select, keyword: search.keyword }
-            }"
-            >목록으로</router-link
-          >
+      <div class="group_button">
+        <router-link
+          v-if="search.keyword"
+          :to="{
+            name: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
+            params: { service: category.value, number: page.toString() },
+            query: { select: search.select, keyword: search.keyword }
+          }"
+          class="link_global link_action"
+          >목록으로</router-link
+        >
 
-          <router-link
-            v-else
-            :to="{
-              name: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
-              params: { service: category.value, number: page.toString() }
-            }"
-            >목록으로</router-link
-          >
-        </rectangle-link>
+        <router-link
+          v-else
+          :to="{
+            name: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
+            params: { service: category.value, number: page.toString() }
+          }"
+          class="link_global link_action"
+          >목록으로</router-link
+        >
       </div>
       <!-- // group-button -->
     </div>
@@ -52,16 +75,16 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 
+import Picture from '@/components/common/Picture'
+import Hgroup from '@/components/common/Hgroup'
 import Read from '@/components/article/read/Read'
 import Loading from '@/components/common/Loading'
-
-import RectangleLink from '@/components/common/RectangleLink'
 
 import api from '@/api'
 
 export default {
   name: 'ArticleRead',
-  components: { Read, Loading, RectangleLink },
+  components: { Picture, Hgroup, Read, Loading },
   props: {
     service: {
       type: String,
@@ -186,7 +209,7 @@ export default {
     })
   },
   computed: {
-    ...mapGetters(['path', 'uploads']),
+    ...mapGetters(['isAuthorized', 'path', 'uploads']),
     ...mapState(['post', 'search'])
   },
   methods: {
@@ -234,3 +257,48 @@ export default {
   }
 }
 </script>
+
+<style>
+.wrap_visual {
+  overflow: hidden;
+  position: fixed;
+  top: 50px;
+  right: 0;
+  left: 0;
+}
+
+.wrap_visual .thumbnail_visual {
+  padding-top: 56.25%;
+  background-size: cover;
+}
+.wrap_visual .post_header {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
+}
+
+.wrap_visual .inner_local {
+  width: auto;
+}
+
+.wrap_visual .group_picture {
+  overflow: hidden;
+  float: left;
+  margin-right: 10px;
+}
+
+.wrap_visual .text_local {
+  color: #fff;
+}
+</style>

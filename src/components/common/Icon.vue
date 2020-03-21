@@ -25,7 +25,7 @@ export default {
   font-size: 1px;
   line-height: 0;
   color: transparent;
-  background-image: url(http://localhost:3000/images/ico_global.png);
+  background-image: url(~@/assets/images/ico_global.png);
   background-repeat: no-repeat;
   background-size: 160px auto;
   vertical-align: middle;

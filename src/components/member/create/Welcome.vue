@@ -1,22 +1,18 @@
 <template>
-  <div class="welcome">
-    <h1><router-link :to="{ name: 'Main' }">덴버월드</router-link></h1>
+  <div class="wrap_welcome">
+    <h1 class="title_local"><router-link :to="{ name: 'Main' }" class="link_local">소담</router-link></h1>
 
-    <div class="container">
-      <strong class="title">환영합니다!</strong>
-      <p class="description">덴버월드에서 사용할 닉네임과 나머지 정보들을<br />입력해 주실수있으세요?</p>
+    <div class="inner_welcome">
+      <strong class="title_welcome">환영합니다!</strong>
+      <p class="description_welcome">소담에서 사용할 닉네임과 나머지 정보들을<br />입력해 주실수있으세요?</p>
 
-      <div class="group-button" :attribute="{ className: 'half' }">
-        <div class="inner">
-          <rectangle-link :attribute="{ className: '' }">
-            <router-link :to="{ name: 'Main' }">싫어요</router-link>
-          </rectangle-link>
+      <div class="group_button">
+        <div class="inner_half">
+          <router-link :to="{ name: 'Main' }" class="link_global">싫어요</router-link>
         </div>
 
-        <div class="inner">
-          <rectangle-link :attribute="{ className: 'action' }">
-            <router-link :to="{ name: 'MemberCreate' }">좋아요</router-link>
-          </rectangle-link>
+        <div class="inner_half">
+          <router-link :to="{ name: 'MemberCreate' }" class="link_global link_action">좋아요</router-link>
         </div>
       </div>
       <!-- // group-button -->
@@ -26,10 +22,10 @@
 </template>
 
 <script>
-import RectangleLink from '@/components/common/RectangleLink'
-
 export default {
   name: 'Welcome',
-  components: { RectangleLink }
+  components: {}
 }
 </script>
+
+<style></style>

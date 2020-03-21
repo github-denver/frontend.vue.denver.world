@@ -1,58 +1,52 @@
 <template>
   <form @submit.prevent="submit" novalidate>
-    <div class="search">
-      <div class="select" :attribute="{ className: 'search' }">
-        <label for="search">
-          <span class="text">{{ select.text }}</span>
-          <span class="icon"></span>
+    <div class="group_search">
+      <div class="group_select">
+        <label for="search" class="label_local">
+          <span class="text_local">{{ select.text }}</span>
+          <span class="icon_global icon_arrow"></span>
         </label>
 
-        <select name="search" @change="onChange" v-model="select.value">
+        <select name="search" class="select_local" @change="onChange" v-model="select.value">
           <option value="subject">제목</option>
           <option value="content">내용</option>
-          <option value="writer">작성자</option>
+          <!-- <option value="writer">작성자</option> -->
         </select>
       </div>
-      <!-- // select -->
+      <!-- // group_select -->
 
       <Input :attribute="{ type: 'search', name: 'keyword', id: 'keyword' }" v-model="keyword" />
 
-      <!-- <input-component :attribute="{ className: 'search' }">
-        <span>
-          <input type="search" id="keyword" name="keyword" v-model="keyword" />
-        </span>
-      </input-component> -->
-
-      <rectangle-link :attribute="{ className: 'search' }">
-        <router-link
-          :to="{
-            name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
-            params: {
-              service: category.value,
-              number: '1'
-            },
-            query: {
-              select: select.value,
-              keyword: keyword
-            }
-          }"
-          @click.native="submit"
-          >검색하기</router-link
-        >
-      </rectangle-link>
+      <router-link
+        :to="{
+          name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+          params: {
+            service: category.value,
+            number: '1'
+          },
+          query: {
+            select: select.value,
+            keyword: keyword
+          }
+        }"
+        class="link_global link_search"
+        @click.native="submit"
+        >검색하기</router-link
+      >
     </div>
-    <!-- // search -->
+    <!-- // group_search -->
   </form>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
 
-import RectangleLink from '@/components/common/RectangleLink'
+import DesignSelect from '@/components/common/DesignSelect'
+import Input from '@/components/common/Input'
 
 export default {
   name: 'Search',
-  components: { RectangleLink },
+  components: { DesignSelect, Input },
   props: {
     category: {
       type: Object,
@@ -104,3 +98,26 @@ export default {
   }
 }
 </script>
+
+<style>
+.group_search {
+  margin-top: 20px;
+  font-size: 0;
+}
+
+.group_search .select_global {
+  width: 30%;
+  vertical-align: top;
+}
+
+.group_search .link_global {
+  margin-top: 10px;
+}
+
+.group_search .group_field {
+  width: 70%;
+  padding-left: 10px;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+</style>

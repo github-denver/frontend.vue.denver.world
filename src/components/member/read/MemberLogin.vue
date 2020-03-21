@@ -1,15 +1,15 @@
 <template>
-  <div class="welcome">
-    <h1><router-link :to="{ name: 'Main' }">덴버월드</router-link></h1>
+  <div class="wrap_welcome">
+    <h1 class="title_local"><router-link :to="{ name: 'Main' }" class="link_local">소담</router-link></h1>
 
-    <div class="container">
-      <strong class="title">로그인</strong>
-      <p class="description">로그인해주세요!</p>
+    <div class="inner_welcome">
+      <strong class="title_welcome">로그인</strong>
+      <p class="description_welcome">로그인해주세요!</p>
 
       <login @parentSubmit="onSubmit" />
     </div>
   </div>
-  <!-- // welcome -->
+  <!-- // wrap_welcome -->
 </template>
 
 <script>

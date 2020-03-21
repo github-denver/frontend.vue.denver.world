@@ -1,23 +1,27 @@
 <template>
-  <div class="select" :attribute="{ className: 'category' }">
-    <label for="category">
-      <span class="text">{{ category.text }}</span>
-      <span class="icon"></span>
+  <div :class="['group_select', attribute.className ? attribute.className : '']">
+    <label for="category" class="label_local">
+      <span class="text_local">{{ category.text }}</span>
+      <span class="icon_global icon_arrow"></span>
     </label>
 
-    <select name="category" @change="onChange" v-model="category.value">
+    <select name="category" class="select_local" @change="onChange" v-model="category.value">
       <optgroup v-for="(item, index) in select.data" :label="`${item.optgroup.text}`" :key="index">
         <option v-for="(item, index) in select.data[index].optgroup.option" :value="item.value" :key="index">{{ item.text }}</option>
       </optgroup>
     </select>
   </div>
-  <!-- // select -->
+  <!-- // group_select -->
 </template>
 
 <script>
 export default {
-  name: 'Select',
+  name: 'DesignSelect',
   props: {
+    attribute: {
+      type: Object,
+      required: true
+    },
     select: {
       type: Object,
       required: true

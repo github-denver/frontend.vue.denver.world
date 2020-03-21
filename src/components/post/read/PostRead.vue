@@ -19,47 +19,47 @@
         }"
       >
         <template v-slot:loading>
-          <p class="message">읽어들이는 중..</p>
+          <p class="text_message">읽어들이는 중..</p>
         </template>
       </Loading>
 
       <read v-if="post" :post="post" />
 
-      <div class="group-button" :attribute="{ className: 'half' }">
-        <div class="inner">
-          <rectangle-link :attribute="{ className: '' }">
-            <router-link
-              v-if="search.keyword"
-              :to="{
-                name: 'PostList',
-                params: { service: category.value, number: page.toString() },
-                query: { select: search.select, keyword: search.keyword }
-              }"
-              >목록으로</router-link
-            >
+      <div class="group_button">
+        <div class="inner_half">
+          <router-link
+            v-if="search.keyword"
+            :to="{
+              name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+              params: { service: category.value, number: page.toString() },
+              query: { select: search.select, keyword: search.keyword }
+            }"
+            class="link_global"
+            >목록으로</router-link
+          >
 
-            <router-link
-              v-else
-              :to="{
-                name: 'PostList',
-                params: { service: category.value, number: page.toString() }
-              }"
-              >목록으로</router-link
-            >
-          </rectangle-link>
+          <router-link
+            v-else
+            :to="{
+              name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+              params: { service: category.value, number: page.toString() }
+            }"
+            class="link_global"
+            >목록으로</router-link
+          >
         </div>
 
-        <div class="inner">
-          <rectangle-link :attribute="{ className: 'action' }">
-            <router-link :to="{ name: 'PostUpdate', params: { service: category.value, number: number.toString() }, query: { page: page.toString() } }"
-              >수정하기</router-link
-            >
-          </rectangle-link>
+        <div class="inner_half">
+          <router-link
+            :to="{ name: 'PostUpdate', params: { service: category.value, number: number.toString() }, query: { page: page.toString() } }"
+            class="link_global link_action"
+            >수정하기</router-link
+          >
 
-          <rectangle-button :attribute="{ type: 'button', className: 'delete', event: onDelete }">삭제하기</rectangle-button>
+          <rectangle-button :attribute="{ type: 'button', className: 'button_delete', event: onDelete }">삭제하기</rectangle-button>
         </div>
       </div>
-      <!-- // group-button -->
+      <!-- // group_button -->
     </div>
     <!-- // contents -->
   </div>
@@ -75,13 +75,11 @@ import Loading from '@/components/common/Loading'
 import Read from '@/components/post/read/Read'
 
 import RectangleButton from '@/components/common/RectangleButton'
-import RectangleLink from '@/components/common/RectangleLink'
-
 import api from '@/api'
 
 export default {
   name: 'PostRead',
-  components: { Read, Hgroup, Loading, RectangleButton, RectangleLink },
+  components: { Read, Hgroup, Loading, RectangleButton },
   props: {
     service: {
       type: String,
@@ -254,3 +252,5 @@ export default {
   }
 }
 </script>
+
+<style></style>

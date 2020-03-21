@@ -14,7 +14,7 @@
                   number: '1'
                 }
               }"
-              v-on="attribute.event ? { click: attribute.event } : null"
+              @click.native="$emit('parentOnClose')"
               class="link_child"
               >{{ child.title }}</router-link
             >
@@ -26,17 +26,9 @@
 </template>
 
 <script>
-import RectangleLink from '@/components/common/RectangleLink'
-
 export default {
   name: 'navigation',
-  components: { RectangleLink },
-  props: {
-    attribute: {
-      type: Object,
-      required: true
-    }
-  },
+  components: {},
   data() {
     return {
       navigation: [

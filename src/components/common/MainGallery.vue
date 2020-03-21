@@ -40,7 +40,7 @@
       :stagePadding="attribute.slider.stagePadding"
       :nav="attribute.slider.nav"
       :dots="attribute.slider.dots"
-      class="owl"
+      class="group_owl"
     >
       <router-link
         v-for="(list, index) in gallery.list"
@@ -55,7 +55,9 @@
             page: 1
           }
         }"
+        class="link_owl"
       >
+        {{ list.category }}
         <Thumbnail
           :attribute="{
             style: {
@@ -114,3 +116,19 @@ export default {
   }
 }
 </script>
+
+<style>
+.main_gallery {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e9e9e9;
+}
+
+.main_gallery .group_owl {
+  margin: 10px -10px 0;
+}
+
+.main_gallery .owl-stage {
+  padding-left: 10px !important;
+}
+</style>

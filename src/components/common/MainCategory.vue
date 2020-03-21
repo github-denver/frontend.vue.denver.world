@@ -3,7 +3,7 @@
     <Hgroup
       :attribute="{
         title: attribute.title,
-        component: 'Main',
+        component: attribute.component.index,
         params: {
           service: attribute.params.service,
           number: attribute.params.number
@@ -124,7 +124,7 @@ export default {
   border-radius: 16px;
   font-size: 14px;
   font-weight: 700;
-  background-color: #f9f9f9;
+  background-color: #f1f1f1;
   text-align: center;
 }
 </style>

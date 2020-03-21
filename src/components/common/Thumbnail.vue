@@ -37,7 +37,7 @@ export default {
   font-size: 0.1rem;
   line-height: 1;
   color: transparent;
-  background-color: #f9f9f9;
+  background-color: #f1f1f1;
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: cover;

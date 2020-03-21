@@ -4,7 +4,6 @@ import Router from 'vue-router'
 import Main from '@/components/common/Main'
 
 import AppHeader from '@/components/common/AppHeader'
-// import AppHeaderBack from '@/components/common/AppHeaderBack'
 import AppMenu from '@/components/common/AppMenu'
 
 import AppFooter from '@/components/common/AppFooter'
@@ -21,10 +20,10 @@ import PostUpdate from '@/components/post/update/PostUpdate'
 
 import GalleryList from '@/components/gallery/list/GalleryList'
 
-import ArticleList from '@/components/article/list/ArticleList'
-import ArticleCreate from '@/components/article/create/ArticleCreate'
+// import ArticleList from '@/components/article/list/ArticleList'
+// import ArticleCreate from '@/components/article/create/ArticleCreate'
 import ArticleRead from '@/components/article/read/ArticleRead'
-import ArticleUpdate from '@/components/article/update/ArticleUpdate'
+// import ArticleUpdate from '@/components/article/update/ArticleUpdate'
 
 import store from '@/store'
 
@@ -115,7 +114,7 @@ export default new Router({
         default: true
       }
     },
-    {
+    /* {
       path: '/article/:service/create',
       name: 'ArticleCreate',
       components: {
@@ -136,8 +135,8 @@ export default new Router({
 
         next()
       }
-    },
-    {
+    }, */
+    /* {
       path: '/article/:service/:number/edit',
       name: 'ArticleUpdate',
       components: {
@@ -192,7 +191,7 @@ export default new Router({
             next(false)
           })
       }
-    },
+    }, */
     {
       path: '/gallery/:service/list/:number',
       name: 'GalleryList',

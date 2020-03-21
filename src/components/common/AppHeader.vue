@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <h1 class="title_local"><router-link :to="{ name: 'Main' }" class="link_local">덴버월드</router-link></h1>
+    <h1 class="title_local"><router-link :to="{ name: 'Main' }" class="link_local">소담</router-link></h1>
 
     <square-button :attribute="{ type: 'button', className: 'button_hamburger', event: onClose }">
       <template v-slot:icon>

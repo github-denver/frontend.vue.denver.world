@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="contents" :attribute="{ design: 'write' }">
+    <div class="contents create">
       <create :category2="service" @parentSubmit="onSubmit" />
     </div>
     <!-- // contents -->

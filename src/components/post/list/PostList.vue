@@ -19,7 +19,7 @@
         }"
       >
         <template v-slot:loading>
-          <p class="message">읽어들이는 중..</p>
+          <p class="text_message">읽어들이는 중..</p>
         </template>
       </Loading>
 
@@ -29,19 +29,17 @@
         }"
       >
         <template v-slot:empty>
-          <p class="message">글이 존재하지 않습니다</p>
+          <p class="text_message">글이 존재하지 않습니다</p>
         </template>
       </Empty>
 
       <list v-if="loading" :number="number" :posts="posts" :category="category" />
 
-      <div class="group-button" :attribute="{ className: 'half' }">
-        <div class="inner"></div>
+      <div class="group_button">
+        <div class="inner_half"></div>
 
-        <div class="inner">
-          <rectangle-link :attribute="{ className: 'action' }">
-            <router-link :to="{ name: 'PostCreate', params: { service: category.value } }">글쓰기</router-link>
-          </rectangle-link>
+        <div class="inner_half">
+          <router-link :to="{ name: 'PostCreate', params: { service: category.value } }" class="link_global link_action">글쓰기</router-link>
         </div>
       </div>
       <!-- // group-button -->
@@ -65,8 +63,6 @@ import Hgroup from '@/components/common/Hgroup'
 import Loading from '@/components/common/Loading'
 import Empty from '@/components/common/Empty'
 
-import RectangleLink from '@/components/common/RectangleLink'
-
 export default {
   name: 'PostList',
   components: {
@@ -75,8 +71,7 @@ export default {
     Search,
     Hgroup,
     Loading,
-    Empty,
-    RectangleLink
+    Empty
   },
   props: {
     service: {

@@ -1,10 +1,10 @@
 <template>
-  <ul class="gallery-list">
+  <ul class="list_gallery">
     <li v-for="post in posts" :key="post.number">
       <router-link
         v-if="search.keyword"
         :to="{
-          name: 'PostRead',
+          name: post.category !== 'library' ? 'PostRead' : 'ArticleRead',
           params: { service: category.value, number: post.number.toString() },
           query: {
             select: search.select,
@@ -12,7 +12,7 @@
             page: number.toString()
           }
         }"
-        class="router-link"
+        class="link_gallery"
       >
         <Thumbnail
           :attribute="{
@@ -32,11 +32,11 @@
       <router-link
         v-else
         :to="{
-          name: 'PostRead',
+          name: post.category !== 'library' ? 'PostRead' : 'ArticleRead',
           params: { service: category.value, number: post.number.toString() },
           query: { page: number.toString() }
         }"
-        class="router-link"
+        class="link_gallery"
       >
         <Thumbnail
           :attribute="{
@@ -92,3 +92,19 @@ export default {
   }
 }
 </script>
+
+<style>
+.list_gallery {
+  margin-top: 10px;
+}
+
+.list_gallery li + li {
+  margin-top: 10px;
+}
+
+.list_gallery .link_gallery {
+  display: block;
+  position: relative;
+  font-size: 12px;
+}
+</style>

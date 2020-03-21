@@ -1,19 +1,19 @@
 <template>
-  <div id="container">
-    <div class="contents type_write">
-      <post-edit-form :service="service" :post="post" @parentSubmit="onSubmit" />
+  <div class="container">
+    <div class="contents edit">
+      <update :service="service" :post="post[0]" @parentSubmit="onSubmit" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import PostEditForm from '@/components/post/update/PostEditForm'
+import Update from '@/components/post/update/Update'
 import api from '@/api'
 
 export default {
   name: 'PostUpdate',
-  components: { PostEditForm },
+  components: { Update },
   props: {
     service: {
       type: String,
