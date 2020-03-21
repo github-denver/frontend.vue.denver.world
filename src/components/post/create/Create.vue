@@ -16,7 +16,7 @@
       <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="content"></vue-editor>
 
       <div class="post_footer">
-        <Input :attribute="{ type: 'file', id: 'thumbnail', title: '대표 이미지', className: 'full' }" v-model="thumbnail" />
+        <Input :attribute="{ type: 'file', id: 'thumbnail', title: '대표 이미지', className: 'full' }" v-model="thumbnail" @parentChange="onPictureChange" />
       </div>
     </div>
 
@@ -126,7 +126,11 @@ export default {
       subject: '',
       content: '',
       // download: ''
-      thumbnail: ''
+      thumbnail: '',
+      picture: {
+        files: null,
+        result: null
+      }
     }
   },
   created() {
@@ -139,13 +143,17 @@ export default {
     ...mapGetters(['path', 'uploads'])
   },
   methods: {
+    onPictureChange(payload) {
+      this.picture.files = payload.get('files')
+      this.picture.result = payload.get('result')
+    },
     submit() {
       const { category, subject, content } = this
       console.log('[PostCreateForm.vue] submit() → category: ', category)
       console.log('[PostCreateForm.vue] submit() → subject: ', subject)
       console.log('[PostCreateForm.vue] submit() → content: ', content)
 
-      const thumbnail = this.thumbnail // this.$refs.picture.files[0]
+      const thumbnail = this.picture.files // this.$refs.picture.files[0]
       console.log('★[PostCreateForm.vue] methods() → submit → thumbnail: ', thumbnail)
 
       const formData = new FormData()
@@ -186,7 +194,7 @@ export default {
           const name = result.data.image[0].filename
           console.log('[PostCreateForm.vue] methods() → handleImageAdded → name: ', name)
 
-          Editor.insertEmbed(cursorLocation, 'image', `${path}${url}`)
+          Editor.insertEmbed(cursorLocation, 'image', `${this.path}${url}`)
 
           resetUploader()
 

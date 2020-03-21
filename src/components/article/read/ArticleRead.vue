@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="wrap_visual" v-if="post">
-      <div class="thumbnail_visual" :style="{ 'background-image': `url('${path}/${uploads}/${post[0].upload2}')` }"></div>
+      <div class="thumbnail_visual" :style="{ 'background-image': `url('${path}/${uploads}/${post[0].thumbnail}')` }"></div>
 
       <div class="post_header">
         <div class="inner_local outer_cell">

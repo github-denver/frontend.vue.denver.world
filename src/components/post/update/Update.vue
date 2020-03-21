@@ -277,7 +277,7 @@ export default {
           const name = result.data.image.filename
           console.log('[Update.vue] methods() → handleImageAdded → name: ', name)
 
-          Editor.insertEmbed(cursorLocation, 'image', `${path}${url}`)
+          Editor.insertEmbed(cursorLocation, 'image', `${this.path}${url}`)
 
           resetUploader()
 

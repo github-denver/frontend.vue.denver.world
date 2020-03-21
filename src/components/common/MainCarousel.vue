@@ -59,7 +59,7 @@
             style: {
               paddingTop: '52.734375%'
             },
-            thumbnail: list.upload2,
+            thumbnail: list.thumbnail,
             subject: list.subject
           }"
         >

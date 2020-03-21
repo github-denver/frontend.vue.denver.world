@@ -2,9 +2,21 @@
   <span :class="['group_field', attribute.className]">
     <label v-if="attribute.title" :for="attribute.id" class="label_local">{{ attribute.title }}</label>
     <span class="box_field">
-      <input v-if="attribute.value" :type="attribute.type" :name="attribute.keyword" :id="attribute.id" :value="value" @change="onChange" class="field_local" />
+      <fragment v-if="attribute.type !== 'file'">
+        <input
+          v-if="attribute.value"
+          :type="attribute.type"
+          :name="attribute.id"
+          :id="attribute.id"
+          :value="value"
+          @change="onChange"
+          class="field_local 111"
+        />
 
-      <input v-else :type="attribute.type" :name="attribute.keyword" :id="attribute.id" class="field_local" @input="$emit('input', $event.target.value)" />
+        <input v-else :type="attribute.type" :name="attribute.id" :id="attribute.id" class="field_local 222" @input="$emit('input', $event.target.value)" />
+      </fragment>
+
+      <input v-else :type="attribute.type" :name="attribute.id" :id="attribute.id" class="field_local 333" @change="onUpload" />
     </span>
   </span>
 </template>
@@ -20,7 +32,9 @@ export default {
   },
   data() {
     return {
-      value: ''
+      value: '',
+      files: null,
+      result: null
     }
   },
   created() {
@@ -35,6 +49,52 @@ export default {
       console.log('methods → updateValue → this.value: ', this.value)
 
       this.$emit('input', event.target.value)
+    },
+    onUpload(event) {
+      console.log('window.FileReader: ', window.FileReader)
+
+      console.log(' ')
+
+      if (window.FileReader) {
+        console.log('event.target.files[0]: ', event.target.files[0])
+        console.log('event.target.files[0].type: ', event.target.files[0].type)
+
+        console.log(' ')
+
+        console.log('event.target.files[0].type.match(/image/): ', event.target.files[0].type.match(/image\//))
+        console.log('!event.target.files[0].type.match(/image/): ', !event.target.files[0].type.match(/image\//))
+
+        console.log(' ')
+
+        // 이미지 파일만 통과합니다.
+        if (!event.target.files[0].type.match(/image\//)) return
+
+        // 읽기
+        const reader = new FileReader()
+        reader.readAsDataURL(event.target.files[0])
+
+        this.files = event.target.files[0]
+        console.log('this.files: ', this.files)
+
+        console.log(' ')
+
+        // 읽은 후
+        reader.onload = (event) => {
+          console.log('event.target: ', event.target)
+
+          console.log(' ')
+
+          this.result = event.target.result
+          // console.log('this.url: ', this.url)
+
+          const formData = new FormData()
+          formData.append('files', this.files)
+          formData.append('result', this.result)
+
+          this.$emit('parentChange', formData)
+        }
+      } else {
+      }
     }
   }
 }
