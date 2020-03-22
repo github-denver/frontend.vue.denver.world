@@ -182,7 +182,7 @@ export default {
   },
   created() {
     api
-      .get(`/api/`)
+      .get('/api/', { headers: { Pragma: 'no-cache' } })
       .then((response) => {
         this.notice.list = response.data.notice
         this.notice.loading = true
