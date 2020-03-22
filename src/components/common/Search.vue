@@ -7,7 +7,12 @@
           <span class="icon_global icon_arrow"></span>
         </label>
 
-        <select name="search" class="select_local" @change="onChange" v-model="select.value">
+        <select
+          name="search"
+          class="select_local"
+          @change="onChange"
+          v-model="select.value"
+        >
           <option value="subject">제목</option>
           <option value="content">내용</option>
           <!-- <option value="writer">작성자</option> -->
@@ -15,11 +20,18 @@
       </div>
       <!-- // group_select -->
 
-      <Input :attribute="{ type: 'search', name: 'keyword', id: 'keyword' }" v-model="keyword" />
+      <Input
+        :attribute="{ type: 'search', name: 'keyword', id: 'keyword' }"
+        v-model="keyword"
+      />
 
       <router-link
         :to="{
-          name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+          name:
+            this.$route.params.service !== 'gallery' &&
+            this.$route.params.service !== 'library'
+              ? 'PostList'
+              : 'GalleryList',
           params: {
             service: category.value,
             number: '1'
@@ -70,24 +82,19 @@ export default {
     ...mapState(['search'])
   },
   created() {
-    console.log('☆ [Search.vue] created() → this.category: ', this.category)
-    console.log('☆ [Search.vue] created() → this.search.keyword: ', this.search.keyword)
-
     this.keyword = this.search.keyword
-    console.log('[Search.vue] created() → this.keyword: ', this.keyword)
+    // console.log('[Search.vue] created() → this.keyword: ', this.keyword)
   },
   methods: {
     ...mapActions(['fetchPostList']),
     onChange(event) {
       this.select.text = event.target.options[event.target.selectedIndex].text
-      console.log('▼ [Search.vue] methods() → onChange → this.select.text: ', this.select.text)
+      // console.log('[Search.vue] methods() → onChange → this.select.text: ', this.select.text)
 
       this.select.value = event.target.value
-      console.log('▼ [Search.vue] methods() → onChange → this.select.text: ', this.select.value)
+      // console.log('[Search.vue] methods() → onChange → this.select.text: ', this.select.value)
     },
     submit() {
-      console.log('○ [Search.vue] methods() → onChange → this.keyword: ', this.keyword)
-
       this.fetchPostList({
         category: this.category.value,
         number: 1,

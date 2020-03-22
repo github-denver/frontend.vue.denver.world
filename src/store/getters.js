@@ -1,10 +1,13 @@
 export default {
   isAuthorized(state) {
     const { accessToken, user } = state
-    console.log('[getters.js] isAuthorized () → state: ', state)
+    // console.log('[getters.js] isAuthorized () → accessToken: ', accessToken)
+    // console.log('[getters.js] isAuthorized () → user: ', user)
 
-    console.log('[getters.js] isAuthorized () → accessToken.length > 0 && !user: ', accessToken.length > 0 && !!user)
-    return accessToken.length > 0 && !!user
+    const result = accessToken.length > 0 && !!user
+    console.log('[getters.js] isAuthorized () → result: ', result)
+
+    return result
   },
   path() {
     return 'http://localhost:3000'

@@ -29,11 +29,15 @@ export default {
   },
   methods: {
     onSubmit(payload) {
-      const { category, subject, content, download, thumbnail, upload2 } = payload
-      console.log('[PostUpdate.vue] methods() → onSubmit → payload: ', payload)
-
+      const {
+        category,
+        subject,
+        content,
+        download,
+        thumbnail,
+        upload2
+      } = payload
       const { number } = this.post[0]
-      console.log('[PostUpdate.vue] methods() → onSubmit → this.post[0]: ', this.post[0])
 
       api
         .post(`/api/board/${category}/modify/${number}`, {
@@ -46,13 +50,22 @@ export default {
           upload2
         })
         .then((response) => {
-          console.log('[PostUpdate.vue] 글 수정에 성공했어요! response: ', response)
-
           alert('글 수정에 성공했어요!')
 
-          console.log('[PostUpdate.vue] 글 수정에 성공했어요! response.data.number.toString(): ', response.data.number.toString())
-          console.log('[PostUpdate.vue] 글 수정에 성공했어요! typeof response.data.number.toString() || 1: ', response.data.number.toString() || 1)
-          console.log('[PostUpdate.vue] 글 수정에 성공했어요! typeof response.data.number.toString(): ', typeof response.data.number.toString())
+          console.log('[PostUpdate.vue] 글 수정에 성공했어요!')
+          console.log('[PostUpdate.vue] response: ', response)
+          console.log(
+            '[PostUpdate.vue] response.data.number.toString(): ',
+            response.data.number.toString()
+          )
+          console.log(
+            '[PostUpdate.vue] typeof response.data.number.toString() || 1: ',
+            response.data.number.toString() || 1
+          )
+          console.log(
+            '[PostUpdate.vue] typeof response.data.number.toString(): ',
+            typeof response.data.number.toString()
+          )
 
           this.$router.push({
             name: 'PostRead',
@@ -66,21 +79,28 @@ export default {
           })
         })
         .catch((error) => {
-          console.log('[PostUpdate.vue] 글 수정에 실패했어요.. ㅠㅜ error: ', error)
-          console.log('[PostUpdate.vue] 글 수정에 실패했어요.. ㅠㅜ error.message: ', error.message)
-          console.log('[PostUpdate.vue] 글 수정에 실패했어요.. ㅠㅜ error.response: ', error.response)
-          console.log('[PostUpdate.vue] 글 수정에 실패했어요.. ㅠㅜ error.response.data: ', error.response.data)
-          console.log('[PostUpdate.vue] 글 수정에 실패했어요.. ㅠㅜ error.response.status: ', error.response.status)
-
           if (error.response.status === 401) {
-            alert('로그인해주세요!')
+            alert('로그인해 주세요!')
           } else {
-            alert('오류.. ㅠㅜ')
+            alert('글 수정에 실패했어요.. ㅠㅜ')
 
-            console.log('[PostUpdate.vue] error.response.status: ', error.response.status)
+            console.log(
+              '[PostUpdate.vue] error.response.status: ',
+              error.response.status
+            )
           }
 
-          alert('글 수정에 실패했어요.. ㅠㅜ')
+          console.log('[PostUpdate.vue] error: ', error)
+          console.log('[PostUpdate.vue] error.message: ', error.message)
+          console.log('[PostUpdate.vue] error.response: ', error.response)
+          console.log(
+            '[PostUpdate.vue] error.response.data: ',
+            error.response.data
+          )
+          console.log(
+            '[PostUpdate.vue] error.response.status: ',
+            error.response.status
+          )
         })
     }
   }

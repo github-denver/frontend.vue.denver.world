@@ -3,7 +3,7 @@
     <li v-if="pagination.current > 1">
       <router-link
         :to="{
-          name: 'PostList',
+          name: component,
           params: { number: (pagination.current - 1).toString() },
           query: { select: search.select, keyword: search.keyword }
         }"
@@ -15,17 +15,17 @@
       <router-link
         v-if="pagination.current === i"
         :to="{
-          name: 'PostList',
+          name: component,
           params: { number: i.toString() },
           query: { select: search.select, keyword: search.keyword }
         }"
-        class="link_pagination"
+        class="link_pagination current"
         >{{ i }}</router-link
       >
       <router-link
         v-else
         :to="{
-          name: 'PostList',
+          name: component,
           params: { number: i.toString() },
           query: { select: search.select, keyword: search.keyword }
         }"
@@ -36,7 +36,7 @@
     <li v-if="pagination.current < pagination.total">
       <router-link
         :to="{
-          name: 'PostList',
+          name: component,
           params: { number: (pagination.current + 1).toString() },
           query: { select: search.select, keyword: search.keyword }
         }"
@@ -50,7 +50,7 @@
     <li v-if="pagination.current > 1">
       <router-link
         :to="{
-          name: 'PostList',
+          name: component,
           params: { number: (pagination.current - 1).toString() }
         }"
         class="link_pagination"
@@ -58,16 +58,34 @@
       >
     </li>
     <li v-for="(i, index) in pagination2" :key="index">
-      <router-link v-if="pagination.current === i" :to="{ name: 'PostList', params: { number: i.toString() } }" :key="i" class="link_pagination current">{{
-        i
-      }}</router-link>
+      <router-link
+        v-if="pagination.current === i"
+        :to="{
+          name: component,
+          params: { number: i.toString() }
+        }"
+        :key="i"
+        class="link_pagination current
+      "
+        >{{ i }}</router-link
+      >
 
-      <router-link v-else :to="{ name: 'PostList', params: { number: i.toString() } }" class="link_pagination">{{ i }}</router-link>
+      <router-link
+        v-else
+        :to="{
+          name: component,
+          params: {
+            number: i.toString()
+          }
+        }"
+        class="link_pagination"
+        >{{ i }}</router-link
+      >
     </li>
     <li v-if="pagination.current < pagination.total">
       <router-link
         :to="{
-          name: 'PostList',
+          name: component,
           params: { number: (pagination.current + 1).toString() }
         }"
         class="link_pagination"
@@ -82,6 +100,18 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Pagination',
+  data() {
+    return {
+      component: ''
+    }
+  },
+  created() {
+    if (this.$route.params.service === 'library') {
+      this.component = 'GalleryList'
+    } else {
+      this.component = 'PostList'
+    }
+  },
   computed: {
     ...mapState(['pagination', 'search']),
     pagination2() {

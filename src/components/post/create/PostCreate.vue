@@ -23,21 +23,25 @@ export default {
   components: { Create },
   methods: {
     onSubmit(payload) {
-      console.log('★[PostCreate.vue] methods() → onSubmit → payload: ', payload)
-
       api
         .post(`/api/board/${payload.get('category')}/write`, payload)
         .then((response) => {
-          console.log('[PostCreate.vue] 글 등록에 성공했어요! response: ', response)
-
           alert('글 등록에 성공했어요!')
 
-          console.log('[PostCreate.vue] 글 등록에 성공했어요! response.data.number.toString(): ', response.data.number.toString())
-          console.log('[PostCreate.vue] 글 등록에 성공했어요! typeof response.data.number.toString() || 1: ', response.data.number.toString() || 1)
-          console.log('[PostCreate.vue] 글 등록에 성공했어요! typeof response.data.number.toString(): ', typeof response.data.number.toString())
+          console.log('[PostCreate.vue] 글 등록에 성공했어요!')
+          console.log('[PostCreate.vue] response: ', response)
+
+          let service = this.$route.params.service
+          let component = ''
+
+          if (service === 'library') {
+            component = 'ArticleRead'
+          } else {
+            component = 'PostRead'
+          }
 
           this.$router.push({
-            name: 'PostRead',
+            name: component,
             params: {
               service: response.data.service,
               number: response.data.number.toString()
@@ -48,19 +52,33 @@ export default {
           })
         })
         .catch((error) => {
-          console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ error: ', error)
-          console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ error.message: ', error.message)
-          console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ error.response: ', error.response)
-          console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ error.response.data: ', error.response.data)
-          console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ error.response.status: ', error.response.status)
+          console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ')
+          console.log('[PostCreate.vue] error: ', error)
+          console.log('[PostCreate.vue] error.message: ', error.message)
+          console.log('[PostCreate.vue] error.response: ', error.response)
+          console.log(
+            '[PostCreate.vue] error.response.data: ',
+            error.response.data
+          )
+          console.log(
+            '[PostCreate.vue] error.response.status: ',
+            error.response.status
+          )
 
           if (error.response.status === 401) {
             alert('로그인해주세요!')
           } else {
-            console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ')
-            console.log('[PostCreate.vue] error.response.data: ', error.response.data)
+            alert('글 등록에 실패했어요.. ㅠㅜ')
 
-            alert(error.response.data.message)
+            console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ')
+            console.log(
+              '[PostCreate.vue] error.response.data: ',
+              error.response.data
+            )
+            console.log(
+              '[PostCreate.vue] error.response.data.message: ',
+              error.response.data.message
+            )
           }
         })
     }

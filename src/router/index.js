@@ -29,7 +29,6 @@ import store from '@/store'
 
 Vue.use(Router)
 
-// prettier-ignore
 export default new Router({
   mode: 'history',
   routes: [
@@ -108,90 +107,12 @@ export default new Router({
       name: 'ArticleRead',
       components: {
         header: AppHeader,
-        default: ArticleRead,
+        default: ArticleRead
       },
       props: {
         default: true
       }
     },
-    /* {
-      path: '/article/:service/create',
-      name: 'ArticleCreate',
-      components: {
-        header: AppHeader,
-        default: ArticleCreate
-      },
-      props: {
-        default: true
-      },
-      beforeEnter(to, from, next) {
-        const { isAuthorized } = store.getters
-
-        if (!isAuthorized) {
-          alert('로그인 안 한 상태에서는 접근할 수 없어요!')
-
-          next({ name: 'MemberLogin' })
-        }
-
-        next()
-      }
-    }, */
-    /* {
-      path: '/article/:service/:number/edit',
-      name: 'ArticleUpdate',
-      components: {
-        header: AppHeader,
-        default: ArticleUpdate
-      },
-      props: {
-        default: true
-      },
-      beforeEnter(to, from, next) {
-        const { isAuthorized } = store.getters
-        console.log('[router/index.js] ArticleUpdate → store.getters: ', store.getters)
-
-        if (!isAuthorized) {
-          alert('로그인이 필요해요!')
-
-          next({ name: 'MemberLogin' })
-        }
-
-        console.log('[router/index.js] ArticleUpdate → to.params: ', to.params)
-
-        store
-          .dispatch('fetchPost', {
-            category: to.params.service,
-            number: to.params.number
-          })
-          .then(() => {
-            console.log('[router/index.js] ArticleUpdate → store.state.post: ', store.state.post)
-            console.log('[router/index.js] ArticleUpdate → store.state.user.id: ', store.state.user.id)
-
-            const post = store.state.post[0]
-            console.log('[router/index.js] ArticleUpdate → post: ', post)
-
-            const isAuthor = post.id === store.state.user.id
-
-            if (isAuthor) {
-              console.log('[router/index.js] ArticleUpdate → 사용자가 일치합니다')
-              console.log('[router/index.js] ArticleUpdate → isAuthor: ', isAuthor)
-
-              next()
-            } else {
-              alert('게시물의 작성자만 게시물을 수정할 수 있습니다.')
-
-              next(false)
-            }
-          })
-          .catch((error) => {
-            console.error(error)
-
-            alert(error.response.data.msg)
-
-            next(false)
-          })
-      }
-    }, */
     {
       path: '/gallery/:service/list/:number',
       name: 'GalleryList',
@@ -260,7 +181,10 @@ export default new Router({
       },
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
-        console.log('[router/index.js] PostUpdate → store.getters: ', store.getters)
+        console.log(
+          '[router/index.js] PostUpdate → store.getters: ',
+          store.getters
+        )
 
         if (!isAuthorized) {
           alert('로그인이 필요해요!')
@@ -276,8 +200,14 @@ export default new Router({
             number: to.params.number
           })
           .then(() => {
-            console.log('[router/index.js] PostUpdate → store.state.post: ', store.state.post)
-            console.log('[router/index.js] PostUpdate → store.state.user.id: ', store.state.user.id)
+            console.log(
+              '[router/index.js] PostUpdate → store.state.post: ',
+              store.state.post
+            )
+            console.log(
+              '[router/index.js] PostUpdate → store.state.user.id: ',
+              store.state.user.id
+            )
 
             const post = store.state.post[0]
             console.log('[router/index.js] PostUpdate → post: ', post)
@@ -285,12 +215,12 @@ export default new Router({
             const isAuthor = post.id === store.state.user.id
 
             if (isAuthor) {
-              console.log('[router/index.js] PostUpdate → 사용자가 일치합니다')
+              console.log('[router/index.js] PostUpdate → 사용자가 일치합니다.')
               console.log('[router/index.js] PostUpdate → isAuthor: ', isAuthor)
 
               next()
             } else {
-              alert('게시물의 작성자만 게시물을 수정할 수 있습니다.')
+              alert('게시물 작성자만 수정할 수 있어요!')
 
               next(false)
             }
@@ -310,7 +240,7 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Main,
-        footer: AppFooter,
+        footer: AppFooter
       }
     }
   ]

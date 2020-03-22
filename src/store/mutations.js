@@ -7,42 +7,37 @@ import {
   DESTROY_ACCESS_TOKEN,
   DESTROY_MY_INFO
 } from './mutation-types'
+
 import Cookies from 'js-cookie'
 import api from '@/api'
 
-// prettier-ignore
 export default {
   [FETCH_POST_LIST](state, payload) {
-    console.log('[mutations.js] [FETCH_POST_LIST] → payload: ', payload)
+    // console.log('[mutations.js] [FETCH_POST_LIST] → payload: ', payload)
 
     state.posts = payload.posts
-    console.log('[mutations.js] [FETCH_POST_LIST] → state.posts: ', state.posts)
+    // console.log('[mutations.js] [FETCH_POST_LIST] → state.posts: ', state.posts)
 
     state.pagination = payload.pagination
-    console.log('[mutations.js] [FETCH_POST_LIST] → state.pagination: ', state.pagination)
+    // console.log('[mutations.js] [FETCH_POST_LIST] → state.pagination: ', state.pagination)
   },
   [SEARCH_INFO](state, payload) {
-    console.log('[mutations.js] [SEARCH_INFO] → payload: ', payload)
+    // console.log('[mutations.js] [SEARCH_INFO] → payload: ', payload)
 
     state.search.select = payload.select
-    console.log('[mutations.js] [SEARCH_INFO] → state.select: ', state.select)
+    // console.log('[mutations.js] [SEARCH_INFO] → state.select: ', state.select)
 
     state.search.keyword = payload.keyword
-    console.log('[mutations.js] [SEARCH_INFO] → state.keyword: ', state.keyword)
+    // console.log('[mutations.js] [SEARCH_INFO] → state.keyword: ', state.keyword)
   },
   [FETCH_POST](state, post) {
-    console.log('[mutations.js] [FETCH_POST] → state.post: ', state.post)
-    console.log('[mutations.js] [FETCH_POST] → typeof state.post: ', typeof state.post)
-
-    console.log(' ')
-
-    console.log('[mutations.js] [FETCH_POST] → post: ', post)
-    console.log('[mutations.js] [FETCH_POST] → typeof post: ', typeof post)
+    // console.log('[mutations.js] [FETCH_POST] → state.post: ', state.post)
+    // console.log('[mutations.js] [FETCH_POST] → post: ', post)
 
     state.post = post
   },
   [SET_ACCESS_TOKEN](state, accessToken) {
-    console.log('[mutations.js] [SET_ACCESS_TOKEN] → accessToken: ', accessToken)
+    // console.log('[mutations.js] [SET_ACCESS_TOKEN] → accessToken: ', accessToken)
 
     if (accessToken) {
       state.accessToken = accessToken
@@ -51,7 +46,7 @@ export default {
     }
   },
   [SET_MY_INFO](state, user) {
-    console.log('[mutations.js] [SET_MY_INFO] → user: ', user)
+    // console.log('[mutations.js] [SET_MY_INFO] → user: ', user)
 
     if (user) {
       state.user = user

@@ -95,17 +95,12 @@ export default {
     },
     submit() {
       const { name, email } = this
-      console.log('★ name: ', name)
-      console.log('★ email: ', email)
       const picture = this.picture.files
 
       const idCheck = RegExp(/^[A-Za-z0-9_\.\-]{4,12}$/)
       const passwordCheck = RegExp(/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/)
       const nameCheck = RegExp(/^[가-힣a-zA-Z0-9]{2,6}$/)
       const emailCheck = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/)
-
-      /* alert('중지')
-      return */
 
       if (!name || !email) {
         alert('필수 정보를 입력해주세요!')

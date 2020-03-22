@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <div class="wrap_visual" v-if="post">
-      <div class="thumbnail_visual" :style="{ 'background-image': `url('${path}/${uploads}/${post[0].thumbnail}')` }"></div>
+      <div
+        class="thumbnail_visual"
+        :style="{
+          'background-image': `url('${path}/${uploads}/${post[0].thumbnail}')`
+        }"
+      ></div>
 
       <div class="post_header">
         <div class="inner_local outer_cell">
@@ -20,9 +25,17 @@
             </div>
 
             <div class="post_information">
-              <span class="text_local"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
-              <span class="text_local"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
-              <span class="text_local"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
+              <span class="text_local"
+                ><span class="screen_out">작성자</span> {{ post[0].name }}</span
+              >
+              <span class="text_local"
+                ><span class="screen_out">등록일</span>
+                {{ post[0].regdate | moment('YY.MM.DD') }}</span
+              >
+              <span class="text_local"
+                ><span class="screen_out">조회수</span>
+                {{ post[0].count }}</span
+              >
             </div>
           </div>
         </div>
@@ -44,26 +57,58 @@
       <read v-if="post" :post="post" />
 
       <div class="group_button">
-        <router-link
-          v-if="search.keyword"
-          :to="{
-            name: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
-            params: { service: category.value, number: page.toString() },
-            query: { select: search.select, keyword: search.keyword }
-          }"
-          class="link_global link_action"
-          >목록으로</router-link
-        >
+        <div class="inner_half">
+          <router-link
+            v-if="search.keyword"
+            :to="{
+              name:
+                this.$route.params.service !== 'library'
+                  ? 'PostList'
+                  : 'GalleryList',
+              params: { service: category.value, number: page.toString() },
+              query: { select: search.select, keyword: search.keyword }
+            }"
+            class="link_global"
+            >목록으로</router-link
+          >
 
-        <router-link
-          v-else
-          :to="{
-            name: this.$route.params.service !== 'library' ? 'PostList' : 'GalleryList',
-            params: { service: category.value, number: page.toString() }
-          }"
-          class="link_global link_action"
-          >목록으로</router-link
-        >
+          <router-link
+            v-else
+            :to="{
+              name:
+                this.$route.params.service !== 'library'
+                  ? 'PostList'
+                  : 'GalleryList',
+              params: { service: category.value, number: page.toString() }
+            }"
+            class="link_global"
+            >목록으로</router-link
+          >
+        </div>
+
+        <div class="inner_half">
+          <router-link
+            :to="{
+              name:
+                this.$route.params.service !== 'library'
+                  ? 'PostList'
+                  : 'GalleryList',
+              params: { service: category.value, number: number.toString() },
+              query: { page: page.toString() }
+            }"
+            class="link_global link_action"
+            >수정하기</router-link
+          >
+
+          <rectangle-button
+            :attribute="{
+              type: 'button',
+              className: 'button_delete',
+              event: onDelete
+            }"
+            >삭제하기</rectangle-button
+          >
+        </div>
       </div>
       <!-- // group-button -->
     </div>
@@ -79,12 +124,13 @@ import Picture from '@/components/common/Picture'
 import Hgroup from '@/components/common/Hgroup'
 import Read from '@/components/article/read/Read'
 import Loading from '@/components/common/Loading'
+import RectangleButton from '@/components/common/RectangleButton'
 
 import api from '@/api'
 
 export default {
   name: 'ArticleRead',
-  components: { Picture, Hgroup, Read, Loading },
+  components: { RectangleButton, Picture, Hgroup, Read, Loading },
   props: {
     service: {
       type: String,
@@ -162,37 +208,26 @@ export default {
     }
   },
   created() {
-    console.log('[PostRead.vue] created() → this.$route.params: ', this.$route.params)
-    console.log('[PostRead.vue] created() → this.$route.query: ', this.$route.query)
-
     this.page = this.$route.query.page
 
-    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
-    console.log('[PostRead.vue] created() → keyword: ', keyword)
+    const keyword =
+      typeof this.$route.query.keyword !== 'undefined'
+        ? this.$route.query.keyword
+        : ''
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log('[PostRead.vue] kcreated() → eyword.length === 0: ', keyword.length === 0)
-
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log('[PostRead.vue] created() → keyword.length === 0: ', keyword.length === 0)
-
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
     }
 
-    console.log('[PostRead.vue] created() → this.search.keyword: ', this.search.keyword)
-
     this.category.value = this.service
-    console.log('[PostRead.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
-
-    console.log('[PostRead.vue] created() → typeof this.number: ', typeof this.number)
-    console.log('[PostRead.vue] created() → typeof parseInt(this.number): ', typeof parseInt(this.number))
 
     this.fetchPost({
       category: this.category.value,
@@ -200,10 +235,9 @@ export default {
       select: select2,
       keyword: keyword2
     }).catch((error) => {
-      console.error(error)
-      console.log('[PostRead.vue] created() → error.response: ', error.response)
-
       alert(error)
+
+      console.log('[PostRead.vue] created() → error.response: ', error.response)
 
       this.$router.back()
     })
@@ -221,10 +255,13 @@ export default {
       api
         .get(`/api/board/${category}/delete/${number}`)
         .then((response) => {
-          alert('게시물이 성공적으로 삭제되었습니다.')
+          alert('게시물이 삭제됐어요!')
 
           this.$router.push({
-            name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+            name:
+              this.$route.params.service !== 'gallery'
+                ? 'PostList'
+                : 'GalleryList',
             params: {
               service: response.data.service,
               number: '1'
@@ -234,9 +271,9 @@ export default {
         .catch((error) => {
           console.error(error.response)
 
+          // UnAuthorized
           if (error.response.status === 401) {
-            // UnAuthorized
-            alert('로그인이 필요합니다.')
+            alert('로그인이 필요해요!')
           } else {
             alert(error.response.data.message)
           }
@@ -245,9 +282,14 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
+          if (
+            this.category.value ===
+            this.navigation.data[i].optgroup.option[j].value
+          ) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[j].value
+            this.category.value = this.navigation.data[i].optgroup.option[
+              j
+            ].value
 
             break loop
           }
@@ -271,6 +313,7 @@ export default {
   padding-top: 56.25%;
   background-size: cover;
 }
+
 .wrap_visual .post_header {
   position: absolute;
   bottom: 0;
@@ -279,12 +322,37 @@ export default {
   padding: 10px;
   color: #fff;
   background: rgba(0, 0, 0, 0);
-  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -moz-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(0, 0, 0, 0)),
+    color-stop(100%, rgba(0, 0, 0, 0.5))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
 }
 

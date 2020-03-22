@@ -57,7 +57,6 @@
         }"
         class="link_owl"
       >
-        {{ list.category }}
         <Thumbnail
           :attribute="{
             style: {

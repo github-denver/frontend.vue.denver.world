@@ -30,7 +30,10 @@
           <router-link
             v-if="search.keyword"
             :to="{
-              name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+              name:
+                this.$route.params.service !== 'gallery'
+                  ? 'PostList'
+                  : 'GalleryList',
               params: { service: category.value, number: page.toString() },
               query: { select: search.select, keyword: search.keyword }
             }"
@@ -41,7 +44,10 @@
           <router-link
             v-else
             :to="{
-              name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+              name:
+                this.$route.params.service !== 'gallery'
+                  ? 'PostList'
+                  : 'GalleryList',
               params: { service: category.value, number: page.toString() }
             }"
             class="link_global"
@@ -51,12 +57,23 @@
 
         <div class="inner_half">
           <router-link
-            :to="{ name: 'PostUpdate', params: { service: category.value, number: number.toString() }, query: { page: page.toString() } }"
+            :to="{
+              name: 'PostUpdate',
+              params: { service: category.value, number: number.toString() },
+              query: { page: page.toString() }
+            }"
             class="link_global link_action"
             >수정하기</router-link
           >
 
-          <rectangle-button :attribute="{ type: 'button', className: 'button_delete', event: onDelete }">삭제하기</rectangle-button>
+          <rectangle-button
+            :attribute="{
+              type: 'button',
+              className: 'button_delete',
+              event: onDelete
+            }"
+            >삭제하기</rectangle-button
+          >
         </div>
       </div>
       <!-- // group_button -->
@@ -169,10 +186,13 @@ export default {
       api
         .get(`/api/board/${category}/delete/${number}`)
         .then((response) => {
-          alert('게시물이 성공적으로 삭제되었습니다.')
+          alert('게시물이 삭제됐어요!')
 
           this.$router.push({
-            name: this.$route.params.service !== 'gallery' ? 'PostList' : 'GalleryList',
+            name:
+              this.$route.params.service !== 'gallery'
+                ? 'PostList'
+                : 'GalleryList',
             params: {
               service: response.data.service,
               number: '1'
@@ -184,7 +204,7 @@ export default {
 
           if (error.response.status === 401) {
             // UnAuthorized
-            alert('로그인이 필요합니다.')
+            alert('로그인이 필요해요!')
           } else {
             alert(error.response.data.message)
           }
@@ -193,9 +213,14 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
+          if (
+            this.category.value ===
+            this.navigation.data[i].optgroup.option[j].value
+          ) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[j].value
+            this.category.value = this.navigation.data[i].optgroup.option[
+              j
+            ].value
 
             break loop
           }
@@ -204,37 +229,26 @@ export default {
     }
   },
   created() {
-    console.log('[PostRead.vue] created() → this.$route.params: ', this.$route.params)
-    console.log('[PostRead.vue] created() → this.$route.query: ', this.$route.query)
-
     this.page = this.$route.query.page
 
-    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
-    console.log('[PostRead.vue] created() → keyword: ', keyword)
+    const keyword =
+      typeof this.$route.query.keyword !== 'undefined'
+        ? this.$route.query.keyword
+        : ''
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log('[PostRead.vue] kcreated() → eyword.length === 0: ', keyword.length === 0)
-
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log('[PostRead.vue] created() → keyword.length === 0: ', keyword.length === 0)
-
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
     }
 
-    console.log('[PostRead.vue] created() → this.search.keyword: ', this.search.keyword)
-
     this.category.value = this.service
-    console.log('[PostRead.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
-
-    console.log('[PostRead.vue] created() → typeof this.number: ', typeof this.number)
-    console.log('[PostRead.vue] created() → typeof parseInt(this.number): ', typeof parseInt(this.number))
 
     this.fetchPost({
       category: this.category.value,
@@ -242,15 +256,14 @@ export default {
       select: select2,
       keyword: keyword2
     }).catch((error) => {
-      console.error(error)
-      console.log('[PostRead.vue] created() → error.response: ', error.response)
-
       alert(error)
+
+      console.error(error)
+
+      console.log('[PostRead.vue] created() → error.response: ', error.response)
 
       this.$router.back()
     })
   }
 }
 </script>
-
-<style></style>

@@ -1,5 +1,9 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import 'babel-polyfill'
+import 'es6-promise/auto'
+require('formdata-polyfill')
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -8,18 +12,6 @@ import Cookies from 'js-cookie'
 
 import { Plugin } from 'vue-fragment'
 
-/* import './components/styled-components' */
-/*
-import './components/styled-components/header'
-import './components/styled-components/group'
-import './components/styled-components/galleryList'
-import './components/styled-components/search'
-import './components/styled-components/select'
-import './components/styled-components/input'
-import './components/styled-components/post'
-import './components/styled-components/member'
-*/
-
 Vue.config.productionTip = false
 
 Vue.use(Plugin)
@@ -27,10 +19,10 @@ Vue.use(require('vue-moment'))
 
 const init = () => {
   const savedToken = Cookies.get('accessToken')
-  console.log('[main.js] init () → savedToken: ', savedToken)
+  // console.log('[main.js] init () → savedToken: ', savedToken)
 
   if (savedToken) {
-    console.log('[main.js] init () → savedToken: ', savedToken)
+    // console.log('[main.js] init () → savedToken: ', savedToken)
 
     return store.dispatch('signinByToken', savedToken)
   } else {

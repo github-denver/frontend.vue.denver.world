@@ -11,5 +11,10 @@
     ],
     "stage-2"
   ],
-  "plugins": ["transform-vue-jsx", "transform-runtime", ["transform-remove-console", { "exclude": ["error", "warn"] }]]
+  "plugins": [
+    "transform-es2015-destructuring",
+    "transform-vue-jsx",
+    "transform-runtime"
+    // ["transform-remove-console", { "exclude": ["error", "warn"] }]
+  ]
 }

@@ -183,10 +183,9 @@ caption {
   vertical-align: top;
 }
 
-.group_button .button_global2 ~ .button_global2 {
-  margin-top: 10px;
-}
-
+.group_button .button_global2 ~ .button_global2,
+.group_button .button_global2 ~ .link_global,
+.group_button .link_global ~ .link_global,
 .group_button .link_global ~ .button_global2 {
   margin-top: 10px;
 }
@@ -300,10 +299,6 @@ caption {
   display: table;
   width: 100%;
   padding: 10px 0;
-}
-
-.post_container {
-  /* padding: 0 10px; */
 }
 
 .post_container .title_local {

@@ -1,5 +1,5 @@
 <template>
-  <div class="post_read">
+  <div class="group_post read">
     <div class="post_header outer_cell">
       <Picture
         :attribute="{
@@ -31,7 +31,7 @@
       <vue-editor></vue-editor>
     </div>
   </div>
-  <!-- // post_read -->
+  <!-- // group_post -->
 </template>
 
 <script>
@@ -40,7 +40,7 @@ import { VueEditor } from 'vue2-editor'
 import Picture from '@/components/common/Picture'
 
 export default {
-  name: 'PostView',
+  name: 'Read',
   components: { VueEditor, Picture },
   props: {
     post: {
@@ -55,16 +55,17 @@ export default {
 </script>
 
 <style>
-.post_read {
+.group_post.read {
   margin-top: 10px;
 }
-.post_read .group_picture {
+
+.group_post.read .group_picture {
   overflow: hidden;
   float: left;
   margin-right: 10px;
 }
 
-.post_read .post_header {
+.group_post.read .post_header {
   width: auto;
 }
 </style>

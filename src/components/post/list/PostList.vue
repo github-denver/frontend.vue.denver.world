@@ -33,13 +33,22 @@
         </template>
       </Empty>
 
-      <list v-if="loading" :number="number" :posts="posts" :category="category" />
+      <list
+        v-if="loading"
+        :number="number"
+        :posts="posts"
+        :category="category"
+      />
 
       <div class="group_button">
         <div class="inner_half"></div>
 
         <div class="inner_half">
-          <router-link :to="{ name: 'PostCreate', params: { service: category.value } }" class="link_global link_action">글쓰기</router-link>
+          <router-link
+            :to="{ name: 'PostCreate', params: { service: category.value } }"
+            class="link_global link_action"
+            >글쓰기</router-link
+          >
         </div>
       </div>
       <!-- // group-button -->
@@ -158,9 +167,14 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
+          if (
+            this.category.value ===
+            this.navigation.data[i].optgroup.option[j].value
+          ) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[j].value
+            this.category.value = this.navigation.data[i].optgroup.option[
+              j
+            ].value
 
             break loop
           }
@@ -169,39 +183,24 @@ export default {
     }
   },
   created() {
-    console.log('[PostList.vue] created() → this.loading: ', this.loading)
-    console.log('[PostList.vue] created() → this.$route.query.select: ', this.$route.query.select)
-    console.log('[PostList.vue] created() → this.$route.query.keyword: ', this.$route.query.keyword)
-
-    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
-    console.log('[PostList.vue] created() → keyword: ', keyword)
+    const keyword =
+      typeof this.$route.query.keyword !== 'undefined'
+        ? this.$route.query.keyword
+        : ''
 
     let select2 = ''
     let keyword2 = ''
 
     if (keyword.length === 0) {
-      console.log('[PostList.vue] created() → keyword.length === 0: ', keyword.length === 0)
-
       this.searchInfo({ select: '', keyword: '' })
     } else {
-      console.log('[PostList.vue] created() → keyword.length === 0: ', keyword.length === 0)
-
       select2 = this.$route.query.select
       keyword2 = this.$route.query.keyword
     }
 
-    console.log('[PostList.vue] created() → this.number: ', this.number)
-
     this.category.value = this.service
-    console.log('[PostList.vue] created() → this.category.value: ', this.category.value)
 
     this.onChange()
-
-    console.log('[PostList.vue] created() → this.search.select: ', this.search.select)
-    console.log('[PostList.vue] created() → typeof this.search.select: ', typeof this.search.select)
-
-    console.log('[PostList.vue] created() → this.search.keyword: ', this.search.keyword)
-    console.log('[PostList.vue] created() → typeof this.search.keyword: ', typeof this.search.keyword)
 
     this.fetchPostList({
       category: this.category.value,
@@ -209,10 +208,9 @@ export default {
       select: select2,
       keyword: keyword2
     }).then((response) => {
-      console.log('* [PostList.vue] created() → response: ', response)
+      // console.log('[PostList.vue] created() → response: ', response)
 
       this.loading = true
-      console.log('[PostList.vue] created() → this.loading: ', this.loading)
     })
   }
 }

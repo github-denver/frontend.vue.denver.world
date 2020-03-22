@@ -6,7 +6,13 @@
       </span>
     </label>
 
-    <input type="file" :name="attribute.id" :id="attribute.id" class="field_local" @change="onChange" />
+    <input
+      type="file"
+      :name="attribute.id"
+      :id="attribute.id"
+      class="field_local"
+      @change="onChange"
+    />
   </div>
 </template>
 
@@ -27,21 +33,7 @@ export default {
   },
   methods: {
     onChange(event) {
-      console.log('window.FileReader: ', window.FileReader)
-
-      console.log(' ')
-
       if (window.FileReader) {
-        console.log('event.target.files[0]: ', event.target.files[0])
-        console.log('event.target.files[0].type: ', event.target.files[0].type)
-
-        console.log(' ')
-
-        console.log('event.target.files[0].type.match(/image/): ', event.target.files[0].type.match(/image\//))
-        console.log('!event.target.files[0].type.match(/image/): ', !event.target.files[0].type.match(/image\//))
-
-        console.log(' ')
-
         // 이미지 파일만 통과합니다.
         if (!event.target.files[0].type.match(/image\//)) return
 
@@ -50,18 +42,12 @@ export default {
         reader.readAsDataURL(event.target.files[0])
 
         this.files = event.target.files[0]
-        console.log('this.files: ', this.files)
-
-        console.log(' ')
+        // console.log('this.files: ', this.files)
 
         // 읽은 후
         reader.onload = (event) => {
-          console.log('event.target: ', event.target)
-
-          console.log(' ')
-
           this.result = event.target.result
-          // console.log('this.url: ', this.url)
+          // console.log('this.result: ', this.result)
 
           const formData = new FormData()
           formData.append('files', this.files)
@@ -100,6 +86,7 @@ export default {
   height: 30px;
   background-position: -70px -35px;
 }
+
 .group_upload .field_local[type='file'] {
   position: absolute;
   top: 0;

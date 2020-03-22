@@ -1,16 +1,18 @@
 <template>
-  <div :class="['group_picture', attribute.className]">
-    <fragment v-if="attribute.state !== 'board'">
-      <img
-        v-if="attribute.authorized"
-        :src="!!attribute.picture ? attribute.picture : `${path}/${uploads}/${user.picture}`"
-        class="thumbnail_local 111"
-        :alt="user.name"
-      />
-      <img v-else :src="!!attribute.picture ? attribute.picture : `${path}/${uploads}/default_picture.png`" class="thumbnail_local 222" alt="" />
-    </fragment>
+  <div v-if="attribute.state !== 'board'" :class="['group_picture', attribute.className]">
+    <img
+      v-if="attribute.authorized"
+      :src="!!attribute.picture ? attribute.picture : `${path}/${uploads}/${user.picture}`"
+      class="thumbnail_local"
+      :alt="user.name"
+    />
+    <img v-else :src="!!attribute.picture ? attribute.picture : `${path}/${uploads}/default_picture.png`" class="thumbnail_local" alt="" />
 
-    <img v-else :src="`${path}/${uploads}/${attribute.picture}`" class="thumbnail_local 333" alt="" />
+    <slot name="upload"></slot>
+  </div>
+
+  <div v-else :class="['group_picture', attribute.className]">
+    <img :src="`${path}/${uploads}/${attribute.picture}`" class="thumbnail_local" alt="" />
 
     <slot name="upload"></slot>
   </div>
