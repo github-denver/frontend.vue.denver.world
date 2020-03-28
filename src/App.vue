@@ -193,13 +193,13 @@ caption {
 .link_global {
   display: block;
   padding: 13px 0;
-  border: 1px solid #ff4646;
+  border: 1px solid #0074c2;
   box-sizing: border-box;
   font-family: sans-serif;
   font-size: 14px;
   font-weight: 700;
   line-height: 1;
-  color: #ff4646 !important;
+  color: #0074c2 !important;
   background-color: #fff;
   text-align: center;
 }
@@ -207,7 +207,7 @@ caption {
 .link_action {
   color: #fff !important;
   border-color: transparent;
-  background-color: #ff4646;
+  background-color: #0074c2;
 }
 
 .link_delete {

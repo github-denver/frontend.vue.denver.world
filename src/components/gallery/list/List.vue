@@ -17,7 +17,7 @@
         <Thumbnail
           :attribute="{
             style: {
-              paddingTop: '56.33802816901408%'
+              paddingTop: '56.25%'
             },
             thumbnail: post.thumbnail,
             subject: post.subject
@@ -41,7 +41,8 @@
         <Thumbnail
           :attribute="{
             style: {
-              paddingTop: '56.33802816901408%'
+              paddingTop: '56.25%',
+              backgroundPosition: '50% 50%'
             },
             thumbnail: post.thumbnail,
             subject: post.subject

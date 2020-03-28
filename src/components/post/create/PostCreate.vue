@@ -28,8 +28,8 @@ export default {
         .then((response) => {
           alert('글 등록에 성공했어요!')
 
-          console.log('[PostCreate.vue] 글 등록에 성공했어요!')
-          console.log('[PostCreate.vue] response: ', response)
+          // console.log('[PostCreate.vue] 글 등록에 성공했어요!')
+          // console.log('[PostCreate.vue] response: ', response)
 
           let service = this.$route.params.service
           let component = ''
@@ -52,33 +52,21 @@ export default {
           })
         })
         .catch((error) => {
-          console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ')
-          console.log('[PostCreate.vue] error: ', error)
-          console.log('[PostCreate.vue] error.message: ', error.message)
-          console.log('[PostCreate.vue] error.response: ', error.response)
-          console.log(
-            '[PostCreate.vue] error.response.data: ',
-            error.response.data
-          )
-          console.log(
-            '[PostCreate.vue] error.response.status: ',
-            error.response.status
-          )
+          // console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ')
+          // console.log('[PostCreate.vue] error: ', error)
+          // console.log('[PostCreate.vue] error.message: ', error.message)
+          // console.log('[PostCreate.vue] error.response: ', error.response)
+          // console.log('[PostCreate.vue] error.response.data: ', error.response.data)
+          // console.log('[PostCreate.vue] error.response.status: ', error.response.status)
 
           if (error.response.status === 401) {
             alert('로그인해주세요!')
           } else {
             alert('글 등록에 실패했어요.. ㅠㅜ')
 
-            console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ')
-            console.log(
-              '[PostCreate.vue] error.response.data: ',
-              error.response.data
-            )
-            console.log(
-              '[PostCreate.vue] error.response.data.message: ',
-              error.response.data.message
-            )
+            // console.log('[PostCreate.vue] 글 등록에 실패했어요.. ㅠㅜ')
+            // console.log('[PostCreate.vue] error.response.data: ', error.response.data)
+            // console.log('[PostCreate.vue] error.response.data.message: ', error.response.data.message)
           }
         })
     }

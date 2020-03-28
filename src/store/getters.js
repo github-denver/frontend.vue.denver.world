@@ -5,7 +5,7 @@ export default {
     // console.log('[getters.js] isAuthorized () → user: ', user)
 
     const result = accessToken.length > 0 && !!user
-    console.log('[getters.js] isAuthorized () → result: ', result)
+    // console.log('[getters.js] isAuthorized () → result: ', result)
 
     return result
   },

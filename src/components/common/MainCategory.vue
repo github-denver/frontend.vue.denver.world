@@ -9,9 +9,7 @@
           number: attribute.params.number
         }
       }"
-    >
-      {{ attribute.title }}
-    </Hgroup>
+    />
 
     <Loading
       :attribute="{
@@ -33,9 +31,16 @@
       </template>
     </Empty>
 
-    <div v-if="category.list.length && category.list.length" class="group_category">
+    <div
+      v-if="category.list.length && category.list.length"
+      class="group_category"
+    >
       <ul class="list_category">
-        <li v-for="(list, index) in category.list" :key="index" class="item_category">
+        <li
+          v-for="(list, index) in category.list"
+          :key="index"
+          class="item_category"
+        >
           <div class="box_category">
             <router-link
               :key="index"

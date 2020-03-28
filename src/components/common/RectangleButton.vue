@@ -1,5 +1,9 @@
 <template>
-  <button :type="attribute.type" :class="['button_global2', attribute.className]" v-on="attribute.event ? { click: attribute.event } : null">
+  <button
+    :type="attribute.type"
+    :class="['button_global2', attribute.className]"
+    v-on="attribute.event ? { click: attribute.event } : null"
+  >
     <slot>{{ attribute.text }}</slot>
   </button>
 </template>
@@ -20,7 +24,7 @@ export default {
 .button_global2 {
   width: 100%;
   padding: 13px 0;
-  border: 1px solid #ff4646;
+  border: 1px solid #0074c2;
   font-family: sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -32,7 +36,7 @@ export default {
 .button_action {
   color: #fff;
   border-color: transparent;
-  background-color: #ff4646;
+  background-color: #0074c2;
 }
 
 .button_delete {

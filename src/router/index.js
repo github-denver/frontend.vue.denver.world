@@ -181,10 +181,7 @@ export default new Router({
       },
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
-        console.log(
-          '[router/index.js] PostUpdate → store.getters: ',
-          store.getters
-        )
+        // console.log('[router/index.js] PostUpdate → store.getters: ', store.getters)
 
         if (!isAuthorized) {
           alert('로그인이 필요해요!')
@@ -192,7 +189,7 @@ export default new Router({
           next({ name: 'MemberLogin' })
         }
 
-        console.log('[router/index.js] PostUpdate → to.params: ', to.params)
+        // console.log('[router/index.js] PostUpdate → to.params: ', to.params)
 
         store
           .dispatch('fetchPost', {
@@ -200,23 +197,17 @@ export default new Router({
             number: to.params.number
           })
           .then(() => {
-            console.log(
-              '[router/index.js] PostUpdate → store.state.post: ',
-              store.state.post
-            )
-            console.log(
-              '[router/index.js] PostUpdate → store.state.user.id: ',
-              store.state.user.id
-            )
+            // console.log('[router/index.js] PostUpdate → store.state.post: ', store.state.post)
+            // console.log('[router/index.js] PostUpdate → store.state.user.id: ', store.state.user.id)
 
             const post = store.state.post[0]
-            console.log('[router/index.js] PostUpdate → post: ', post)
+            // console.log('[router/index.js] PostUpdate → post: ', post)
 
             const isAuthor = post.id === store.state.user.id
 
             if (isAuthor) {
-              console.log('[router/index.js] PostUpdate → 사용자가 일치합니다.')
-              console.log('[router/index.js] PostUpdate → isAuthor: ', isAuthor)
+              // console.log('[router/index.js] PostUpdate → 사용자가 일치합니다.')
+              // console.log('[router/index.js] PostUpdate → isAuthor: ', isAuthor)
 
               next()
             } else {
@@ -226,7 +217,7 @@ export default new Router({
             }
           })
           .catch((error) => {
-            console.error(error)
+            // console.error(error)
 
             alert(error.response.data.msg)
 

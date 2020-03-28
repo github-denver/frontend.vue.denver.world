@@ -27,12 +27,23 @@
         />
       </div>
 
-      <div class="board_container">
-        <vue-editor
-          useCustomImageHandler
-          @image-added="handleImageAdded"
-          v-model="content"
-        ></vue-editor>
+      <vue-editor
+        useCustomImageHandler
+        @image-added="handleImageAdded"
+        v-model="content"
+      ></vue-editor>
+
+      <div class="post_footer">
+        <Input
+          :attribute="{
+            type: 'file',
+            id: 'thumbnail',
+            title: '대표 이미지',
+            className: 'full'
+          }"
+          v-model="thumbnail"
+          @parentChange="onPictureChange"
+        />
       </div>
     </div>
 
@@ -87,7 +98,6 @@ export default {
   data() {
     return {
       select: {
-        // 카테고리
         category: '',
         data: [
           {
@@ -96,16 +106,28 @@ export default {
               value: 'news',
               option: [
                 {
-                  text: '공지사항',
+                  text: '많이 본 소식',
+                  value: 'popular'
+                },
+                {
+                  text: '컴퓨터 &amp; 하드웨어',
+                  value: 'hardware'
+                },
+                {
+                  text: '모바일 &amp; 태블릿',
+                  value: 'mobile'
+                },
+                {
+                  text: '신작 게임 &amp; 업데이트 동영상',
+                  value: 'game'
+                },
+                {
+                  text: '넷플릭스 출시 예정 &amp; 신작 동영상',
+                  value: 'video'
+                },
+                {
+                  text: '공지사항 &amp; 업데이트',
                   value: 'notice'
-                },
-                {
-                  text: '업데이트',
-                  value: 'update'
-                },
-                {
-                  text: '이벤트',
-                  value: 'event'
                 }
               ]
             }
@@ -134,10 +156,6 @@ export default {
                 {
                   text: '음악',
                   value: 'music'
-                },
-                {
-                  text: '동영상',
-                  value: 'video'
                 }
               ]
             }
@@ -147,6 +165,11 @@ export default {
       category: '',
       subject: '',
       content: '',
+      thumbnail: '',
+      picture: {
+        files: null,
+        result: null
+      },
       page: 1
     }
   },
@@ -160,13 +183,10 @@ export default {
       }).catch((error) => {
         alert(error)
 
-        console.error(error)
+        // console.error(error)
 
-        console.log('[PostRead.vue] created() → error: ', error)
-        console.log(
-          '[PostRead.vue] created() → error.response: ',
-          error.response
-        )
+        // console.log('[PostRead.vue] created() → error: ', error)
+        // console.log('[PostRead.vue] created() → error.response: ', error.response)
 
         this.$router.back()
       })
@@ -181,13 +201,11 @@ export default {
     }
 
     if (this.post === null) {
-      console.log('[Update.vue] created() → 수정할 정보를 읽어들이는 중입니다!')
+      // console.log('[Update.vue] created() → 수정할 정보를 읽어들이는 중입니다!')
 
       post()
     } else {
-      console.log(
-        '[Update.vue] created() → 전달받은 정보를 읽어들이는 중입니다!'
-      )
+      // console.log('[Update.vue] created() → 전달받은 정보를 읽어들이는 중입니다!')
 
       data()
     }
@@ -198,14 +216,24 @@ export default {
   },
   methods: {
     ...mapActions(['fetchPost']),
+    onPictureChange(payload) {
+      this.picture.files = payload.get('files')
+      this.picture.result = payload.get('result')
+    },
     submit() {
       const { category, subject, content } = this
 
-      this.$emit('parentSubmit', {
-        category,
-        subject,
-        content
-      })
+      const number = this.post.number
+      const thumbnail = this.picture.files
+
+      const formData = new FormData()
+      formData.append('number', number)
+      formData.append('category', category)
+      formData.append('subject', subject)
+      formData.append('content', content)
+      formData.append('thumbnail', thumbnail)
+
+      this.$emit('parentSubmit', formData)
     },
     onChange(payload) {
       const { text, value } = payload
@@ -221,13 +249,10 @@ export default {
         .then((result) => {
           const folder = 'uploads'
           const url = result.data.image.imageurl
-          console.log('[Update.vue] methods() → handleImageAdded → url: ', url)
+          // console.log('[Update.vue] methods() → handleImageAdded → url: ', url)
 
           const name = result.data.image.filename
-          console.log(
-            '[Update.vue] methods() → handleImageAdded → name: ',
-            name
-          )
+          // console.log('[Update.vue] methods() → handleImageAdded → name: ', name)
 
           Editor.insertEmbed(cursorLocation, 'image', `${this.path}${url}`)
 
@@ -236,7 +261,7 @@ export default {
         .catch((error) => {
           alert('이미지 업로드에 실패했어요.. ㅠㅜ')
 
-          console.error(error)
+          // console.log(error)
         })
     }
   }

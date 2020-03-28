@@ -9,9 +9,7 @@
           number: attribute.params.number
         }
       }"
-    >
-      {{ attribute.title }}
-    </Hgroup>
+    />
 
     <Loading
       :attribute="{
@@ -60,7 +58,7 @@
         <Thumbnail
           :attribute="{
             style: {
-              paddingTop: '133.3333333333333%'
+              paddingTop: attribute.style.paddingTop
             },
             thumbnail: list.thumbnail,
             subject: list.subject

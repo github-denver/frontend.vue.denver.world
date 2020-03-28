@@ -2,9 +2,9 @@
   <div class="container">
     <div class="contents">
       <main-carousel
-        :article="article"
+        :article="popular"
         :attribute="{
-          title: '도서관',
+          title: '많이 본 소식',
           slider: {
             items: 1,
             margin: 10,
@@ -17,7 +17,7 @@
             read: 'ArticleRead'
           },
           params: {
-            service: 'library',
+            service: 'popular',
             number: '1'
           }
         }"
@@ -39,17 +39,98 @@
             read: 'ArticleRead'
           },
           params: {
-            service: 'library',
+            service: 'article',
             number: '1'
           }
         }"
       />
 
       <main-gallery
-        :gallery="gallery"
+        :gallery="hardware"
         :attribute="{
-          title: '이미지 게시판',
+          title: '컴퓨터 &amp; 하드웨어',
           className: 'gallery',
+          style: {
+            paddingTop: '56.25%'
+          },
+          slider: {
+            items: 1,
+            margin: 10,
+            stagePadding: 20,
+            nav: false,
+            dots: false
+          },
+          component: {
+            index: 'GalleryList',
+            read: 'ArticleRead'
+          },
+          params: {
+            service: 'hardware',
+            number: '1'
+          }
+        }"
+      />
+
+      <main-gallery
+        :gallery="mobile"
+        :attribute="{
+          title: '모바일 &amp; 태블릿',
+          className: 'gallery',
+          style: {
+            paddingTop: '56.25%'
+          },
+          slider: {
+            items: 1,
+            margin: 10,
+            stagePadding: 20,
+            nav: false,
+            dots: false
+          },
+          component: {
+            index: 'GalleryList',
+            read: 'ArticleRead'
+          },
+          params: {
+            service: 'mobile',
+            number: '1'
+          }
+        }"
+      />
+
+      <main-gallery
+        :gallery="game"
+        :attribute="{
+          title: '신작 게임 &amp; 업데이트 동영상',
+          className: 'gallery',
+          style: {
+            paddingTop: '56.25%'
+          },
+          slider: {
+            items: 1,
+            margin: 10,
+            stagePadding: 20,
+            nav: false,
+            dots: false
+          },
+          component: {
+            index: 'GalleryList',
+            read: 'ArticleRead'
+          },
+          params: {
+            service: 'game',
+            number: '1'
+          }
+        }"
+      />
+
+      <main-gallery
+        :gallery="video"
+        :attribute="{
+          title: '넷플릭스 출시 예정 &amp; 신작 동영상',
+          className: 'gallery',
+          style: {
+            paddingTop: '133.3333333333333%'
+          },
           slider: {
             items: 2,
             margin: 10,
@@ -59,10 +140,10 @@
           },
           component: {
             index: 'GalleryList',
-            read: 'PostRead'
+            read: 'ArticleRead'
           },
           params: {
-            service: 'gallery',
+            service: 'video',
             number: '1'
           }
         }"
@@ -90,7 +171,7 @@
         }"
       />
 
-      <main-post
+      <!-- <main-post
         :list="update"
         :attribute="{
           title: '업데이트',
@@ -111,12 +192,12 @@
             number: '1'
           }
         }"
-      />
+      /> -->
 
       <main-post
         :list="notice"
         :attribute="{
-          title: '공지사항',
+          title: '공지사항 &amp; 업데이트',
           className: 'trisection',
           slider: {
             items: 2,
@@ -154,15 +235,7 @@ export default {
   components: { MainCarousel, MainCategory, MainGallery, MainPost },
   data() {
     return {
-      notice: {
-        loading: false,
-        list: []
-      },
-      update: {
-        loading: false,
-        list: []
-      },
-      talk: {
+      category: {
         loading: false,
         list: []
       },
@@ -170,11 +243,35 @@ export default {
         loading: false,
         list: []
       },
-      article: {
+      game: {
         loading: false,
         list: []
       },
-      category: {
+      hardware: {
+        loading: false,
+        list: []
+      },
+      mobile: {
+        loading: false,
+        list: []
+      },
+      notice: {
+        loading: false,
+        list: []
+      },
+      popular: {
+        loading: false,
+        list: []
+      },
+      talk: {
+        loading: false,
+        list: []
+      },
+      update: {
+        loading: false,
+        list: []
+      },
+      video: {
         loading: false,
         list: []
       }
@@ -184,26 +281,38 @@ export default {
     api
       .get('/api/', { headers: { Pragma: 'no-cache' } })
       .then((response) => {
-        this.notice.list = response.data.notice
-        this.notice.loading = true
-
-        this.update.list = response.data.update
-        this.update.loading = true
-
-        this.talk.list = response.data.talk
-        this.talk.loading = true
+        this.category.list = response.data.category
+        this.category.loading = true
 
         this.gallery.list = response.data.gallery
         this.gallery.loading = true
 
-        this.article.list = response.data.article
-        this.article.loading = true
+        this.game.list = response.data.game
+        this.game.loading = true
 
-        this.category.list = response.data.category
-        this.category.loading = true
+        this.hardware.list = response.data.hardware
+        this.hardware.loading = true
+
+        this.mobile.list = response.data.mobile
+        this.mobile.loading = true
+
+        this.notice.list = response.data.notice
+        this.notice.loading = true
+
+        this.popular.list = response.data.popular
+        this.popular.loading = true
+
+        this.talk.list = response.data.talk
+        this.talk.loading = true
+
+        this.update.list = response.data.update
+        this.update.loading = true
+
+        this.video.list = response.data.video
+        this.video.loading = true
       })
       .catch((error) => {
-        console.error('[Main.vue] created() → error: ', error)
+        console.log('[Main.vue] created() → error: ', error)
       })
   }
 }

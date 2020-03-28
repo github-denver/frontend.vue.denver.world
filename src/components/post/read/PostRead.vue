@@ -3,15 +3,14 @@
     <div class="contents">
       <Hgroup
         :attribute="{
+          title: category.text,
           component: 'PostList',
           params: {
             service: category.value,
             number: '1'
           }
         }"
-      >
-        {{ category.text }}
-      </Hgroup>
+      />
 
       <Loading
         :attribute="{
@@ -31,7 +30,8 @@
             v-if="search.keyword"
             :to="{
               name:
-                this.$route.params.service !== 'gallery'
+                this.$route.params.service === 'notice' ||
+                this.$route.params.service === 'talk'
                   ? 'PostList'
                   : 'GalleryList',
               params: { service: category.value, number: page.toString() },
@@ -45,7 +45,8 @@
             v-else
             :to="{
               name:
-                this.$route.params.service !== 'gallery'
+                this.$route.params.service === 'notice' ||
+                this.$route.params.service === 'talk'
                   ? 'PostList'
                   : 'GalleryList',
               params: { service: category.value, number: page.toString() }
@@ -110,7 +111,6 @@ export default {
   data() {
     return {
       navigation: {
-        // 카테고리
         category: '',
         data: [
           {
@@ -119,16 +119,28 @@ export default {
               value: 'news',
               option: [
                 {
-                  text: '공지사항',
+                  text: '많이 본 소식',
+                  value: 'popular'
+                },
+                {
+                  text: '컴퓨터 &amp; 하드웨어',
+                  value: 'hardware'
+                },
+                {
+                  text: '모바일 &amp; 태블릿',
+                  value: 'mobile'
+                },
+                {
+                  text: '신작 게임 &amp; 업데이트 동영상',
+                  value: 'game'
+                },
+                {
+                  text: '넷플릭스 출시 예정 &amp; 신작 동영상',
+                  value: 'video'
+                },
+                {
+                  text: '공지사항 &amp; 업데이트',
                   value: 'notice'
-                },
-                {
-                  text: '업데이트',
-                  value: 'update'
-                },
-                {
-                  text: '이벤트',
-                  value: 'event'
                 }
               ]
             }
@@ -157,10 +169,6 @@ export default {
                 {
                   text: '음악',
                   value: 'music'
-                },
-                {
-                  text: '동영상',
-                  value: 'video'
                 }
               ]
             }
@@ -190,7 +198,8 @@ export default {
 
           this.$router.push({
             name:
-              this.$route.params.service !== 'gallery'
+              this.$route.params.service === 'notice' ||
+              this.$route.params.service === 'talk'
                 ? 'PostList'
                 : 'GalleryList',
             params: {
@@ -200,13 +209,13 @@ export default {
           })
         })
         .catch((error) => {
-          console.error(error.response)
+          // console.log(error.response)
 
           if (error.response.status === 401) {
             // UnAuthorized
             alert('로그인이 필요해요!')
           } else {
-            alert(error.response.data.message)
+            // alert(error.response.data.message)
           }
         })
     },
@@ -258,9 +267,9 @@ export default {
     }).catch((error) => {
       alert(error)
 
-      console.error(error)
+      // console.error(error)
 
-      console.log('[PostRead.vue] created() → error.response: ', error.response)
+      // console.log('[PostRead.vue] created() → error.response: ', error.response)
 
       this.$router.back()
     })

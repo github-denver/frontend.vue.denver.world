@@ -1,7 +1,9 @@
 <template>
   <div class="wrap_welcome">
     <h1 class="title_local">
-      <router-link :to="{ name: 'Main' }" class="link_local">소담</router-link>
+      <router-link :to="{ name: 'Main' }" class="link_local"
+        >덴버월드</router-link
+      >
     </h1>
 
     <div class="inner_welcome">
@@ -32,26 +34,20 @@ export default {
         .then((response) => {
           alert('회원가입에 성공했어요!')
 
-          console.log('[MemberCreate.vue] 회원가입에 성공했어요!')
-          console.log('[MemberCreate.vue] response: ', response)
+          // console.log('[MemberCreate.vue] 회원가입에 성공했어요!')
+          // console.log('[MemberCreate.vue] response: ', response)
 
           this.$router.push({ name: 'MemberLogin' })
         })
         .catch((error) => {
           alert('회원가입에 실패했어요.. ㅠㅜ')
 
-          console.log('[MemberCreate.vue] 회원가입에 실패했어요.. ㅠㅜ')
-          console.log('[MemberCreate.vue] error: ', error)
-          console.log('[MemberCreate.vue] error.message: ', error.message)
-          console.log('[MemberCreate.vue] error.response: ', error.response)
-          console.log(
-            '[MemberCreate.vue] error.response.data: ',
-            error.response.data
-          )
-          console.log(
-            '[MemberCreate.vue] error.response.data.message: ',
-            error.response.data.message
-          )
+          // console.log('[MemberCreate.vue] 회원가입에 실패했어요.. ㅠㅜ')
+          // console.log('[MemberCreate.vue] error: ', error)
+          // console.log('[MemberCreate.vue] error.message: ', error.message)
+          // console.log('[MemberCreate.vue] error.response: ', error.response)
+          // console.log('[MemberCreate.vue] error.response.data: ', error.response.data)
+          // console.log('[MemberCreate.vue] error.response.data.message: ', error.response.data.message)
         })
     }
   }

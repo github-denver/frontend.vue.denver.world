@@ -1,7 +1,9 @@
 <template>
   <div class="wrap_welcome">
     <h1 class="title_local">
-      <router-link :to="{ name: 'Main' }" class="link_local">소담</router-link>
+      <router-link :to="{ name: 'Main' }" class="link_local"
+        >덴버월드</router-link
+      >
     </h1>
 
     <div class="inner_welcome">
@@ -40,7 +42,7 @@ export default {
         .catch((error) => {
           alert('회원가입에 실패했어요.. ㅠㅜ')
 
-          console.error(error)
+          console.log(error)
         })
     }
   }

@@ -7,9 +7,9 @@
         number: attribute.params.number
       }
     }"
+    v-html="attribute.title"
     class="link_local"
   >
-    <slot></slot>
   </router-link>
 </template>
 

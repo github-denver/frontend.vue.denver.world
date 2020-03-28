@@ -29,43 +29,18 @@ export default {
   },
   methods: {
     onSubmit(payload) {
-      const {
-        category,
-        subject,
-        content,
-        download,
-        thumbnail,
-        upload2
-      } = payload
       const { number } = this.post[0]
 
       api
-        .post(`/api/board/${category}/modify/${number}`, {
-          number,
-          category,
-          subject,
-          content,
-          download,
-          thumbnail,
-          upload2
-        })
+        .post(`/api/board/${payload.get('category')}/modify/${number}`, payload)
         .then((response) => {
           alert('글 수정에 성공했어요!')
 
-          console.log('[PostUpdate.vue] 글 수정에 성공했어요!')
-          console.log('[PostUpdate.vue] response: ', response)
-          console.log(
-            '[PostUpdate.vue] response.data.number.toString(): ',
-            response.data.number.toString()
-          )
-          console.log(
-            '[PostUpdate.vue] typeof response.data.number.toString() || 1: ',
-            response.data.number.toString() || 1
-          )
-          console.log(
-            '[PostUpdate.vue] typeof response.data.number.toString(): ',
-            typeof response.data.number.toString()
-          )
+          // console.log('[PostUpdate.vue] 글 수정에 성공했어요!')
+          // console.log('[PostUpdate.vue] response: ', response)
+          // console.log('[PostUpdate.vue] response.data.number.toString(): ', response.data.number.toString())
+          // console.log('[PostUpdate.vue] typeof response.data.number.toString() || 1: ', response.data.number.toString() || 1)
+          // console.log('[PostUpdate.vue] typeof response.data.number.toString(): ', typeof response.data.number.toString())
 
           this.$router.push({
             name: 'PostRead',
@@ -84,23 +59,14 @@ export default {
           } else {
             alert('글 수정에 실패했어요.. ㅠㅜ')
 
-            console.log(
-              '[PostUpdate.vue] error.response.status: ',
-              error.response.status
-            )
+            // console.log('[PostUpdate.vue] error.response.status: ', error.response.status)
           }
 
-          console.log('[PostUpdate.vue] error: ', error)
-          console.log('[PostUpdate.vue] error.message: ', error.message)
-          console.log('[PostUpdate.vue] error.response: ', error.response)
-          console.log(
-            '[PostUpdate.vue] error.response.data: ',
-            error.response.data
-          )
-          console.log(
-            '[PostUpdate.vue] error.response.status: ',
-            error.response.status
-          )
+          // console.log('[PostUpdate.vue] error: ', error)
+          // console.log('[PostUpdate.vue] error.message: ', error.message)
+          // console.log('[PostUpdate.vue] error.response: ', error.response)
+          // console.log('[PostUpdate.vue] error.response.data: ', error.response.data)
+          // console.log('[PostUpdate.vue] error.response.status: ', error.response.status)
         })
     }
   }

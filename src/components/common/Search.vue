@@ -28,8 +28,8 @@
       <router-link
         :to="{
           name:
-            this.$route.params.service !== 'gallery' &&
-            this.$route.params.service !== 'library'
+            this.$route.params.service === 'notice' ||
+            this.$route.params.service === 'talk'
               ? 'PostList'
               : 'GalleryList',
           params: {

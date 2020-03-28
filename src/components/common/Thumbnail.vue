@@ -3,7 +3,8 @@
     class="thumbnail_global"
     :style="{
       'padding-top': attribute.style.paddingTop,
-      'background-image': `url('${path}/${uploads}/${attribute.thumbnail}')`
+      'background-image': `url('${path}/${uploads}/${attribute.thumbnail}')`,
+      'background-position': attribute.style.backgroundPosition
     }"
   >
     <slot></slot>

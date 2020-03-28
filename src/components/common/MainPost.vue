@@ -9,9 +9,7 @@
           number: attribute.params.number
         }
       }"
-    >
-      {{ attribute.title }}
-    </Hgroup>
+    />
 
     <Loading
       :attribute="{

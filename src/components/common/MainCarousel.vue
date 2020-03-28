@@ -2,15 +2,14 @@
   <div class="main_carousel">
     <Hgroup
       :attribute="{
+        title: attribute.title,
         component: attribute.component.index,
         params: {
           service: attribute.params.service,
           number: attribute.params.number
         }
       }"
-    >
-      {{ attribute.title }}
-    </Hgroup>
+    />
 
     <Loading
       :attribute="{
@@ -57,7 +56,7 @@
         <Thumbnail
           :attribute="{
             style: {
-              paddingTop: '52.734375%'
+              paddingTop: '56.25%'
             },
             thumbnail: list.thumbnail,
             subject: list.subject

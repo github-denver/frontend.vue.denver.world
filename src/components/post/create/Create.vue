@@ -51,8 +51,8 @@
         <router-link
           :to="{
             name:
-              this.$route.params.service !== 'gallery' &&
-              this.$route.params.service !== 'library'
+              this.$route.params.service === 'notice' ||
+              this.$route.params.service === 'talk'
                 ? 'PostList'
                 : 'GalleryList',
             params: {
@@ -98,7 +98,6 @@ export default {
   data() {
     return {
       select: {
-        // 카테고리
         category: '',
         data: [
           {
@@ -107,16 +106,28 @@ export default {
               value: 'news',
               option: [
                 {
-                  text: '공지사항',
+                  text: '많이 본 소식',
+                  value: 'popular'
+                },
+                {
+                  text: '컴퓨터 &amp; 하드웨어',
+                  value: 'hardware'
+                },
+                {
+                  text: '모바일 &amp; 태블릿',
+                  value: 'mobile'
+                },
+                {
+                  text: '신작 게임 &amp; 업데이트 동영상',
+                  value: 'game'
+                },
+                {
+                  text: '넷플릭스 출시 예정 &amp; 신작 동영상',
+                  value: 'video'
+                },
+                {
+                  text: '공지사항 &amp; 업데이트',
                   value: 'notice'
-                },
-                {
-                  text: '업데이트',
-                  value: 'update'
-                },
-                {
-                  text: '이벤트',
-                  value: 'event'
                 }
               ]
             }
@@ -145,10 +156,6 @@ export default {
                 {
                   text: '음악',
                   value: 'music'
-                },
-                {
-                  text: '동영상',
-                  value: 'video'
                 }
               ]
             }
@@ -203,16 +210,10 @@ export default {
         .then((result) => {
           const folder = 'uploads'
           const url = result.data.image[0].imageurl
-          console.log(
-            '[PostCreateForm.vue] methods() → handleImageAdded → url: ',
-            url
-          )
+          // console.log('[PostCreateForm.vue] methods() → handleImageAdded → url: ', url)
 
           const name = result.data.image[0].filename
-          console.log(
-            '[PostCreateForm.vue] methods() → handleImageAdded → name: ',
-            name
-          )
+          // console.log('[PostCreateForm.vue] methods() → handleImageAdded → name: ', name)
 
           Editor.insertEmbed(cursorLocation, 'image', `${this.path}${url}`)
 
@@ -221,7 +222,7 @@ export default {
         .catch((error) => {
           alert('이미지 업로드에 실패했어요.. ㅠㅜ')
 
-          console.error(error)
+          // console.log(error)
         })
     }
   }
