@@ -213,13 +213,13 @@ caption {
 .link_delete {
   color: #fff !important;
   border-color: transparent;
-  background-color: rgba(88, 100, 125, 1);
+  background-color: #000;
 }
 
 .link_search {
   color: #fff !important;
   border-color: transparent;
-  background-color: rgba(88, 100, 125, 1);
+  background-color: #000;
 }
 
 .icon_global {

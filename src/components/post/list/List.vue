@@ -6,7 +6,10 @@
           v-if="search.keyword"
           :to="{
             name: 'PostRead',
-            params: { service: category.value, number: post.number.toString() },
+            params: {
+              service: category.value,
+              number: post.number.toString()
+            },
             query: {
               select: search.select,
               keyword: search.keyword,
@@ -28,9 +31,16 @@
             </div>
 
             <div class="post_information">
-              <span class="text_local"><span class="screen_out">작성자</span> {{ post.name }}</span>
-              <span class="text_local"><span class="screen_out">등록일</span> {{ post.regdate | moment('YY.MM.DD') }}</span>
-              <span class="text_local"><span class="screen_out">조회수</span> {{ post.count }}</span>
+              <span class="text_local"
+                ><span class="screen_out">작성자</span> {{ post.name }}</span
+              >
+              <span class="text_local"
+                ><span class="screen_out">등록일</span>
+                {{ post.regdate | moment('YY.MM.DD') }}</span
+              >
+              <span class="text_local"
+                ><span class="screen_out">조회수</span> {{ post.count }}</span
+              >
             </div>
           </div>
         </router-link>
@@ -39,8 +49,13 @@
           v-else
           :to="{
             name: 'PostRead',
-            params: { service: category.value, number: post.number.toString() },
-            query: { page: number.toString() }
+            params: {
+              service: category.value,
+              number: post.number.toString()
+            },
+            query: {
+              page: number.toString()
+            }
           }"
           class="link_post outer_cell"
         >
@@ -57,9 +72,16 @@
             </div>
 
             <div class="post_information">
-              <span class="text_local"><span class="screen_out">작성자</span> {{ post.name }}</span>
-              <span class="text_local"><span class="screen_out">등록일</span> {{ post.regdate | moment('YY.MM.DD') }}</span>
-              <span class="text_local"><span class="screen_out">조회수</span> {{ post.count }}</span>
+              <span class="text_local"
+                ><span class="screen_out">작성자</span> {{ post.name }}</span
+              >
+              <span class="text_local"
+                ><span class="screen_out">등록일</span>
+                {{ post.regdate | moment('YY.MM.DD') }}</span
+              >
+              <span class="text_local"
+                ><span class="screen_out">조회수</span> {{ post.count }}</span
+              >
             </div>
           </div>
         </router-link>

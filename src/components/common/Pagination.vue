@@ -106,10 +106,13 @@ export default {
     }
   },
   created() {
-    if (this.$route.params.service === 'library') {
-      this.component = 'GalleryList'
-    } else {
+    if (
+      this.$route.params.service === 'notice' ||
+      this.$route.params.service === 'talk'
+    ) {
       this.component = 'PostList'
+    } else {
+      this.component = 'GalleryList'
     }
   },
   computed: {
@@ -153,8 +156,8 @@ export default {
 
 .list_pagination .link_pagination.current {
   font-weight: 700;
-  color: rgba(270, 70, 70, 1);
-  border: 1px solid rgba(270, 70, 70, 1);
+  color: #0074c2;
+  border: 1px solid #0074c2;
   background-color: #fff;
 }
 </style>

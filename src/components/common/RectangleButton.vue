@@ -42,12 +42,12 @@ export default {
 .button_delete {
   color: #fff;
   border-color: transparent;
-  background-color: rgba(88, 100, 125, 1);
+  background-color: #000;
 }
 
 .button_search {
   color: #fff;
   border-color: transparent;
-  background-color: rgba(88, 100, 125, 1);
+  background-color: #000;
 }
 </style>

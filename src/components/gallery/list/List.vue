@@ -1,6 +1,6 @@
 <template>
   <ul class="list_gallery">
-    <li v-for="post in posts" :key="post.number">
+    <li v-for="(post, index) in posts" :key="index">
       <router-link
         v-if="search.keyword"
         :to="{
@@ -8,7 +8,11 @@
             post.category === 'notice' || post.category === 'talk'
               ? 'PostRead'
               : 'ArticleRead',
-          params: { service: category.value, number: post.number.toString() },
+          params: {
+            service:
+              category.value !== 'popular' ? category.value : post.category,
+            number: post.number.toString()
+          },
           query: {
             select: search.select,
             keyword: search.keyword,
@@ -20,7 +24,8 @@
         <Thumbnail
           :attribute="{
             style: {
-              paddingTop: '56.25%'
+              paddingTop: '56.25%',
+              backgroundPosition: '50% 50%'
             },
             thumbnail: post.thumbnail,
             subject: post.subject
@@ -39,8 +44,14 @@
             post.category === 'notice' || post.category === 'talk'
               ? 'PostRead'
               : 'ArticleRead',
-          params: { service: category.value, number: post.number.toString() },
-          query: { page: number.toString() }
+          params: {
+            service:
+              category.value !== 'popular' ? category.value : post.category,
+            number: post.number.toString()
+          },
+          query: {
+            page: number.toString()
+          }
         }"
         class="link_gallery"
       >
