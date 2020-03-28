@@ -4,7 +4,10 @@
       <router-link
         v-if="search.keyword"
         :to="{
-          name: post.category !== 'library' ? 'PostRead' : 'ArticleRead',
+          name:
+            post.category === 'notice' || post.category === 'talk'
+              ? 'PostRead'
+              : 'ArticleRead',
           params: { service: category.value, number: post.number.toString() },
           query: {
             select: search.select,
@@ -32,7 +35,10 @@
       <router-link
         v-else
         :to="{
-          name: post.category !== 'library' ? 'PostRead' : 'ArticleRead',
+          name:
+            post.category === 'notice' || post.category === 'talk'
+              ? 'PostRead'
+              : 'ArticleRead',
           params: { service: category.value, number: post.number.toString() },
           query: { page: number.toString() }
         }"

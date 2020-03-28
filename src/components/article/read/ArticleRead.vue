@@ -4,7 +4,8 @@
       <div
         class="thumbnail_visual"
         :style="{
-          'background-image': `url('${path}/${uploads}/${post[0].thumbnail}')`
+          'background-image': `url('${path}/${uploads}/${post[0].thumbnail}')`,
+          'background-position': '50% 50%'
         }"
       ></div>
 
@@ -323,10 +324,12 @@ export default {
 }
 
 .wrap_visual .post_header {
+  display: block;
   position: absolute;
   bottom: 0;
   right: 0;
   left: 0;
+  width: auto;
   padding: 10px;
   color: #fff;
   background: rgba(0, 0, 0, 0);

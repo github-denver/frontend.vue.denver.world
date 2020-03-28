@@ -58,7 +58,8 @@
         <Thumbnail
           :attribute="{
             style: {
-              paddingTop: attribute.style.paddingTop
+              paddingTop: attribute.style.paddingTop,
+              backgroundPosition: attribute.style.backgroundPosition
             },
             thumbnail: list.thumbnail,
             subject: list.subject

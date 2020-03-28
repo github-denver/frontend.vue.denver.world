@@ -5,6 +5,10 @@
         :article="popular"
         :attribute="{
           title: '많이 본 소식',
+          style: {
+            paddingTop: '56.25%',
+            backgroundPosition: '50% 50%'
+          },
           slider: {
             items: 1,
             margin: 10,
@@ -39,7 +43,7 @@
             read: 'ArticleRead'
           },
           params: {
-            service: 'article',
+            service: 'category',
             number: '1'
           }
         }"
@@ -51,7 +55,8 @@
           title: '컴퓨터 &amp; 하드웨어',
           className: 'gallery',
           style: {
-            paddingTop: '56.25%'
+            paddingTop: '56.25%',
+            backgroundPosition: '50% 50%'
           },
           slider: {
             items: 1,
@@ -77,7 +82,8 @@
           title: '모바일 &amp; 태블릿',
           className: 'gallery',
           style: {
-            paddingTop: '56.25%'
+            paddingTop: '56.25%',
+            backgroundPosition: '50% 50%'
           },
           slider: {
             items: 1,
@@ -103,7 +109,8 @@
           title: '신작 게임 &amp; 업데이트 동영상',
           className: 'gallery',
           style: {
-            paddingTop: '56.25%'
+            paddingTop: '56.25%',
+            backgroundPosition: '50% 50%'
           },
           slider: {
             items: 1,
@@ -129,7 +136,8 @@
           title: '넷플릭스 출시 예정 &amp; 신작 동영상',
           className: 'gallery',
           style: {
-            paddingTop: '133.3333333333333%'
+            paddingTop: '133.3333333333333%',
+            backgroundPosition: '50% 50%'
           },
           slider: {
             items: 2,

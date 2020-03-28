@@ -42,20 +42,7 @@
           class="item_category"
         >
           <div class="box_category">
-            <router-link
-              :key="index"
-              :to="{
-                name: attribute.component.read,
-                params: {
-                  service: attribute.params.service,
-                  number: list.number.toString()
-                },
-                query: {
-                  page: 1
-                }
-              }"
-              class="link_category"
-            >
+            <router-link :key="index" :to="list.url" class="link_category">
               <span class="outer_cell">
                 <span class="inner_cell">{{ list.country }}</span>
               </span>

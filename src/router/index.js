@@ -107,7 +107,8 @@ export default new Router({
       name: 'ArticleRead',
       components: {
         header: AppHeader,
-        default: ArticleRead
+        default: ArticleRead,
+        footer: AppFooter
       },
       props: {
         default: true
@@ -118,7 +119,8 @@ export default new Router({
       name: 'GalleryList',
       components: {
         header: AppHeader,
-        default: GalleryList
+        default: GalleryList,
+        footer: AppFooter
       },
       alias: '/article/:service/list/:number',
       props: {
@@ -130,7 +132,8 @@ export default new Router({
       name: 'PostList',
       components: {
         header: AppHeader,
-        default: PostList
+        default: PostList,
+        footer: AppFooter
       },
       props: {
         default: true
@@ -141,7 +144,8 @@ export default new Router({
       name: 'PostCreate',
       components: {
         header: AppHeader,
-        default: PostCreate
+        default: PostCreate,
+        footer: AppFooter
       },
       props: {
         default: true
@@ -163,7 +167,8 @@ export default new Router({
       name: 'PostRead',
       components: {
         header: AppHeader,
-        default: PostRead
+        default: PostRead,
+        footer: AppFooter
       },
       props: {
         default: true
@@ -174,7 +179,8 @@ export default new Router({
       name: 'PostUpdate',
       components: {
         header: AppHeader,
-        default: PostUpdate
+        default: PostUpdate,
+        footer: AppFooter
       },
       props: {
         default: true

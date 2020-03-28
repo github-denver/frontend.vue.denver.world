@@ -46,7 +46,7 @@
         :to="{
           name: attribute.component.read,
           params: {
-            service: attribute.params.service,
+            service: list.category,
             number: list.number.toString()
           },
           query: { page: 1 }
@@ -56,7 +56,8 @@
         <Thumbnail
           :attribute="{
             style: {
-              paddingTop: '56.25%'
+              paddingTop: attribute.style.paddingTop,
+              backgroundPosition: attribute.style.backgroundPosition
             },
             thumbnail: list.thumbnail,
             subject: list.subject
