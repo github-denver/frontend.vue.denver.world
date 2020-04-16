@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <router-view name="header" />
+    <div class="inner_global">
+      <router-view name="header" />
 
-    <router-view :key="$route.fullPath" />
+      <router-view :key="$route.fullPath" />
 
-    <router-view name="footer" />
+      <router-view name="footer" />
+    </div>
   </div>
 </template>
 
@@ -71,6 +73,13 @@ caption {
   height: 1px;
   line-height: 0;
   text-indent: -9999px;
+}
+
+.inner_global {
+  position: relative;
+  min-width: 320px;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .outer_cell {

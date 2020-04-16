@@ -1,35 +1,29 @@
 <template>
   <div class="group_navigation">
-    <ul class="list_navigation">
-      <li
-        v-for="(item, index) in navigation"
-        :key="index"
-        class="item_navigation"
-      >
-        <span class="title_navigation" v-html="item.title"></span>
+    <div class="inner_local">
+      <ul class="list_navigation">
+        <li v-for="(item, index) in navigation" :key="index" class="item_navigation">
+          <span class="title_navigation" v-html="item.title"></span>
 
-        <ul class="list_children">
-          <li
-            v-for="(child, index) in item.children"
-            :key="index"
-            class="item_child"
-          >
-            <router-link
-              :to="{
-                name: child.component,
-                params: {
-                  service: child.category,
-                  number: '1'
-                }
-              }"
-              v-html="child.title"
-              @click.native="$emit('parentOnClose')"
-              class="link_child"
-            ></router-link>
-          </li>
-        </ul>
-      </li>
-    </ul>
+          <ul class="list_children">
+            <li v-for="(child, index) in item.children" :key="index" class="item_child">
+              <router-link
+                :to="{
+                  name: child.component,
+                  params: {
+                    service: child.category,
+                    number: '1'
+                  }
+                }"
+                v-html="child.title"
+                @click.native="$emit('parentOnClose')"
+                class="link_child"
+              ></router-link>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -127,6 +121,10 @@ export default {
 <style>
 .group_navigation {
   overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.group_navigation .inner_local {
   margin-top: 10px;
   border-top: 1px solid #e9e9e9;
   border-bottom: 1px solid #e9e9e9;

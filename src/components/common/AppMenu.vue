@@ -1,34 +1,36 @@
 <template>
   <div class="wrap_menu">
-    <Profile
-      :attribute="{
-        authorized: attribute.authorized,
-        component: {
-          success: 'ProfileUpdate',
-          failure: 'MemberLogin'
-        }
-      }"
-    >
-      <template v-slot:picture>
-        <Picture
-          :attribute="{
-            authorized: attribute.authorized,
-            user: attribute.user
-          }"
-        />
-      </template>
+    <div class="inner_global">
+      <Profile
+        :attribute="{
+          authorized: attribute.authorized,
+          component: {
+            success: 'ProfileUpdate',
+            failure: 'MemberLogin'
+          }
+        }"
+      >
+        <template v-slot:picture>
+          <Picture
+            :attribute="{
+              authorized: attribute.authorized,
+              user: attribute.user
+            }"
+          />
+        </template>
 
-      <template v-if="attribute.user" v-slot:text>{{ attribute.user.name }}</template>
-      <template v-else v-slot:text>로그인해주세요.</template>
-    </Profile>
+        <template v-if="attribute.user" v-slot:text>{{ attribute.user.name }}</template>
+        <template v-else v-slot:text>로그인해주세요.</template>
+      </Profile>
 
-    <navigation @parentOnClose="onClose" />
+      <navigation @parentOnClose="onClose" />
 
-    <square-button :attribute="{ type: 'button', className: 'button_close', event: onClose }">
-      <template v-slot:icon>
-        <icon :attribute="{ className: 'icon_close' }">주메뉴 닫기</icon>
-      </template>
-    </square-button>
+      <square-button :attribute="{ type: 'button', className: 'button_close', event: onClose }">
+        <template v-slot:icon>
+          <icon :attribute="{ className: 'icon_close' }">주메뉴 닫기</icon>
+        </template>
+      </square-button>
+    </div>
   </div>
 </template>
 
@@ -58,9 +60,6 @@ export default {
 
 <style>
 .wrap_menu {
-  display: block;
-  overflow-x: hidden;
-  overflow-y: auto;
   position: fixed;
   top: 0;
   right: 0;
@@ -68,7 +67,19 @@ export default {
   left: 0;
   min-width: 320px;
   margin: 0 auto;
-  padding-bottom: 40px;
   background-color: #f1f1f1;
+}
+
+.wrap_menu .inner_global {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+  background-color: #fff;
 }
 </style>
