@@ -1,42 +1,36 @@
 <template>
   <div class="container">
     <div class="wrap_visual" v-if="post">
-      <div
-        class="thumbnail_visual"
-        :style="{
-          'background-image': `url('${path}/${uploads}/${post[0].thumbnail}')`,
-          'background-position': '50% 50%'
-        }"
-      ></div>
+      <div class="inner_global">
+        <div
+          class="thumbnail_visual"
+          :style="{
+            'background-image': `url('${path}/${uploads}/${post[0].thumbnail}')`,
+            'background-position': '50% 50%'
+          }"
+        ></div>
 
-      <div class="post_header">
-        <div class="inner_local outer_cell">
-          <Picture
-            :attribute="{
-              authorized: isAuthorized,
-              user: post[0],
-              picture: post[0].picture,
-              state: 'board'
-            }"
-          />
+        <div class="post_header">
+          <div class="inner_local outer_cell">
+            <Picture
+              :attribute="{
+                authorized: isAuthorized,
+                user: post[0],
+                picture: post[0].picture,
+                state: 'board'
+              }"
+            />
 
-          <div class="post_container inner_cell">
-            <div class="group_subject">
-              <span class="title_local">{{ post[0].subject }}</span>
-            </div>
+            <div class="post_container inner_cell">
+              <div class="group_subject">
+                <span class="title_local">{{ post[0].subject }}</span>
+              </div>
 
-            <div class="post_information">
-              <span class="text_local"
-                ><span class="screen_out">작성자</span> {{ post[0].name }}</span
-              >
-              <span class="text_local"
-                ><span class="screen_out">등록일</span>
-                {{ post[0].regdate | moment('YY.MM.DD') }}</span
-              >
-              <span class="text_local"
-                ><span class="screen_out">조회수</span>
-                {{ post[0].count }}</span
-              >
+              <div class="post_information">
+                <span class="text_local"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
+                <span class="text_local"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
+                <span class="text_local"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -62,11 +56,7 @@
           <router-link
             v-if="search.keyword"
             :to="{
-              name:
-                this.$route.params.service === 'notice' ||
-                this.$route.params.service === 'talk'
-                  ? 'PostList'
-                  : 'GalleryList',
+              name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'PostList' : 'GalleryList',
               params: { service: category.value, number: page.toString() },
               query: { select: search.select, keyword: search.keyword }
             }"
@@ -77,11 +67,7 @@
           <router-link
             v-else
             :to="{
-              name:
-                this.$route.params.service === 'notice' ||
-                this.$route.params.service === 'talk'
-                  ? 'PostList'
-                  : 'GalleryList',
+              name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'PostList' : 'GalleryList',
               params: { service: category.value, number: page.toString() }
             }"
             class="link_global"
@@ -218,10 +204,7 @@ export default {
   created() {
     this.page = this.$route.query.page
 
-    const keyword =
-      typeof this.$route.query.keyword !== 'undefined'
-        ? this.$route.query.keyword
-        : ''
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
 
     let select2 = ''
     let keyword2 = ''
@@ -266,11 +249,7 @@ export default {
           alert('게시물이 삭제됐어요!')
 
           this.$router.push({
-            name:
-              this.$route.params.service === 'notice' ||
-              this.$route.params.service === 'talk'
-                ? 'PostList'
-                : 'GalleryList',
+            name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'PostList' : 'GalleryList',
             params: {
               service: response.data.service,
               number: '1'
@@ -291,14 +270,9 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (
-            this.category.value ===
-            this.navigation.data[i].optgroup.option[j].value
-          ) {
+          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[
-              j
-            ].value
+            this.category.value = this.navigation.data[i].optgroup.option[j].value
 
             break loop
           }
@@ -333,37 +307,12 @@ export default {
   padding: 10px;
   color: #fff;
   background: rgba(0, 0, 0, 0);
-  background: -moz-linear-gradient(
-    top,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  background: -webkit-gradient(
-    left top,
-    left bottom,
-    color-stop(0%, rgba(0, 0, 0, 0)),
-    color-stop(100%, rgba(0, 0, 0, 0.5))
-  );
-  background: -webkit-linear-gradient(
-    top,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  background: -o-linear-gradient(
-    top,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  background: -ms-linear-gradient(
-    top,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
 }
 

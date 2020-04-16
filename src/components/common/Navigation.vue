@@ -59,7 +59,7 @@ export default {
               component: 'GalleryList'
             },
             {
-              category: 'video',
+              category: 'game',
               title: '신작 게임 &amp 업데이트',
               description: '신작 게임 &amp 업데이트 동영상 게시판입니다.',
               component: 'GalleryList'
