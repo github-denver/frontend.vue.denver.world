@@ -1,12 +1,4 @@
-import {
-  FETCH_POST_LIST,
-  SEARCH_INFO,
-  FETCH_POST,
-  SET_ACCESS_TOKEN,
-  SET_MY_INFO,
-  DESTROY_ACCESS_TOKEN,
-  DESTROY_MY_INFO
-} from './mutation-types'
+import { FETCH_POST_LIST, SEARCH_INFO, FETCH_POST, SET_ACCESS_TOKEN, SET_MY_INFO, DESTROY_ACCESS_TOKEN, DESTROY_MY_INFO } from './mutation-types'
 import api from '@/api'
 
 export default {
@@ -23,14 +15,12 @@ export default {
       url = `/api/board/${category}/list/${number}`
     }
 
-    return api
-      .get(url, { headers: { Pragma: 'no-cache' } })
-      .then((response) => {
-        const { list, pagination, select, keyword } = response.data
+    return api.get(url, { headers: { Pragma: 'no-cache' } }).then((response) => {
+      const { list, pagination, select, keyword } = response.data
 
-        commit(FETCH_POST_LIST, { posts: list, pagination: pagination })
-        commit(SEARCH_INFO, { select: select, keyword: keyword })
-      })
+      commit(FETCH_POST_LIST, { posts: list, pagination: pagination })
+      commit(SEARCH_INFO, { select: select, keyword: keyword })
+    })
   },
   searchInfo({ commit }, payload) {
     const { select, keyword } = payload
@@ -80,7 +70,7 @@ export default {
     return api
       .post('/api/login', { id, password })
       .then((response) => {
-        // console.log('[actions.js] signin () → response: ', response)
+        console.log('[actions.js] signin () → response: ', response)
 
         const { accessToken } = response.data
         // console.log('[actions.js] signin () → accessToken: ', accessToken)
@@ -104,13 +94,11 @@ export default {
 
     commit(SET_ACCESS_TOKEN, token)
 
-    return api
-      .get('/api/me', { params: { accessToken: token } })
-      .then((response) => {
-        // console.log('[actions.js] signinByToken () → response: ', response)
+    return api.get('/api/me', { params: { accessToken: token } }).then((response) => {
+      // console.log('[actions.js] signinByToken () → response: ', response)
 
-        commit(SET_MY_INFO, response.data.user2)
-      })
+      commit(SET_MY_INFO, response.data.user2)
+    })
   },
   signout({ commit }) {
     return api.get('/api/logout').then((response) => {

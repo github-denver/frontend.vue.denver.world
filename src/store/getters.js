@@ -10,7 +10,7 @@ export default {
     return result
   },
   path() {
-    return 'http://localhost:3000'
+    return 'http://localhost:4000'
   },
   uploads() {
     return 'uploads'
