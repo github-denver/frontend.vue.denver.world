@@ -1,39 +1,42 @@
 <template>
   <form method="post" enctype="multipart/form-data" @submit.prevent="submit" novalidate>
-    <Picture
-      :attribute="{
-        authorized: isAuthorized,
-        picture: picture.result,
-        className: 'register'
-      }"
-    >
-      <template v-slot:upload>
-        <Upload :attribute="{ id: 'picture', icon: 'icon_picture' }" @parentChange="onPictureChange">
-          <template v-slot:text>프로필 사진</template>
-        </Upload>
-      </template>
-    </Picture>
+    <fieldset>
+      <legend class="screen_out">회원가입 양식</legend>
+      <Picture
+        :attribute="{
+          authorized: isAuthorized,
+          picture: picture.result,
+          className: 'register'
+        }"
+      >
+        <template v-slot:upload>
+          <Upload :attribute="{ id: 'picture', icon: 'icon_picture' }" @parentChange="onPictureChange">
+            <template v-slot:text>프로필 사진</template>
+          </Upload>
+        </template>
+      </Picture>
 
-    <Input :attribute="{ type: 'text', id: 'id', className: 'full', title: '아이디 *' }" v-model="id" />
+      <Input :attribute="{ type: 'text', id: 'id', className: 'full', title: '아이디 *' }" v-model="id" />
 
-    <Input :attribute="{ type: 'password', id: 'password', className: 'full', title: '패스워드 *' }" v-model="password" />
+      <Input :attribute="{ type: 'password', id: 'password', className: 'full', title: '패스워드 *' }" v-model="password" />
 
-    <Input :attribute="{ type: 'password', id: 'confirm', className: 'full', title: '패스워드 확인 *' }" v-model="confirm" />
+      <Input :attribute="{ type: 'password', id: 'confirm', className: 'full', title: '패스워드 확인 *' }" v-model="confirm" />
 
-    <Input :attribute="{ type: 'text', id: 'name', className: 'full', title: '닉네임 *' }" v-model="name" />
+      <Input :attribute="{ type: 'text', id: 'name', className: 'full', title: '닉네임 *' }" v-model="name" />
 
-    <Input :attribute="{ type: 'text', id: 'email', className: 'full', title: '이메일 *' }" v-model="email" />
+      <Input :attribute="{ type: 'text', id: 'email', className: 'full', title: '이메일 *' }" v-model="email" />
 
-    <div class="group_button">
-      <div class="inner_half">
-        <router-link :to="{ name: 'Main' }" class="link_global">홈으로</router-link>
+      <div class="group_button">
+        <div class="inner_half">
+          <router-link :to="{ name: 'Main' }" class="link_global">홈으로</router-link>
+        </div>
+
+        <div class="inner_half">
+          <rectangle-button :attribute="{ type: 'submit', className: 'button_action' }">등록하기</rectangle-button>
+        </div>
       </div>
-
-      <div class="inner_half">
-        <rectangle-button :attribute="{ type: 'submit', className: 'button_action' }">등록하기</rectangle-button>
-      </div>
-    </div>
-    <!-- // group_button -->
+      <!-- // group_button -->
+    </fieldset>
   </form>
 </template>
 
