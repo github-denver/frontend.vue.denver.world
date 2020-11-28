@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <h2 class="screen_out">본문 영역</h2>
+
     <div class="wrap_visual" v-if="post">
       <div class="inner_global">
         <div

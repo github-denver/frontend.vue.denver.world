@@ -17,6 +17,7 @@
         </template>
       </square-button>
 
+      <h2 class="screen_out">로그인 정보</h2>
       <ul class="list_utility" v-if="isAuthorized">
         <li>
           <router-link :to="{ name: 'ProfileUpdate' }">

@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <h2 class="screen_out">본문 영역</h2>
+
     <div class="contents">
       <Hgroup
         :attribute="{
@@ -29,11 +31,7 @@
           <router-link
             v-if="search.keyword"
             :to="{
-              name:
-                this.$route.params.service === 'notice' ||
-                this.$route.params.service === 'talk'
-                  ? 'PostList'
-                  : 'GalleryList',
+              name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'PostList' : 'GalleryList',
               params: { service: category.value, number: page.toString() },
               query: { select: search.select, keyword: search.keyword }
             }"
@@ -44,11 +42,7 @@
           <router-link
             v-else
             :to="{
-              name:
-                this.$route.params.service === 'notice' ||
-                this.$route.params.service === 'talk'
-                  ? 'PostList'
-                  : 'GalleryList',
+              name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'PostList' : 'GalleryList',
               params: { service: category.value, number: page.toString() }
             }"
             class="link_global"
@@ -197,11 +191,7 @@ export default {
           alert('게시물이 삭제됐어요!')
 
           this.$router.push({
-            name:
-              this.$route.params.service === 'notice' ||
-              this.$route.params.service === 'talk'
-                ? 'PostList'
-                : 'GalleryList',
+            name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'PostList' : 'GalleryList',
             params: {
               service: response.data.service,
               number: '1'
@@ -222,14 +212,9 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (
-            this.category.value ===
-            this.navigation.data[i].optgroup.option[j].value
-          ) {
+          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[
-              j
-            ].value
+            this.category.value = this.navigation.data[i].optgroup.option[j].value
 
             break loop
           }
@@ -240,10 +225,7 @@ export default {
   created() {
     this.page = this.$route.query.page
 
-    const keyword =
-      typeof this.$route.query.keyword !== 'undefined'
-        ? this.$route.query.keyword
-        : ''
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
 
     let select2 = ''
     let keyword2 = ''

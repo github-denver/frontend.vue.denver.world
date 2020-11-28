@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <h2 class="screen_out">본문 영역</h2>
+
     <div class="contents create">
       <create :category2="service" @parentSubmit="onSubmit" />
     </div>

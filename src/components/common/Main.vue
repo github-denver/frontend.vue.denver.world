@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <h2 class="screen_out">본문 영역</h2>
+
     <div class="contents">
       <main-carousel
         :article="popular"
@@ -30,7 +32,7 @@
       <main-category
         :category="category"
         :attribute="{
-          title: '카테고리',
+          title: '전체 서비스',
           slider: {
             items: 1,
             margin: 10,

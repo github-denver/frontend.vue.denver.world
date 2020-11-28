@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <h2 class="screen_out">본문 영역</h2>
+
     <div class="contents edit">
       <update :service="service" :post="post[0]" @parentSubmit="onSubmit" />
     </div>

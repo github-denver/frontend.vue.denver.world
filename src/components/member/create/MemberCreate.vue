@@ -1,11 +1,10 @@
 <template>
   <div class="wrap_welcome">
     <h1 class="title_local">
-      <router-link :to="{ name: 'Main' }" class="link_local"
-        >덴버월드</router-link
-      >
+      <router-link :to="{ name: 'Main' }" class="link_local">덴버월드</router-link>
     </h1>
 
+    <h2 class="screen_out">본문 영역</h2>
     <div class="inner_welcome">
       <strong class="title_welcome">얼마 안 남았어요!</strong>
       <p class="description_welcome">나머지 정보를 입력해주세요!</p>

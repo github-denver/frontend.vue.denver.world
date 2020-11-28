@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <h2 class="screen_out">본문 영역</h2>
+
     <div class="contents">
       <Hgroup
         :attribute="{
@@ -32,22 +34,13 @@
         </template>
       </Empty>
 
-      <list
-        v-if="loading"
-        :number="number"
-        :posts="posts"
-        :category="category"
-      />
+      <list v-if="loading" :number="number" :posts="posts" :category="category" />
 
       <div class="group_button">
         <div class="inner_half"></div>
 
         <div class="inner_half">
-          <router-link
-            :to="{ name: 'PostCreate', params: { service: category.value } }"
-            class="link_global link_action"
-            >글쓰기</router-link
-          >
+          <router-link :to="{ name: 'PostCreate', params: { service: category.value } }" class="link_global link_action">글쓰기</router-link>
         </div>
       </div>
       <!-- // group_button -->
@@ -166,10 +159,7 @@ export default {
     }
   },
   created() {
-    const keyword =
-      typeof this.$route.query.keyword !== 'undefined'
-        ? this.$route.query.keyword
-        : ''
+    const keyword = typeof this.$route.query.keyword !== 'undefined' ? this.$route.query.keyword : ''
 
     let select2 = ''
     let keyword2 = ''
@@ -204,14 +194,9 @@ export default {
     onChange() {
       loop: for (let i in this.navigation.data) {
         for (let j in this.navigation.data[i].optgroup.option) {
-          if (
-            this.category.value ===
-            this.navigation.data[i].optgroup.option[j].value
-          ) {
+          if (this.category.value === this.navigation.data[i].optgroup.option[j].value) {
             this.category.text = this.navigation.data[i].optgroup.option[j].text
-            this.category.value = this.navigation.data[i].optgroup.option[
-              j
-            ].value
+            this.category.value = this.navigation.data[i].optgroup.option[j].value
 
             break loop
           }
