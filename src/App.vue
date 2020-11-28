@@ -44,8 +44,13 @@ ul {
   list-style-type: none;
 }
 
+fieldset,
 img {
   border: 0 none;
+  vertical-align: top;
+}
+
+img {
   vertical-align: top;
 }
 
