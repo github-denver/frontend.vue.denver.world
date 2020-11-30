@@ -1,0 +1,383 @@
+/* reset
+---------- ---------- ---------- ---------- ---------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: sans-serif;
+  font-size: 10px;
+  line-height: 1;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+}
+
+fieldset,
+img {
+  border: 0 none;
+  vertical-align: top;
+}
+
+img {
+  vertical-align: top;
+}
+
+a,
+a:active,
+a:hover,
+a:visited,
+a:link {
+  color: #333;
+  text-decoration: none;
+}
+
+caption {
+  overflow: hidden;
+  width: 1px;
+  font-size: 1px;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
+/* global
+---------- ---------- ---------- ---------- ---------- */
+.screen_out {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
+.inner_global {
+  position: relative;
+  min-width: 320px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.outer_cell {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.inner_cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* icon
+---------- ---------- ---------- ---------- ---------- */
+.ico_global {
+  display: inline-block;
+  font-size: 1px;
+  line-height: 0;
+  color: transparent;
+  background: url(~@/assets/images/ico_global.png) 0 0 no-repeat;
+  background-size: 160px auto;
+  vertical-align: middle;
+}
+
+/* link
+---------- ---------- ---------- ---------- ---------- */
+.link_global {
+  display: block;
+  padding: 13px 0;
+  border: 1px solid #0074c2;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  color: #0074c2 !important;
+  background-color: #fff;
+  text-align: center;
+}
+
+.link_action {
+  color: #fff !important;
+  border-color: transparent;
+  background-color: #0074c2;
+}
+
+.link_delete {
+  color: #fff !important;
+  border-color: transparent;
+  background-color: #000;
+}
+
+.link_search {
+  color: #fff !important;
+  border-color: transparent;
+  background-color: #000;
+}
+
+/* wrap_welcome
+---------- ---------- ---------- ---------- ---------- */
+.wrap_welcome {
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 0 10px 40px;
+  box-sizing: border-box;
+}
+
+.wrap_welcome .inner_welcome {
+  margin-top: 20px;
+}
+
+.wrap_welcome .tit_local {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.wrap_welcome .link_local {
+  display: inline-block;
+  margin: 11px 0 0;
+  padding: 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wrap_welcome .grp_gravity {
+  margin-top: 40px;
+}
+
+.wrap_welcome .tit_welcome {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.wrap_welcome .desc_welcome {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #888;
+  text-align: center;
+}
+
+.wrap_welcome .tit_welcome + .desc_welcome {
+  margin-top: 20px;
+}
+
+.wrap_welcome .desc_welcome + .desc_welcome {
+  margin-top: 10px;
+}
+
+/* container
+---------- ---------- ---------- ---------- ---------- */
+.container {
+  padding: 50px 0 42px;
+  background-color: #fff;
+}
+
+/* contents
+---------- ---------- ---------- ---------- ---------- */
+.contents {
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.contents.create,
+.contents.edit {
+  margin-top: 10px;
+}
+
+.contents.create .read_head,
+.contents.edit .read_head {
+  margin: -1px 0 10px;
+  padding: 0;
+}
+
+.contents.article {
+  position: relative;
+  z-index: 1;
+  margin: 56.25% 0 0;
+  padding: 0 10px;
+  border-top: 0 none;
+  background-color: #fff;
+}
+
+/* grp_gravity
+---------- ---------- ---------- ---------- ---------- */
+.grp_gravity {
+  margin-top: 20px;
+  font-size: 0;
+}
+
+.grp_gravity .inner_half:first-child {
+  padding-left: 0;
+}
+
+.grp_gravity .inner_half {
+  display: inline-block;
+  width: 50%;
+  padding-left: 10px;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.grp_gravity .btn_global2 ~ .btn_global2,
+.grp_gravity .btn_global2 ~ .link_global,
+.grp_gravity .link_global ~ .link_global,
+.grp_gravity .link_global ~ .btn_global2 {
+  margin-top: 10px;
+}
+
+/* grp_opt
+---------- ---------- ---------- ---------- ---------- */
+.grp_opt {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  min-width: 90px;
+  width: 30%;
+  height: 40px;
+  border: 1px solid #e9e9e9;
+  box-sizing: border-box;
+  background-position: 100% 50%;
+}
+
+.grp_opt .label_local {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  padding: 0 12px;
+  font-size: 0;
+}
+
+.grp_opt .select_local {
+  width: 100%;
+  height: 39px;
+  border: 0 none;
+  font-family: inherit;
+  line-height: 38px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.grp_opt .txt_local {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 39px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.grp_opt .ico_arrow {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  background-position: 0 -35px;
+}
+
+.grp_opt.full {
+  display: block;
+  min-width: auto;
+  width: 100%;
+  border-right: 0 none;
+  border-left: 0 none;
+}
+
+/* read_head
+---------- ---------- ---------- ---------- ---------- */
+.read_head {
+  display: table;
+  width: 100%;
+  padding: 10px 0;
+}
+
+/* grp_info
+---------- ---------- ---------- ---------- ---------- */
+.grp_info .tit_local {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.grp_info .read_info {
+  margin-top: 10px;
+  font-size: 0;
+}
+
+.grp_info .txt_local:first-child {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.grp_info .txt_local:first-child:before {
+  display: none;
+}
+
+.grp_info .txt_local {
+  position: relative;
+  margin-left: 10px;
+  padding-left: 10px;
+  font-size: 12px;
+  color: #888;
+}
+
+.grp_info .txt_local:before {
+  position: absolute;
+  top: 4px;
+  bottom: 3px;
+  left: 0;
+  border-left: 1px solid #e9e9e9;
+  content: '';
+}
+
+/* read_conts
+---------- ---------- ---------- ---------- ---------- */
+.read_conts {
+  padding-top: 10px;
+  border-top: 1px solid #e9e9e9;
+  box-sizing: border-box;
+  font-size: 10pt;
+  line-height: 1.4;
+}
+
+.read_conts .ql-container.ql-snow {
+  border: 0 none;
+}
+
+.read_conts .ql-editor {
+  padding: 0;
+}
+
+.read_conts .ql-editor pre {
+  background-color: #23241f;
+  color: #f8f8f2;
+  overflow: visible;
+}
+
+.read_conts .quillWrapper {
+  display: none;
+}
