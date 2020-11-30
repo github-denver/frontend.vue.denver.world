@@ -11,7 +11,7 @@
     ],
     "stage-2"
   ],
-  "plugins": ["transform-es2015-destructuring", "transform-vue-jsx", "transform-runtime"],
+  "plugins": ["transform-es2015-destructuring", "transform-vue-jsx", "transform-runtime", ["transform-remove-console", { "exclude": ["error", "warn"] }]],
   "env": {
     "test": {
       "presets": ["env", "stage-2"],
