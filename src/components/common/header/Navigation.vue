@@ -16,7 +16,7 @@
                   }
                 }"
                 v-html="child.title"
-                @click.native="$emit('parent-on-close')"
+                @click.native="$emit('parentOnClose')"
                 class="link_lnb"
               ></router-link>
             </li>
