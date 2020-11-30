@@ -1,5 +1,5 @@
 <template>
-  <div class="group_profile">
+  <div class="grp_profile">
     <router-link
       :to="{
         name: attribute.authorized ? attribute.component.success : attribute.component.failure
@@ -29,11 +29,11 @@ export default {
 </script>
 
 <style>
-.group_profile:first-child {
+.grp_profile:first-child {
   border-top: 0 none;
 }
 
-.group_profile {
+.grp_profile {
   display: table;
   width: 100%;
   padding: 10px 50px 10px 10px;
@@ -44,12 +44,12 @@ export default {
   text-align: left;
 }
 
-.group_profile .link_profile {
+.grp_profile .link_profile {
   display: block;
   font-size: 0;
 }
 
-.group_profile .text_profile {
+.grp_profile .text_profile {
   display: inline-block;
   margin-left: 10px;
   font-size: 14px;

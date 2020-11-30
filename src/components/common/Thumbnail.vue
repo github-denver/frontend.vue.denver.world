@@ -14,7 +14,7 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import Dimmed from '@/components/common/Dimmed'
+import Dimmed from '@/components/unit/Dimmed'
 
 export default {
   name: 'Thumbnail',

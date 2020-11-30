@@ -1,25 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Main from '@/components/common/Main'
-
-import AppHeader from '@/components/common/AppHeader'
-import AppMenu from '@/components/common/AppMenu'
-
-import AppFooter from '@/components/common/AppFooter'
-
+import Main from '@/components/common/Index'
+import AppHeader from '@/components/common/header/AppHeader'
+import AppMenu from '@/components/common/header/AppMenu'
+import AppFooter from '@/components/common/footer/AppFooter'
 import Welcome from '@/components/member/create/Welcome'
 import MemberCreate from '@/components/member/create/MemberCreate'
 import MemberLogin from '@/components/member/read/MemberLogin'
 import ProfileUpdate from '@/components/member/update/ProfileUpdate'
-
-import PostList from '@/components/post/list/PostList'
-import PostCreate from '@/components/post/create/PostCreate'
-import PostRead from '@/components/post/read/PostRead'
-import PostUpdate from '@/components/post/update/PostUpdate'
-
+import CommunityList from '@/components/community/list/CommunityList'
+import CommunityCreate from '@/components/community/create/CommunityCreate'
+import CommunityRead from '@/components/community/read/CommunityRead'
+import CommunityUpdate from '@/components/community/update/CommunityUpdate'
 import GalleryList from '@/components/gallery/list/GalleryList'
-
 // import ArticleList from '@/components/article/list/ArticleList'
 // import ArticleCreate from '@/components/article/create/ArticleCreate'
 import ArticleRead from '@/components/article/read/ArticleRead'
@@ -129,10 +123,10 @@ export default new Router({
     },
     {
       path: '/board/:service/list/:number',
-      name: 'PostList',
+      name: 'CommunityList',
       components: {
         header: AppHeader,
-        default: PostList,
+        default: CommunityList,
         footer: AppFooter
       },
       props: {
@@ -141,10 +135,10 @@ export default new Router({
     },
     {
       path: '/board/:service/create',
-      name: 'PostCreate',
+      name: 'CommunityCreate',
       components: {
         header: AppHeader,
-        default: PostCreate,
+        default: CommunityCreate,
         footer: AppFooter
       },
       props: {
@@ -164,10 +158,10 @@ export default new Router({
     },
     {
       path: '/board/:service/:number',
-      name: 'PostRead',
+      name: 'CommunityRead',
       components: {
         header: AppHeader,
-        default: PostRead,
+        default: CommunityRead,
         footer: AppFooter
       },
       props: {
@@ -176,10 +170,10 @@ export default new Router({
     },
     {
       path: '/board/:service/:number/edit',
-      name: 'PostUpdate',
+      name: 'CommunityUpdate',
       components: {
         header: AppHeader,
-        default: PostUpdate,
+        default: CommunityUpdate,
         footer: AppFooter
       },
       props: {
@@ -187,7 +181,7 @@ export default new Router({
       },
       beforeEnter(to, from, next) {
         const { isAuthorized } = store.getters
-        // console.log('[router/index.js] PostUpdate → store.getters: ', store.getters)
+        // console.log('[router/index.js] CommunityUpdate → store.getters: ', store.getters)
 
         if (!isAuthorized) {
           alert('로그인이 필요해요!')
@@ -195,7 +189,7 @@ export default new Router({
           next({ name: 'MemberLogin' })
         }
 
-        // console.log('[router/index.js] PostUpdate → to.params: ', to.params)
+        // console.log('[router/index.js] CommunityUpdate → to.params: ', to.params)
 
         store
           .dispatch('fetchPost', {
@@ -203,17 +197,17 @@ export default new Router({
             number: to.params.number
           })
           .then(() => {
-            // console.log('[router/index.js] PostUpdate → store.state.post: ', store.state.post)
-            // console.log('[router/index.js] PostUpdate → store.state.user.id: ', store.state.user.id)
+            // console.log('[router/index.js] CommunityUpdate → store.state.post: ', store.state.post)
+            // console.log('[router/index.js] CommunityUpdate → store.state.user.id: ', store.state.user.id)
 
             const post = store.state.post[0]
-            // console.log('[router/index.js] PostUpdate → post: ', post)
+            // console.log('[router/index.js] CommunityUpdate → post: ', post)
 
             const isAuthor = post.id === store.state.user.id
 
             if (isAuthor) {
-              // console.log('[router/index.js] PostUpdate → 사용자가 일치합니다.')
-              // console.log('[router/index.js] PostUpdate → isAuthor: ', isAuthor)
+              // console.log('[router/index.js] CommunityUpdate → 사용자가 일치합니다.')
+              // console.log('[router/index.js] CommunityUpdate → isAuthor: ', isAuthor)
 
               next()
             } else {

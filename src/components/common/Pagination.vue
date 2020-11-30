@@ -106,11 +106,8 @@ export default {
     }
   },
   created() {
-    if (
-      this.$route.params.service === 'notice' ||
-      this.$route.params.service === 'talk'
-    ) {
-      this.component = 'PostList'
+    if (this.$route.params.service === 'notice' || this.$route.params.service === 'talk') {
+      this.component = 'CommunityList'
     } else {
       this.component = 'GalleryList'
     }

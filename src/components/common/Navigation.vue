@@ -1,9 +1,9 @@
 <template>
-  <div class="group_navigation">
+  <div class="grp_navigation">
     <div class="inner_local">
       <ul class="list_navigation">
         <li v-for="(item, index) in navigation" :key="index" class="item_navigation">
-          <span class="title_navigation" v-html="item.title"></span>
+          <span class="tit_navigation" v-html="item.title"></span>
 
           <ul class="list_children">
             <li v-for="(child, index) in item.children" :key="index" class="item_child">
@@ -38,7 +38,7 @@ export default {
           category: 'news',
           title: '새소식',
           description: '새소식 게시판입니다.',
-          component: 'PostList',
+          component: 'CommunityList',
           children: [
             /* {
               category: 'popular',
@@ -74,7 +74,7 @@ export default {
               category: 'notice',
               title: '공지사항 &amp; 업데이트',
               description: '공지사항 &amp; 업데이트 게시판입니다.',
-              component: 'PostList'
+              component: 'CommunityList'
             }
           ]
         },
@@ -82,13 +82,13 @@ export default {
           category: 'community',
           title: '커뮤니티',
           description: '커뮤니티 게시판입니다.',
-          component: 'PostList',
+          component: 'CommunityList',
           children: [
             {
               category: 'talk',
               title: '톡톡 한마디',
               description: '톡톡 한마디 게시판입니다.',
-              component: 'PostList'
+              component: 'CommunityList'
             },
             {
               category: 'gallery',
@@ -102,7 +102,7 @@ export default {
           category: 'library',
           title: '자료실',
           description: '자료실 게시판입니다.',
-          component: 'PostList',
+          component: 'CommunityList',
           children: [
             {
               category: 'music',
@@ -119,26 +119,26 @@ export default {
 </script>
 
 <style>
-.group_navigation {
+.grp_navigation {
   overflow: hidden;
   background-color: #f1f1f1;
 }
 
-.group_navigation .inner_local {
+.grp_navigation .inner_local {
   margin-top: 10px;
   border-top: 1px solid #e9e9e9;
   border-bottom: 1px solid #e9e9e9;
 }
 
-.group_navigation .list_navigation {
+.grp_navigation .list_navigation {
   background-color: #fff;
 }
 
-.group_navigation .item_navigation + .item_navigation {
+.grp_navigation .item_navigation + .item_navigation {
   border-top: 1px solid #e9e9e9;
 }
 
-.group_navigation .title_navigation {
+.grp_navigation .tit_navigation {
   display: block;
   padding: 18px 10px;
   font-size: 14px;

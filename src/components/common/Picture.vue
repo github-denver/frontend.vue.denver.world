@@ -1,17 +1,12 @@
 <template>
-  <div v-if="attribute.state !== 'board'" :class="['group_picture', attribute.className]">
-    <img
-      v-if="attribute.authorized"
-      :src="!!attribute.picture ? attribute.picture : `${path}/${uploads}/${user.picture}`"
-      class="thumbnail_local"
-      :alt="user.name"
-    />
+  <div v-if="attribute.state !== 'board'" :class="['grp_picture', attribute.className]">
+    <img v-if="attribute.authorized" :src="!!attribute.picture ? attribute.picture : `${path}/${uploads}/${user.picture}`" class="thumbnail_local" :alt="user.name" />
     <img v-else :src="!!attribute.picture ? attribute.picture : `${path}/${uploads}/default_picture.png`" class="thumbnail_local" alt="" />
 
     <slot name="upload"></slot>
   </div>
 
-  <div v-else :class="['group_picture', attribute.className]">
+  <div v-else :class="['grp_picture', attribute.className]">
     <img :src="`${path}/${uploads}/${attribute.picture}`" class="thumbnail_local" alt="" />
 
     <slot name="upload"></slot>
@@ -40,7 +35,7 @@ export default {
 </script>
 
 <style>
-.group_picture {
+.grp_picture {
   display: inline-block;
   position: relative;
   width: 50px;
@@ -50,14 +45,14 @@ export default {
   vertical-align: middle;
 }
 
-.group_picture .thumbnail_local {
+.grp_picture .thumbnail_local {
   overflow: hidden;
   width: 100%;
   height: 100%;
   border-radius: 100%;
 }
 
-.group_picture.register {
+.grp_picture.register {
   display: block;
   width: 100px;
   height: 100px;

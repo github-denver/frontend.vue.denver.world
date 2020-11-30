@@ -20,7 +20,7 @@
         }"
       >
         <template v-slot:loading>
-          <p class="text_message">읽어들이는 중..</p>
+          <p class="txt_message">읽어들이는 중..</p>
         </template>
       </Loading>
 
@@ -30,20 +30,20 @@
         }"
       >
         <template v-slot:empty>
-          <p class="text_message">글이 존재하지 않습니다</p>
+          <p class="txt_message">글이 존재하지 않습니다</p>
         </template>
       </Empty>
 
       <list v-if="loading" :number="number" :posts="posts" :category="category" />
 
-      <div class="group_button">
+      <div class="grp_gravity">
         <div class="inner_half"></div>
 
         <div class="inner_half">
-          <router-link :to="{ name: 'PostCreate', params: { service: category.value } }" class="link_global link_action">글쓰기</router-link>
+          <router-link :to="{ name: 'CommunityCreate', params: { service: category.value } }" class="link_global link_action">글쓰기</router-link>
         </div>
       </div>
-      <!-- // group_button -->
+      <!-- // grp_gravity -->
 
       <pagination />
 
@@ -56,9 +56,9 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import Hgroup from '@/components/common/Hgroup'
+import Hgroup from '@/components/unit/Hgroup'
 import Loading from '@/components/common/Loading'
-import Empty from '@/components/common/Empty'
+import Empty from '@/components/unit/Empty'
 
 import List from '@/components/gallery/list/List'
 import Pagination from '@/components/common/Pagination'

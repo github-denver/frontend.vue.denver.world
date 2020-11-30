@@ -4,13 +4,9 @@
       <router-link
         v-if="search.keyword"
         :to="{
-          name:
-            post.category === 'notice' || post.category === 'talk'
-              ? 'PostRead'
-              : 'ArticleRead',
+          name: post.category === 'notice' || post.category === 'talk' ? 'CommunityRead' : 'ArticleRead',
           params: {
-            service:
-              category.value !== 'popular' ? category.value : post.category,
+            service: category.value !== 'popular' ? category.value : post.category,
             number: post.number.toString()
           },
           query: {
@@ -40,13 +36,9 @@
       <router-link
         v-else
         :to="{
-          name:
-            post.category === 'notice' || post.category === 'talk'
-              ? 'PostRead'
-              : 'ArticleRead',
+          name: post.category === 'notice' || post.category === 'talk' ? 'CommunityRead' : 'ArticleRead',
           params: {
-            service:
-              category.value !== 'popular' ? category.value : post.category,
+            service: category.value !== 'popular' ? category.value : post.category,
             number: post.number.toString()
           },
           query: {
@@ -78,13 +70,13 @@
 import { mapGetters, mapState } from 'vuex'
 
 import Thumbnail from '@/components/common/Thumbnail'
-import Dimmed from '@/components/common/Dimmed'
-import Subject from '@/components/common/Subject'
+import Dimmed from '@/components/unit/Dimmed'
+import Subject from '@/components/unit/Subject'
 
 import moment from 'moment'
 
 export default {
-  name: 'GalleryList',
+  name: 'Contents',
   components: {
     Thumbnail,
     Dimmed,
@@ -111,7 +103,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .list_gallery {
   margin-top: 10px;
 }

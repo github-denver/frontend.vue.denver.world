@@ -1,37 +1,25 @@
 <template>
   <form @submit.prevent="submit" novalidate>
-    <div class="group_search">
-      <div class="group_select">
+    <div class="grp_search">
+      <div class="grp_opt">
         <label for="search" class="label_local">
-          <span class="text_local">{{ select.text }}</span>
-          <span class="icon_global icon_arrow"></span>
+          <span class="txt_local">{{ select.text }}</span>
+          <span class="ico_global ico_arrow"></span>
         </label>
 
-        <select
-          name="search"
-          class="select_local"
-          @change="onChange"
-          v-model="select.value"
-        >
+        <select name="search" class="select_local" @change="onChange" v-model="select.value">
           <option value="subject">제목</option>
           <option value="content">내용</option>
           <!-- <option value="writer">작성자</option> -->
         </select>
       </div>
-      <!-- // group_select -->
+      <!-- // grp_opt -->
 
-      <Input
-        :attribute="{ type: 'search', name: 'keyword', id: 'keyword' }"
-        v-model="keyword"
-      />
+      <Input :attribute="{ type: 'search', name: 'keyword', id: 'keyword' }" v-model="keyword" />
 
       <router-link
         :to="{
-          name:
-            this.$route.params.service === 'notice' ||
-            this.$route.params.service === 'talk'
-              ? 'PostList'
-              : 'GalleryList',
+          name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'CommunityList' : 'GalleryList',
           params: {
             service: category.value,
             number: '1'
@@ -46,15 +34,15 @@
         >검색하기</router-link
       >
     </div>
-    <!-- // group_search -->
+    <!-- // grp_search -->
   </form>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
 
-import DesignSelect from '@/components/common/DesignSelect'
-import Input from '@/components/common/Input'
+import DesignSelect from '@/components/common/Select'
+import Input from '@/components/unit/Input'
 
 export default {
   name: 'Search',
@@ -107,21 +95,21 @@ export default {
 </script>
 
 <style>
-.group_search {
+.grp_search {
   margin-top: 20px;
   font-size: 0;
 }
 
-.group_search .select_global {
+.grp_search .select_global {
   width: 30%;
   vertical-align: top;
 }
 
-.group_search .link_global {
+.grp_search .link_global {
   margin-top: 10px;
 }
 
-.group_search .group_field {
+.grp_search .grp_field {
   width: 70%;
   padding-left: 10px;
   box-sizing: border-box;

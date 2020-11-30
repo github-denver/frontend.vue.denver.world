@@ -1,5 +1,5 @@
 <template>
-  <div class="group_message" v-if="attribute.result">
+  <div class="grp_message" v-if="attribute.result">
     <slot name="loading"></slot>
   </div>
 </template>
@@ -17,11 +17,11 @@ export default {
 </script>
 
 <style>
-.group_message {
+.grp_message {
   margin-top: 10px;
 }
 
-.group_message .text_message {
+.grp_message .txt_message {
   font-size: 14px;
 }
 </style>

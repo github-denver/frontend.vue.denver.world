@@ -2,17 +2,17 @@
   <div class="container">
     <h2 class="screen_out">본문 영역</h2>
 
-    <div class="wrap_visual" v-if="post">
+    <div class="read_thumb" v-if="post">
       <div class="inner_global">
         <div
-          class="thumbnail_visual"
+          class="inner_thumb"
           :style="{
             'background-image': `url('${path}/${uploads}/${post[0].thumbnail}')`,
             'background-position': '50% 50%'
           }"
         ></div>
 
-        <div class="post_header">
+        <div class="read_head">
           <div class="inner_local outer_cell">
             <Picture
               :attribute="{
@@ -23,22 +23,22 @@
               }"
             />
 
-            <div class="post_container inner_cell">
-              <div class="group_subject">
-                <span class="title_local">{{ post[0].subject }}</span>
+            <div class="grp_info inner_cell">
+              <div class="grp_subject">
+                <span class="tit_local">{{ post[0].subject }}</span>
               </div>
 
-              <div class="post_information">
-                <span class="text_local"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
-                <span class="text_local"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
-                <span class="text_local"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
+              <div class="read_info">
+                <span class="txt_local"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
+                <span class="txt_local"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
+                <span class="txt_local"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- // wrap_visual -->
+    <!-- // read_thumb -->
 
     <div class="contents article">
       <Loading
@@ -47,18 +47,18 @@
         }"
       >
         <template v-slot:loading>
-          <p class="text_message">읽어들이는 중..</p>
+          <p class="txt_message">읽어들이는 중..</p>
         </template>
       </Loading>
 
       <read v-if="post" :post="post" />
 
-      <div class="group_button">
+      <div class="grp_gravity">
         <div class="inner_half">
           <router-link
             v-if="search.keyword"
             :to="{
-              name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'PostList' : 'GalleryList',
+              name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'CommunityList' : 'GalleryList',
               params: { service: category.value, number: page.toString() },
               query: { select: search.select, keyword: search.keyword }
             }"
@@ -69,7 +69,7 @@
           <router-link
             v-else
             :to="{
-              name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'PostList' : 'GalleryList',
+              name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'CommunityList' : 'GalleryList',
               params: { service: category.value, number: page.toString() }
             }"
             class="link_global"
@@ -80,7 +80,7 @@
         <div class="inner_half">
           <router-link
             :to="{
-              name: 'PostUpdate',
+              name: 'CommunityUpdate',
               params: { service: category.value, number: number.toString() },
               query: { page: page.toString() }
             }"
@@ -91,7 +91,7 @@
           <rectangle-button
             :attribute="{
               type: 'button',
-              className: 'button_delete',
+              className: 'btn_delete',
               event: onDelete
             }"
             >삭제하기</rectangle-button
@@ -109,10 +109,10 @@
 import { mapActions, mapGetters, mapState } from 'vuex'
 
 import Picture from '@/components/common/Picture'
-import Hgroup from '@/components/common/Hgroup'
+import Hgroup from '@/components/unit/Hgroup'
 import Read from '@/components/article/read/Read'
 import Loading from '@/components/common/Loading'
-import RectangleButton from '@/components/common/RectangleButton'
+import RectangleButton from '@/components/unit/RectangleButton'
 
 import api from '@/api'
 
@@ -230,7 +230,7 @@ export default {
     }).catch((error) => {
       alert(error)
 
-      console.log('[PostRead.vue] created() → error.response: ', error.response)
+      console.log('[ArticleRead.vue] → created() → error.response: ', error.response)
 
       this.$router.back()
     })
@@ -251,7 +251,7 @@ export default {
           alert('게시물이 삭제됐어요!')
 
           this.$router.push({
-            name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'PostList' : 'GalleryList',
+            name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'CommunityList' : 'GalleryList',
             params: {
               service: response.data.service,
               number: '1'
@@ -259,7 +259,7 @@ export default {
           })
         })
         .catch((error) => {
-          console.log(error.response)
+          console.log('[ArticleRead.vue] → methods → error.response: ', error.response)
 
           // UnAuthorized
           if (error.response.status === 401) {
@@ -285,8 +285,8 @@ export default {
 }
 </script>
 
-<style>
-.wrap_visual {
+<style scoped>
+.read_thumb {
   overflow: hidden;
   position: fixed;
   top: 50px;
@@ -294,12 +294,12 @@ export default {
   left: 0;
 }
 
-.wrap_visual .thumbnail_visual {
+.read_thumb .inner_thumb {
   padding-top: 56.25%;
   background-size: cover;
 }
 
-.wrap_visual .post_header {
+.read_thumb .read_head {
   display: block;
   position: absolute;
   bottom: 0;
@@ -318,17 +318,17 @@ export default {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
 }
 
-.wrap_visual .inner_local {
+.read_thumb .inner_local {
   width: auto;
 }
 
-.wrap_visual .group_picture {
+.read_thumb .grp_picture {
   overflow: hidden;
   float: left;
   margin-right: 10px;
 }
 
-.wrap_visual .text_local {
+.read_thumb .txt_local {
   color: #fff;
 }
 </style>

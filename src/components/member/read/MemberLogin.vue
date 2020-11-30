@@ -1,15 +1,15 @@
 <template>
   <div class="wrap_welcome">
-    <h1 class="title_local">
+    <h1 class="tit_local">
       <router-link :to="{ name: 'Main' }" class="link_local">덴버월드</router-link>
     </h1>
 
     <h2 class="screen_out">본문 영역</h2>
     <div class="inner_welcome">
-      <strong class="title_welcome">로그인</strong>
-      <p class="description_welcome">로그인해주세요!</p>
+      <strong class="tit_welcome">로그인</strong>
+      <p class="desc_welcome">로그인해주세요!</p>
 
-      <login @parentSubmit="onSubmit" />
+      <read @parentSubmit="onSubmit" />
     </div>
   </div>
   <!-- // wrap_welcome -->
@@ -17,11 +17,11 @@
 
 <script>
 import { mapActions } from 'vuex'
-import Login from '@/components/member/read/Login'
+import Read from '@/components/member/read/Read'
 
 export default {
   name: 'MemberLogin',
-  components: { Login },
+  components: { Read },
   methods: {
     ...mapActions(['signin']),
     onSubmit(payload) {

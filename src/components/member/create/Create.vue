@@ -10,7 +10,7 @@
         }"
       >
         <template v-slot:upload>
-          <Upload :attribute="{ id: 'picture', icon: 'icon_picture' }" @parentChange="onPictureChange">
+          <Upload :attribute="{ id: 'picture', icon: 'ico_picture' }" @parentChange="onPictureChange">
             <template v-slot:text>프로필 사진</template>
           </Upload>
         </template>
@@ -26,16 +26,16 @@
 
       <Input :attribute="{ type: 'text', id: 'email', className: 'full', title: '이메일 *' }" v-model="email" />
 
-      <div class="group_button">
+      <div class="grp_gravity">
         <div class="inner_half">
           <router-link :to="{ name: 'Main' }" class="link_global">홈으로</router-link>
         </div>
 
         <div class="inner_half">
-          <rectangle-button :attribute="{ type: 'submit', className: 'button_action' }">등록하기</rectangle-button>
+          <rectangle-button :attribute="{ type: 'submit', className: 'btn_action' }">등록하기</rectangle-button>
         </div>
       </div>
-      <!-- // group_button -->
+      <!-- // grp_gravity -->
     </fieldset>
   </form>
 </template>
@@ -43,8 +43,8 @@
 <script>
 import Picture from '@/components/common/Picture'
 import Upload from '@/components/common/Upload'
-import Input from '@/components/common/Input'
-import RectangleButton from '@/components/common/RectangleButton'
+import Input from '@/components/unit/Input'
+import RectangleButton from '@/components/unit/RectangleButton'
 
 export default {
   name: 'MemberCreateForm',
