@@ -48,7 +48,7 @@
               number: page.toString()
             }
           }"
-          class="link_global"
+          class="link_g"
           >취소하기</router-link
         >
       </div>
@@ -255,3 +255,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>

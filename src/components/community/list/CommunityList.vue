@@ -20,7 +20,7 @@
         }"
       >
         <template v-slot:loading>
-          <p class="txt_message">읽어들이는 중..</p>
+          <p class="txt_loading">읽어들이는 중..</p>
         </template>
       </Loading>
 
@@ -30,7 +30,7 @@
         }"
       >
         <template v-slot:empty>
-          <p class="txt_message">글이 존재하지 않습니다</p>
+          <p class="txt_loading">글이 존재하지 않습니다</p>
         </template>
       </Empty>
 
@@ -40,7 +40,7 @@
         <div class="inner_half"></div>
 
         <div class="inner_half">
-          <router-link :to="{ name: 'CommunityCreate', params: { service: category.value } }" class="link_global link_action">글쓰기</router-link>
+          <router-link :to="{ name: 'CommunityCreate', params: { service: category.value } }" class="link_g link_action">글쓰기</router-link>
         </div>
       </div>
       <!-- // group-button -->
@@ -206,3 +206,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>

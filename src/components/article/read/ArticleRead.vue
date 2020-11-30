@@ -3,7 +3,7 @@
     <h2 class="screen_out">본문 영역</h2>
 
     <div class="read_thumb" v-if="post">
-      <div class="inner_global">
+      <div class="inner_g">
         <div
           class="inner_thumb"
           :style="{
@@ -13,7 +13,7 @@
         ></div>
 
         <div class="read_head">
-          <div class="inner_local outer_cell">
+          <div class="inner_head outer_cell">
             <Picture
               :attribute="{
                 authorized: isAuthorized,
@@ -25,13 +25,13 @@
 
             <div class="grp_info inner_cell">
               <div class="grp_subject">
-                <span class="tit_local">{{ post[0].subject }}</span>
+                <span class="tit_subject">{{ post[0].subject }}</span>
               </div>
 
               <div class="read_info">
-                <span class="txt_local"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
-                <span class="txt_local"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
-                <span class="txt_local"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
+                <span class="txt_info"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
+                <span class="txt_info"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
+                <span class="txt_info"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@
         }"
       >
         <template v-slot:loading>
-          <p class="txt_message">읽어들이는 중..</p>
+          <p class="txt_loading">읽어들이는 중..</p>
         </template>
       </Loading>
 
@@ -62,7 +62,7 @@
               params: { service: category.value, number: page.toString() },
               query: { select: search.select, keyword: search.keyword }
             }"
-            class="link_global"
+            class="link_g"
             >목록으로</router-link
           >
 
@@ -72,7 +72,7 @@
               name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'CommunityList' : 'GalleryList',
               params: { service: category.value, number: page.toString() }
             }"
-            class="link_global"
+            class="link_g"
             >목록으로</router-link
           >
         </div>
@@ -84,7 +84,7 @@
               params: { service: category.value, number: number.toString() },
               query: { page: page.toString() }
             }"
-            class="link_global link_action"
+            class="link_g link_action"
             >수정하기</router-link
           >
 
@@ -285,50 +285,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.read_thumb {
-  overflow: hidden;
-  position: fixed;
-  top: 50px;
-  right: 0;
-  left: 0;
-}
-
-.read_thumb .inner_thumb {
-  padding-top: 56.25%;
-  background-size: cover;
-}
-
-.read_thumb .read_head {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: auto;
-  padding: 10px;
-  color: #fff;
-  background: rgba(0, 0, 0, 0);
-  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
-}
-
-.read_thumb .inner_local {
-  width: auto;
-}
-
-.read_thumb .grp_picture {
-  overflow: hidden;
-  float: left;
-  margin-right: 10px;
-}
-
-.read_thumb .txt_local {
-  color: #fff;
-}
-</style>
+<style scoped></style>

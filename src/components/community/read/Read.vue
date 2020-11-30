@@ -12,13 +12,13 @@
 
       <div class="grp_info inner_cell">
         <div class="grp_subject">
-          <span class="tit_local">{{ post[0].subject }}</span>
+          <span class="tit_subject">{{ post[0].subject }}</span>
         </div>
 
         <div class="read_info">
-          <span class="txt_local"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
-          <span class="txt_local"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
-          <span class="txt_local"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
+          <span class="txt_info"><span class="screen_out">작성자</span> {{ post[0].name }}</span>
+          <span class="txt_info"><span class="screen_out">등록일</span> {{ post[0].regdate | moment('YY.MM.DD') }}</span>
+          <span class="txt_info"><span class="screen_out">조회수</span> {{ post[0].count }}</span>
         </div>
       </div>
     </div>
@@ -54,18 +54,4 @@ export default {
 }
 </script>
 
-<style>
-.grp_conts.read {
-  margin-top: 10px;
-}
-
-.grp_conts.read .grp_picture {
-  overflow: hidden;
-  float: left;
-  margin-right: 10px;
-}
-
-.grp_conts.read .read_head {
-  width: auto;
-}
-</style>
+<style scoped></style>

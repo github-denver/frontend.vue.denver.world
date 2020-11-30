@@ -20,7 +20,7 @@
         }"
       >
         <template v-slot:loading>
-          <p class="txt_message">읽어들이는 중..</p>
+          <p class="txt_loading">읽어들이는 중..</p>
         </template>
       </Loading>
 
@@ -35,7 +35,7 @@
               params: { service: category.value, number: page.toString() },
               query: { select: search.select, keyword: search.keyword }
             }"
-            class="link_global"
+            class="link_g"
             >목록으로</router-link
           >
 
@@ -45,7 +45,7 @@
               name: this.$route.params.service === 'notice' || this.$route.params.service === 'talk' ? 'CommunityList' : 'GalleryList',
               params: { service: category.value, number: page.toString() }
             }"
-            class="link_global"
+            class="link_g"
             >목록으로</router-link
           >
         </div>
@@ -57,7 +57,7 @@
               params: { service: category.value, number: number.toString() },
               query: { page: page.toString() }
             }"
-            class="link_global link_action"
+            class="link_g link_action"
             >수정하기</router-link
           >
 
@@ -258,3 +258,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>

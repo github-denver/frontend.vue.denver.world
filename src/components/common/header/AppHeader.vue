@@ -1,8 +1,8 @@
 <template>
   <header class="header">
-    <div class="inner_global inner_local">
-      <h1 class="tit_local">
-        <router-link :to="{ name: 'Main' }" class="link_local">덴버월드</router-link>
+    <div class="inner_g inner_comm">
+      <h1 class="tit_comm">
+        <router-link :to="{ name: 'Main' }" class="link_comm">덴버월드</router-link>
       </h1>
 
       <square-button
@@ -41,7 +41,7 @@
         </li>
         <li>
           <router-link :to="{ name: 'Welcome' }">
-            <icon :attribute="{ className: 'ico_join' }">회원가입</icon>
+            <icon :attribute="{ className: 'ico_register' }">회원가입</icon>
           </router-link>
         </li>
       </ul>
@@ -91,49 +91,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 100;
-}
-
-.header > .inner_local {
-  padding: 10px;
-  box-sizing: border-box;
-  background-color: #0074c2;
-}
-
-.header .tit_local {
-  display: table;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.header .link_local {
-  display: table-cell;
-  height: 30px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  vertical-align: middle;
-}
-
-.header .list_utility {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 0;
-}
-
-.header .list_utility li {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.header .list_utility li + li {
-  margin-left: 10px;
-}
-</style>
+<style scoped></style>

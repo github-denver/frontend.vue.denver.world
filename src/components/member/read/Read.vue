@@ -6,7 +6,7 @@
 
     <div class="grp_gravity">
       <div class="inner_half">
-        <router-link :to="{ name: 'Main' }" class="link_global">홈으로</router-link>
+        <router-link :to="{ name: 'Main' }" class="link_g">홈으로</router-link>
       </div>
 
       <div class="inner_half">
@@ -39,3 +39,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>

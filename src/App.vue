@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="inner_global">
+    <div class="inner_g">
       <router-view name="header" />
 
       <router-view :key="$route.fullPath" />

@@ -27,13 +27,13 @@
 
           <div class="grp_info inner_cell">
             <div class="grp_subject">
-              <span class="tit_local">{{ post.subject }}</span>
+              <span class="tit_subject">{{ post.subject }}</span>
             </div>
 
             <div class="read_info">
-              <span class="txt_local"><span class="screen_out">작성자</span> {{ post.name }}</span>
-              <span class="txt_local"><span class="screen_out">등록일</span> {{ post.regdate | moment('YY.MM.DD') }}</span>
-              <span class="txt_local"><span class="screen_out">조회수</span> {{ post.count }}</span>
+              <span class="txt_info"><span class="screen_out">작성자</span> {{ post.name }}</span>
+              <span class="txt_info"><span class="screen_out">등록일</span> {{ post.regdate | moment('YY.MM.DD') }}</span>
+              <span class="txt_info"><span class="screen_out">조회수</span> {{ post.count }}</span>
             </div>
           </div>
         </router-link>
@@ -61,13 +61,13 @@
 
           <div class="grp_info inner_cell">
             <div class="grp_subject">
-              <span class="tit_local">{{ post.subject }}</span>
+              <span class="tit_subject">{{ post.subject }}</span>
             </div>
 
             <div class="read_info">
-              <span class="txt_local"><span class="screen_out">작성자</span> {{ post.name }}</span>
-              <span class="txt_local"><span class="screen_out">등록일</span> {{ post.regdate | moment('YY.MM.DD') }}</span>
-              <span class="txt_local"><span class="screen_out">조회수</span> {{ post.count }}</span>
+              <span class="txt_info"><span class="screen_out">작성자</span> {{ post.name }}</span>
+              <span class="txt_info"><span class="screen_out">등록일</span> {{ post.regdate | moment('YY.MM.DD') }}</span>
+              <span class="txt_info"><span class="screen_out">조회수</span> {{ post.count }}</span>
             </div>
           </div>
         </router-link>
@@ -106,26 +106,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.grp_community {
-  margin-top: 10px;
-}
-
-.grp_community li {
-  padding: 10px 0;
-}
-
-.grp_community li + li {
-  border-top: 1px solid #e9e9e9;
-}
-
-.grp_community .link_community {
-  width: auto;
-}
-
-.grp_community .grp_picture {
-  overflow: hidden;
-  float: left;
-  margin-right: 10px;
-}
-</style>
+<style scoped></style>

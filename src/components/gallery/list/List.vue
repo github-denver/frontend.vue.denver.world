@@ -103,18 +103,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.list_gallery {
-  margin-top: 10px;
-}
-
-.list_gallery li + li {
-  margin-top: 10px;
-}
-
-.list_gallery .link_gallery {
-  display: block;
-  position: relative;
-  font-size: 12px;
-}
-</style>
+<style scoped></style>

@@ -1,11 +1,11 @@
 <template>
   <div :class="['grp_opt', attribute.className ? attribute.className : '']">
-    <label for="category" class="label_local">
-      <span class="txt_local">{{ category.text }}</span>
-      <span class="ico_global ico_arrow"></span>
+    <label for="category" class="lab_opt">
+      <span class="txt_opt">{{ category.text }}</span>
+      <span class="ico_g ico_arrow"></span>
     </label>
 
-    <select name="category" class="select_local" @change="onChange" v-model="category.value">
+    <select name="category" class="opt_comm" @change="onChange" v-model="category.value">
       <optgroup v-for="(item, index) in select.data" :label="`${item.optgroup.text}`" :key="index">
         <option v-for="(item, index) in select.data[index].optgroup.option" :value="item.value" :key="index">{{ item.text }}</option>
       </optgroup>
@@ -65,3 +65,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>

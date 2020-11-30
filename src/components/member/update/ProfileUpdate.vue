@@ -1,7 +1,7 @@
 <template>
   <div class="wrap_welcome">
-    <h1 class="tit_local">
-      <router-link :to="{ name: 'Main' }" class="link_local">덴버월드</router-link>
+    <h1 class="tit_comm">
+      <router-link :to="{ name: 'Main' }" class="link_comm">덴버월드</router-link>
     </h1>
 
     <div class="inner_welcome">
@@ -42,3 +42,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>

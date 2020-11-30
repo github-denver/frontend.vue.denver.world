@@ -1,5 +1,5 @@
 <template>
-  <div class="main_post">
+  <div class="main_community">
     <Hgroup
       :attribute="{
         title: attribute.title,
@@ -17,7 +17,7 @@
       }"
     >
       <template v-slot:loading>
-        <p class="txt_message">읽어들이는 중..</p>
+        <p class="txt_loading">읽어들이는 중..</p>
       </template>
     </Loading>
 
@@ -27,7 +27,7 @@
       }"
     >
       <template v-slot:empty>
-        <p class="txt_message">글이 존재하지 않습니다</p>
+        <p class="txt_loading">글이 존재하지 않습니다</p>
       </template>
     </Empty>
 
@@ -76,27 +76,4 @@ export default {
 }
 </script>
 
-<style>
-.main_post {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #e9e9e9;
-}
-
-.main_post .list_community {
-  margin-top: 10px;
-}
-
-.main_post .list_community li + li {
-  margin-top: 10px;
-}
-
-.main_post .link_community {
-  overflow: hidden;
-  display: inline-block;
-  max-width: 100%;
-  font-size: 14px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-</style>
+<style scoped></style>

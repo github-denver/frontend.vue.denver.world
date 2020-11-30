@@ -17,7 +17,7 @@
       }"
     >
       <template v-slot:loading>
-        <p class="txt_message">읽어들이는 중..</p>
+        <p class="txt_loading">읽어들이는 중..</p>
       </template>
     </Loading>
 
@@ -27,11 +27,11 @@
       }"
     >
       <template v-slot:empty>
-        <p class="txt_message">글이 존재하지 않습니다</p>
+        <p class="txt_loading">글이 존재하지 않습니다</p>
       </template>
     </Empty>
 
-    <vue-owl-carousel v-if="gallery.list.length && gallery.list.length" :items="attribute.slider.items" :margin="attribute.slider.margin" :stagePadding="attribute.slider.stagePadding" :nav="attribute.slider.nav" :dots="attribute.slider.dots" class="grp_owl">
+    <vue-owl-carousel v-if="gallery.list.length && gallery.list.length" :items="attribute.slider.items" :margin="attribute.slider.margin" :stagePadding="attribute.slider.stagePadding" :nav="attribute.slider.nav" :dots="attribute.slider.dots" :navText="['이전', '다음']" class="grp_owl">
       <router-link
         v-for="(list, index) in gallery.list"
         :key="index"
@@ -107,18 +107,4 @@ export default {
 }
 </script>
 
-<style>
-.main_gallery {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #e9e9e9;
-}
-
-.main_gallery .grp_owl {
-  margin: 10px -10px 0;
-}
-
-.main_gallery .owl-stage {
-  padding-left: 10px !important;
-}
-</style>
+<style scoped></style>

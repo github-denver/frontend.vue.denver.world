@@ -8,12 +8,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.footer {
-  padding: 10px;
-  border-top: 1px solid #e9e9e9;
-  font-size: 11px;
-  color: #999;
-  text-align: center;
-}
-</style>
+<style scoped></style>

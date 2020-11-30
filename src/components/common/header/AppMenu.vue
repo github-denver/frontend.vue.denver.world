@@ -1,6 +1,6 @@
 <template>
-  <div class="wrap_menu">
-    <div class="inner_global">
+  <div class="menu">
+    <div class="inner_menu">
       <Profile
         :attribute="{
           authorized: attribute.authorized,
@@ -38,7 +38,7 @@
 <script>
 import Profile from '@/components/common/Profile'
 import Picture from '@/components/common/Picture'
-import Navigation from '@/components/common/Navigation'
+import Navigation from '@/components/common/header/Navigation'
 import SquareButton from '@/components/unit/SquareButton'
 import Icon from '@/components/unit/Icon'
 
@@ -59,28 +59,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.wrap_menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  min-width: 320px;
-  margin: 0 auto;
-  background-color: #f1f1f1;
-}
-
-.wrap_menu .inner_global {
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding-bottom: 40px;
-  box-sizing: border-box;
-  background-color: #fff;
-}
-</style>
+<style scoped></style>

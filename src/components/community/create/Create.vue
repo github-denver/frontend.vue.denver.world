@@ -47,7 +47,7 @@
               number: '1'
             }
           }"
-          class="link_global"
+          class="link_g"
           >목록으로</router-link
         >
       </div>
@@ -212,3 +212,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>

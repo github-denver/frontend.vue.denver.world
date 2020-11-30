@@ -1,7 +1,7 @@
 <template>
   <div class="wrap_welcome">
-    <h1 class="tit_local">
-      <router-link :to="{ name: 'Main' }" class="link_local">덴버월드</router-link>
+    <h1 class="tit_comm">
+      <router-link :to="{ name: 'Main' }" class="link_comm">덴버월드</router-link>
     </h1>
 
     <h2 class="screen_out">본문 영역</h2>
@@ -57,3 +57,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>

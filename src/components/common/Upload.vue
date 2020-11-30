@@ -1,12 +1,12 @@
 <template>
   <div class="grp_upload">
-    <label :for="attribute.id" class="label_local">
-      <span :class="['ico_global', attribute.icon]">
+    <label :for="attribute.id" class="lab_upload">
+      <span :class="['ico_g', attribute.icon]">
         <slot name="text"></slot>
       </span>
     </label>
 
-    <input type="file" :name="attribute.id" :id="attribute.id" class="field_local" @change="onChange" />
+    <input type="file" :name="attribute.id" :id="attribute.id" class="field_upload" @change="onChange" />
   </div>
 </template>
 
@@ -56,37 +56,4 @@ export default {
 }
 </script>
 
-<style>
-.grp_upload {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  border: 1px solid #e9e9e9;
-  border-radius: 100%;
-  font-size: 1px;
-  line-height: 0;
-  color: transparent;
-  background-color: #fff;
-}
-
-.grp_upload .label_local {
-  display: block;
-  width: 30px;
-  height: 30px;
-}
-
-.grp_upload .ico_picture {
-  width: 30px;
-  height: 30px;
-  background-position: -70px -35px;
-}
-
-.grp_upload .field_local[type='file'] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 1px;
-  height: 1px;
-}
-</style>
+<style scoped></style>

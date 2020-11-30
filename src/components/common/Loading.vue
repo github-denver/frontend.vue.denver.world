@@ -1,5 +1,5 @@
 <template>
-  <div class="grp_message" v-if="attribute.result">
+  <div class="grp_loading" v-if="attribute.result">
     <slot name="loading"></slot>
   </div>
 </template>
@@ -16,12 +16,4 @@ export default {
 }
 </script>
 
-<style>
-.grp_message {
-  margin-top: 10px;
-}
-
-.grp_message .txt_message {
-  font-size: 14px;
-}
-</style>
+<style scoped></style>

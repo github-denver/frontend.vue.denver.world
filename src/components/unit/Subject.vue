@@ -1,5 +1,5 @@
 <template>
-  <div class="subject_global">
+  <div class="subject_g">
     <slot></slot>
   </div>
 </template>
@@ -10,14 +10,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.subject_global {
-  display: block;
-  overflow: hidden;
-  font-size: 14px;
-  font-weight: 700;
-  color: #fff;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-</style>
+<style scoped></style>

@@ -127,34 +127,4 @@ export default {
 }
 </script>
 
-<style>
-.list_pagination {
-  margin-top: 20px;
-  font-size: 0;
-  text-align: center;
-}
-
-.list_pagination li {
-  display: inline-block;
-}
-
-.list_pagination li + li {
-  margin-left: 12px;
-}
-
-.list_pagination .link_pagination {
-  display: block;
-  min-width: 30px;
-  padding: 7px 4px;
-  box-sizing: border-box;
-  font-size: 14px;
-  line-height: 1;
-}
-
-.list_pagination .link_pagination.current {
-  font-weight: 700;
-  color: #0074c2;
-  border: 1px solid #0074c2;
-  background-color: #fff;
-}
-</style>
+<style scoped></style>

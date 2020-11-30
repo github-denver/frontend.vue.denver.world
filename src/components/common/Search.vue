@@ -2,12 +2,12 @@
   <form @submit.prevent="submit" novalidate>
     <div class="grp_search">
       <div class="grp_opt">
-        <label for="search" class="label_local">
-          <span class="txt_local">{{ select.text }}</span>
-          <span class="ico_global ico_arrow"></span>
+        <label for="search" class="lab_opt">
+          <span class="txt_opt">{{ select.text }}</span>
+          <span class="ico_g ico_arrow"></span>
         </label>
 
-        <select name="search" class="select_local" @change="onChange" v-model="select.value">
+        <select name="search" class="opt_comm" @change="onChange" v-model="select.value">
           <option value="subject">제목</option>
           <option value="content">내용</option>
           <!-- <option value="writer">작성자</option> -->
@@ -29,7 +29,7 @@
             keyword: keyword
           }
         }"
-        class="link_global link_search"
+        class="link_g link_search"
         @click.native="submit"
         >검색하기</router-link
       >
@@ -94,25 +94,4 @@ export default {
 }
 </script>
 
-<style>
-.grp_search {
-  margin-top: 20px;
-  font-size: 0;
-}
-
-.grp_search .select_global {
-  width: 30%;
-  vertical-align: top;
-}
-
-.grp_search .link_global {
-  margin-top: 10px;
-}
-
-.grp_search .grp_field {
-  width: 70%;
-  padding-left: 10px;
-  box-sizing: border-box;
-  vertical-align: top;
-}
-</style>
+<style scoped></style>
