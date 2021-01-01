@@ -228,9 +228,9 @@ export default {
       select: select2,
       keyword: keyword2
     }).catch((error) => {
-      alert(error)
-
       console.log('[ArticleRead.vue] → created() → error.response: ', error.response)
+
+      alert(error)
 
       this.$router.back()
     })

@@ -19,11 +19,9 @@ Vue.use(require('vue-moment'))
 
 const init = () => {
   const savedToken = Cookies.get('accessToken')
-  // console.log('[main.js] init () → savedToken: ', savedToken)
+  // console.log('[main.js] → init () → savedToken: ', savedToken)
 
   if (savedToken) {
-    // console.log('[main.js] init () → savedToken: ', savedToken)
-
     return store.dispatch('signinByToken', savedToken)
   } else {
     return Promise.resolve()
