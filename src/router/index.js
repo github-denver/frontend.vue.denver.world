@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+/*
 import Main from '@/components/common/Index'
 import AppHeader from '@/components/common/header/AppHeader'
 import AppMenu from '@/components/common/header/AppMenu'
@@ -18,6 +19,22 @@ import GalleryList from '@/components/gallery/list/GalleryList'
 // import ArticleCreate from '@/components/article/create/ArticleCreate'
 import ArticleRead from '@/components/article/read/ArticleRead'
 // import ArticleUpdate from '@/components/article/update/ArticleUpdate'
+*/
+
+const Main = () => import(/* webpackChunkName: "main" */ '@/components/common/Index')
+const AppHeader = () => import(/* webpackChunkName: "header" */ '@/components/common/header/AppHeader')
+const AppMenu = () => import(/* webpackChunkName: "menu" */ '@/components/common/header/AppMenu')
+const AppFooter = () => import(/* webpackChunkName: "footer" */ '@/components/common/footer/AppFooter')
+const Welcome = () => import(/* webpackChunkName: "welcome" */ '@/components/member/create/Welcome')
+const MemberCreate = () => import(/* webpackChunkName: "membercreate" */ '@/components/member/create/MemberCreate')
+const MemberLogin = () => import(/* webpackChunkName: "memberlogin" */ '@/components/member/read/MemberLogin')
+const ProfileUpdate = () => import(/* webpackChunkName: "profileupdate" */ '@/components/member/update/ProfileUpdate')
+const CommunityList = () => import(/* webpackChunkName: "communitylist" */ '@/components/community/list/CommunityList')
+const CommunityCreate = () => import(/* webpackChunkName: "communitycreate" */ '@/components/community/create/CommunityCreate')
+const CommunityRead = () => import(/* webpackChunkName: "communityread" */ '@/components/community/read/CommunityRead')
+const CommunityUpdate = () => import(/* webpackChunkName: "communityupdate" */ '@/components/community/update/CommunityUpdate')
+const GalleryList = () => import(/* webpackChunkName: "gallerylist" */ '@/components/gallery/list/GalleryList')
+const ArticleRead = () => import(/* webpackChunkName: "articleread" */ '@/components/article/read/ArticleRead')
 
 import store from '@/store'
 
