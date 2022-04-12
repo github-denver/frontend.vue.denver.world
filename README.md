@@ -12,3 +12,32 @@
 <p align="center">
   <a href="http://cf24denver.cafe24app.com/" target="_blank">둘러보기</a>
 </p>
+
+## 목차
+* [기능](#기능)
+
+## 기능
+* `회원가입` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
+* `로그인` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
+* `내 정보 수정` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
+* `글 목록` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
+* `글 등록` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
+* `글 상세` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
+* `글 수정` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
+
+## HTML Markup Guide
+[https://github.com/github-denver/guide.markup](https://github.com/github-denver/guide.markup)
+
+## Browser Support
+
+### Desktop 
+
+| Internet Explorer | Microsoft Edge | Chrome | Firefox | Opera | Safari |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| - | - | - | - | - | - |
+
+### Mobile 
+
+| - | - | - | - | - | - |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| - | - | - | - | - | - |
