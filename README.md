@@ -17,27 +17,146 @@
 * [기능](#기능)
 
 ## 기능
-* `회원가입` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
-* `로그인` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
-* `내 정보 수정` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
-* `글 목록` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
-* `글 등록` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
-* `글 상세` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
-* `글 수정` 내용을 작성해 주세요. [코드 보기]() | [미리 보기]()
+* `회원가입` 내용을 작성해 주세요. [코드 보기]()
+  <details>
+    <summary>화면 보기</summary>
+
+    ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/002.png)
+
+    ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/003.png)
+  </details>
+* `로그인` 내용을 작성해 주세요. [코드 보기]()
+  <details>
+    <summary>화면 보기</summary>
+
+    ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/004.png)
+  </details>
+* `내 정보 수정` 내용을 작성해 주세요. [코드 보기]()
+  <details>
+    <summary>화면 보기</summary>
+
+    ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/005.png)
+  </details>
+* `글 목록` 내용을 작성해 주세요. [코드 보기]()
+  <details>
+    <summary>화면 보기</summary>
+
+    ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/007.png)
+
+    ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/009.png)
+  </details>
+* `글 등록` 내용을 작성해 주세요. [코드 보기]()
+  <details>
+    <summary>화면 보기</summary>
+
+    ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/008.png)
+  </details>
+* `글 상세` 내용을 작성해 주세요. [코드 보기]()
+  <details>
+    <summary>화면 보기</summary>
+
+    ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/010.png)
+  </details>
+* `글 수정` 내용을 작성해 주세요. [코드 보기]()
+  <details>
+    <summary>화면 보기</summary>
+
+    ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/011.png)
+  </details>
 
 ## HTML Markup Guide
 [https://github.com/github-denver/guide.markup](https://github.com/github-denver/guide.markup)
 
 ## Browser Support
-
-### Desktop 
-
-| Internet Explorer | Microsoft Edge | Chrome | Firefox | Opera | Safari |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| - | - | - | - | - | - |
-
-### Mobile 
-
-| - | - | - | - | - | - |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| - | - | - | - | - | - |
+<table>
+  <thead>
+    <tr>
+      <th colspan="6">
+        <span></span>
+        <span>Desktop</span>
+      </th>
+      <th colspan="6">
+        <span></span>
+        <span>Mobile</span>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <span>Chrome</span>
+      </th>
+      <th>
+        <span>Edge</span>
+      </th>
+      <th>
+        <span>Firefox</span>
+      </th>
+      <th>
+        <span>Internet Explorer</span>
+      </th>
+      <th>
+        <span>Opera</span>
+      </th>
+      <th>
+        <span>Safari</span>
+      </th>
+      <th>
+        <span>WebView Android</span>
+      </th>
+      <th>
+        <span>Chrome Android</span>
+      </th>
+      <th>
+        <span>Firefox for Android</span>
+      </th>
+      <th>
+        <span>Opera Android</span>
+      </th>
+      <th>
+        <span>Safari on iOS</span>
+      </th>
+      <th>
+        <span>Samsung Internet</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+      <td>
+        <span></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
