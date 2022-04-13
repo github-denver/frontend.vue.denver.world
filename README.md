@@ -51,7 +51,7 @@
 
     ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/003.png)
   </details>
-* `로그인` 내용을 작성해 주세요. [코드 보기]()
+* `로그인` 성공 시 JWT 토큰을 발급합니다. 토큰을 발급받은 상태에서 
   <details>
     <summary>화면 보기</summary>
 
