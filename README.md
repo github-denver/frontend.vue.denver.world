@@ -26,11 +26,6 @@
   
   상단 **우측**에는 [로그인](http://cf24denver.cafe24app.com/member/login) 및 [회원가입](http://cf24denver.cafe24app.com/welcome) 페이지로 이동할 수 있는 링크를 제공하고 있습니다.
   <details>
-    <summary>코드 보기</summary>
-  
-    [메인]()
-  </details>
-  <details>
     <summary>화면 보기</summary>
 
     ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/001.png)
@@ -45,11 +40,6 @@
 
   ✅**이메일**을 올바르게 입력해 주세요.
   <details>
-    <summary>코드 보기</summary>
-  
-    [회원가입]()
-  </details>
-  <details>
     <summary>화면 보기</summary>
 
     ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/002.png)
@@ -57,11 +47,6 @@
     ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/003.png)
   </details>
 * `로그인` 성공 시 **JWT Token**을 발급합니다.
-  <details>
-    <summary>코드 보기</summary>
-  
-    [로그인]()
-  </details>
   <details>
     <summary>화면 보기</summary>
 
@@ -73,21 +58,11 @@
 
   ✅**이메일**을 올바르게 입력해 주세요.
   <details>
-    <summary>코드 보기</summary>
-  
-    [회원정보 수정]()
-  </details>
-  <details>
     <summary>화면 보기</summary>
 
     ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/005.png)
   </details>
 * `글 목록`
-  <details>
-    <summary>코드 보기</summary>
-  
-    [글 목록]()
-  </details>
   <details>
     <summary>화면 보기</summary>
 
@@ -97,32 +72,17 @@
   </details>
 * `글 등록` 페이지는 <a href="https://www.vue2editor.com/" rel="nofollow">vue2-editor</a>를 사용해서 만들었고, <ins>로그인하지 않은 상태일 경우 접근할 수 없습니다.</ins>
   <details>
-    <summary>코드 보기</summary>
-  
-    [글 등록]()
-  </details>
-  <details>
     <summary>화면 보기</summary>
 
     ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/008.png)
   </details>
 * `글 상세` 페이지는 **일반 게시판**과 **블로그** 두 가지 디자인을 사용하고 있습니다.
   <details>
-    <summary>코드 보기</summary>
-  
-    [글 상세]()
-  </details>
-  <details>
     <summary>화면 보기</summary>
 
     ![](https://raw.githubusercontent.com/github-denver/images/master/community/images/010.png)
   </details>
 * `글 수정`은 <ins>작성자만 수정할 수 있으며,</ins> <a href="https://www.vue2editor.com/" rel="nofollow">vue2-editor</a>를 사용해서 만들었습니다.
-  <details>
-    <summary>코드 보기</summary>
-  
-    [글 수정]()
-  </details>
   <details>
     <summary>화면 보기</summary>
 
@@ -140,97 +100,3 @@
 
 ## HTML Markup Guide
 [https://github.com/github-denver/guide.markup](https://github.com/github-denver/guide.markup)
-
-## 브라우저 호환성
-<table>
-  <thead>
-    <tr>
-      <th colspan="6">
-        <span></span>
-        <span>Desktop</span>
-      </th>
-      <th colspan="6">
-        <span></span>
-        <span>Mobile</span>
-      </th>
-    </tr>
-    <tr>
-      <th>
-        <span>Chrome</span>
-      </th>
-      <th>
-        <span>Edge</span>
-      </th>
-      <th>
-        <span>Firefox</span>
-      </th>
-      <th>
-        <span>Internet Explorer</span>
-      </th>
-      <th>
-        <span>Opera</span>
-      </th>
-      <th>
-        <span>Safari</span>
-      </th>
-      <th>
-        <span>WebView Android</span>
-      </th>
-      <th>
-        <span>Chrome Android</span>
-      </th>
-      <th>
-        <span>Firefox for Android</span>
-      </th>
-      <th>
-        <span>Opera Android</span>
-      </th>
-      <th>
-        <span>Safari on iOS</span>
-      </th>
-      <th>
-        <span>Samsung Internet</span>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-      <td>
-        <span>&nbsp;</span>
-      </td>
-    </tr>
-  </tbody>
-</table>
