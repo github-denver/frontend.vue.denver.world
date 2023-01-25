@@ -17,6 +17,7 @@
     "js-cookie": "^2.2.1",
     "vue": "^2.5.2",
     "vue-fragment": "^1.5.1",
+    "vue-jsonld": "^1.0.1",
     "vue-moment": "^4.1.0",
     "vue-owl-carousel": "^2.0.3",
     "vue-router": "^3.0.1",
@@ -73,6 +74,7 @@
       "ie >= 9"
     ],
     "development": [
+      ">0.2%",
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version",

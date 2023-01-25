@@ -11,10 +11,12 @@ import store from './store'
 import Cookies from 'js-cookie'
 
 import { Plugin } from 'vue-fragment'
+import VueJsonLD from 'vue-jsonld'
 
 Vue.config.productionTip = false
 
 Vue.use(Plugin)
+Vue.use(VueJsonLD)
 Vue.use(require('vue-moment'))
 
 const init = () => {
